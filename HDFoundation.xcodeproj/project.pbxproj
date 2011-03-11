@@ -1,0 +1,361 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		633E18261329505D00082EDD /* HDManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18241329505D00082EDD /* HDManagedObject.h */; };
+		633E18271329505D00082EDD /* HDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18251329505D00082EDD /* HDManagedObject.m */; };
+		633E18291329507400082EDD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E18281329507400082EDD /* CoreData.framework */; };
+		633E182C1329512F00082EDD /* UIDevice+Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E182A1329512F00082EDD /* UIDevice+Platform.h */; };
+		633E182D1329512F00082EDD /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E182B1329512F00082EDD /* UIDevice+Platform.m */; };
+		633E182F1329516500082EDD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E182E1329516500082EDD /* UIKit.framework */; };
+		633E1836132951BB00082EDD /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E1830132951BB00082EDD /* UIImage+Alpha.h */; };
+		633E1837132951BB00082EDD /* UIImage+Loading.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E1831132951BB00082EDD /* UIImage+Loading.h */; };
+		633E1838132951BB00082EDD /* UIView+Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E1832132951BB00082EDD /* UIView+Geometry.h */; };
+		633E1839132951BB00082EDD /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E1833132951BB00082EDD /* UIImage+Alpha.m */; };
+		633E183A132951BB00082EDD /* UIImage+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E1834132951BB00082EDD /* UIImage+Loading.m */; };
+		633E183B132951BB00082EDD /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E1835132951BB00082EDD /* UIView+Geometry.m */; };
+		633E183E1329528E00082EDD /* HDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E183C1329528E00082EDD /* HDViewController.h */; };
+		633E183F1329528E00082EDD /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E183D1329528E00082EDD /* HDViewController.m */; };
+		633E18481329533800082EDD /* HDDraggableButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18401329533200082EDD /* HDDraggableButton.h */; };
+		633E18491329533800082EDD /* HDDrawableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18411329533200082EDD /* HDDrawableImage.h */; };
+		633E184A1329533800082EDD /* HDErasableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18421329533200082EDD /* HDErasableImage.h */; };
+		633E184B1329533800082EDD /* HDIrregularImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18431329533200082EDD /* HDIrregularImage.h */; };
+		633E184C1329533800082EDD /* HDDraggableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18441329533300082EDD /* HDDraggableButton.m */; };
+		633E184D1329533800082EDD /* HDDrawableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18451329533400082EDD /* HDDrawableImage.m */; };
+		633E184E1329533800082EDD /* HDErasableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18461329533500082EDD /* HDErasableImage.m */; };
+		633E184F1329533800082EDD /* HDIrregularImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18471329533600082EDD /* HDIrregularImage.m */; };
+		633E18521329541C00082EDD /* HDFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18501329541C00082EDD /* HDFunctions.h */; };
+		636D00171329484C00A12C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D00161329484C00A12C84 /* Foundation.framework */; };
+		636D002A1329490100A12C84 /* HDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 636D00281329490100A12C84 /* HDTypes.h */; };
+		636D003013294B4400A12C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D002F13294B4400A12C84 /* CoreGraphics.framework */; };
+		63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB453132A2CEE00F6E87F /* HDFoundation.h */; };
+		63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB455132A2D6200F6E87F /* NSMutableArray+Queue.h */; };
+		63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEB456132A2D6200F6E87F /* NSMutableArray+Queue.m */; };
+		63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB52A132A41E200F6E87F /* HDModelController.h */; };
+		63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEB52B132A41E200F6E87F /* HDModelController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		633E18241329505D00082EDD /* HDManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDManagedObject.h; sourceTree = "<group>"; };
+		633E18251329505D00082EDD /* HDManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDManagedObject.m; sourceTree = "<group>"; };
+		633E18281329507400082EDD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		633E182A1329512F00082EDD /* UIDevice+Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Platform.h"; sourceTree = "<group>"; };
+		633E182B1329512F00082EDD /* UIDevice+Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Platform.m"; sourceTree = "<group>"; };
+		633E182E1329516500082EDD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		633E1830132951BB00082EDD /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		633E1831132951BB00082EDD /* UIImage+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Loading.h"; sourceTree = "<group>"; };
+		633E1832132951BB00082EDD /* UIView+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Geometry.h"; sourceTree = "<group>"; };
+		633E1833132951BB00082EDD /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		633E1834132951BB00082EDD /* UIImage+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Loading.m"; sourceTree = "<group>"; };
+		633E1835132951BB00082EDD /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
+		633E183C1329528E00082EDD /* HDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDViewController.h; sourceTree = "<group>"; };
+		633E183D1329528E00082EDD /* HDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDViewController.m; sourceTree = "<group>"; };
+		633E18401329533200082EDD /* HDDraggableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDraggableButton.h; sourceTree = "<group>"; };
+		633E18411329533200082EDD /* HDDrawableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDrawableImage.h; sourceTree = "<group>"; };
+		633E18421329533200082EDD /* HDErasableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDErasableImage.h; sourceTree = "<group>"; };
+		633E18431329533200082EDD /* HDIrregularImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDIrregularImage.h; sourceTree = "<group>"; };
+		633E18441329533300082EDD /* HDDraggableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDraggableButton.m; sourceTree = "<group>"; };
+		633E18451329533400082EDD /* HDDrawableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDrawableImage.m; sourceTree = "<group>"; };
+		633E18461329533500082EDD /* HDErasableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDErasableImage.m; sourceTree = "<group>"; };
+		633E18471329533600082EDD /* HDIrregularImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDIrregularImage.m; sourceTree = "<group>"; };
+		633E18501329541C00082EDD /* HDFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFunctions.h; sourceTree = "<group>"; };
+		636D00131329484C00A12C84 /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		636D00161329484C00A12C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		636D00281329490100A12C84 /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
+		636D002F13294B4400A12C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		63CEB453132A2CEE00F6E87F /* HDFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundation.h; sourceTree = "<group>"; };
+		63CEB455132A2D6200F6E87F /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		63CEB456132A2D6200F6E87F /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		63CEB52A132A41E200F6E87F /* HDModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDModelController.h; sourceTree = "<group>"; };
+		63CEB52B132A41E200F6E87F /* HDModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDModelController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		636D00101329484C00A12C84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633E182F1329516500082EDD /* UIKit.framework in Frameworks */,
+				633E18291329507400082EDD /* CoreData.framework in Frameworks */,
+				636D003013294B4400A12C84 /* CoreGraphics.framework in Frameworks */,
+				636D00171329484C00A12C84 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		636D00081329484C00A12C84 = {
+			isa = PBXGroup;
+			children = (
+				636D00201329485800A12C84 /* Sources */,
+				636D00151329484C00A12C84 /* Frameworks */,
+				636D00141329484C00A12C84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		636D00141329484C00A12C84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				636D00131329484C00A12C84 /* libHDFoundation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		636D00151329484C00A12C84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				633E182E1329516500082EDD /* UIKit.framework */,
+				633E18281329507400082EDD /* CoreData.framework */,
+				636D00161329484C00A12C84 /* Foundation.framework */,
+				636D002F13294B4400A12C84 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		636D00201329485800A12C84 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				636D0024132948B700A12C84 /* Model */,
+				636D0025132948BF00A12C84 /* View */,
+				636D0026132948C900A12C84 /* Controller */,
+				636D0027132948D200A12C84 /* Misc */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		636D0024132948B700A12C84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				633E18241329505D00082EDD /* HDManagedObject.h */,
+				633E18251329505D00082EDD /* HDManagedObject.m */,
+				63CEB52A132A41E200F6E87F /* HDModelController.h */,
+				63CEB52B132A41E200F6E87F /* HDModelController.m */,
+				63CEB455132A2D6200F6E87F /* NSMutableArray+Queue.h */,
+				63CEB456132A2D6200F6E87F /* NSMutableArray+Queue.m */,
+				633E182A1329512F00082EDD /* UIDevice+Platform.h */,
+				633E182B1329512F00082EDD /* UIDevice+Platform.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		636D0025132948BF00A12C84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				633E1830132951BB00082EDD /* UIImage+Alpha.h */,
+				633E1833132951BB00082EDD /* UIImage+Alpha.m */,
+				633E1831132951BB00082EDD /* UIImage+Loading.h */,
+				633E1834132951BB00082EDD /* UIImage+Loading.m */,
+				633E1832132951BB00082EDD /* UIView+Geometry.h */,
+				633E1835132951BB00082EDD /* UIView+Geometry.m */,
+				633E18401329533200082EDD /* HDDraggableButton.h */,
+				633E18441329533300082EDD /* HDDraggableButton.m */,
+				633E18411329533200082EDD /* HDDrawableImage.h */,
+				633E18451329533400082EDD /* HDDrawableImage.m */,
+				633E18421329533200082EDD /* HDErasableImage.h */,
+				633E18461329533500082EDD /* HDErasableImage.m */,
+				633E18431329533200082EDD /* HDIrregularImage.h */,
+				633E18471329533600082EDD /* HDIrregularImage.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		636D0026132948C900A12C84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				633E183C1329528E00082EDD /* HDViewController.h */,
+				633E183D1329528E00082EDD /* HDViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		636D0027132948D200A12C84 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				63CEB453132A2CEE00F6E87F /* HDFoundation.h */,
+				636D00281329490100A12C84 /* HDTypes.h */,
+				633E18501329541C00082EDD /* HDFunctions.h */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		636D00111329484C00A12C84 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636D002A1329490100A12C84 /* HDTypes.h in Headers */,
+				633E18261329505D00082EDD /* HDManagedObject.h in Headers */,
+				633E182C1329512F00082EDD /* UIDevice+Platform.h in Headers */,
+				633E1836132951BB00082EDD /* UIImage+Alpha.h in Headers */,
+				633E1837132951BB00082EDD /* UIImage+Loading.h in Headers */,
+				633E1838132951BB00082EDD /* UIView+Geometry.h in Headers */,
+				633E183E1329528E00082EDD /* HDViewController.h in Headers */,
+				633E18481329533800082EDD /* HDDraggableButton.h in Headers */,
+				633E18491329533800082EDD /* HDDrawableImage.h in Headers */,
+				633E184A1329533800082EDD /* HDErasableImage.h in Headers */,
+				633E184B1329533800082EDD /* HDIrregularImage.h in Headers */,
+				633E18521329541C00082EDD /* HDFunctions.h in Headers */,
+				63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */,
+				63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */,
+				63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		636D00121329484C00A12C84 /* HDFoundation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 636D001D1329484C00A12C84 /* Build configuration list for PBXNativeTarget "HDFoundation" */;
+			buildPhases = (
+				636D000F1329484C00A12C84 /* Sources */,
+				636D00101329484C00A12C84 /* Frameworks */,
+				636D00111329484C00A12C84 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HDFoundation;
+			productName = HDFoundation;
+			productReference = 636D00131329484C00A12C84 /* libHDFoundation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		636D000A1329484C00A12C84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "hart[dev]";
+			};
+			buildConfigurationList = 636D000D1329484C00A12C84 /* Build configuration list for PBXProject "HDFoundation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 636D00081329484C00A12C84;
+			productRefGroup = 636D00141329484C00A12C84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				636D00121329484C00A12C84 /* HDFoundation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		636D000F1329484C00A12C84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633E18271329505D00082EDD /* HDManagedObject.m in Sources */,
+				633E182D1329512F00082EDD /* UIDevice+Platform.m in Sources */,
+				633E1839132951BB00082EDD /* UIImage+Alpha.m in Sources */,
+				633E183A132951BB00082EDD /* UIImage+Loading.m in Sources */,
+				633E183B132951BB00082EDD /* UIView+Geometry.m in Sources */,
+				633E183F1329528E00082EDD /* HDViewController.m in Sources */,
+				633E184C1329533800082EDD /* HDDraggableButton.m in Sources */,
+				633E184D1329533800082EDD /* HDDrawableImage.m in Sources */,
+				633E184E1329533800082EDD /* HDErasableImage.m in Sources */,
+				633E184F1329533800082EDD /* HDIrregularImage.m in Sources */,
+				63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */,
+				63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		636D001B1329484C00A12C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		636D001C1329484C00A12C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		636D001E1329484C00A12C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDFoundation.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		636D001F1329484C00A12C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDFoundation.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		636D000D1329484C00A12C84 /* Build configuration list for PBXProject "HDFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636D001B1329484C00A12C84 /* Debug */,
+				636D001C1329484C00A12C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		636D001D1329484C00A12C84 /* Build configuration list for PBXNativeTarget "HDFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636D001E1329484C00A12C84 /* Debug */,
+				636D001F1329484C00A12C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 636D000A1329484C00A12C84 /* Project object */;
+}
