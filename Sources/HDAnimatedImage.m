@@ -111,7 +111,7 @@
 
 - (void)createDisplayLink
 {
-	CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateAnimation)];
+	CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateAnimation:)];
 	[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 	[self setDisplayLink:displayLink];
 }
