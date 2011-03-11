@@ -21,4 +21,5 @@
 #import "HDDrawableImage.h"
 #import "HDErasableImage.h"
 #import "HDIrregularImage.h"
+#import "HDAnimatedImage.h"
 #import "HDViewController.h"
