@@ -33,13 +33,13 @@
 		636D00171329484C00A12C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D00161329484C00A12C84 /* Foundation.framework */; };
 		636D002A1329490100A12C84 /* HDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 636D00281329490100A12C84 /* HDTypes.h */; };
 		636D003013294B4400A12C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D002F13294B4400A12C84 /* CoreGraphics.framework */; };
+		63CCB317132A98AC00153A3A /* HDAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CCB315132A98AC00153A3A /* HDAnimatedImage.h */; };
+		63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CCB316132A98AC00153A3A /* HDAnimatedImage.m */; };
 		63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB453132A2CEE00F6E87F /* HDFoundation.h */; };
 		63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB455132A2D6200F6E87F /* NSMutableArray+Queue.h */; };
 		63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEB456132A2D6200F6E87F /* NSMutableArray+Queue.m */; };
 		63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB52A132A41E200F6E87F /* HDModelController.h */; };
 		63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEB52B132A41E200F6E87F /* HDModelController.m */; };
-		63CEB5A9132A6AE900F6E87F /* HDAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB5A7132A6AE900F6E87F /* HDAnimatedImage.h */; };
-		63CEB5AA132A6AE900F6E87F /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEB5A8132A6AE900F6E87F /* HDAnimatedImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,13 +70,13 @@
 		636D00161329484C00A12C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		636D00281329490100A12C84 /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
 		636D002F13294B4400A12C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		63CCB315132A98AC00153A3A /* HDAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnimatedImage.h; sourceTree = "<group>"; };
+		63CCB316132A98AC00153A3A /* HDAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnimatedImage.m; sourceTree = "<group>"; };
 		63CEB453132A2CEE00F6E87F /* HDFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundation.h; sourceTree = "<group>"; };
 		63CEB455132A2D6200F6E87F /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		63CEB456132A2D6200F6E87F /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		63CEB52A132A41E200F6E87F /* HDModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDModelController.h; sourceTree = "<group>"; };
 		63CEB52B132A41E200F6E87F /* HDModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDModelController.m; sourceTree = "<group>"; };
-		63CEB5A7132A6AE900F6E87F /* HDAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnimatedImage.h; sourceTree = "<group>"; };
-		63CEB5A8132A6AE900F6E87F /* HDAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnimatedImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 				633E18461329533500082EDD /* HDErasableImage.m */,
 				633E18431329533200082EDD /* HDIrregularImage.h */,
 				633E18471329533600082EDD /* HDIrregularImage.m */,
-				63CEB5A7132A6AE900F6E87F /* HDAnimatedImage.h */,
-				63CEB5A8132A6AE900F6E87F /* HDAnimatedImage.m */,
+				63CCB315132A98AC00153A3A /* HDAnimatedImage.h */,
+				63CCB316132A98AC00153A3A /* HDAnimatedImage.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 				63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */,
 				63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */,
 				63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */,
-				63CEB5A9132A6AE900F6E87F /* HDAnimatedImage.h in Headers */,
+				63CCB317132A98AC00153A3A /* HDAnimatedImage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +278,7 @@
 				633E184F1329533800082EDD /* HDIrregularImage.m in Sources */,
 				63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */,
 				63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */,
-				63CEB5AA132A6AE900F6E87F /* HDAnimatedImage.m in Sources */,
+				63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

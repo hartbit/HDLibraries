@@ -1,25 +1,26 @@
 //
 //  HDAnimatedImage.m
-//  HDFoundation
+//  CoucouBebe
 //
 //  Created by David Hart on 11/9/10.
 //  Copyright 2010 hart[dev]. All rights reserved.
 //
 
 #import "HDAnimatedImage.h"
-#import <QuartzCore/QuartzCore.h>
 #import "UIImage+Loading.h"
 
 
 @interface HDAnimatedImage ()
 
-@property (nonatomic, assign) CADisplayLink* displayLink;
-@property (nonatomic, assign) NSUInteger currentFrame;
+@property (nonatomic, retain) UIImage* staticImage;
+@property (nonatomic, retain) NSTimer* timer;
+@property (nonatomic, retain) NSMutableArray* images;
+@property (nonatomic, assign) NSUInteger nextIndex;
 
-- (UIImage*)imageWithIndex:(NSUInteger)index;
+- (void)initialize;
+- (NSString*)nameFromImageAtIndex:(NSUInteger)index;
 - (void)createImages;
-- (void)createDisplayLink;
-- (void)updateAnimation:(CADisplayLink*)sender;
+- (void)changeFrame;
 
 @end
 
@@ -27,10 +28,42 @@
 @implementation HDAnimatedImage
 
 @synthesize animationName = _animationName;
+@synthesize framesPerSecond = _framesPerSecond;
 @synthesize stopsOnLastFrame = _stopsOnLastFrame;
 @synthesize delegate = _delegate;
-@synthesize displayLink = _displayLink;
-@synthesize currentFrame =_currentFrame;
+@synthesize staticImage = _staticImage;
+@synthesize timer = _timer;
+@synthesize images = _images;
+@synthesize nextIndex = _nextIndex;
+
+#pragma mark - Initialization
+
+#pragma mark - Initialization
+
+- (id) initWithCoder:(NSCoder*)coder
+{
+	self = [super initWithCoder:coder];
+	if (!self) return nil;
+	
+	[self initialize];
+	
+	return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (!self) return nil;
+	
+	[self initialize];
+	
+	return self;
+}
+
+- (void)initialize
+{
+	[self setFramesPerSecond:12];
+}
 
 #pragma mark - Properties
 
@@ -44,110 +77,88 @@
 	
 	_animationName = [animationName copy];
 	
-	[self setImage:[self imageWithIndex:0]];
+	NSString* staticImageName = [self nameFromImageAtIndex:0];
+	UIImage* staticImage = [UIImage imageNamed:staticImageName cached:NO];
+	
+	[self setStaticImage:staticImage];
+	[self setImage:staticImage];
 }
 
-#pragma mark - UIImageView Methods
+#pragma mark - Public Methods
 
-- (void)startAnimating
+- (void)play
 {
-	if ([self isAnimating]) return;
+	if (_timer) return;
 	
-	[self setCurrentFrame:0];
 	[self createImages];
-	[self createDisplayLink];
+	[self setNextIndex:0];
+	
+	NSTimeInterval timeInterval = 1.0f / _framesPerSecond;
+	NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(changeFrame) userInfo:nil repeats:YES];
+	[self setTimer:timer];
 }
 
-- (void)stopAnimating
+- (void)stop
 {
-	if (![self isAnimating]) return;
+	if (!_timer) return;
 	
-	[_displayLink invalidate];
+	[_timer invalidate];
+	[self setTimer:nil];
 	
-	[self setDisplayLink:nil];
-	[self setAnimationImages:nil];
-	
-	if ([_delegate respondsToSelector:@selector(animatedImageDidFinishAnimating:)])
+	if (_stopsOnLastFrame)
 	{
-		[_delegate animatedImageDidFinishAnimating:self];
+		[self setStaticImage:[_images lastObject]];
 	}
-}
-
-- (BOOL)isAnimating
-{
-	return _displayLink != nil;
+	
+	[self setImage:_staticImage];
+	[self setImages:nil];
+	
+	if ([_delegate respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+	{
+		[_delegate animatedImageDidFinishPlaying:self];
+	}
 }
 
 #pragma mark - Private Methods
 
-- (UIImage*)imageWithIndex:(NSUInteger)index
+- (NSString*)nameFromImageAtIndex:(NSUInteger)index
 {
-	NSString* imageName = [_animationName stringByAppendingFormat:@"%i", index];
-	return [UIImage imageNamed:imageName cached:NO];
+	return [_animationName stringByAppendingFormat:@"%i", index];
 }
 
 - (void)createImages
 {
-	if ([self animationImages]) return;
+	NSAssert(_images == nil, @"Images should not be hanging around by now.");
 	
-	NSAssert(_animationName, @"No animationImages and no animationName provided.");
+	NSMutableArray* images = [NSMutableArray array];
 	
-	NSMutableArray* images = [[NSMutableArray alloc] init];
-	
-	NSUInteger index = 0;
-	UIImage* image = [self imageWithIndex:index];
+	NSUInteger index = 1;
+	NSString* imageName = [self nameFromImageAtIndex:index];
+	UIImage* image = [UIImage imageNamed:imageName cached:NO];
 	
 	while (image != nil)
 	{
 		[images addObject:image];
 		
 		index++;
-		image = [self imageWithIndex:index];
+		imageName = [self nameFromImageAtIndex:index];
+		image = [UIImage imageNamed:imageName cached:NO];
 	}
 	
-	[self setAnimationImages:images];
-	[images release];
+	[self setImages:images];
 }
 
-- (void)createDisplayLink
-{
-	CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateAnimation:)];
-	[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-	[self setDisplayLink:displayLink];
-}
-
-- (void)updateAnimation:(CADisplayLink*)sender
-{
-	if (_currentFrame == 0)
+- (void)changeFrame
+{	
+	if (_nextIndex < [_images count])
 	{
-		NSTimeInterval animationPeriod = [self animationDuration] / [[self animationImages] count];
-		[_displayLink setFrameInterval:(NSInteger)(animationPeriod / [_displayLink duration])];
+		UIImage* nextImage = [_images objectAtIndex:_nextIndex];
+		[self setImage:nextImage];
+		[self setNextIndex:_nextIndex + 1];
 	}
-	else 
+	else
 	{
-		_currentFrame++;
-		
-		if (_currentFrame == [[self animationImages] count])
-		{
-			NSInteger animationRepeatCount = [self animationRepeatCount];
-			
-			if (animationRepeatCount == 1)
-			{
-				[self stopAnimating];
-				return;
-			}
-			else
-			{
-				if (animationRepeatCount > 1)
-				{
-					[self setAnimationRepeatCount:animationRepeatCount - 1];
-				}
-				
-				_currentFrame = 0;
-			}
-		}
-		
-		[self setImage:[[self animationImages] objectAtIndex:_currentFrame]];	
+		[self stop];
 	}
 }
 
@@ -155,7 +166,9 @@
 
 - (void)dealloc
 {
-	[self stopAnimating];
+	[self stop];
+	
+	[self setStaticImage:nil];
 	[self setAnimationName:nil];
 	
 	[super dealloc];
