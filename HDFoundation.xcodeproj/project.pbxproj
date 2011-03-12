@@ -33,6 +33,8 @@
 		636D00171329484C00A12C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D00161329484C00A12C84 /* Foundation.framework */; };
 		636D002A1329490100A12C84 /* HDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 636D00281329490100A12C84 /* HDTypes.h */; };
 		636D003013294B4400A12C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D002F13294B4400A12C84 /* CoreGraphics.framework */; };
+		638B7162132BEFEF003FEC29 /* HDImageGridView.h in Headers */ = {isa = PBXBuildFile; fileRef = 638B7160132BEFEE003FEC29 /* HDImageGridView.h */; };
+		638B7163132BEFEF003FEC29 /* HDImageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 638B7161132BEFEE003FEC29 /* HDImageGridView.m */; };
 		63CCB317132A98AC00153A3A /* HDAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CCB315132A98AC00153A3A /* HDAnimatedImage.h */; };
 		63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CCB316132A98AC00153A3A /* HDAnimatedImage.m */; };
 		63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CEB453132A2CEE00F6E87F /* HDFoundation.h */; };
@@ -70,6 +72,8 @@
 		636D00161329484C00A12C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		636D00281329490100A12C84 /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
 		636D002F13294B4400A12C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		638B7160132BEFEE003FEC29 /* HDImageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDImageGridView.h; sourceTree = "<group>"; };
+		638B7161132BEFEE003FEC29 /* HDImageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDImageGridView.m; sourceTree = "<group>"; };
 		63CCB315132A98AC00153A3A /* HDAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnimatedImage.h; sourceTree = "<group>"; };
 		63CCB316132A98AC00153A3A /* HDAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnimatedImage.m; sourceTree = "<group>"; };
 		63CEB453132A2CEE00F6E87F /* HDFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundation.h; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				633E18471329533600082EDD /* HDIrregularImage.m */,
 				63CCB315132A98AC00153A3A /* HDAnimatedImage.h */,
 				63CCB316132A98AC00153A3A /* HDAnimatedImage.m */,
+				638B7160132BEFEE003FEC29 /* HDImageGridView.h */,
+				638B7161132BEFEE003FEC29 /* HDImageGridView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 				63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */,
 				63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */,
 				63CCB317132A98AC00153A3A /* HDAnimatedImage.h in Headers */,
+				638B7162132BEFEF003FEC29 /* HDImageGridView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +286,7 @@
 				63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */,
 				63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */,
 				63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */,
+				638B7163132BEFEF003FEC29 /* HDImageGridView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
