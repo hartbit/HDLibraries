@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString* animationName;
 @property (nonatomic, assign) NSUInteger framesPerSecond;
 @property (nonatomic, assign) BOOL stopsOnLastFrame;
+@property (nonatomic, assign, readonly) BOOL isPlaying;
 @property (nonatomic, assign) IBOutlet id <HDAnimatedImageDelegate> delegate;
 
 - (void)play;
@@ -25,6 +26,7 @@
 
 @protocol HDAnimatedImageDelegate <NSObject>
 
+@optional
 - (void)animatedImageDidFinishPlaying:(HDAnimatedImage*)animatedImage;
 
 @end

@@ -84,11 +84,16 @@
 	[self setImage:staticImage];
 }
 
+- (BOOL)isPlaying
+{
+	return _timer != nil;
+}
+
 #pragma mark - Public Methods
 
 - (void)play
 {
-	if (_timer) return;
+	if ([self isPlaying]) return;
 	
 	[self createImages];
 	[self setNextIndex:0];
@@ -100,7 +105,7 @@
 
 - (void)stop
 {
-	if (!_timer) return;
+	if (![self isPlaying]) return;
 	
 	[_timer invalidate];
 	[self setTimer:nil];
