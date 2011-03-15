@@ -50,12 +50,16 @@
 	return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithAnimationName:(NSString*)animationName
 {
-	self = [super initWithFrame:frame];
+	NSString* imageName = [animationName stringByAppendingString:@"0"];
+	UIImage* image = [UIImage imageNamed:imageName cached:NO];
+	
+	self = [super initWithImage:image];
 	if (!self) return nil;
 	
 	[self initialize];
+	[self setAnimationName:animationName];
 	
 	return self;
 }
@@ -93,7 +97,7 @@
 
 - (void)play
 {
-	if ([self isPlaying]) return;
+	if (!_animationName || [self isPlaying]) return;
 	
 	[self createImages];
 	[self setNextIndex:0];

@@ -19,6 +19,7 @@
 @property (nonatomic, assign, readonly) BOOL isPlaying;
 @property (nonatomic, assign) IBOutlet id <HDAnimatedImageDelegate> delegate;
 
+- (id)initWithAnimationName:(NSString*)animationName;
 - (void)play;
 - (void)stop;
 
