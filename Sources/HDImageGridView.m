@@ -47,6 +47,12 @@
 	[self setFrameSize:newSize];
 	
 	[self setNeedsDisplay];
+	[[self superview] setNeedsLayout];
+}
+
+- (HDPoint)cellPositionContainingPoint:(CGPoint)point
+{
+	return HDPointMake(point.x / _cellSize.width, point.y / _cellSize.height);
 }
 
 - (CGRect)frameForCellAtPosition:(HDPoint)position

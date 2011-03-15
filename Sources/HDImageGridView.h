@@ -17,6 +17,7 @@
 @property (nonatomic, assign ) id <HDImageGridViewDataSource> dataSource;
 
 - (void)reloadData;
+- (HDPoint)cellPositionContainingPoint:(CGPoint)point;
 - (CGRect)frameForCellAtPosition:(HDPoint)position;
 
 @end
