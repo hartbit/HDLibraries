@@ -11,6 +11,7 @@
 
 @interface HDViewController ()
 
+@property (nonatomic, copy) NSString* controllerName;
 @property (nonatomic, retain) NSSet* outlets;
 
 - (void)initialize;
@@ -21,6 +22,7 @@
 
 @implementation HDViewController
 
+@synthesize controllerName = _controllerName;
 @synthesize outlets = _outlets;
 
 #pragma mark - Iniitlization
@@ -65,6 +67,7 @@
 - (void)viewDidUnload
 {
 	[self releaseOutlets];
+	
 	[super viewDidUnload];
 }
 
@@ -72,7 +75,37 @@
 {
 	[self releaseOutlets];
 	[self setOutlets:nil];
+	[self setControllerName:nil];
+	
 	[super dealloc];
+}
+
+#pragma mark - UIVIewController Methods
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+	[super viewWillDisappear:animated];
+}
+
+#pragma mark - Properties
+
+- (NSString*)controllerName
+{	
+	if (!_controllerName)
+	{
+		NSString* className = NSStringFromClass([self class]);
+		NSRange postfixRange = [className rangeOfString:@"ViewController"];
+		BOOL postfixIsAtEnd = postfixRange.location + postfixRange.length == [className length];
+		NSAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
+		
+		if (postfixIsAtEnd)
+		{
+			_controllerName = [[className substringToIndex:postfixRange.location] retain];
+		}
+	}
+	
+	return [[_controllerName copy] autorelease];
 }
 
 #pragma mark - Public Methods

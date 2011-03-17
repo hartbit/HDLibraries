@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6313FCD8133217310069E9BC /* HDAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6313FCD6133217310069E9BC /* HDAudioPlayer.h */; };
+		6313FCD9133217310069E9BC /* HDAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313FCD7133217310069E9BC /* HDAudioPlayer.m */; };
 		633E18261329505D00082EDD /* HDManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18241329505D00082EDD /* HDManagedObject.h */; };
 		633E18271329505D00082EDD /* HDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18251329505D00082EDD /* HDManagedObject.m */; };
 		633E18291329507400082EDD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E18281329507400082EDD /* CoreData.framework */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6313FCD6133217310069E9BC /* HDAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAudioPlayer.h; sourceTree = "<group>"; };
+		6313FCD7133217310069E9BC /* HDAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAudioPlayer.m; sourceTree = "<group>"; };
 		633E18241329505D00082EDD /* HDManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDManagedObject.h; sourceTree = "<group>"; };
 		633E18251329505D00082EDD /* HDManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDManagedObject.m; sourceTree = "<group>"; };
 		633E18281329507400082EDD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -173,6 +177,8 @@
 				63CCB316132A98AC00153A3A /* HDAnimatedImage.m */,
 				638B7160132BEFEE003FEC29 /* HDImageGridView.h */,
 				638B7161132BEFEE003FEC29 /* HDImageGridView.m */,
+				6313FCD6133217310069E9BC /* HDAudioPlayer.h */,
+				6313FCD7133217310069E9BC /* HDAudioPlayer.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 				63CEB52C132A41E200F6E87F /* HDModelController.h in Headers */,
 				63CCB317132A98AC00153A3A /* HDAnimatedImage.h in Headers */,
 				638B7162132BEFEF003FEC29 /* HDImageGridView.h in Headers */,
+				6313FCD8133217310069E9BC /* HDAudioPlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +294,7 @@
 				63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */,
 				63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */,
 				638B7163132BEFEF003FEC29 /* HDImageGridView.m in Sources */,
+				6313FCD9133217310069E9BC /* HDAudioPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

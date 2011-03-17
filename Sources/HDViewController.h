@@ -11,6 +11,8 @@
 
 @interface HDViewController : UIViewController
 
+@property (nonatomic, copy, readonly) NSString* controllerName;
+
 - (NSSet*)viewOutlets;
 
 @end

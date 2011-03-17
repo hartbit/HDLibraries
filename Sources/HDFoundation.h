@@ -22,4 +22,5 @@
 #import "HDErasableImage.h"
 #import "HDIrregularImage.h"
 #import "HDAnimatedImage.h"
+#import "HDAudioPlayer.h"
 #import "HDViewController.h"
