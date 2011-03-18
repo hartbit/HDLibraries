@@ -7,22 +7,32 @@
 //
 
 #import "HDModelController.h"
+#import "HDMacros.h"
+
+
+@interface HDModelController ()
+
+@property (nonatomic, retain) NSManagedObjectModel* managedObjectModel;
+@property (nonatomic, retain) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, retain) NSPersistentStoreCoordinator* persistentStoreCoordinator;
+
+@end
 
 
 @implementation HDModelController
 
-@synthesize modelURL = _modelURL;
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize modelURL;
+@synthesize managedObjectContext;
+@synthesize managedObjectModel;
+@synthesize persistentStoreCoordinator;
 
 #pragma mark - Lifecycle
 
 - (void)dealloc
 {
-	[_persistentStoreCoordinator release];
-	[_managedObjectContext release];
-	[_managedObjectModel release];
+	[self setPersistentStoreCoordinator:nil];
+	[self setManagedObjectContext:nil];
+	[self setManagedObjectModel:nil];
 	
 	[super dealloc];
 }
@@ -31,70 +41,64 @@
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (_managedObjectModel) return _managedObjectModel;
-	
-	if (_modelURL)
+	if (!managedObjectModel)
 	{
-		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:_modelURL];
-	}
-	else
-	{
-		_managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+		if ([self modelURL])
+		{
+			managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
+		}
+		else
+		{
+			managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+		}
 	}
 	
-	return _managedObjectModel;
+	HDEnsure(managedObjectModel);
+	return managedObjectModel;
 }
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-	if (_managedObjectContext) return _managedObjectContext;
-
-	_managedObjectContext = [[NSManagedObjectContext alloc] init];
-	[_managedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
-	return _managedObjectContext;
+	if (!managedObjectContext)
+	{
+		managedObjectContext = [[NSManagedObjectContext alloc] init];
+		[managedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+	}
+	
+	HDEnsure(managedObjectContext);
+	return managedObjectContext;
 }
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
-	if (_persistentStoreCoordinator) return _persistentStoreCoordinator;
-    
-	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-	return _persistentStoreCoordinator;
+	if (!persistentStoreCoordinator)
+	{
+		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+	}
+	
+	HDEnsure(persistentStoreCoordinator);
+	return persistentStoreCoordinator;
 }
 
 #pragma mark - Public Methods
 
-- (void)addStoreWithURL:(NSURL*)storeURL
+- (void)addStoreWithURL:(NSURL*)storeURL error:(NSError**)error
 {
-	NSError* error = nil;
-	NSPersistentStore* store = [[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType
-																			   configuration:nil
-																						 URL:storeURL
-																					 options:nil
-																					   error:&error];
-
-	if (!store || error)
-	{
-		NSLog(@"Store error %@, %@", error, [error userInfo]);
-		abort();
-	}
+	HDRequire(storeURL);
+	
+	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:error];
 }
 
-- (void)saveContext
+- (BOOL)saveContextWithError:(NSError**)error
 {
-	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
+	BOOL success = YES;
 	
-	if (managedObjectContext && [managedObjectContext hasChanges])
+	if ([self managedObjectContext] && [[self managedObjectContext] hasChanges])
 	{
-		NSError* error = nil;
-		BOOL success = [managedObjectContext save:&error];
-		
-		if (!success || error)
-		{
-			NSLog(@"Save error %@, %@", error, [error userInfo]);
-			abort();
-		}
+		success = [managedObjectContext save:error];
 	}
+	
+	return success;
 }
 
 @end

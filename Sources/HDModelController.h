@@ -10,15 +10,13 @@
 
 
 @interface HDModelController : NSObject
-{  
-}
 
 @property (nonatomic, retain) NSURL* modelURL;
 @property (nonatomic, retain, readonly) NSManagedObjectModel* managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
-- (void)addStoreWithURL:(NSURL*)storeURL;
-- (void)saveContext;
+- (void)addStoreWithURL:(NSURL*)storeURL error:(NSError**)error;
+- (BOOL)saveContextWithError:(NSError**)error;
 
 @end

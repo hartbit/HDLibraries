@@ -7,20 +7,26 @@
 //
 
 #import "UIDevice+Platform.h"
+#import "HDMacros.h"
 
 
 @implementation UIDevice (Platform)
 
 - (NSString*)platformSuffix
 {
+	NSString* platformSuffix = nil;
+	
 	if ([self respondsToSelector:@selector(userInterfaceIdiom)] && ([self userInterfaceIdiom] == UIUserInterfaceIdiomPad))
 	{
-		return @"~ipad";
+		platformSuffix = @"~ipad";
 	}
 	else
 	{
-		return @"~iphone";
+		platformSuffix = @"~iphone";
 	}
+	
+	HDEnsure(platformSuffix);
+	return platformSuffix;
 }
 
 @end

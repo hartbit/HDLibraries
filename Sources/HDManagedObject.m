@@ -7,6 +7,7 @@
 //
 
 #import "HDManagedObject.h"
+#import "HDMacros.h"
 
 
 @implementation HDManagedObject
@@ -15,16 +16,28 @@
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
 {
+	HDRequire(domain);
+	HDRequire(reason);
+	
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
-	[userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
 	[userInfo setObject:self forKey:NSValidationObjectErrorKey];
 	
-	return [NSError errorWithDomain:domain code:NSManagedObjectValidationError userInfo:userInfo];
+	if (reason)
+	{
+		[userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+	}
+	
+	NSError* error = [NSError errorWithDomain:domain code:NSManagedObjectValidationError userInfo:userInfo];
+	
+	HDEnsure(error);
+	return error;
 }
 
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError
 {
-	if (!originalError)
+	HDRequire(secondError);
+	
+	if (!originalError || !secondError)
 	{
 		return secondError;
 	}
@@ -44,7 +57,10 @@
 
 	[userInfo setObject:errors forKey:NSDetailedErrorsKey];
 
-	return [NSError errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
+	NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
+	
+	HDEnsure(error);
+	return error;
 }
 
 @end
