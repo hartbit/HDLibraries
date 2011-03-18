@@ -13,6 +13,6 @@
 
 @property (nonatomic, copy, readonly) NSString* controllerName;
 
-- (NSSet*)viewOutlets;
+- (NSSet*)outlets;
 
 @end

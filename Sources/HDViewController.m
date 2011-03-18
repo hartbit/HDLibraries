@@ -7,14 +7,13 @@
 //
 
 #import "HDViewController.h"
+#import "HDMacros.h"
 
 
 @interface HDViewController ()
 
 @property (nonatomic, copy) NSString* controllerName;
-@property (nonatomic, retain) NSSet* outlets;
 
-- (void)initialize;
 - (void)releaseOutlets;
 
 @end
@@ -22,45 +21,7 @@
 
 @implementation HDViewController
 
-@synthesize controllerName = _controllerName;
-@synthesize outlets = _outlets;
-
-#pragma mark - Iniitlization
-
-- (id)init
-{
-	self = [super init];
-	if (!self) return nil;
-	
-	[self initialize];
-	
-	return self;
-}
-
-- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
-{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (!self) return nil;
-	
-	[self initialize];
-	
-	return self;
-}
-
-- (id)initWithCoder:(NSCoder*)coder
-{
-	self = [super initWithCoder:coder];
-	if (!self) return nil;
-	
-	[self initialize];
-	
-	return self;
-}
-
-- (void)initialize
-{
-	[self setOutlets:[self viewOutlets]];
-}
+@synthesize controllerName;
 
 #pragma mark - Memory Management
 
@@ -74,7 +35,6 @@
 - (void)dealloc
 {
 	[self releaseOutlets];
-	[self setOutlets:nil];
 	[self setControllerName:nil];
 	
 	[super dealloc];
@@ -85,6 +45,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+	
 	[super viewWillDisappear:animated];
 }
 
@@ -92,25 +53,37 @@
 
 - (NSString*)controllerName
 {	
-	if (!_controllerName)
+	if (!controllerName)
 	{
 		NSString* className = NSStringFromClass([self class]);
 		NSRange postfixRange = [className rangeOfString:@"ViewController"];
 		BOOL postfixIsAtEnd = postfixRange.location + postfixRange.length == [className length];
-		NSAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
+		
+		HDAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
 		
 		if (postfixIsAtEnd)
 		{
-			_controllerName = [[className substringToIndex:postfixRange.location] retain];
+			[self setControllerName:[className substringToIndex:postfixRange.location]];
 		}
 	}
+
+	NSString* returnName = nil;
 	
-	return [[_controllerName copy] autorelease];
+	if (controllerName)
+	{
+		returnName = [controllerName copy];
+		
+		HDEnsure(returnName);
+		HDEnsure(returnName != controllerName);
+		HDEnsure([returnName retainCount] == 1);
+	}
+	
+	return [returnName autorelease];
 }
 
 #pragma mark - Public Methods
 
-- (NSSet*)viewOutlets
+- (NSSet*)outlets
 {
 	return [NSSet set];
 }
@@ -119,7 +92,7 @@
 		 
 - (void)releaseOutlets
 {
-	for (NSString* outlet in _outlets)
+	for (NSString* outlet in [self outlets])
 	{
 		[self setValue:nil forKey:outlet];
 	}

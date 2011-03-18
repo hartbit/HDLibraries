@@ -45,15 +45,18 @@
 	{
 		if ([self modelURL])
 		{
-			managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
+			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
+			[self setManagedObjectModel:newManagedObjectModel];
+			[newManagedObjectModel release];
 		}
 		else
 		{
-			managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
 		}
 	}
 	
 	HDEnsure(managedObjectModel);
+	HDEnsure([managedObjectModel retainCount] == 1);
 	return managedObjectModel;
 }
 
@@ -61,11 +64,14 @@
 {
 	if (!managedObjectContext)
 	{
-		managedObjectContext = [[NSManagedObjectContext alloc] init];
+		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
 		[managedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+		[self setManagedObjectContext:newManagedObjectContext];
+		[newManagedObjectContext release];
 	}
 	
 	HDEnsure(managedObjectContext);
+	HDEnsure([managedObjectContext retainCount] == 1);
 	return managedObjectContext;
 }
 
@@ -73,10 +79,13 @@
 {
 	if (!persistentStoreCoordinator)
 	{
-		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
+		[newPersistentStoreCoordinator release];
 	}
 	
 	HDEnsure(persistentStoreCoordinator);
+	HDEnsure([persistentStoreCoordinator retainCount] == 1);
 	return persistentStoreCoordinator;
 }
 
