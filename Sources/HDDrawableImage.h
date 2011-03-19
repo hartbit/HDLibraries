@@ -25,6 +25,7 @@
 
 @protocol HDDrawableImageDelegate <NSObject>
 
+@optional
 - (void)drawableImageWillStartDrawing:(HDDrawableImage*)drawableImage;
 - (void)drawableImageDidEndDrawing:(HDDrawableImage*)drawableImage;
 
@@ -33,6 +34,7 @@
 
 @protocol HDDrawableImageDataSource <NSObject>
 
+@required
 - (CGFloat)sizeOfBrushForDrawableImage:(HDDrawableImage*)drawableImage;
 - (UIColor*)colorOfBrushForDrawableImage:(HDDrawableImage*)drawableImage;
 

@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Alpha.h"
+#import "HDMacros.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 
@@ -28,7 +29,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 	CGColorSpaceRef colorSpace = NULL;
 	CGContextRef context = CGBitmapContextCreate(bitmapData, imageWidth, imageHeight, 8, bytesPerRow, colorSpace, kCGImageAlphaOnly);
 	
-	if (context == NULL)
+	if (!context)
 	{
 		free(bitmapData);
 		fprintf(stderr, "Context not created!");
@@ -43,30 +44,33 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 
 - (NSData*)alphaData
 {
-	CGContextRef context = CreateAlphaBitmapContext(self.CGImage);
-
-	if (context == NULL)
+	CGContextRef context = CreateAlphaBitmapContext([self CGImage]);
+	HDAssert(context, @"Could not create Alpha Bitmap Context.");
+	
+	if (!context)
 	{
 		return nil;
 	}
 
-	size_t imageWidth = CGImageGetWidth(self.CGImage);
-	size_t imageHeight = CGImageGetHeight(self.CGImage);
+	size_t imageWidth = CGImageGetWidth([self CGImage]);
+	size_t imageHeight = CGImageGetHeight([self CGImage]);
 	CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
-	CGContextDrawImage(context, imageRect, self.CGImage); 
+	CGContextDrawImage(context, imageRect, [self CGImage]); 
 
 	void* bitmapData = CGBitmapContextGetData(context);
+	HDAssert(bitmapData, @"Could not retreive data from bitmap context.");
 	CGContextRelease(context);
 
-	if (bitmapData == NULL)
+	if (!bitmapData)
 	{
 		return nil;
 	}
 
 	size_t dataSize = imageWidth * imageHeight;
 	NSData* data = [NSData dataWithBytes:bitmapData length:dataSize];
-	
+	HDAssert(bitmapData, @"Could not create NSData object from bitmap data.");
 	free(bitmapData);
+	
 	return data;
 } 
 

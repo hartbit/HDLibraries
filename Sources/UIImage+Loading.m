@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Loading.h"
+#import "HDMacros.h"
 
 
 @interface UIImage ()
@@ -37,11 +38,15 @@
 						   @"xbm", nil];
 	}
 	
+	HDEnsure(kSupportedTypes);
+	HDEnsure([kSupportedTypes retainCount] == 1);
 	return kSupportedTypes;
 }
 
 + (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached
 {
+	HDRequire(name);
+	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];
 	NSString* platformName = [name stringByAppendingString:platformSuffix];
 	UIImage* image = nil;

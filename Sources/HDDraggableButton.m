@@ -22,11 +22,11 @@
 
 @implementation HDDraggableButton
 
-@synthesize delegate = _delegate;
-@synthesize targetView = _targetView;
-@synthesize dragEnabled = _dragEnabled;
-@synthesize startOrigin = _startOrigin;
-@synthesize speed = _speed;
+@synthesize delegate;
+@synthesize targetView;
+@synthesize dragEnabled;
+@synthesize startOrigin;
+@synthesize speed;
 
 #pragma mark - Initialization
 
@@ -61,13 +61,13 @@
 
 - (void)returnToStart
 {	
-	NSTimeInterval duration = CGPointDistance([self frameOrigin], _startOrigin) / _speed;
+	NSTimeInterval duration = CGPointDistance([self frameOrigin], [self startOrigin]) / [self speed];
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 	[UIView setAnimationDuration:duration];
 	
-	[self setFrameOrigin:_startOrigin];
+	[self setFrameOrigin:[self startOrigin]];
 	
 	[UIView commitAnimations];
 }
@@ -78,9 +78,9 @@
 {
 	[super touchesBegan:touches withEvent:event];
 
-	if (_dragEnabled && _delegate && [_delegate respondsToSelector:@selector(draggableButtonWillDrag:)])
+	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)])
 	{
-		[_delegate draggableButtonWillDrag:self];
+		[[self delegate] draggableButtonWillDrag:self];
 	}
 } 
 
@@ -88,7 +88,7 @@
 {
 	[super touchesMoved:touches withEvent:event];
 	
-	if (_dragEnabled)
+	if ([self dragEnabled])
 	{
 		UITouch* touch = [touches anyObject];
 		CGPoint currentLocation = [touch locationInView:[self superview]];
@@ -103,19 +103,19 @@
 {
 	[super touchesEnded:touches withEvent:event];
 	
-	if (_dragEnabled)
+	if ([self dragEnabled])
 	{
-		CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[_targetView superview]];
-		BOOL onTarget = _targetView && CGRectContainsPoint([_targetView frame], centerInTarget);
+		CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[[self targetView] superview]];
+		BOOL onTarget = [self targetView] && CGRectContainsPoint([[self targetView] frame], centerInTarget);
 		
 		if (!onTarget)
 		{
 			[self returnToStart];
 		}
 		
-		if (_delegate && [_delegate respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
+		if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
 		{
-			[_delegate draggableButton:self didDropOnTarget:onTarget];
+			[[self delegate] draggableButton:self didDropOnTarget:onTarget];
 		}
 	}
 }

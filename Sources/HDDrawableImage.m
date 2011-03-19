@@ -25,11 +25,11 @@
 
 @implementation HDDrawableImage
 
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize originalImage = _originalImage;
-@synthesize lastPoint = _lastPoint;
-@synthesize mouseSwiped = _mouseSwiped;
+@synthesize dataSource;
+@synthesize delegate;
+@synthesize originalImage;
+@synthesize lastPoint;
+@synthesize mouseSwiped;
 
 #pragma mark - Initialization
 
@@ -64,38 +64,38 @@
 
 - (void)clear
 {
-	[self setImage:_originalImage];
+	[self setImage:[self originalImage]];
 }
 
 #pragma mark - UIResponder Methods
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {	
-	_mouseSwiped = NO;
+	[self setMouseSwiped:NO];
 	
 	UITouch* touch = [touches anyObject];	
-	_lastPoint = [touch locationInView:self];
+	[self setLastPoint:[touch locationInView:self]];
 	
 	[self startDrawing];
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	_mouseSwiped = YES;
+	[self setMouseSwiped:YES];
 	
 	UITouch* touch = [touches anyObject];
 	CGPoint currentPoint = [touch locationInView:self];
 	
-	[self drawFromPoint:_lastPoint toPoint:currentPoint];
+	[self drawFromPoint:[self lastPoint] toPoint:currentPoint];
 	
-	_lastPoint = currentPoint;
+	[self setLastPoint:currentPoint];
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	if (!_mouseSwiped)
+	if (![self mouseSwiped])
 	{
-		[self drawFromPoint:_lastPoint toPoint:_lastPoint];
+		[self drawFromPoint:[self lastPoint] toPoint:[self lastPoint]];
 	}
 	
 	[self endDrawing];
@@ -110,30 +110,32 @@
 
 - (void)drawFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint
 {
-	UIGraphicsBeginImageContext([self bounds].size);
+	CGRect bounds = [self bounds];
 	
-	[[self image] drawInRect:[self bounds]];
+	UIGraphicsBeginImageContext(bounds.size);
+	
+	[[self image] drawInRect:bounds];
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetLineCap(context, kCGLineCapRound);
 	
-	if (_dataSource && [_dataSource respondsToSelector:@selector(sizeOfBrushForDrawableImage:)])
+	if ([[self dataSource] respondsToSelector:@selector(sizeOfBrushForDrawableImage:)])
 	{
-		CGFloat brushSize = [_dataSource sizeOfBrushForDrawableImage:self];
+		CGFloat brushSize = [[self dataSource] sizeOfBrushForDrawableImage:self];
 		CGContextSetLineWidth(context, brushSize);
 	}
 	
-	if (_dataSource && [_dataSource respondsToSelector:@selector(colorOfBrushForDrawableImage:)])
+	if ([[self dataSource] respondsToSelector:@selector(colorOfBrushForDrawableImage:)])
 	{
-		UIColor* color = [_dataSource colorOfBrushForDrawableImage:self];
+		UIColor* color = [[self dataSource] colorOfBrushForDrawableImage:self];
 		[color setStroke];
 	}
 	
-	CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+	CGContextTranslateCTM(context, 0.0, CGRectGetHeight(bounds));
 	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextClipToMask(context, self.bounds, self.image.CGImage);
+	CGContextClipToMask(context, bounds, [[self image] CGImage]);
 	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextTranslateCTM(context, 0.0, -self.bounds.size.height);
+	CGContextTranslateCTM(context, 0.0, -CGRectGetHeight(bounds));
 	
 	CGContextBeginPath(context);
 	CGContextMoveToPoint(context, fromPoint.x, fromPoint.y);
@@ -147,17 +149,17 @@
 
 - (void)startDrawing
 {
-	if (_delegate && [_delegate respondsToSelector:@selector(drawableImageWillStartDrawing:)])
+	if ([[self delegate] respondsToSelector:@selector(drawableImageWillStartDrawing:)])
 	{
-		[_delegate drawableImageWillStartDrawing:self];
+		[[self delegate] drawableImageWillStartDrawing:self];
 	}
 }
 
 - (void)endDrawing
 {
-	if (_delegate && [_delegate respondsToSelector:@selector(drawableImageDidEndDrawing:)])
+	if ([[self delegate] respondsToSelector:@selector(drawableImageDidEndDrawing:)])
 	{
-		[_delegate drawableImageDidEndDrawing:self];
+		[[self delegate] drawableImageDidEndDrawing:self];
 	}
 }
 
@@ -166,6 +168,7 @@
 - (void)dealloc
 {
 	[self setOriginalImage:nil];
+	
 	[super dealloc];
 }
 
