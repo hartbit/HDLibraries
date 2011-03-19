@@ -67,18 +67,7 @@
 		}
 	}
 
-	NSString* returnName = nil;
-	
-	if (controllerName)
-	{
-		returnName = [controllerName copy];
-		
-		HDEnsure(returnName);
-		HDEnsure(returnName != controllerName);
-		HDEnsure([returnName retainCount] == 1);
-	}
-	
-	return [returnName autorelease];
+	return controllerName;
 }
 
 #pragma mark - Public Methods
