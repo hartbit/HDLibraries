@@ -16,6 +16,7 @@
 
 @property (nonatomic, assign) IBOutlet id <HDDrawableViewDataSource> dataSource;
 @property (nonatomic, assign) IBOutlet id <HDDrawableViewDelegate> delegate;
+@property (nonatomic, assign) CGFloat distanceThreshold;
 
 - (void)clear;
 

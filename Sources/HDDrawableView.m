@@ -8,16 +8,20 @@
 
 #import "HDDrawableView.h"
 #import "HDMacros.h"
+#import "HDFunctions.h"
 #import <QuartzCore/QuartzCore.h>
 
 
 @interface HDDrawableView ()
 
 @property (nonatomic, assign) BOOL mouseSwiped;
+@property (nonatomic, readonly) CGFloat brushSize;
+@property (nonatomic, readonly) UIColor* brushColor;
 
 - (void)initialize;
-- (void)addNewLayerWithPoint:(CGPoint)point;
-- (void)updateLastLayerWithPoint:(CGPoint)point;
+- (void)updateLayersWithNewTouches:(NSSet*)touches;
+- (void)updateLayersWithContinuedTouches:(NSSet*)touches force:(BOOL)force;
+- (CAShapeLayer*)currentLayer;
 - (void)startDrawing;
 - (void)endDrawing;
 
@@ -28,6 +32,7 @@
 
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
+@synthesize distanceThreshold = _distanceThreshold;
 @synthesize mouseSwiped = _mouseSwiped;
 
 #pragma mark - Initialization
@@ -54,8 +59,34 @@
 
 - (void)initialize
 {
-	[self setOpaque:NO];
-	[self setBackgroundColor:[UIColor clearColor]];
+	[self setClipsToBounds:YES];
+	[self setDistanceThreshold:10];
+}
+
+#pragma mark - Properties
+
+- (CGFloat)brushSize
+{
+	if ([[self dataSource] respondsToSelector:@selector(sizeOfBrushForDrawableView:)])
+	{
+		return [[self dataSource] sizeOfBrushForDrawableView:self];
+	}
+	else
+	{
+		return 20;
+	}
+}
+
+- (UIColor*)brushColor
+{
+	if ([[self dataSource] respondsToSelector:@selector(colorOfBrushForDrawableView:)])
+	{
+		return [[self dataSource] colorOfBrushForDrawableView:self];
+	}
+	else
+	{
+		return [UIColor blackColor];
+	}
 }
 
 #pragma mark - Public Methods
@@ -75,21 +106,21 @@
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {	
 	[self setMouseSwiped:NO];
-	[self addNewLayerWithPoint:[[touches anyObject] locationInView:self]];
+	[self updateLayersWithNewTouches:touches];
 	[self startDrawing];
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[self setMouseSwiped:YES];
-	[self updateLastLayerWithPoint:[[touches anyObject] locationInView:self]];
+	[self updateLayersWithContinuedTouches:touches force:NO];
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	if (![self mouseSwiped])
 	{
-		[self updateLastLayerWithPoint:[[touches anyObject] locationInView:self]];
+		[self updateLayersWithContinuedTouches:touches force:YES];
 	}
 	
 	[self endDrawing];
@@ -102,52 +133,56 @@
 
 #pragma mark - Private Methods
 
-- (void)addNewLayerWithPoint:(CGPoint)point
+- (void)updateLayersWithNewTouches:(NSSet*)touches
 {
-	CAShapeLayer* newShapeLayer = [[CAShapeLayer alloc] init];
-	[newShapeLayer setLineCap:kCALineCapRound];
-	[newShapeLayer setLineJoin:kCALineJoinRound];
+	CGPoint point = [[touches anyObject] locationInView:self];
+	CAShapeLayer* currentLayer = [self currentLayer];
 	
-	// Set Line Width
-	
-	CGFloat brushSize = 20;
-	
-	if ([[self dataSource] respondsToSelector:@selector(sizeOfBrushForDrawableView:)])
-	{
-		brushSize = [[self dataSource] sizeOfBrushForDrawableView:self];
-	}
-	
-	[newShapeLayer setLineWidth:brushSize];
-	
-	// Get color
-	
-	UIColor* color = [UIColor blackColor];
-	
-	if ([[self dataSource] respondsToSelector:@selector(colorOfBrushForDrawableView:)])
-	{
-		color = [[self dataSource] colorOfBrushForDrawableView:self];
-	}
-	
-	[newShapeLayer setStrokeColor:[color CGColor]];
-	
-	// Set start position
-	
-	CGMutablePathRef path = CGPathCreateMutable();
+	CGMutablePathRef path = CGPathCreateMutableCopy([currentLayer path]);
 	CGPathMoveToPoint(path, NULL, point.x, point.y);
-	[newShapeLayer setPath:path];
+	[currentLayer setPath:path];
 	CGPathRelease(path);
-	
-	[[self layer] addSublayer:newShapeLayer];
 }
 
-- (void)updateLastLayerWithPoint:(CGPoint)point
+- (void)updateLayersWithContinuedTouches:(NSSet*)touches force:(BOOL)force
 {
-	CAShapeLayer* lastShapeLayer = [[[self layer] sublayers] lastObject];
+	CGPoint point = [[touches anyObject] locationInView:self];
+	CAShapeLayer* currentLayer = [self currentLayer];
+	CGFloat deltaDistance = CGPointDistance(CGPathGetCurrentPoint([currentLayer path]), point);
 	
-	CGMutablePathRef path = CGPathCreateMutableCopy([lastShapeLayer path]);
-	CGPathAddLineToPoint(path, NULL, point.x, point.y);
-	[lastShapeLayer setPath:path];
-	CGPathRelease(path);
+	if (force || (deltaDistance > [self distanceThreshold]))
+	{
+		CGMutablePathRef path = CGPathCreateMutableCopy([currentLayer path]);
+		CGPathAddLineToPoint(path, NULL, point.x, point.y);
+		[currentLayer setPath:path];
+		CGPathRelease(path);
+	}
+}
+
+- (CAShapeLayer*)currentLayer
+{
+	CGFloat brushSize = [self brushSize];
+	UIColor* brushColor = [self brushColor];
+	CAShapeLayer* lastLayer = [[[self layer] sublayers] lastObject];
+	
+	if (!lastLayer || ([lastLayer lineWidth] != brushSize) || !CGColorEqualToColor([lastLayer strokeColor], [brushColor CGColor]))
+	{
+		lastLayer = [[CAShapeLayer alloc] init];
+		[lastLayer setLineCap:kCALineCapRound];
+		[lastLayer setLineJoin:kCALineJoinRound];
+		[lastLayer setLineWidth:brushSize];
+		[lastLayer setStrokeColor:[brushColor CGColor]];
+		[lastLayer setFillColor:[[UIColor clearColor] CGColor]];
+		
+		CGMutablePathRef path = CGPathCreateMutable();
+		[lastLayer setPath:path];
+		CGPathRelease(path);
+		
+		[[self layer] addSublayer:lastLayer];
+		[lastLayer release];
+	}
+	
+	return lastLayer;
 }
 
 - (void)startDrawing

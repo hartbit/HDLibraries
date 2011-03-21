@@ -53,6 +53,7 @@
 {
 	[self setOpaque:NO];
 	[self setBackgroundColor:[UIColor clearColor]];
+	
 	[self setMaskLayer:[CALayer layer]];
 	[[self layer] setMask:[self maskLayer]];
 }
@@ -81,19 +82,9 @@
 	
 	char* rawDataBytes = (char*)[imageAlphaData bytes];
 	NSUInteger index = pointX + (pointY * width);
-	return (rawDataBytes[index] == 0);
+	return (rawDataBytes[index] != 0);
 }
-/*
-- (void)didAddSubview:(UIView*)subview
-{
-	[[subview layer] setMask:[self maskLayer]];
-}
-
-- (void)willRemoveSubview:(UIView*)subview
-{
-	[[subview layer] setMask:nil];
-}
-*/
+ 
 #pragma mark - Private Methods
 
 - (void)setClipImage:(UIImage*)clipImage
@@ -103,19 +94,15 @@
 		[_clipImage release];
 		_clipImage = [clipImage retain];
 		
-		[self setClipImageData:nil];
-		[[self maskLayer] setContents:clipImage];
-	}
-}
+		if (clipImage)
+		{
+			[self setClipImageData:[clipImage alphaData]];
 
-- (NSData*)clipImageData
-{
-	if (!_clipImageData && [self clipImage])
-	{
-		[self setClipImageData:[[self clipImage] alphaData]];
+			CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
+			[[self maskLayer] setFrame:maskFrame];
+			[[self maskLayer] setContents:(id)[clipImage CGImage]];
+		}
 	}
-	
-	return _clipImageData;
 }
 
 #pragma mark - Memory Management
