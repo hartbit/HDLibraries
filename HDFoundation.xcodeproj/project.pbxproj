@@ -24,13 +24,13 @@
 		633E183E1329528E00082EDD /* HDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E183C1329528E00082EDD /* HDViewController.h */; };
 		633E183F1329528E00082EDD /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E183D1329528E00082EDD /* HDViewController.m */; };
 		633E18481329533800082EDD /* HDDraggableButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18401329533200082EDD /* HDDraggableButton.h */; };
-		633E18491329533800082EDD /* HDDrawableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18411329533200082EDD /* HDDrawableImage.h */; };
+		633E18491329533800082EDD /* HDDrawableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18411329533200082EDD /* HDDrawableView.h */; };
 		633E184A1329533800082EDD /* HDErasableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18421329533200082EDD /* HDErasableImage.h */; };
-		633E184B1329533800082EDD /* HDIrregularImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18431329533200082EDD /* HDIrregularImage.h */; };
+		633E184B1329533800082EDD /* HDClipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18431329533200082EDD /* HDClipView.h */; };
 		633E184C1329533800082EDD /* HDDraggableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18441329533300082EDD /* HDDraggableButton.m */; };
-		633E184D1329533800082EDD /* HDDrawableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18451329533400082EDD /* HDDrawableImage.m */; };
+		633E184D1329533800082EDD /* HDDrawableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18451329533400082EDD /* HDDrawableView.m */; };
 		633E184E1329533800082EDD /* HDErasableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18461329533500082EDD /* HDErasableImage.m */; };
-		633E184F1329533800082EDD /* HDIrregularImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18471329533600082EDD /* HDIrregularImage.m */; };
+		633E184F1329533800082EDD /* HDClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E18471329533600082EDD /* HDClipView.m */; };
 		633E18521329541C00082EDD /* HDFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 633E18501329541C00082EDD /* HDFunctions.h */; };
 		636D00171329484C00A12C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D00161329484C00A12C84 /* Foundation.framework */; };
 		636D002A1329490100A12C84 /* HDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 636D00281329490100A12C84 /* HDTypes.h */; };
@@ -65,13 +65,13 @@
 		633E183C1329528E00082EDD /* HDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDViewController.h; sourceTree = "<group>"; };
 		633E183D1329528E00082EDD /* HDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDViewController.m; sourceTree = "<group>"; };
 		633E18401329533200082EDD /* HDDraggableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDraggableButton.h; sourceTree = "<group>"; };
-		633E18411329533200082EDD /* HDDrawableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDrawableImage.h; sourceTree = "<group>"; };
+		633E18411329533200082EDD /* HDDrawableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDrawableView.h; sourceTree = "<group>"; };
 		633E18421329533200082EDD /* HDErasableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDErasableImage.h; sourceTree = "<group>"; };
-		633E18431329533200082EDD /* HDIrregularImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDIrregularImage.h; sourceTree = "<group>"; };
+		633E18431329533200082EDD /* HDClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDClipView.h; sourceTree = "<group>"; };
 		633E18441329533300082EDD /* HDDraggableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDraggableButton.m; sourceTree = "<group>"; };
-		633E18451329533400082EDD /* HDDrawableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDrawableImage.m; sourceTree = "<group>"; };
+		633E18451329533400082EDD /* HDDrawableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDrawableView.m; sourceTree = "<group>"; };
 		633E18461329533500082EDD /* HDErasableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDErasableImage.m; sourceTree = "<group>"; };
-		633E18471329533600082EDD /* HDIrregularImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDIrregularImage.m; sourceTree = "<group>"; };
+		633E18471329533600082EDD /* HDClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDClipView.m; sourceTree = "<group>"; };
 		633E18501329541C00082EDD /* HDFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFunctions.h; sourceTree = "<group>"; };
 		636D00131329484C00A12C84 /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		636D00161329484C00A12C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -169,12 +169,12 @@
 				633E1835132951BB00082EDD /* UIView+Geometry.m */,
 				633E18401329533200082EDD /* HDDraggableButton.h */,
 				633E18441329533300082EDD /* HDDraggableButton.m */,
-				633E18411329533200082EDD /* HDDrawableImage.h */,
-				633E18451329533400082EDD /* HDDrawableImage.m */,
+				633E18411329533200082EDD /* HDDrawableView.h */,
+				633E18451329533400082EDD /* HDDrawableView.m */,
+				633E18431329533200082EDD /* HDClipView.h */,
+				633E18471329533600082EDD /* HDClipView.m */,
 				633E18421329533200082EDD /* HDErasableImage.h */,
 				633E18461329533500082EDD /* HDErasableImage.m */,
-				633E18431329533200082EDD /* HDIrregularImage.h */,
-				633E18471329533600082EDD /* HDIrregularImage.m */,
 				63CCB315132A98AC00153A3A /* HDAnimatedImage.h */,
 				63CCB316132A98AC00153A3A /* HDAnimatedImage.m */,
 				638B7160132BEFEE003FEC29 /* HDImageGridView.h */,
@@ -220,9 +220,9 @@
 				633E1838132951BB00082EDD /* UIView+Geometry.h in Headers */,
 				633E183E1329528E00082EDD /* HDViewController.h in Headers */,
 				633E18481329533800082EDD /* HDDraggableButton.h in Headers */,
-				633E18491329533800082EDD /* HDDrawableImage.h in Headers */,
+				633E18491329533800082EDD /* HDDrawableView.h in Headers */,
 				633E184A1329533800082EDD /* HDErasableImage.h in Headers */,
-				633E184B1329533800082EDD /* HDIrregularImage.h in Headers */,
+				633E184B1329533800082EDD /* HDClipView.h in Headers */,
 				633E18521329541C00082EDD /* HDFunctions.h in Headers */,
 				63CEB454132A2CEE00F6E87F /* HDFoundation.h in Headers */,
 				63CEB457132A2D6200F6E87F /* NSMutableArray+Queue.h in Headers */,
@@ -291,9 +291,9 @@
 				633E183B132951BB00082EDD /* UIView+Geometry.m in Sources */,
 				633E183F1329528E00082EDD /* HDViewController.m in Sources */,
 				633E184C1329533800082EDD /* HDDraggableButton.m in Sources */,
-				633E184D1329533800082EDD /* HDDrawableImage.m in Sources */,
+				633E184D1329533800082EDD /* HDDrawableView.m in Sources */,
 				633E184E1329533800082EDD /* HDErasableImage.m in Sources */,
-				633E184F1329533800082EDD /* HDIrregularImage.m in Sources */,
+				633E184F1329533800082EDD /* HDClipView.m in Sources */,
 				63CEB458132A2D6200F6E87F /* NSMutableArray+Queue.m in Sources */,
 				63CEB52D132A41E200F6E87F /* HDModelController.m in Sources */,
 				63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */,

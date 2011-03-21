@@ -22,11 +22,11 @@
 
 @implementation HDDraggableButton
 
-@synthesize delegate;
-@synthesize targetView;
-@synthesize dragEnabled;
-@synthesize startOrigin;
-@synthesize speed;
+@synthesize delegate = _delegate;
+@synthesize targetView = _targetView;
+@synthesize dragEnabled = _dragEnabled;
+@synthesize startOrigin = _startOrigin;
+@synthesize speed = _speed;
 
 #pragma mark - Initialization
 

@@ -1,5 +1,5 @@
 //
-//  HDIrregularImage.h
+//  HDClipView.h
 //  HDFoundation
 //
 //  Created by David Hart on 22/02/2011.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HDIrregularImage : UIImageView
+@interface HDClipView : UIView
+
+@property (nonatomic, retain) UIImage* clipImage;
 
 @end

@@ -21,10 +21,10 @@
 
 @implementation HDModelController
 
-@synthesize modelURL;
-@synthesize managedObjectContext;
-@synthesize managedObjectModel;
-@synthesize persistentStoreCoordinator;
+@synthesize modelURL = _modelURL;
+@synthesize managedObjectModel = _manageObjectModel;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 #pragma mark - Lifecycle
 
@@ -41,7 +41,7 @@
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (!managedObjectModel)
+	if (!_manageObjectModel)
 	{
 		if ([self modelURL])
 		{
@@ -55,38 +55,38 @@
 		}
 	}
 	
-	HDEnsure(managedObjectModel);
-	HDEnsure([managedObjectModel retainCount] == 1);
-	return managedObjectModel;
+	HDEnsure(_manageObjectModel);
+	HDEnsure([_manageObjectModel retainCount] == 1);
+	return _manageObjectModel;
 }
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-	if (!managedObjectContext)
+	if (!_managedObjectContext)
 	{
 		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
-		[managedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 		[self setManagedObjectContext:newManagedObjectContext];
 		[newManagedObjectContext release];
 	}
 	
-	HDEnsure(managedObjectContext);
-	HDEnsure([managedObjectContext retainCount] == 1);
-	return managedObjectContext;
+	HDEnsure(_managedObjectContext);
+	HDEnsure([_managedObjectContext retainCount] == 1);
+	return _managedObjectContext;
 }
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
-	if (!persistentStoreCoordinator)
+	if (!_persistentStoreCoordinator)
 	{
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
 		[newPersistentStoreCoordinator release];
 	}
 	
-	HDEnsure(persistentStoreCoordinator);
-	HDEnsure([persistentStoreCoordinator retainCount] == 1);
-	return persistentStoreCoordinator;
+	HDEnsure(_persistentStoreCoordinator);
+	HDEnsure([_persistentStoreCoordinator retainCount] == 1);
+	return _persistentStoreCoordinator;
 }
 
 #pragma mark - Public Methods
@@ -101,8 +101,9 @@
 - (BOOL)saveContextWithError:(NSError**)error
 {
 	BOOL success = YES;
+	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
 	
-	if ([self managedObjectContext] && [[self managedObjectContext] hasChanges])
+	if (managedObjectContext && [managedObjectContext hasChanges])
 	{
 		success = [managedObjectContext save:error];
 	}
