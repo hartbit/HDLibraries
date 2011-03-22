@@ -16,4 +16,6 @@
 @property (nonatomic, assign) CGPoint boundsOrigin;
 @property (nonatomic, assign) CGSize boundsSize;
 
+- (void)translate:(CGPoint)offset;
+
 @end

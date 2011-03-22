@@ -59,4 +59,12 @@
 	[self setBounds:bounds];
 }
 
+- (void)translate:(CGPoint)offset
+{
+	CGRect frame = [self frame];
+	frame.origin.x += offset.x;
+	frame.origin.y += offset.y;
+	[self setFrame:frame];
+}
+
 @end
