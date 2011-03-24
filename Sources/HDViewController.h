@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class HDTransitionController;
 
 @interface HDViewController : UIViewController
 
 @property (nonatomic, copy, readonly) NSString* controllerName;
+@property (nonatomic, retain) HDTransitionController* transitionController;
 
 - (NSSet*)outlets;
 

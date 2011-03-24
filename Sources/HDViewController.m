@@ -8,6 +8,7 @@
 
 #import "HDViewController.h"
 #import "HDMacros.h"
+#import "HDTransitionController.h"
 
 
 @interface HDViewController ()
@@ -21,7 +22,8 @@
 
 @implementation HDViewController
 
-@synthesize controllerName;
+@synthesize controllerName = _controllerName;
+@synthesize transitionController = _transitionController;
 
 #pragma mark - Memory Management
 
@@ -36,6 +38,7 @@
 {
 	[self releaseOutlets];
 	[self setControllerName:nil];
+	[self setTransitionController:nil];
 	
 	[super dealloc];
 }
@@ -53,7 +56,7 @@
 
 - (NSString*)controllerName
 {	
-	if (!controllerName)
+	if (!_controllerName)
 	{
 		NSString* className = NSStringFromClass([self class]);
 		NSRange postfixRange = [className rangeOfString:@"ViewController"];
@@ -67,7 +70,7 @@
 		}
 	}
 
-	return controllerName;
+	return _controllerName;
 }
 
 #pragma mark - Public Methods

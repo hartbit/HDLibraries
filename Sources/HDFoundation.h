@@ -25,3 +25,4 @@
 #import "HDAnimatedImage.h"
 #import "HDAudioPlayer.h"
 #import "HDViewController.h"
+#import "HDTransitionController.h"

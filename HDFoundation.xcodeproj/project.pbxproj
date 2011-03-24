@@ -35,6 +35,8 @@
 		636D00171329484C00A12C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D00161329484C00A12C84 /* Foundation.framework */; };
 		636D002A1329490100A12C84 /* HDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 636D00281329490100A12C84 /* HDTypes.h */; };
 		636D003013294B4400A12C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636D002F13294B4400A12C84 /* CoreGraphics.framework */; };
+		636E21B9133B446700A7F904 /* HDTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E21B7133B446700A7F904 /* HDTransitionController.m */; };
+		636E21BA133B446700A7F904 /* HDTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 636E21B8133B446700A7F904 /* HDTransitionController.h */; };
 		638B7162132BEFEF003FEC29 /* HDImageGridView.h in Headers */ = {isa = PBXBuildFile; fileRef = 638B7160132BEFEE003FEC29 /* HDImageGridView.h */; };
 		638B7163132BEFEF003FEC29 /* HDImageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 638B7161132BEFEE003FEC29 /* HDImageGridView.m */; };
 		63C0AA861333F9B30054DA75 /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C0AA851333F9B30054DA75 /* HDMacros.h */; };
@@ -77,6 +79,8 @@
 		636D00161329484C00A12C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		636D00281329490100A12C84 /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
 		636D002F13294B4400A12C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		636E21B7133B446700A7F904 /* HDTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDTransitionController.m; sourceTree = "<group>"; };
+		636E21B8133B446700A7F904 /* HDTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTransitionController.h; sourceTree = "<group>"; };
 		638B7160132BEFEE003FEC29 /* HDImageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDImageGridView.h; sourceTree = "<group>"; };
 		638B7161132BEFEE003FEC29 /* HDImageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDImageGridView.m; sourceTree = "<group>"; };
 		63C0AA851333F9B30054DA75 /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 			children = (
 				633E183C1329528E00082EDD /* HDViewController.h */,
 				633E183D1329528E00082EDD /* HDViewController.m */,
+				636E21B8133B446700A7F904 /* HDTransitionController.h */,
+				636E21B7133B446700A7F904 /* HDTransitionController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				638B7162132BEFEF003FEC29 /* HDImageGridView.h in Headers */,
 				6313FCD8133217310069E9BC /* HDAudioPlayer.h in Headers */,
 				63C0AA861333F9B30054DA75 /* HDMacros.h in Headers */,
+				636E21BA133B446700A7F904 /* HDTransitionController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +306,7 @@
 				63CCB318132A98AC00153A3A /* HDAnimatedImage.m in Sources */,
 				638B7163132BEFEF003FEC29 /* HDImageGridView.m in Sources */,
 				6313FCD9133217310069E9BC /* HDAudioPlayer.m in Sources */,
+				636E21B9133B446700A7F904 /* HDTransitionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
