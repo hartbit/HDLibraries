@@ -140,18 +140,20 @@
 	NSAssert(_images == nil, @"Images should not be hanging around by now.");
 	
 	NSMutableArray* images = [NSMutableArray array];
-	
 	NSUInteger index = 1;
-	NSString* imageName = [self nameFromImageAtIndex:index];
-	UIImage* image = [UIImage imageNamed:imageName cached:NO];
 	
-	while (image != nil)
+	while (YES)
 	{
-		[images addObject:image];
+		NSString* imageName = [self nameFromImageAtIndex:index];
+		UIImage* image = [UIImage imageNamed:imageName cached:NO];
 		
+		if (!image)
+		{
+			break;
+		}
+		
+		[images addObject:image];
 		index++;
-		imageName = [self nameFromImageAtIndex:index];
-		image = [UIImage imageNamed:imageName cached:NO];
 	}
 	
 	[self setImages:images];
