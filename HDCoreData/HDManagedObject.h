@@ -1,12 +1,11 @@
 //
 //  HDManagedObject.h
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 10/02/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 

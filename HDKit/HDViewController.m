@@ -1,13 +1,13 @@
 //
 //  HDViewController.m
-//  Library
+//  HDLibraries
 //
 //  Created by David Hart on 07/03/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import "HDViewController.h"
-#import "HDMacros.h"
+#import "HDFoundation.h"
 #import "HDTransitionController.h"
 
 
@@ -62,7 +62,7 @@
 		NSRange postfixRange = [className rangeOfString:@"ViewController"];
 		BOOL postfixIsAtEnd = postfixRange.location + postfixRange.length == [className length];
 		
-		HDAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
+//		HDAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
 		
 		if (postfixIsAtEnd)
 		{

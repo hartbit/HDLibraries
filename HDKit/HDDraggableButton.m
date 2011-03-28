@@ -1,6 +1,6 @@
 //
 //  HDDraggableButton.m
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 5/10/10.
 //  Copyright 2010 hart[dev]. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "HDDraggableButton.h"
 #import "UIView+Geometry.h"
-#import "HDFunctions.h"
+#import "HDFoundation.h"
 
 
 @interface HDDraggableButton ()

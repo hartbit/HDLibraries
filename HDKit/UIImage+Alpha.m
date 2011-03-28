@@ -1,14 +1,14 @@
 //
 //  UIImage+Alpha.m
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by jeff on 3/26/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 hart[dev]. All rights reserved.
 //
 
 #import "UIImage+Alpha.h"
-#import "HDMacros.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "HDFoundation.h"
 
 
 CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
@@ -45,7 +45,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 - (NSData*)alphaData
 {
 	CGContextRef context = CreateAlphaBitmapContext([self CGImage]);
-	HDAssert(context, @"Could not create Alpha Bitmap Context.");
+//	HDAssert(context, @"Could not create Alpha Bitmap Context.");
 	
 	if (!context)
 	{
@@ -58,7 +58,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 	CGContextDrawImage(context, imageRect, [self CGImage]); 
 
 	void* bitmapData = CGBitmapContextGetData(context);
-	HDAssert(bitmapData, @"Could not retreive data from bitmap context.");
+//	HDAssert(bitmapData, @"Could not retreive data from bitmap context.");
 	CGContextRelease(context);
 
 	if (!bitmapData)
@@ -68,7 +68,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 
 	size_t dataSize = imageWidth * imageHeight;
 	NSData* data = [NSData dataWithBytes:bitmapData length:dataSize];
-	HDAssert(bitmapData, @"Could not create NSData object from bitmap data.");
+//	HDAssert(bitmapData, @"Could not create NSData object from bitmap data.");
 	free(bitmapData);
 	
 	return data;

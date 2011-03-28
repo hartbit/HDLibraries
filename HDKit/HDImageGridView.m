@@ -1,6 +1,6 @@
 //
 //  HDImageGridView.m
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 3/12/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
@@ -8,6 +8,7 @@
 
 #import "HDImageGridView.h"
 #import "UIView+Geometry.h"
+
 
 @interface HDImageGridView ()
 

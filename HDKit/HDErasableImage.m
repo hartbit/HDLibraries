@@ -1,8 +1,8 @@
 //
 //  HDErasableImage.m
-//  HDFoundation
+//  HDLibraries
 //
-//  Created by DigDog-27-01 on 28/05/10.
+//  Created by David Hart on 28/05/10.
 //  Copyright 2010 hart[dev]. All rights reserved.
 //
 

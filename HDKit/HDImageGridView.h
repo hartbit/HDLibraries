@@ -1,13 +1,13 @@
 //
 //  HDImageGridView.h
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 3/12/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "HDTypes.h"
+#import "HDFoundation.h"
 
 
 @protocol HDImageGridViewDataSource;

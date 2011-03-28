@@ -1,6 +1,6 @@
 //
 //  HDClipView.m
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 5/18/10.
 //  Copyright 2010 hart[dev]. All rights reserved.

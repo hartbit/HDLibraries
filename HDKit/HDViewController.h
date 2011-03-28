@@ -1,12 +1,13 @@
 //
 //  HDViewController.h
-//  Library
+//  HDLibraries
 //
 //  Created by David Hart on 07/03/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
 
 @class HDTransitionController;
 

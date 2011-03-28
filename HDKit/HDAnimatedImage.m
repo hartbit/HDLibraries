@@ -1,6 +1,6 @@
 //
 //  HDAnimatedImage.m
-//  CoucouBebe
+//  HDLibraries
 //
 //  Created by David Hart on 11/9/10.
 //  Copyright 2010 hart[dev]. All rights reserved.

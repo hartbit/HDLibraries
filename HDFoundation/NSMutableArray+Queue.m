@@ -1,33 +1,32 @@
 //
 //  NSArray+Queue.m
-//  GravicubeModel
+//  HDLibraries
 //
 //  Created by David Hart on 04/03/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import "NSMutableArray+Queue.h"
-#import "HDMacros.h"
+#import "HDErrorHandler.h"
 
 
 @implementation NSMutableArray (Queue)
 
 - (void)enqueue:(id)object
 {
-	HDRequire(object);
+//	HDAssert(@"object", HDAssertLevelError);
 	
 	[self addObject:object];
 }
 
 - (id)dequeue
 {
-	HDRequire([self count] > 0);
+//	HDAssert([self count] > 0);
 	
 	id object = [[self objectAtIndex:0] retain];
 	[self removeObjectAtIndex:0];
 	
-	HDEnsure(object);
-	HDEnsure([object retainCount] == 1);
+//	HDAssert(object);
 	return [object autorelease];
 }
 

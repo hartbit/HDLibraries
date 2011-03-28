@@ -1,6 +1,6 @@
 //
 //  HDViewController.h
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 3/22/11.
 //  Copyright 2011 hart[dev]. All rights reserved.

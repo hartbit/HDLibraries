@@ -1,6 +1,6 @@
 //
 //  HDTypes.h
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 2/16/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
@@ -93,3 +93,72 @@ static inline CGSize CGSizeFromHDSize(HDSize size)
 {
 	return CGSizeMake(size.width, size.height);
 }
+
+#pragma mark - Conversions To NSString
+
+/*
+static inline NSString* NSStringFrom(int value)
+{
+	return [NSString stringWithFormat:@"%u", value];
+}
+
+static inline NSString* NSStringFrom(unsigned int value)
+{
+	return [NSString stringWithFormat:@"%u", value];
+}
+
+static inline NSString* NSStringFrom(short value)
+{
+	return [NSString stringWithFormat:@"%hi", value];
+}
+
+static inline NSString* NSStringFrom(unsigned short value)
+{
+	return [NSString stringWithFormat:@"%hu", value];
+}
+
+static inline NSString* NSStringFrom(long long value)
+{
+	return [NSString stringWithFormat:@"%qi", value];
+}
+
+static inline NSString* NSStringFrom(unsigned long long value)
+{
+	return [NSString stringWithFormat:@"%qu", value];
+}
+
+static inline NSString* NSStringFrom(double value)
+{
+	return [NSString stringWithFormat:@"%f", value];
+}
+
+static inline NSString* NSStringFrom(unsigned char value)
+{
+	return [NSString stringWithFormat:@"%c", value];
+}
+
+static inline NSString* NSStringFrom(unichar value)
+{
+	return [NSString stringWithFormat:@"%C", value];
+}
+
+static inline NSString* NSStringFrom(const unsigned char* value)
+{
+	return [NSString stringWithFormat:@"%s", value];
+}
+
+static inline NSString* NSStringFrom(const unichar* value)
+{
+	return [NSString stringWithFormat:@"%S", value];
+}
+
+static inline NSString* NSStringFrom(const unichar* value)
+{
+	return [NSString stringWithFormat:@"%S", value];
+}
+
+static inline NSString* NSStringFrom(void* value)
+{
+	return [NSString stringWithFormat:@"%p", value];
+}
+*/

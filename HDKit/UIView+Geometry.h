@@ -1,6 +1,6 @@
 //
 //  UIView+Geometry.h
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 3/2/11.
 //  Copyright 2011 hart[dev]. All rights reserved.

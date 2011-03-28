@@ -1,6 +1,6 @@
 //
 //  NSArray+Queue.h
-//  GravicubeModel
+//  HDLibraries
 //
 //  Created by David Hart on 04/03/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.

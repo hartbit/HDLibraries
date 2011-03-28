@@ -1,13 +1,13 @@
 //
 //  HDModelController.m
-//  HDFoundation
+//  HDLibraries
 //
 //  Created by David Hart on 17/02/2011.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import "HDModelController.h"
-#import "HDMacros.h"
+#import "HDFoundation.h"
 
 
 @interface HDModelController ()
