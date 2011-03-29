@@ -64,6 +64,8 @@
 	
 	if (animated)
 	{
+		[newView setUserInteractionEnabled:NO];
+		
 		[UIView beginAnimations:nil context:[_viewController retain]];
 		[UIView setAnimationDuration:1.0];
 		[UIView setAnimationTransition:transition forView:[self contentView] cache:NO];
@@ -90,6 +92,8 @@
 	 
 - (void)transitionDidStop:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context
 {
+	[[[self viewController] view] setUserInteractionEnabled:YES];
+	
 	HDViewController* previousViewController = (HDViewController*)context;
 	[previousViewController viewDidDisappear:YES];
 	[[self viewController] viewDidAppear:YES];
