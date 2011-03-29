@@ -62,7 +62,7 @@
 		NSRange postfixRange = [className rangeOfString:@"ViewController"];
 		BOOL postfixIsAtEnd = postfixRange.location + postfixRange.length == [className length];
 
-#warning Missing Assert
+//#warning Missing Assert
 //		HDAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
 		
 		if (postfixIsAtEnd)

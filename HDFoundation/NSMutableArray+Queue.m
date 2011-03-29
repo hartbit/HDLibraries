@@ -21,7 +21,7 @@
 
 - (id)dequeue
 {
-#warning missing assert
+//#warning missing assert
 //	HDAssert(HDNotNil(object), HDFailureLevelError);
 	
 	id object = [[self objectAtIndex:0] retain];
