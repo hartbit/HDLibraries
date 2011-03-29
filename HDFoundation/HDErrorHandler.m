@@ -15,6 +15,8 @@
 
 - (void)handleFailureWithDescription:(NSString*)description level:(HDFailureLevel)level;
 - (void)handleApplicationDidEnterBackground:(NSNotification*)notification;
+- (NSString*)levelStringFromLevel:(HDFailureLevel)level;
+- (NSString*)descriptionWithLevel:(HDFailureLevel)level message:(NSString*)message location:(NSString*)location file:(NSString*)fileName lineNumber:(NSUInteger)line;
 
 @end
 
@@ -63,13 +65,17 @@
 
 #pragma mark - Public Methods
 
-- (void)handleFailureInFunction:(NSString*)function file:(NSString*)fileName lineNumber:(NSInteger)line description:(NSString*)description level:(HDFailureLevel)level
+- (void)handleFailureInFunction:(NSString*)function file:(NSString*)fileName lineNumber:(NSInteger)line message:(NSString*)message level:(HDFailureLevel)level
 {
+	NSString* location = [NSString stringWithFormat:@"'%@'", function];
+	NSString* description = [self descriptionWithLevel:level message:message location:location file:fileName lineNumber:line];
 	[self handleFailureWithDescription:description level:level];
 }
 
-- (void)handleFailureInMethod:(SEL)selector object:(id)object file:(NSString*)fileName lineNumber:(NSInteger)line description:(NSString*)description level:(HDFailureLevel)level
+- (void)handleFailureInMethod:(SEL)selector object:(id)object file:(NSString*)fileName lineNumber:(NSInteger)line message:(NSString*)message level:(HDFailureLevel)level
 {
+	NSString* location = [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([object class]), NSStringFromSelector(selector)];
+	NSString* description = [self descriptionWithLevel:level message:message location:location file:fileName lineNumber:line];
 	[self handleFailureWithDescription:description level:level];	
 }
 
@@ -77,14 +83,20 @@
 
 - (void)handleFailureWithDescription:(NSString*)description level:(HDFailureLevel)level
 {
+	NSLog(@"%@", description);
+	
+#ifdef DEBUG
+	abort();
+#else
 	if (level == HDFailureLevelError)
 	{
 		[self setShouldTerminateApplication:YES];
 	}
-	else
+	else if (level > HDFailureLevelError)
 	{
 		abort();
 	}
+#endif
 }
 
 - (void)handleApplicationDidEnterBackground:(NSNotification*)notification
@@ -93,6 +105,23 @@
 	{
 		abort();
 	}
+}
+
+- (NSString*)levelStringFromLevel:(HDFailureLevel)level
+{
+	static NSArray* kLevelStringTable = nil;
+	
+	if (kLevelStringTable == nil)
+	{
+		kLevelStringTable = [[NSArray alloc] initWithObjects:@"Info", @"Warning", @"Error", @"Fatal", nil];
+	}
+	
+	return [kLevelStringTable objectAtIndex:level];
+}
+
+- (NSString*)descriptionWithLevel:(HDFailureLevel)level message:(NSString*)message location:(NSString*)location file:(NSString*)fileName lineNumber:(NSUInteger)line
+{
+	return [NSString stringWithFormat:@"[%@] %@ in %@, %@:%i", [[self levelStringFromLevel:level] uppercaseString], message, location, [fileName lastPathComponent], line];
 }
 
 @end

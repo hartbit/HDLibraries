@@ -39,14 +39,13 @@
 						   @"xbm", nil];
 	}
 	
-	HDEnsure(kSupportedTypes);
-	HDEnsure([kSupportedTypes retainCount] == 1);
+	HDAssert(HDNotNil(kSupportedTypes), HDFailureLevelError);
 	return kSupportedTypes;
 }
 
 + (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached
 {
-	HDRequire(name);
+	HDCheck(HDNotNil(name), HDFailureLevelWarning, return nil);
 	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];
 	NSString* platformName = [name stringByAppendingString:platformSuffix];

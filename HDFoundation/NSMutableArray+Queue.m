@@ -7,26 +7,27 @@
 //
 
 #import "NSMutableArray+Queue.h"
-#import "HDErrorHandler.h"
+#import "HDAssert.h"
 
 
 @implementation NSMutableArray (Queue)
 
 - (void)enqueue:(id)object
 {
-//	HDAssert(@"object", HDAssertLevelError);
+	HDCheck(HDNotNil(object), HDFailureLevelError, return);
 	
 	[self addObject:object];
 }
 
 - (id)dequeue
 {
-//	HDAssert([self count] > 0);
+#warning missing assert
+//	HDAssert(HDNotNil(object), HDFailureLevelError);
 	
 	id object = [[self objectAtIndex:0] retain];
 	[self removeObjectAtIndex:0];
 	
-//	HDAssert(object);
+	HDAssert(HDNotNil(object), HDFailureLevelError);
 	return [object autorelease];
 }
 

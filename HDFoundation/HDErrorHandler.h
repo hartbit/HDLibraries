@@ -22,6 +22,7 @@ typedef enum
 
 + (HDErrorHandler*)sharedHandler;
 
-- (void)handleFailureInFunction:(NSString*)function file:(NSString*)file lineNumber:(NSInteger)lineNumber description:(NSString*)description level:(HDFailureLevel)level;
+- (void)handleFailureInFunction:(NSString*)function file:(NSString*)file lineNumber:(NSInteger)lineNumber message:(NSString*)message level:(HDFailureLevel)level;
+- (void)handleFailureInMethod:(SEL)selector object:(id)object file:(NSString*)fileName lineNumber:(NSInteger)line message:(NSString*)message level:(HDFailureLevel)level;
 
 @end

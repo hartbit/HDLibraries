@@ -9,27 +9,60 @@
 #import "HDErrorHandler.h"
 #import "HDTypes.h"
 
-#define HDFail(message, level) _HDFail((message), (level), __FILE__, __LINE__, __PRETTY_FUNCTION__)
+#pragma mark - Asserts
 
-static inline void _HDFail(NSString* message, HDFailureLevel level, const char* file, int line, const char* function)
+#define HDFail(message, level) _HDFail((message), (level), _cmd, self, __FILE__, __LINE__, __PRETTY_FUNCTION__)
+
+static inline void _HDFail(NSString* message, HDFailureLevel level, SEL selector, id object, const char* file, int line, const char* function)
+{
+	[[HDErrorHandler sharedHandler] handleFailureInMethod:selector
+												   object:object
+													 file:[NSString stringWithCString:file encoding:NSUTF8StringEncoding]
+											   lineNumber:__LINE__
+												  message:message
+													level:level];
+}
+
+#define HDCFail(message, level) _HDCFail((message), (level), __FILE__, __LINE__, __PRETTY_FUNCTION__)
+
+static inline void _HDCFail(NSString* message, HDFailureLevel level, const char* file, int line, const char* function)
 {
 	[[HDErrorHandler sharedHandler] handleFailureInFunction:[NSString stringWithCString:function encoding:NSUTF8StringEncoding]
 													   file:[NSString stringWithCString:file encoding:NSUTF8StringEncoding]
-												 lineNumber:line
-												description:message
+												 lineNumber:__LINE__
+													message:message
 													  level:level];
 }
 
-#define HDAssert(message, level) _HDAssert((message), (level), __FILE__, __LINE__, __PRETTY_FUNCTION__)
 
-static inline void _HDAssert(NSString* message, HDFailureLevel level, const char* file, int line, const char* function)
+#define HDAssert(message, level) if ((message) != nil) { HDFail(message, level); }
+#define HDCheck(message, level, action) if ((message) != nil) { HDFail(message, level); action; }
+
+#define HDCAssert(message, level) if ((message) != nil) { HDCFail(message, level); }
+#define HDCCheck(message, level, action) if ((message) != nil) { HDCFail(message, level); action; }
+
+#pragma mark - Rich Booleans
+
+#define _HDTest(condition) (!(condition)) ? _HDGenerateMessage(#condition) : nil
+
+static inline NSString* _HDGenerateMessage(const char* condition)
 {
-	if (message != nil)
-	{
-		_HDFail(message, level, file, line, function);
-	}
+	return [NSString stringWithFormat:@"Assertion failed (%s)", condition];
 }
+
+#define HDIntegerEqual(a, b) _HDTest(a == b)
+#define HDUIntegerEqual(a, b) _HDTest(a == b)
+#define HDFloatEqual(a, b) _HDTest(a == b)
+#define HDTimeIntervalEqual(a, b) _HDTest(a == b)
+#define HDRectEqual(a, b) _HDTest(CGRectEqualToRect(a, b))
+#define HDSizeEqual(a, b) _HDTest(CGSizeEqualToSize(a, b))
+#define HDNotNil(a) _HDTest(a != nil)
+
+
 /*
+ 
+return (CGRectEqualToRect(a, b)) ? [NSString stringWithFormat:@"%@ CGrectEqualToRect('%s':<%@>, '%s':<%@>)", ASSERT_MESSAGE, aString, a, bString, b] : nil;
+ 
 #define ASSERT_MESSAGE @"Assertion failed -"
 #define COMPARE(a, b, op) do { if (!((a) op (b))) { [NSString stringWithFormat:@"%@ '%s':<%@> %s '%s':<%@>", ASSERT_MESSAGE, #a, #op, NSStringFrom(a), #b, NSStringFrom(b)]; }} while (0)
 
