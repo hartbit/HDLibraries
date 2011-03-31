@@ -7,6 +7,7 @@
 //
 
 #import "HDAudioPlayer.h"
+#import "HDAssert.h"
 
 
 @interface HDAudioPlayer ()
@@ -18,7 +19,6 @@
 @property (nonatomic, retain) NSInvocation* voiceInvocation;
 
 - (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
-- (void)playVoicePlayer:(AVAudioPlayer*)player target:(id)target action:(SEL)selector withObject:(id)object;
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;
 - (AVAudioPlayer*)audioPlayerWithPath:(NSString*)path;
 
@@ -64,8 +64,9 @@
 
 - (void)playAmbiance:(NSString*)ambianceName
 {
-	[self stopAmbiance];
+	HDCheck(isObjectNotNil(ambianceName), HDFailureLevelWarning, return);
 	
+	[self stopAmbiance];
 	[self setAmbiancePlayer:[self audioPlayerWithName:ambianceName andType:@"caf"]];
 	
 	[_ambiancePlayer setNumberOfLoops:-1];
@@ -86,12 +87,16 @@
 
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector
 {
+	HDCheck(isObjectNotNil(sfxName), HDFailureLevelWarning, return);
+	
+	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
+	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
+	[_sfxPlayers addObject:sfxPlayer];
+	
 	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:nil];
 	id nullableInvocation = (sfxInvocation != nil) ? (id)sfxInvocation : (id)[NSNull null];
 	[_sfxInvocations addObject:nullableInvocation];
 	
-	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
-	[_sfxPlayers addObject:sfxPlayer];
 	[sfxPlayer play];
 }
 
@@ -119,8 +124,16 @@
 
 - (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector withObject:(id)object
 {
-	AVAudioPlayer* player = [self audioPlayerWithName:voiceName andType:@"m4a"];
-	[self playVoicePlayer:player target:target action:selector withObject:object];
+	HDCheck(isObjectNotNil(voiceName), HDFailureLevelWarning, return);
+	
+	AVAudioPlayer* voicePlayer = [self audioPlayerWithName:voiceName andType:@"m4a"];
+	HDCheck(isObjectNotNil(voicePlayer), HDFailureLevelWarning, return);
+	
+	[self stopVoice];
+	[self setVoicePlayer:voicePlayer];
+	[self setVoiceInvocation:[self invocationForTarget:target andSelector:selector withObject:object]];
+	
+	[voicePlayer play];
 }
 
 - (void)stopVoice
@@ -178,22 +191,12 @@
 	}
 	else
 	{
-		NSAssert(NO, @"A unkown sound has finished.");
+		HDFail(@"A unkown sound has finished.", HDFailureLevelWarning);
 	}
 }
 
 #pragma mark -
 #pragma mark Private Methods
-
-- (void)playVoicePlayer:(AVAudioPlayer*)player target:(id)target action:(SEL)selector withObject:(id)object
-{
-	[self stopVoice];
-		
-	[self setVoiceInvocation:[self invocationForTarget:target andSelector:selector withObject:object]];
-	[self setVoicePlayer:player];
-
-	[_voicePlayer play];
-}
 	 
 - (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object
 {
@@ -202,8 +205,8 @@
 		return nil;
 	}
 	
-	NSAssert(target, @"Can not invoke an action on a nil target.");
-	NSAssert(selector, @"Can not invoke a nil action on a target.");
+	HDCheck(isObjectNotNil(target), HDFailureLevelWarning, return nil);
+	HDCheck(isSelectorNotNull(selector), HDFailureLevelWarning, return nil);
 	
 	NSMethodSignature* methodSignature = [target methodSignatureForSelector:selector];	
 	NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
@@ -221,7 +224,7 @@
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type
 {
 	NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:type];
-	NSAssert2(path, @"Audio file not found: (%@.%@)", name, type);
+	HDCheck(isObjectNotNil(path), HDFailureLevelWarning, return nil);
 	
 	return [self audioPlayerWithPath:path];
 }
@@ -231,11 +234,11 @@
 	NSData* data = [NSData dataWithContentsOfFile:path];
 	
 	NSError* error;
-	AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithData:data error:&error];
-	NSAssert(!error, [error localizedDescription]);
+	AVAudioPlayer* player = [[[AVAudioPlayer alloc] initWithData:data error:&error] autorelease];
+	HDCheck(isObjectNil(error), HDFailureLevelWarning, return nil);
 	
 	[player setDelegate:self];
-	return [player autorelease];
+	return player;
 }
 
 #pragma mark -
