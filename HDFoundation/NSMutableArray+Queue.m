@@ -14,7 +14,7 @@
 
 - (void)enqueue:(id)object
 {
-	HDCheck(isNotNil(object), HDFailureLevelError, return);
+	HDCheck(isObjectNotNil(object), HDFailureLevelError, return);
 	
 	[self addObject:object];
 }

@@ -44,7 +44,7 @@
 
 + (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached
 {
-	HDCheck(isNotNil(name), HDFailureLevelWarning, return nil);
+	HDCheck(isObjectNotNil(name), HDFailureLevelWarning, return nil);
 	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
 	NSString* platformName = [name stringByAppendingString:platformSuffix];

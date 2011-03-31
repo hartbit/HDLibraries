@@ -27,8 +27,15 @@
 
 #pragma mark - Rich Booleans
 
+#define _HDTest(condition) (!(condition)) ? _HDGenerateUserInfo(#condition) : nil
 #define _HDTest1(condition, aString, aValue) (!(condition)) ? _HDGenerateUserInfo1(#condition, aString, aValue) : nil
 #define _HDTest2(condition, aString, aValue, bString, bValue) (!(condition)) ? _HDGenerateUserInfo2(#condition, aString, aValue, bString, bValue) : nil
+
+static inline NSDictionary* _HDGenerateUserInfo(const char* condition)
+{
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSString stringWithCString:condition encoding:NSUTF8StringEncoding], @"expression", nil];
+}
 
 static inline NSDictionary* _HDGenerateUserInfo1(const char* condition, const char* aString, id aValue)
 {
@@ -45,8 +52,11 @@ static inline NSDictionary* _HDGenerateUserInfo2(const char* condition, const ch
 			bValue, [NSString stringWithCString:bString encoding:NSUTF8StringEncoding], nil];
 }
 
-#define isNil(a) _HDTest1(a == nil, #a, a)
-#define isNotNil(a) _HDTest1(a != nil, #a, a)
+#define isObjectNil(a) _HDTest1(a == nil, #a, a)
+#define isObjectNotNil(a) _HDTest(a != nil)
+
+#define isSelectorNull(a) _HDTest1(a == NULL, #a, NSStrinfFromSelector(a))
+#define isSelectorNotNull(a) _HDTest(a == NULL)
 
 #define isTrue(a) _HDTest1(a, #a, NSStringFromBoolean(a))
 #define isFalse(a) _HDTest1(!a, #a, NSStringFromBoolean(a))
