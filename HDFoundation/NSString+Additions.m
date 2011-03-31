@@ -16,4 +16,16 @@
 	return NSMakeRange(0, [self length]);
 }
 
+- (BOOL)startsWithString:(NSString*)substring
+{
+	NSRange range = [self rangeOfString:substring];
+	return range.location == 0;
+}
+
+- (BOOL)endsWithString:(NSString*)substring
+{
+	NSRange range = [self rangeOfString:substring];
+	return (range.location != NSNotFound) && (range.location + range.length == [self length]);
+}
+
 @end

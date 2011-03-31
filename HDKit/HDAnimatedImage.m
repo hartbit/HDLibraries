@@ -8,6 +8,7 @@
 
 #import "HDAnimatedImage.h"
 #import "UIImage+Loading.h"
+#import "HDFoundation.h"
 
 
 @interface HDAnimatedImage ()
@@ -42,10 +43,10 @@
 
 - (id) initWithCoder:(NSCoder*)coder
 {
-	self = [super initWithCoder:coder];
-	if (!self) return nil;
-	
-	[self initialize];
+	if ((self = [super initWithCoder:coder]))
+	{
+		[self initialize];
+	}
 	
 	return self;
 }
@@ -55,11 +56,11 @@
 	NSString* imageName = [animationName stringByAppendingString:@"0"];
 	UIImage* image = [UIImage imageNamed:imageName cached:NO];
 	
-	self = [super initWithImage:image];
-	if (!self) return nil;
-	
-	[self initialize];
-	[self setAnimationName:animationName];
+	if ((self = [super initWithImage:image]))
+	{
+		[self initialize];
+		[self setAnimationName:animationName];
+	}
 	
 	return self;
 }
@@ -73,58 +74,65 @@
 
 - (void)setAnimationName:(NSString*)animationName
 {
-	if ([animationName isEqualToString:_animationName]) return;
+	if ([animationName isEqualToString:_animationName])
+	{
+		return;
+	}
 	
 	[_animationName release];
-	
-	if (animationName == nil) return;
-	
+		
+	if (animationName == nil)
+	{
+		return;
+	}
+		
 	_animationName = [animationName copy];
-	
+		
 	NSString* staticImageName = [self nameFromImageAtIndex:0];
 	UIImage* staticImage = [UIImage imageNamed:staticImageName cached:NO];
-	
+		
 	[self setStaticImage:staticImage];
 	[self setImage:staticImage];
 }
 
 - (BOOL)isPlaying
 {
-	return _timer != nil;
+	return [self timer] != nil;
 }
 
 #pragma mark - Public Methods
 
 - (void)play
 {
-	if (!_animationName || [self isPlaying]) return;
+	HDCheck(isFalse([self isPlaying]), HDFailureLevelInfo, return);
+	HDCheck(isObjectNotNil([self animationName]), HDFailureLevelInfo, return);
 	
 	[self createImages];
 	[self setNextIndex:0];
 	
-	NSTimeInterval timeInterval = 1.0f / _framesPerSecond;
+	NSTimeInterval timeInterval = 1.0f / [self framesPerSecond];
 	NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(changeFrame) userInfo:nil repeats:YES];
 	[self setTimer:timer];
 }
 
 - (void)stop
 {
-	if (![self isPlaying]) return;
+	HDCheck(isTrue([self isPlaying]), HDFailureLevelInfo, return);
 	
-	[_timer invalidate];
+	[[self timer] invalidate];
 	[self setTimer:nil];
 	
-	if (_stopsOnLastFrame)
+	if ([self stopsOnLastFrame])
 	{
-		[self setStaticImage:[_images lastObject]];
+		[self setStaticImage:[[self images] lastObject]];
 	}
 	
-	[self setImage:_staticImage];
+	[self setImage:[self staticImage]];
 	[self setImages:nil];
 	
-	if ([_delegate respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+	if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
 	{
-		[_delegate animatedImageDidFinishPlaying:self];
+		[[self delegate] animatedImageDidFinishPlaying:self];
 	}
 }
 
@@ -132,12 +140,12 @@
 
 - (NSString*)nameFromImageAtIndex:(NSUInteger)index
 {
-	return [_animationName stringByAppendingFormat:@"%i", index];
+	return [[self animationName] stringByAppendingFormat:@"%i", index];
 }
 
 - (void)createImages
 {
-	NSAssert(_images == nil, @"Images should not be hanging around by now.");
+	HDAssert(isObjectNil([self images]), HDFailureLevelWarning);
 	
 	NSMutableArray* images = [NSMutableArray array];
 	NSUInteger index = 1;
@@ -161,11 +169,11 @@
 
 - (void)changeFrame
 {	
-	if (_nextIndex < [_images count])
+	if ([self nextIndex] < [[self images] count])
 	{
-		UIImage* nextImage = [_images objectAtIndex:_nextIndex];
+		UIImage* nextImage = [[self images] objectAtIndex:[self nextIndex]];
 		[self setImage:nextImage];
-		[self setNextIndex:_nextIndex + 1];
+		[self setNextIndex:[self nextIndex] + 1];
 	}
 	else
 	{
@@ -177,7 +185,10 @@
 
 - (void)dealloc
 {
-	[self stop];
+	if ([self isPlaying])
+	{
+		[self stop];
+	}
 	
 	[self setStaticImage:nil];
 	[self setAnimationName:nil];

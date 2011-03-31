@@ -45,12 +45,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 - (NSData*)alphaData
 {
 	CGContextRef context = CreateAlphaBitmapContext([self CGImage]);
-//	HDAssert(context, @"Could not create Alpha Bitmap Context.");
-	
-	if (!context)
-	{
-		return nil;
-	}
+	HDCheck(isPointerNotNull(context), HDFailureLevelWarning, return nil);
 
 	size_t imageWidth = CGImageGetWidth([self CGImage]);
 	size_t imageHeight = CGImageGetHeight([self CGImage]);
@@ -58,18 +53,15 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 	CGContextDrawImage(context, imageRect, [self CGImage]); 
 
 	void* bitmapData = CGBitmapContextGetData(context);
-//	HDAssert(bitmapData, @"Could not retreive data from bitmap context.");
 	CGContextRelease(context);
 
-	if (!bitmapData)
-	{
-		return nil;
-	}
+	HDCheck(isPointerNotNull(bitmapData), HDFailureLevelWarning, return nil);
 
 	size_t dataSize = imageWidth * imageHeight;
-	NSData* data = [NSData dataWithBytes:bitmapData length:dataSize];
-//	HDAssert(bitmapData, @"Could not create NSData object from bitmap data.");
+	NSData* data = [NSData dataWithBytes:bitmapData length:dataSize];;
 	free(bitmapData);
+	
+	HDAssert(isObjectNotNil(data), HDFailureLevelWarning);
 	
 	return data;
 } 

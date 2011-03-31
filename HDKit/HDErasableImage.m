@@ -12,7 +12,7 @@
 
 @interface HDErasableImage ()
 
-@property (nonatomic, assign) BOOL erasing;
+@property (nonatomic, assign, getter=isErasing) BOOL erasing;
 @property (nonatomic, assign) CGFloat completion;
 @property (nonatomic, assign) CGImageRef imageMaskRef;
 @property (nonatomic, assign) BOOL mouseSwiped;
@@ -41,16 +41,17 @@
 - (id)initWithImage:(UIImage*)image erasing:(BOOL)erasing
 {
 	CGRect frame = CGRectMake(0, 0, [image size].width, [image size].height);
-	self = [super initWithFrame:frame];
-	if (!self) return nil;
+
+	if ((self = [super initWithFrame:frame]))
+	{
+		[self setOpaque:NO];
+		[self setImage:image];
+		[self setErasing:erasing];
+		[self setCompletion:0];
+		
+		[self setupImageMask];
+	}
 	
-	[self setOpaque:NO];
-	[self setImage:image];
-	[self setErasing:erasing];
-	[self setCompletion:0];
-
-	[self setupImageMask];
-
 	return self;
 }
 
@@ -58,8 +59,7 @@
 
 - (void)dealloc
 {
-	CGImageRelease(_imageMaskRef);
-	[self setImageMaskRef:nil];
+	[self setImageMaskRef:NULL];
 	[self setImage:nil];
 	
 	[super dealloc];
@@ -69,12 +69,26 @@
 
 - (void)setImage:(UIImage*)image
 {
-	if (image != _image)
+	if (image == _image)
 	{
-		[_image release];
-		_image = [image retain];
-		[self setNeedsDisplay];
+		return;
 	}
+	
+	[_image release];
+	_image = [image retain];
+		
+	[self setNeedsDisplay];
+}
+
+- (void)setImageMaskRef:(CGImageRef)imageMaskRef
+{
+	if (imageMaskRef == _imageMaskRef)
+	{
+		return;
+	}
+	
+	CGImageRelease(_imageMaskRef);
+	_imageMaskRef = imageMaskRef;
 }
 
 #pragma mark - UIResponder Methods
@@ -86,9 +100,9 @@
 	UITouch* touch = [touches anyObject];	
 	[self setLastPoint:[touch locationInView:self]];
 	
-	if (_delegate && [_delegate respondsToSelector:@selector(erasableImageWillStartErasing:)])
+	if ([[self delegate] respondsToSelector:@selector(erasableImageWillStartErasing:)])
 	{
-		[_delegate erasableImageWillStartErasing:self];
+		[[self delegate] erasableImageWillStartErasing:self];
 	}
 }
 
@@ -99,25 +113,25 @@
 	UITouch* touch = [touches anyObject];
 	CGPoint currentPoint = [touch locationInView:self];
 	
-	[self drawFromPoint:_lastPoint toPoint:currentPoint];
+	[self drawFromPoint:[self lastPoint] toPoint:currentPoint];
 	[self setLastPoint:currentPoint];
 	
-	if (_delegate && [_delegate respondsToSelector:@selector(erasableImage:isErasingWithCompletionPercentage:)])
+	if ([[self delegate] respondsToSelector:@selector(erasableImage:isErasingWithCompletionPercentage:)])
 	{
-		[_delegate erasableImage:self isErasingWithCompletionPercentage:_completion];
+		[[self delegate] erasableImage:self isErasingWithCompletionPercentage:[self completion]];
 	}
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	if (!_mouseSwiped)
+	if (![self mouseSwiped])
 	{
-		[self drawFromPoint:_lastPoint toPoint:_lastPoint];
+		[self drawFromPoint:[self lastPoint] toPoint:[self lastPoint]];
 	}
 	
-	if (_delegate && [_delegate respondsToSelector:@selector(erasableImageDidEndErasing:)])
+	if ([[self delegate] respondsToSelector:@selector(erasableImageDidEndErasing:)])
 	{
-		[_delegate erasableImageDidEndErasing:self];
+		[[self delegate] erasableImageDidEndErasing:self];
 	}
 }
 
@@ -139,13 +153,13 @@ CGImageRef CreateMaskFromImageMask(CGImageRef imageMask)
 {
 	[super drawRect:rect];
 	
-	CGImageRef mask = CreateMaskFromImageMask(_imageMaskRef);
+	CGImageRef mask = CreateMaskFromImageMask([self imageMaskRef]);
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextClipToMask(context, [self bounds], mask);
-	CGContextTranslateCTM(context, 0, [self bounds].size.height);
+	CGContextTranslateCTM(context, 0, CGRectGetHeight([self bounds]));
 	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextDrawImage(context, [self bounds], _image.CGImage);
+	CGContextDrawImage(context, [self bounds], [[self image] CGImage]);
 
 	CGImageRelease(mask);
 }
@@ -170,11 +184,7 @@ CGContextRef CreateImageMaskContext(CGSize size)
     CGContextRef context = CGBitmapContextCreate(bitmapData, width, height, bitsPerComponent, bytesPerRow, colorspace, bitmapInfo);
 	CGColorSpaceRelease(colorspace);
 	
-    if (context == NULL)
-	{
-		free(bitmapData);
-		fprintf(stderr, "Context not created!");
-	}
+	HDCCheck(isPointerNotNull(context), HDFailureLevelWarning, free(bitmapData));
 	
 	return context;
 }
@@ -189,11 +199,11 @@ void ReleaseImageMaskContext(CGContextRef context)
 {
 	CGContextRef context = CreateImageMaskContext([self bounds].size);
 	
-	UIColor* fillColor = _erasing ? [UIColor blackColor] : [UIColor whiteColor];
+	UIColor* fillColor = [self isErasing] ? [UIColor blackColor] : [UIColor whiteColor];
 	CGContextSetFillColorWithColor(context, fillColor.CGColor);
 	CGContextFillRect(context, [self bounds]);
 	
-	_imageMaskRef = CGBitmapContextCreateImage(context);
+	[self setImageMaskRef:CGBitmapContextCreateImage(context)];
 	
 	ReleaseImageMaskContext(context);
 	CGContextRelease(context);
@@ -203,9 +213,9 @@ void ReleaseImageMaskContext(CGContextRef context)
 {
 	CGContextRef context = CreateImageMaskContext([self bounds].size);
 	
-	CGContextDrawImage(context, [self bounds], _imageMaskRef);
+	CGContextDrawImage(context, [self bounds], [self imageMaskRef]);
 	
-	UIColor* strokeColor = _erasing ? [UIColor whiteColor] : [UIColor blackColor];
+	UIColor* strokeColor = [self isErasing] ? [UIColor whiteColor] : [UIColor blackColor];
 	CGContextSetStrokeColorWithColor(context, strokeColor.CGColor);
 	CGContextSetLineCap(context, kCGLineCapRound);
 	CGContextSetLineWidth(context, 60);
@@ -214,8 +224,7 @@ void ReleaseImageMaskContext(CGContextRef context)
 	CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
 	CGContextStrokePath(context);
 	
-	CGImageRelease(_imageMaskRef);
-	_imageMaskRef = CGBitmapContextCreateImage(context);
+	[self setImageMaskRef:CGBitmapContextCreateImage(context)];
 	
 	ReleaseImageMaskContext(context);
 	CGContextRelease(context);
@@ -235,7 +244,7 @@ void ReleaseImageMaskContext(CGContextRef context)
 	const UInt8* dataPtr = CFDataGetBytePtr(maskData);
 	NSUInteger acheivedPixelCount = 0;
 	
-	UInt8 alphaToAcheive = _erasing ? 255 : 0;
+	UInt8 alphaToAcheive = [self isErasing] ? 255 : 0;
 	
 	for (size_t row = 0; row < height; row++)
 	{
@@ -252,12 +261,12 @@ void ReleaseImageMaskContext(CGContextRef context)
 	
 	CFRelease(maskData);
 	
-	_completion = (CGFloat)acheivedPixelCount / (width * height);
+	[self setCompletion:(CGFloat)acheivedPixelCount / (width * height)];
 }
 
 - (UIColor*)imageMaskColor
 {
-	if (_erasing)
+	if ([self isErasing])
 	{
 		return [UIColor whiteColor];
 	}

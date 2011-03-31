@@ -55,20 +55,17 @@
 #pragma mark - Properties
 
 - (NSString*)controllerName
-{	
+{
+	static NSString* kEnding = @"ViewController";
+	
 	if (!_controllerName)
 	{
 		NSString* className = NSStringFromClass([self class]);
-		NSRange postfixRange = [className rangeOfString:@"ViewController"];
-		BOOL postfixIsAtEnd = postfixRange.location + postfixRange.length == [className length];
-
-//#warning Missing Assert
-//		HDAssert(postfixIsAtEnd, @"The view controller '%@' does not end in 'ViewController'.", className);
 		
-		if (postfixIsAtEnd)
-		{
-			[self setControllerName:[className substringToIndex:postfixRange.location]];
-		}
+		HDCheck(doesStringEndWith(className, kEnding), HDFailureLevelError, return nil);
+		
+		NSRange postfixRange = [className rangeOfString:kEnding];
+		[self setControllerName:[className substringToIndex:postfixRange.location]];
 	}
 
 	return _controllerName;

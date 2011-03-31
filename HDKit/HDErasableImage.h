@@ -14,7 +14,7 @@
 @interface HDErasableImage : UIView
 
 @property (nonatomic, retain) UIImage* image;
-@property (nonatomic, assign, readonly) BOOL erasing;
+@property (nonatomic, assign, readonly, getter=isErasing) BOOL erasing;
 @property (nonatomic, assign, readonly) CGFloat completion;
 @property (nonatomic, assign) id <HDErasableImageDelegate> delegate;
 

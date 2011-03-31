@@ -28,18 +28,20 @@
 
 - (void)setDataSource:(id <HDImageGridViewDataSource>)dataSource
 {
-	if (_dataSource != dataSource)
+	if (_dataSource == dataSource)
 	{
-		_dataSource = dataSource;
-		[self reloadData];
+		return;
 	}
+	
+	_dataSource = dataSource;
+	[self reloadData];
 }
 
 #pragma mark - Public Methods
 
 - (void)reloadData
 {
-	if (!_dataSource) return;
+	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
 	_cellSize = [_dataSource sizeOfCellsInGridView:self];
 	_cellCount = [_dataSource numberOfCellsInGridView:self];
@@ -53,19 +55,22 @@
 
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point
 {
-	return HDPointMake(point.x / _cellSize.width, point.y / _cellSize.height);
+	return HDPointMake(point.x / [self cellSize].width, point.y / [self cellSize].height);
 }
 
 - (CGRect)frameForCellAtPosition:(HDPoint)position
 {
-	return CGRectMake(position.x * _cellSize.width, position.y * _cellSize.height, _cellSize.width, _cellSize.height);
+	return CGRectMake(position.x * [self cellSize].width,
+					  position.y * [self cellSize].height,
+					  [self cellSize].width,
+					  [self cellSize].height);
 }
 
 #pragma mark - UIView Methods
 
 - (void)drawRect:(CGRect)rect
 {
-	if (!_dataSource) return;
+	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
 	NSUInteger minColumn = rect.origin.x / _cellSize.width;
 	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / _cellSize.width;
@@ -79,7 +84,7 @@
 			HDPoint cellPosition = HDPointMake(columnIndex, rowIndex);
 			CGRect cellFrame = [self frameForCellAtPosition:cellPosition];
 			
-			UIImage* image = [_dataSource gridView:self imageAtPosition:cellPosition];
+			UIImage* image = [[self dataSource] gridView:self imageAtPosition:cellPosition];
 			[image drawInRect:cellFrame];
 		}
 	}

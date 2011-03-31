@@ -31,20 +31,20 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	self = [super initWithCoder:coder];
-	if (!self) return nil;
-	
-	[self initialize];
+	if (([super initWithCoder:coder]))
+	{
+		[self initialize];
+	}
 	
 	return self;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
-	self = [super initWithFrame:frame];
-	if (!self) return nil;
-	
-	[self initialize];
+	if ((self = [super initWithFrame:frame]))
+	{
+		[self initialize];
+	}
 	
 	return self;
 }

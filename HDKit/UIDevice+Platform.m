@@ -25,7 +25,6 @@
 		platformSuffix = @"~iphone";
 	}
 	
-	HDAssert(isObjectNotNil(platformSuffix), HDFailureLevelError);
 	return platformSuffix;
 }
 

@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-static inline UIColor* Color(NSUInteger r, NSUInteger g, NSUInteger b)
+static inline UIColor* UIColorMake(NSUInteger r, NSUInteger g, NSUInteger b)
 {
 	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
 }
 
-static inline UIColor* ColorA(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a)
+static inline UIColor* UIColorAlphaMake(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a)
 {
-	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a];
+	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/255.0];
 }
 
 static inline CGPoint CGPointAdd(CGPoint first, CGPoint second)

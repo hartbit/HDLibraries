@@ -52,7 +52,10 @@
 
 - (void)setViewController:(HDViewController*)viewController withTransition:(UIViewAnimationTransition)transition
 {
-	if (viewController == _viewController) return;
+	if (viewController == _viewController)
+	{
+		return;
+	}
 	
 	BOOL animated = transition != UIViewAnimationTransitionNone;
 	

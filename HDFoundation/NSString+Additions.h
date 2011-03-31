@@ -12,5 +12,7 @@
 @interface NSString (HDAdditions)
 
 - (NSRange)fullRange;
+- (BOOL)startsWithString:(NSString*)substring;
+- (BOOL)endsWithString:(NSString*)substring;
 
 @end

@@ -55,14 +55,20 @@ static inline NSDictionary* _HDGenerateUserInfo2(const char* condition, const ch
 #define isObjectNil(a) _HDTest1(a == nil, #a, a)
 #define isObjectNotNil(a) _HDTest(a != nil)
 
+#define isPointerNull(a) _HDTest1(a == NULL), #a, NSStringFromPointer(a))
+#define isPointerNotNull(a) _HDTest(a != NULL)
+
 #define isSelectorNull(a) _HDTest1(a == NULL, #a, NSStrinfFromSelector(a))
 #define isSelectorNotNull(a) _HDTest(a != NULL)
 
-#define isTrue(a) _HDTest1(a, #a, NSStringFromBoolean(a))
-#define isFalse(a) _HDTest1(!a, #a, NSStringFromBoolean(a))
+#define isTrue(a) _HDTest(a)
+#define isFalse(a) _HDTest(!(a))
 
 #define isCollectionEmpty(a) _HDTest1([a count] == 0, #a, a)
 #define isCollectionNotEmpty(a) _HDTest1([a count] > 0, #a, a)
+
+#define doesStringStartWith(a, b) _HDTest2([a startsWithString:b], #a, a, #b, b)
+#define doesStringEndWith(a, b) _HDTest2([a endsWithString:b], #a, a, #b, b)
 
 #define areNSIntegerEqual(a, b) _HDTest2(a == b, #a, NSStringFromNSInteger(a), #b, NSStringFromNSInteger(b))
 #define areNSUIntegerEqual(a, b) _HDTest2(a == b, #a, NSStringFromNSUInteger(a), #b, NSStringFromNSUInteger(b))
