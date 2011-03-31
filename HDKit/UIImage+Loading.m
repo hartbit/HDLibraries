@@ -39,15 +39,14 @@
 						   @"xbm", nil];
 	}
 	
-	HDAssert(HDNotNil(kSupportedTypes), HDFailureLevelError);
 	return kSupportedTypes;
 }
 
 + (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached
 {
-	HDCheck(HDNotNil(name), HDFailureLevelWarning, return nil);
+	HDCheck(isNotNil(name), HDFailureLevelWarning, return nil);
 	
-	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];
+	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
 	NSString* platformName = [name stringByAppendingString:platformSuffix];
 	UIImage* image = nil;
 	

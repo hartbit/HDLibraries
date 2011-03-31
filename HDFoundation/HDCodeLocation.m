@@ -1,22 +1,22 @@
 //
-//  HDErrorLocation.m
-//  Imagidoux
+//  HDCodeLocation.m
+//  HDLibraries
 //
 //  Created by David Hart on 3/30/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import "HDErrorLocation.h"
+#import "HDCodeLocation.h"
 
 
-@interface HDErrorLocation ()
+@interface HDCodeLocation ()
 
 - (id)initWithObject:(id)object context:(NSString*)context fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber;
 
 @end
 
 
-@implementation HDErrorLocation
+@implementation HDCodeLocation
 
 @synthesize object = _object;
 @synthesize context = _context;
@@ -25,15 +25,15 @@
 
 #pragma mark - Initializers
 
-+ (id)errorLocationInFunction:(NSString*)function fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
++ (id)codeLocationInFunction:(NSString*)function fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
 {
-	return [[[HDErrorLocation alloc] initWithObject:nil context:function fileName:fileName lineNumber:lineNumber] autorelease];
+	return [[[HDCodeLocation alloc] initWithObject:nil context:function fileName:fileName lineNumber:lineNumber] autorelease];
 }
 
-+ (id)errorLocationInObject:(id)object method:(SEL)selector fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
++ (id)codeLocationInObject:(id)object method:(SEL)selector fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
 {
 	NSString* context = [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([object class]), NSStringFromSelector(selector)];
-	return [[[HDErrorLocation alloc] initWithObject:object context:context fileName:fileName lineNumber:lineNumber] autorelease];
+	return [[[HDCodeLocation alloc] initWithObject:object context:context fileName:fileName lineNumber:lineNumber] autorelease];
 }
 
 #pragma mark - NSObject Methods

@@ -115,3 +115,8 @@ static inline NSString* NSStringFromPointer(void* value)
 {
 	return [NSString stringWithFormat:@"%p", value];
 }
+
+static inline NSString* NSStringFromBoolean(BOOL value)
+{
+	return value ? @"YES" : @"NO";
+}

@@ -14,20 +14,17 @@
 
 - (void)enqueue:(id)object
 {
-	HDCheck(HDNotNil(object), HDFailureLevelError, return);
+	HDCheck(isNotNil(object), HDFailureLevelError, return);
 	
 	[self addObject:object];
 }
 
 - (id)dequeue
 {
-//#warning missing assert
-//	HDAssert(HDNotNil(object), HDFailureLevelError);
+	HDCheck(isCollectionEmpty(self), HDFailureLevelError, return nil);
 	
 	id object = [[self objectAtIndex:0] retain];
 	[self removeObjectAtIndex:0];
-	
-	HDAssert(HDNotNil(object), HDFailureLevelError);
 	return [object autorelease];
 }
 

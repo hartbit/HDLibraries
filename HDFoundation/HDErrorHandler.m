@@ -1,13 +1,13 @@
 //
 //  HDErrorHandler.m
-//  Gravitor
+//  HDLibrairies
 //
 //  Created by David Hart on 3/27/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
 #import "HDErrorHandler.h"
-#import "HDErrorLocation.h"
+#import "HDCodeLocation.h"
 
 
 @interface HDErrorHandler ()
@@ -64,18 +64,18 @@
 
 #pragma mark - Public Methods
 
-- (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDErrorLocation*)location variables:(NSDictionary*)variables
+- (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDCodeLocation*)location userInfo:(NSDictionary*)userInfo
 {
-	NSMutableString* description = [NSMutableString stringWithFormat:@"[%@] Assertion failed (%@) in %@", [self levelStringFromLevel:level], message, [location description]];
+	NSMutableString* description = [NSMutableString stringWithFormat:@"[%@] %@ in %@", [self levelStringFromLevel:level], message, [location description]];
 	
 	if ([location object] != nil)
 	{
-		[description appendFormat:@"\n\tself = %@", [[location object] description]];
+		[description appendFormat:@"\n\tself: %@", [[location object] description]];
 	}
 	
-	for (NSString* variableName in [variables allKeys])
+	for (NSString* infoKey in [userInfo allKeys])
 	{
-		[description appendFormat:@"\n\t%@ = %@", variableName, [variables objectForKey:variableName]];
+		[description appendFormat:@"\n\t%@: %@", infoKey, [userInfo objectForKey:infoKey]];
 	}
 	
 	NSLog(@"%@", description);

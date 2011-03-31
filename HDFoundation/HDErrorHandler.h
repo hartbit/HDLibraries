@@ -1,6 +1,6 @@
 //
 //  HDErrorHandler.h
-//  Gravitor
+//  HDLibrairies
 //
 //  Created by David Hart on 3/27/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
@@ -18,12 +18,12 @@ typedef enum
 } HDFailureLevel;
 
 
-@class HDErrorLocation;
+@class HDCodeLocation;
 
 @interface HDErrorHandler : NSObject
 
 + (HDErrorHandler*)sharedHandler;
 
-- (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDErrorLocation*)location variables:(NSDictionary*)variables;
+- (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDCodeLocation*)location userInfo:(NSDictionary*)userInfo;
 
 @end
