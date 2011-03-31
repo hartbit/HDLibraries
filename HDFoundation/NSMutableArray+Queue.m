@@ -10,7 +10,7 @@
 #import "HDAssert.h"
 
 
-@implementation NSMutableArray (Queue)
+@implementation NSMutableArray (HDQueue)
 
 - (void)enqueue:(id)object
 {

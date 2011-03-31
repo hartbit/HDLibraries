@@ -7,33 +7,29 @@
 //
 
 #import "HDErrorHandler.h"
+#import "HDErrorLocation.h"
 #import "HDTypes.h"
+#import "NSString+Additions.h"
 
 #pragma mark - Asserts
 
-#define HDFail(message, level) _HDFail((message), (level), _cmd, self, __FILE__, __LINE__, __PRETTY_FUNCTION__)
+#define HDFail(message, level) _HDFail((message), (level), self, _cmd, __FILE__, __LINE__)
+#define HDCFail(message, level) _HDCFail((message), (level), __PRETTY_FUNCTION__, __FILE__, __LINE__)
 
-static inline void _HDFail(NSString* message, HDFailureLevel level, SEL selector, id object, const char* file, int line, const char* function)
+static inline void _HDFail(NSString* message, HDFailureLevel level, id object, SEL selector, const char* file, int line)
 {
-	[[HDErrorHandler sharedHandler] handleFailureInMethod:selector
-												   object:object
-													 file:[NSString stringWithCString:file encoding:NSUTF8StringEncoding]
-											   lineNumber:__LINE__
-												  message:message
-													level:level];
+	NSString* fileNameString = [NSString stringWithCString:file encoding:NSUTF8StringEncoding];
+	HDErrorLocation* location = [HDErrorLocation errorLocationInObject:object method:selector fileName:fileNameString lineNumber:line];
+	[[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:level location:location variables:nil];
 }
 
-#define HDCFail(message, level) _HDCFail((message), (level), __FILE__, __LINE__, __PRETTY_FUNCTION__)
-
-static inline void _HDCFail(NSString* message, HDFailureLevel level, const char* file, int line, const char* function)
+static inline void _HDCFail(NSString* message, HDFailureLevel level, const char* function, const char* file, int line)
 {
-	[[HDErrorHandler sharedHandler] handleFailureInFunction:[NSString stringWithCString:function encoding:NSUTF8StringEncoding]
-													   file:[NSString stringWithCString:file encoding:NSUTF8StringEncoding]
-												 lineNumber:__LINE__
-													message:message
-													  level:level];
+	NSString* functionString = [NSString stringWithCString:function encoding:NSUTF8StringEncoding];
+	NSString* fileNameString = [NSString stringWithCString:file encoding:NSUTF8StringEncoding];
+	HDErrorLocation* location = [HDErrorLocation errorLocationInFunction:functionString fileName:fileNameString lineNumber:line];
+	[[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:level location:location variables:nil];
 }
-
 
 #define HDAssert(message, level) if ((message) != nil) { HDFail(message, level); }
 #define HDCheck(message, level, action) if ((message) != nil) { HDFail(message, level); action; }
@@ -43,20 +39,37 @@ static inline void _HDCFail(NSString* message, HDFailureLevel level, const char*
 
 #pragma mark - Rich Booleans
 
-#define _HDTest(condition) (!(condition)) ? _HDGenerateMessage(#condition) : nil
+#define _HDTest1(condition, aString, aValue) (!(condition)) ? _HDGenerateMessage1(#condition, aString, aValue) : nil
+#define _HDTest2(condition, aString, aValue, bString, bValue) (!(condition)) ? _HDGenerateMessage2(#condition, aString, aValue, bString, bValue) : nil
 
-static inline NSString* _HDGenerateMessage(const char* condition)
+static inline void _HDReplaceVariable(NSMutableString* expression, NSString* variable, NSString* value)
 {
-	return [NSString stringWithFormat:@"Assertion failed (%s)", condition];
+	NSString* replacement = [NSString stringWithFormat:@"'%@':<%@>", variable, value];
+	[expression replaceOccurrencesOfString:variable withString:replacement options:NSLiteralSearch range:[expression fullRange]];
 }
 
-#define HDIntegerEqual(a, b) _HDTest(a == b)
-#define HDUIntegerEqual(a, b) _HDTest(a == b)
-#define HDFloatEqual(a, b) _HDTest(a == b)
-#define HDTimeIntervalEqual(a, b) _HDTest(a == b)
-#define HDRectEqual(a, b) _HDTest(CGRectEqualToRect(a, b))
-#define HDSizeEqual(a, b) _HDTest(CGSizeEqualToSize(a, b))
-#define HDNotNil(a) _HDTest(a != nil)
+static inline NSString* _HDGenerateMessage1(const char* condition, const char* aString, NSString* aValue)
+{
+	NSMutableString* mutableCondition = [NSMutableString stringWithCString:condition encoding:NSUTF8StringEncoding];
+	_HDReplaceVariable(mutableCondition, [NSString stringWithCString:aString encoding:NSUTF8StringEncoding], aValue);
+	return [NSString stringWithFormat:@"Assertion failed (%@)", mutableCondition];
+}
+
+static inline NSString* _HDGenerateMessage2(const char* condition, const char* aString, NSString* aValue, const char* bString, NSString* bValue)
+{
+	NSMutableString* mutableCondition = [NSMutableString stringWithCString:condition encoding:NSUTF8StringEncoding];
+	_HDReplaceVariable(mutableCondition, [NSString stringWithCString:aString encoding:NSUTF8StringEncoding], aValue);
+	_HDReplaceVariable(mutableCondition, [NSString stringWithCString:bString encoding:NSUTF8StringEncoding], bValue);
+	return [NSString stringWithFormat:@"Assertion failed (%@)", mutableCondition];
+}
+
+#define HDEqualNSInteger(a, b) _HDTest2(a == b, #a, NSStringFromNSInteger(a), #b, NSStringFromNSInteger(b))
+#define HDEqualNSUInteger(a, b) _HDTest2(a == b, #a, NSStringFromNSUInteger(a), #b, NSStringFromNSUInteger(b))
+#define HDEqualCGFloat(a, b) _HDTest2(a == b, #a, NSStringFromCGFloat(a), #b, NSStringFromInteger(b))
+#define HDEqualCGRect(a, b) _HDTest2(CGRectEqualToRect(a, b), #a, NSStringFromCGRect(a), #b, NSStringFromCGRect(b))
+#define HDEqualCGPoint(a, b) _HDTest2(CGSizeEqualToPoint(a, b), #a, NSStringFromCGPoint(a), #b, NSStringFromCGPoint(b))
+#define HDEqualCGSize(a, b) _HDTest2(CGSizeEqualToSize(a, b), #a, NSStringFromCGSize(a), #b, NSStringFromCGSize(b))
+#define HDNotNil(a) _HDTest1(a != nil, #a, NSStringFromPointer(a))
 
 
 /*

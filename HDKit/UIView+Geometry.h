@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIView (Geometry)
+@interface UIView (HDGeometry)
 
 @property (nonatomic, assign) CGPoint frameOrigin;
 @property (nonatomic, assign) CGSize frameSize;

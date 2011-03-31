@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSMutableArray (Queue)
+@interface NSMutableArray (HDQueue)
 
 - (void)enqueue:(id)object;
 - (id)dequeue;

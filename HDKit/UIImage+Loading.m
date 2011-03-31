@@ -18,7 +18,7 @@
 @end
 
 
-@implementation UIImage (Loading)
+@implementation UIImage (HDLoading)
 
 #pragma - Public Methods
 

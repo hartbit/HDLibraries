@@ -9,7 +9,7 @@
 #import "UIView+Geometry.h"
 
 
-@implementation UIView (Geometry)
+@implementation UIView (HDGeometry)
 
 - (CGPoint)frameOrigin
 {

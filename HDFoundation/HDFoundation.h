@@ -10,3 +10,4 @@
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
 #import "NSMutableArray+Queue.h"
+#import "NSString+Additions.h"

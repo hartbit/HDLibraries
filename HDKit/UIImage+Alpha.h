@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIImage (Alpha)
+@interface UIImage (HDAlpha)
 
 - (NSData*)alphaData;
 

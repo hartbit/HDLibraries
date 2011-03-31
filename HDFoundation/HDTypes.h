@@ -93,3 +93,25 @@ static inline CGSize CGSizeFromHDSize(HDSize size)
 {
 	return CGSizeMake(size.width, size.height);
 }
+
+#pragma mark - Convertions
+
+static inline NSString* NSStringFromNSInteger(NSInteger value)
+{
+	return [NSString stringWithFormat:@"%ld", value];
+}
+
+static inline NSString* NSStringFromNSUInteger(NSUInteger value)
+{
+	return [NSString stringWithFormat:@"%lu", value];
+}
+
+static inline NSString* NSStringFromCGFloat(CGFloat value)
+{
+	return [NSString stringWithFormat:@"%f", value];
+}
+
+static inline NSString* NSStringFromPointer(void* value)
+{
+	return [NSString stringWithFormat:@"%p", value];
+}

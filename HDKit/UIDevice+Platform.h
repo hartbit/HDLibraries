@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIDevice (Platform)
+@interface UIDevice (HDPlatform)
 
 - (NSString*)platformSuffix;
 

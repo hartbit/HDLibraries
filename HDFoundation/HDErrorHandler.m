@@ -7,16 +7,15 @@
 //
 
 #import "HDErrorHandler.h"
+#import "HDErrorLocation.h"
 
 
 @interface HDErrorHandler ()
 
 @property (nonatomic, assign) BOOL shouldTerminateApplication;
 
-- (void)handleFailureWithDescription:(NSString*)description level:(HDFailureLevel)level;
 - (void)handleApplicationDidEnterBackground:(NSNotification*)notification;
 - (NSString*)levelStringFromLevel:(HDFailureLevel)level;
-- (NSString*)descriptionWithLevel:(HDFailureLevel)level message:(NSString*)message location:(NSString*)location file:(NSString*)fileName lineNumber:(NSUInteger)line;
 
 @end
 
@@ -65,24 +64,20 @@
 
 #pragma mark - Public Methods
 
-- (void)handleFailureInFunction:(NSString*)function file:(NSString*)fileName lineNumber:(NSInteger)line message:(NSString*)message level:(HDFailureLevel)level
+- (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDErrorLocation*)location variables:(NSDictionary*)variables
 {
-	NSString* location = [NSString stringWithFormat:@"'%@'", function];
-	NSString* description = [self descriptionWithLevel:level message:message location:location file:fileName lineNumber:line];
-	[self handleFailureWithDescription:description level:level];
-}
-
-- (void)handleFailureInMethod:(SEL)selector object:(id)object file:(NSString*)fileName lineNumber:(NSInteger)line message:(NSString*)message level:(HDFailureLevel)level
-{
-	NSString* location = [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([object class]), NSStringFromSelector(selector)];
-	NSString* description = [self descriptionWithLevel:level message:message location:location file:fileName lineNumber:line];
-	[self handleFailureWithDescription:description level:level];	
-}
-
-#pragma mark - Private Methods
-
-- (void)handleFailureWithDescription:(NSString*)description level:(HDFailureLevel)level
-{
+	NSMutableString* description = [NSMutableString stringWithFormat:@"[%@] Assertion failed (%@) in %@", [self levelStringFromLevel:level], message, [location description]];
+	
+	if ([location object] != nil)
+	{
+		[description appendFormat:@"\n\tself = %@", [[location object] description]];
+	}
+	
+	for (NSString* variableName in [variables allKeys])
+	{
+		[description appendFormat:@"\n\t%@ = %@", variableName, [variables objectForKey:variableName]];
+	}
+	
 	NSLog(@"%@", description);
 	
 #ifdef DEBUG
@@ -98,6 +93,8 @@
 	}
 #endif
 }
+
+#pragma mark - Private Methods
 
 - (void)handleApplicationDidEnterBackground:(NSNotification*)notification
 {
@@ -117,11 +114,6 @@
 	}
 	
 	return [kLevelStringTable objectAtIndex:level];
-}
-
-- (NSString*)descriptionWithLevel:(HDFailureLevel)level message:(NSString*)message location:(NSString*)location file:(NSString*)fileName lineNumber:(NSUInteger)line
-{
-	return [NSString stringWithFormat:@"[%@] %@ in %@, %@:%i", [[self levelStringFromLevel:level] uppercaseString], message, location, [fileName lastPathComponent], line];
 }
 
 @end

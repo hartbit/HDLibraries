@@ -40,7 +40,7 @@ CGContextRef CreateAlphaBitmapContext(CGImageRef imageRef)
 }
 
 
-@implementation UIImage (Alpha)
+@implementation UIImage (HDAlpha)
 
 - (NSData*)alphaData
 {

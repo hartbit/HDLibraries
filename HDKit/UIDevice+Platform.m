@@ -10,7 +10,7 @@
 #import "HDFoundation.h"
 
 
-@implementation UIDevice (Platform)
+@implementation UIDevice (HDPlatform)
 
 - (NSString*)platformSuffix
 {
