@@ -56,7 +56,7 @@ static inline NSDictionary* _HDGenerateUserInfo2(const char* condition, const ch
 #define isObjectNotNil(a) _HDTest(a != nil)
 
 #define isSelectorNull(a) _HDTest1(a == NULL, #a, NSStrinfFromSelector(a))
-#define isSelectorNotNull(a) _HDTest(a == NULL)
+#define isSelectorNotNull(a) _HDTest(a != NULL)
 
 #define isTrue(a) _HDTest1(a, #a, NSStringFromBoolean(a))
 #define isFalse(a) _HDTest1(!a, #a, NSStringFromBoolean(a))
