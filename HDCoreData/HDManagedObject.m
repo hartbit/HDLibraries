@@ -12,12 +12,14 @@
 
 @implementation HDManagedObject
 
+@synthesize immutable = _immutable;
+
 #pragma mark - Public Methods
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
 {
-	HDRequire(domain);
-	HDRequire(reason);
+	HDCheck(isObjectNotNil(domain), HDFailureLevelWarning, return nil);
+	HDCheck(isObjectNotNil(reason), HDFailureLevelWarning, return nil);
 	
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	[userInfo setObject:self forKey:NSValidationObjectErrorKey];
@@ -27,15 +29,12 @@
 		[userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
 	}
 	
-	NSError* error = [NSError errorWithDomain:domain code:NSManagedObjectValidationError userInfo:userInfo];
-	
-	HDEnsure(error);
-	return error;
+	return [NSError errorWithDomain:domain code:NSManagedObjectValidationError userInfo:userInfo];
 }
 
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError
 {
-	HDRequire(secondError);
+	HDAssert(isObjectNotNil(secondError), HDFailureLevelWarning);
 	
 	if (!originalError || !secondError)
 	{
@@ -57,10 +56,15 @@
 
 	[userInfo setObject:errors forKey:NSDetailedErrorsKey];
 
-	NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
-	
-	HDEnsure(error);
-	return error;
+	return [NSError errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
+}
+
+#pragma mark - NSManagedObject Methods
+
+- (void)willChangeValueForKey:(NSString*)key
+{
+	HDAssert(isFalse([self isImmutable]), HDFailureLevelError);
+	[super willChangeValueForKey:key];
 }
 
 @end
