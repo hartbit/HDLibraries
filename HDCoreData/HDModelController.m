@@ -53,10 +53,10 @@
 		{
 			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
 		}
+		
+		HDAssert(isObjectNotNil(_manageObjectModel), HDFailureLevelError);
 	}
 	
-	HDEnsure(_manageObjectModel);
-	HDEnsure([_manageObjectModel retainCount] == 1);
 	return _manageObjectModel;
 }
 
@@ -68,10 +68,10 @@
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 		[self setManagedObjectContext:newManagedObjectContext];
 		[newManagedObjectContext release];
+		
+		HDAssert(isObjectNotNil(_managedObjectContext), HDFailureLevelError);
 	}
 	
-	HDEnsure(_managedObjectContext);
-	HDEnsure([_managedObjectContext retainCount] == 1);
 	return _managedObjectContext;
 }
 
@@ -82,33 +82,34 @@
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
 		[newPersistentStoreCoordinator release];
+		
+		HDAssert(isObjectNotNil(_persistentStoreCoordinator), HDFailureLevelError);
 	}
-	
-	HDEnsure(_persistentStoreCoordinator);
-	HDEnsure([_persistentStoreCoordinator retainCount] == 1);
+
 	return _persistentStoreCoordinator;
 }
 
 #pragma mark - Public Methods
 
-- (void)addStoreWithURL:(NSURL*)storeURL error:(NSError**)error
+- (void)addStoreWithURL:(NSURL*)storeURL
 {
-	HDRequire(storeURL);
+	HDCheck(isObjectNotNil(storeURL), HDFailureLevelWarning, return);
 	
-	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:error];
+	NSError* error = nil;
+	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+	HDCheck(isObjectNil(error), HDFailureLevelError, return);
 }
 
-- (BOOL)saveContextWithError:(NSError**)error
+- (void)saveContext
 {
-	BOOL success = YES;
 	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
 	
 	if (managedObjectContext && [managedObjectContext hasChanges])
 	{
-		success = [managedObjectContext save:error];
+		NSError* error = nil;
+		[managedObjectContext save:&error];
+		HDCheck(isObjectNil(error), HDFailureLevelFatal, return);
 	}
-	
-	return success;
 }
 
 @end

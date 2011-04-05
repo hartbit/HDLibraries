@@ -16,7 +16,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
-- (void)addStoreWithURL:(NSURL*)storeURL error:(NSError**)error;
-- (BOOL)saveContextWithError:(NSError**)error;
+- (void)addStoreWithURL:(NSURL*)storeURL;
+- (void)saveContext;
 
 @end
