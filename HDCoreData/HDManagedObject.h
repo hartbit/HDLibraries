@@ -13,6 +13,9 @@
 
 @property (nonatomic, assign, getter=isImmutable) BOOL immutable;
 
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason;
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError;
 

@@ -14,6 +14,18 @@
 
 @synthesize immutable = _immutable;
 
+#pragma mark - Class Methods
+
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+	return [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+}
+
++ (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+	return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+}
+
 #pragma mark - Public Methods
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
