@@ -7,6 +7,7 @@
 //
 
 #import "HDErasableImage.h"
+#import "HDAssert.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 

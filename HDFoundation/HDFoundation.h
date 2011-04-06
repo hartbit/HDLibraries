@@ -9,6 +9,6 @@
 #import "HDTypes.h"
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
-#import "HDFunctions.h"
+#import "HDFoundationFunctions.h"
 #import "NSMutableArray+Queue.h"
 #import "NSString+Additions.h"

@@ -6,7 +6,7 @@
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import "HDFunctions.h"
+#import "HDKitFunctions.h"
 
 #import	"UIDevice+Platform.h"
 #import "UIImage+Alpha.h"
