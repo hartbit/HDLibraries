@@ -28,6 +28,8 @@
 
 #pragma mark - Lifecycle
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(HDModelController);
+
 - (void)dealloc
 {
 	[self setPersistentStoreCoordinator:nil];
