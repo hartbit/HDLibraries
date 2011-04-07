@@ -87,4 +87,6 @@ static inline NSDictionary* _HDGenerateUserInfo3(const char* condition, const ch
 #define areCGPointEqual(a, b) _HDTest2(CGSizeEqualToPoint(a, b), #a, NSStringFromCGPoint(a), #b, NSStringFromCGPoint(b))
 #define areCGSizeEqual(a, b) _HDTest2(CGSizeEqualToSize(a, b), #a, NSStringFromCGSize(a), #b, NSStringFromCGSize(b))
 
+#define isNSUIntegerSmallerThan(a, b) _HDTest2(a < b, #a, NSStringFromNSUInteger(a), #b, NSStringFromNSUInteger(b))
+
 #define isNSIntegerInExclusiveRange(a, b, c) _HDTest3((b < a) && (a < c), #a, NSStringFromNSInteger(a), #b, NSStringFromNSInteger(b), #c, NSStringFromNSInteger(c))
