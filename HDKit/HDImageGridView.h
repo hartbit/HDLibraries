@@ -30,4 +30,7 @@
 - (HDSize)numberOfCellsInGridView:(HDImageGridView*)gridView;
 - (UIImage*)gridView:(HDImageGridView*)gridView imageAtPosition:(HDPoint)position;
 
+@optional
+- (CGAffineTransform)gridView:(HDImageGridView*)gridView transformAtPosition:(HDPoint)position;
+
 @end
