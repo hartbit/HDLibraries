@@ -66,7 +66,8 @@
 
 - (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDCodeLocation*)location userInfo:(NSDictionary*)userInfo
 {
-	NSMutableString* description = [NSMutableString stringWithFormat:@"[%@] %@ in %@", [self levelStringFromLevel:level], message, [location description]];
+	NSString* levelString = [[self levelStringFromLevel:level] uppercaseString];
+	NSMutableString* description = [NSMutableString stringWithFormat:@"[%@] %@ in %@", levelString, message, location];
 	
 	if ([location object] != nil)
 	{
