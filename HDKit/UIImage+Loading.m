@@ -13,7 +13,9 @@
 
 @interface UIImage ()
 
-+ (UIImage*)findImageNamed:(NSString*)name cached:(BOOL)caches;
++ (UIImage*)loadImageNamed:(NSString*)name cached:(BOOL)caches;
++ (NSString*)pathForImageNamed:(NSString*)name;
++ (id)findPathForImageNamed:(NSString*)name;
 
 @end
 
@@ -26,17 +28,9 @@
 {
 	static NSArray* kSupportedTypes = nil;
 	
-	if (!kSupportedTypes)
+	if (kSupportedTypes == nil)
 	{
-		kSupportedTypes = [[NSArray alloc] initWithObjects:
-						   @"tiff", @"tif",
-						   @"jpg", @"jpeg",
-						   @"gif",
-						   @"png",
-						   @"bmp", @"BMPf",
-						   @"ico",
-						   @"cur",
-						   @"xbm", nil];
+		kSupportedTypes = [[NSArray alloc] initWithObjects:@"png", @"jpg", nil];
 	}
 	
 	return kSupportedTypes;
@@ -48,20 +42,70 @@
 	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
 	NSString* platformName = [name stringByAppendingString:platformSuffix];
-	UIImage* image = nil;
+	UIImage* image = [UIImage loadImageNamed:platformName cached:cached];
 	
-	image = [UIImage findImageNamed:platformName cached:cached];
-	if (image) return image;
-	
-	image = [UIImage findImageNamed:name cached:cached];
-	if (image) return image;
-	
-	return [UIImage imageNamed:name];
+	if (image)
+	{
+		return image;
+	}
+	else
+	{
+		return [UIImage loadImageNamed:name cached:cached];
+	}
 }
 
 #pragma - Private Methods
 
-+ (UIImage*)findImageNamed:(NSString*)name cached:(BOOL)cached
++ (UIImage*)loadImageNamed:(NSString*)name cached:(BOOL)cached
+{
+	NSString* path = [self pathForImageNamed:name];
+	
+	if (path)
+	{
+		if (cached)
+		{
+			NSString* fullName = [name stringByAppendingPathExtension:[path pathExtension]];
+			return [UIImage imageNamed:fullName];
+		}
+		else
+		{
+			return [UIImage imageWithContentsOfFile:path];
+		}
+	}
+	else
+	{
+		return nil;
+	}
+}
+
++ (NSString*)pathForImageNamed:(NSString*)name
+{
+	static NSMutableDictionary* kCachedPaths = nil;
+	
+	if (kCachedPaths == nil)
+	{
+		kCachedPaths = [[NSMutableDictionary alloc] init];
+	}
+	
+	id path = [kCachedPaths objectForKey:name];
+	
+	if (path == nil)
+	{
+		path = [UIImage findPathForImageNamed:name];
+		[kCachedPaths setObject:path forKey:name];
+	}
+	
+	if ([path isKindOfClass:[NSString class]])
+	{
+		return path;
+	}
+	else
+	{
+		return nil;
+	}
+}
+
++ (id)findPathForImageNamed:(NSString*)name
 {
 	NSBundle* mainBundle = [NSBundle mainBundle];
 	
@@ -69,21 +113,13 @@
 	{
 		NSString* path = [mainBundle pathForResource:name ofType:type];
 		
-		if (path)
-		{		
-			if (cached)
-			{
-				NSString* fullName = [name stringByAppendingFormat:@".%@", type];
-				return [UIImage imageNamed:fullName];
-			}
-			else
-			{
-				return [UIImage imageWithContentsOfFile:path];
-			}
+		if (path != nil)
+		{
+			return path;
 		}
 	}
 	
-	return nil;
+	return [NSNull null];
 }
 
 @end
