@@ -14,8 +14,12 @@
 
 @property (nonatomic, assign) CGSize cellSize;
 @property (nonatomic, assign) HDSize cellCount;
+@property (nonatomic, assign) CAShapeLayer* gridLayer;
 
 - (void)initialize;
+- (void)updateSize;
+- (void)updateGridLayer;
+- (void)updateCellLayers;
 
 @end
 
@@ -25,6 +29,7 @@
 @synthesize dataSource = _dataSource;
 @synthesize cellSize = _cellSize;
 @synthesize cellCount = _cellCount;
+@synthesize gridLayer = _gridLayer;
 
 #pragma mark - Initialization
 
@@ -50,6 +55,7 @@
 
 - (void)initialize
 {
+	[[self layer] setShouldRasterize:YES];
 	[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
@@ -62,48 +68,52 @@
 	[super dealloc];
 }
 
+#pragma mark - Properties
+
+- (CAShapeLayer*)gridLayer
+{
+	CALayer* viewLayer = [self layer];
+	
+	if (_gridLayer == nil)
+	{
+		CAShapeLayer* gridLayer = [CAShapeLayer layer];
+		[gridLayer setLineWidth:2];
+		[gridLayer setStrokeColor:[[UIColor blackColor] CGColor]];
+		[gridLayer setHidden:[self isGridHidden]];
+		
+		[viewLayer addSublayer:gridLayer];
+		[self setGridLayer:gridLayer];
+	}
+	
+	return [[viewLayer sublayers] lastObject];
+}
+
+- (BOOL)isGridHidden
+{
+	if (_gridLayer == nil)
+	{
+		return YES;
+	}
+	else
+	{
+		return [_gridLayer isHidden];
+	}
+}
+
+- (void)setGridHidden:(BOOL)gridHidden
+{
+	[[self gridLayer] setHidden:gridHidden];
+}
+
 #pragma mark - Public Methods
 
 - (void)reloadData
 {
 	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
-	[self setCellSize:[[self dataSource] sizeOfCellsInGridView:self]];
-	[self setCellCount:[[self dataSource] numberOfCellsInGridView:self]];
-	
-	CGSize newSize = CGSizeMake(_cellSize.width * _cellCount.width, _cellSize.height * _cellCount.height);
-	[self setFrameSize:newSize];
-	
-	CALayer* viewLayer = [self layer];
-	NSArray* sublayers = [viewLayer sublayers];
-	
-	// Add or remove CALayers to have just enough
-	
-	HDSize cellCount = [self cellCount];
-	NSUInteger requiredSublayersCount = cellCount.width * cellCount.height;
-	
-	if ([sublayers count] < requiredSublayersCount)
-	{
-		NSUInteger difference = requiredSublayersCount - [sublayers count];
-		
-		for (NSUInteger index = 0; index < difference; index++)
-		{
-			[viewLayer addSublayer:[CALayer layer]];
-		}
-	}
-	else if ([sublayers count] > requiredSublayersCount)
-	{
-		NSUInteger difference = [sublayers count] - requiredSublayersCount;
-		
-		for (NSUInteger index = 0; index < difference; index++)
-		{
-			[[sublayers objectAtIndex:index] removeFromSuperlayer];
-		}
-	}
-	
-	// Configure all sublayers
-	
-	[viewLayer setShouldRasterize:YES];
+	[self updateSize];
+	[self updateGridLayer];
+	[self updateCellLayers];
 	[self setNeedsDisplay];
 }
 
@@ -121,6 +131,68 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)updateSize
+{
+	[self setCellSize:[[self dataSource] sizeOfCellsInGridView:self]];
+	[self setCellCount:[[self dataSource] numberOfCellsInGridView:self]];
+	
+	CGSize newSize = CGSizeMake([self cellSize].width * [self cellCount].width, [self cellSize].height * [self cellCount].height);
+	[self setFrameSize:newSize];
+}
+
+- (void)updateGridLayer
+{	
+	CGMutablePathRef path = CGPathCreateMutable();
+	
+	for (NSUInteger columnIndex = 0; columnIndex <= [self cellCount].width; columnIndex++)
+	{
+		CGFloat columnPostion = columnIndex * [self cellSize].width;
+		CGPathMoveToPoint(path, NULL, columnPostion, 0);
+		CGPathAddLineToPoint(path, NULL, columnPostion, [self boundsSize].height);
+	}
+	
+	for (NSUInteger rowIndex = 0; rowIndex <= [self cellCount].height; rowIndex++)
+	{
+		CGFloat rowPosition = rowIndex * [self cellSize].height;
+		CGPathMoveToPoint(path, NULL, 0, rowPosition);
+		CGPathAddLineToPoint(path, NULL, [self boundsSize].width, rowPosition);
+	}
+	
+	CAShapeLayer* gridLayer = [self gridLayer];
+	[gridLayer setFrame:[self bounds]];
+	[gridLayer setPath:path];
+	
+	CGPathRelease(path);
+}
+
+- (void)updateCellLayers
+{
+	CALayer* viewLayer = [self layer];
+	NSArray* sublayers = [viewLayer sublayers];
+	HDSize cellCount = [self cellCount];
+	
+	NSUInteger requiredSublayersCount = cellCount.width * cellCount.height + 1;
+	
+	if ([sublayers count] < requiredSublayersCount)
+	{
+		NSUInteger difference = requiredSublayersCount - [sublayers count];
+		
+		for (NSUInteger index = 0; index < difference; index++)
+		{
+			[viewLayer insertSublayer:[CALayer layer] below:[self gridLayer]];
+		}
+	}
+	else if ([sublayers count] > requiredSublayersCount)
+	{
+		NSUInteger difference = [sublayers count] - requiredSublayersCount;
+		
+		for (NSUInteger index = 0; index < difference; index++)
+		{
+			[[sublayers objectAtIndex:index] removeFromSuperlayer];
+		}
+	}
+}
 
 - (void)observeValueForKeyPath:(NSString*)path ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {

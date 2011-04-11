@@ -83,7 +83,6 @@
 	if (cached)
 	{
 		NSString* fullName = [name stringByAppendingPathExtension:type];
-		NSLog(@"    => LOADING IMAGE: %@", fullName);
 		return [UIImage imageNamed:fullName];
 	}
 	else
