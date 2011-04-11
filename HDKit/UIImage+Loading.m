@@ -13,9 +13,9 @@
 
 @interface UIImage ()
 
-+ (UIImage*)loadImageNamed:(NSString*)name cached:(BOOL)caches;
-+ (NSString*)pathForImageNamed:(NSString*)name;
-+ (id)findPathForImageNamed:(NSString*)name;
++ (UIImage*)loadImageWithName:(NSString*)name cached:(BOOL)cached;
++ (UIImage*)loadImageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached;
++ (NSString*)findPathForImageNamed:(NSString*)name;
 
 @end
 
@@ -36,29 +36,29 @@
 	return kSupportedTypes;
 }
 
-+ (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached
++ (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached
 {
 	HDCheck(isObjectNotNil(name), HDFailureLevelWarning, return nil);
 	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
 	NSString* platformName = [name stringByAppendingString:platformSuffix];
-	UIImage* image = [UIImage loadImageNamed:platformName cached:cached];
+	return [UIImage loadImageWithName:platformName cached:cached];
+}
+
++ (UIImage*)imageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached
+{
+	HDCheck(isObjectNotNil(name), HDFailureLevelWarning, return nil);
 	
-	if (image)
-	{
-		return image;
-	}
-	else
-	{
-		return [UIImage loadImageNamed:name cached:cached];
-	}
+	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
+	NSString* platformName = [name stringByAppendingString:platformSuffix];
+	return [UIImage loadImageWithName:platformName andType:type cached:cached];
 }
 
 #pragma - Private Methods
 
-+ (UIImage*)loadImageNamed:(NSString*)name cached:(BOOL)cached
++ (UIImage*)loadImageWithName:(NSString*)name cached:(BOOL)cached
 {
-	NSString* path = [self pathForImageNamed:name];
+	NSString* path = [self findPathForImageNamed:name];
 	
 	if (path)
 	{
@@ -78,34 +78,30 @@
 	}
 }
 
-+ (NSString*)pathForImageNamed:(NSString*)name
++ (UIImage*)loadImageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached
 {
-	static NSMutableDictionary* kCachedPaths = nil;
-	
-	if (kCachedPaths == nil)
+	if (cached)
 	{
-		kCachedPaths = [[NSMutableDictionary alloc] init];
-	}
-	
-	id path = [kCachedPaths objectForKey:name];
-	
-	if (path == nil)
-	{
-		path = [UIImage findPathForImageNamed:name];
-		[kCachedPaths setObject:path forKey:name];
-	}
-	
-	if ([path isKindOfClass:[NSString class]])
-	{
-		return path;
+		NSString* fullName = [name stringByAppendingPathExtension:type];
+		NSLog(@"    => LOADING IMAGE: %@", fullName);
+		return [UIImage imageNamed:fullName];
 	}
 	else
 	{
-		return nil;
+		NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+		
+		if (path != nil)
+		{
+			return [UIImage imageWithContentsOfFile:path];
+		}
+		else
+		{
+			return nil;
+		}
 	}
 }
 
-+ (id)findPathForImageNamed:(NSString*)name
++ (NSString*)findPathForImageNamed:(NSString*)name
 {
 	NSBundle* mainBundle = [NSBundle mainBundle];
 	
@@ -119,7 +115,7 @@
 		}
 	}
 	
-	return [NSNull null];
+	return nil;
 }
 
 @end

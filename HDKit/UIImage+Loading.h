@@ -12,6 +12,7 @@
 @interface UIImage (HDLoading)
 
 + (NSArray*)supportedTypes;
-+ (UIImage*)imageNamed:(NSString*)name cached:(BOOL)cached;
++ (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
++ (UIImage*)imageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached;
 
 @end
