@@ -11,5 +11,6 @@
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
 #import "HDFoundationFunctions.h"
+#import "HDGeometry.h"
 #import "NSMutableArray+Queue.h"
 #import "NSString+Additions.h"
