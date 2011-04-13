@@ -175,11 +175,12 @@
 		NSInvocation* invocation = [_voiceInvocation retain];
 		[self stopVoice];
 		[invocation invoke];
+		[invocation release];
 	}
 	else if ([_sfxPlayers containsObject:player])
 	{
 		NSUInteger playerIndex = [_sfxPlayers indexOfObject:player];
-		id nullableInvocation = [_sfxInvocations objectAtIndex:playerIndex];
+		id nullableInvocation = [[_sfxInvocations objectAtIndex:playerIndex] retain];
 		
 		if ([nullableInvocation isMemberOfClass:[NSInvocation class]])
 		{
@@ -188,6 +189,7 @@
 		
 		[_sfxPlayers removeObjectAtIndex:playerIndex];
 		[_sfxInvocations removeObjectAtIndex:playerIndex];
+		[nullableInvocation release];
 	}
 	else
 	{
