@@ -42,7 +42,16 @@
 	
 	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
 	NSString* platformName = [name stringByAppendingString:platformSuffix];
-	return [UIImage loadImageWithName:platformName cached:cached];
+	UIImage* image = [UIImage loadImageWithName:platformName cached:cached];
+	
+	if (image != nil)
+	{
+		return image;
+	}
+	else
+	{
+		return [UIImage loadImageWithName:name cached:cached];
+	}
 }
 
 + (UIImage*)imageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached

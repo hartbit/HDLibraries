@@ -85,7 +85,7 @@
 		[self setGridLayer:gridLayer];
 	}
 	
-	return [[viewLayer sublayers] lastObject];
+	return _gridLayer;
 }
 
 - (BOOL)isGridHidden
