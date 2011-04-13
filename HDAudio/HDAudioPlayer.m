@@ -82,10 +82,15 @@
 
 - (void)playSfx:(NSString*)sfxName
 {
-	[self playSfx:sfxName target:nil action:NULL];
+	[self playSfx:sfxName target:nil action:NULL withObject:nil];
 }
 
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector
+{
+	[self playSfx:sfxName target:target action:selector withObject:nil];
+}
+
+- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object
 {
 	HDCheck(isObjectNotNil(sfxName), HDFailureLevelWarning, return);
 	
@@ -93,7 +98,7 @@
 	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
 	[_sfxPlayers addObject:sfxPlayer];
 	
-	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:nil];
+	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:object];
 	id nullableInvocation = (sfxInvocation != nil) ? (id)sfxInvocation : (id)[NSNull null];
 	[_sfxInvocations addObject:nullableInvocation];
 	
