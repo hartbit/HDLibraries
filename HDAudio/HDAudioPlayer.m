@@ -184,6 +184,8 @@
 	}
 	else if ([_sfxPlayers containsObject:player])
 	{
+		[player retain];
+		
 		NSUInteger playerIndex = [_sfxPlayers indexOfObject:player];
 		id nullableInvocation = [[_sfxInvocations objectAtIndex:playerIndex] retain];
 		
@@ -192,8 +194,10 @@
 			[nullableInvocation invoke];
 		}
 		
-		[_sfxPlayers removeObjectAtIndex:playerIndex];
-		[_sfxInvocations removeObjectAtIndex:playerIndex];
+		[_sfxPlayers removeObject:player];
+		[_sfxInvocations removeObject:nullableInvocation];
+		
+		[player release];
 		[nullableInvocation release];
 	}
 	else
