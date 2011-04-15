@@ -104,7 +104,12 @@
 
 - (void)play
 {
-	HDCheck(isFalse([self isPlaying]), HDFailureLevelInfo, return);
+	if ([self isPlaying])
+	{
+		return;
+	}
+	
+	HDCheck(isObjectNotNil([self superview]), HDFailureLevelInfo, return);
 	HDCheck(isObjectNotNil([self animationName]), HDFailureLevelInfo, return);
 	
 	[self createImages];
@@ -117,7 +122,10 @@
 
 - (void)stop
 {
-	HDCheck(isTrue([self isPlaying]), HDFailureLevelInfo, return);
+	if (![self isPlaying])
+	{
+		return;
+	}
 	
 	[[self timer] invalidate];
 	[self setTimer:nil];
@@ -129,10 +137,15 @@
 	
 	[self setImage:[self staticImage]];
 	[self setImages:nil];
-	
-	if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+}
+
+#pragma mark - UIView Methods
+
+- (void)didMoveToSuperview
+{
+	if ([self superview] == nil)
 	{
-		[[self delegate] animatedImageDidFinishPlaying:self];
+		[self stop];
 	}
 }
 
@@ -178,18 +191,24 @@
 	else
 	{
 		[self stop];
+		
+		if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+		{
+			[[self delegate] animatedImageDidFinishPlaying:self];
+		}
 	}
 }
 
 #pragma mark - Memory Management
 
 - (void)dealloc
-{
+{	
 	if ([self isPlaying])
 	{
 		[self stop];
 	}
 	
+	[self setDelegate:nil];
 	[self setStaticImage:nil];
 	[self setAnimationName:nil];
 	

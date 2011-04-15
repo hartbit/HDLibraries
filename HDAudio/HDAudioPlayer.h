@@ -22,13 +22,14 @@
 
 - (void)playSfx:(NSString*)sfxName;
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector;
-- (void)stopAllSfx;
+- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object;
 
 - (void)playVoice:(NSString*)voiceName;
 - (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector;
 - (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector withObject:(id)object;
 
 - (void)stopVoice;
+- (void)stopAllSfx;
 - (void)stopAllSounds;
 
 @end
