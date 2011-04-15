@@ -109,6 +109,7 @@
 		return;
 	}
 	
+	HDCheck(isObjectNotNil([self superview]), HDFailureLevelInfo, return);
 	HDCheck(isObjectNotNil([self animationName]), HDFailureLevelInfo, return);
 	
 	[self createImages];
@@ -136,6 +137,16 @@
 	
 	[self setImage:[self staticImage]];
 	[self setImages:nil];
+}
+
+#pragma mark - UIView Methods
+
+- (void)didMoveToSuperview
+{
+	if ([self superview] == nil)
+	{
+		[self stop];
+	}
 }
 
 #pragma mark - Private Methods
@@ -191,14 +202,13 @@
 #pragma mark - Memory Management
 
 - (void)dealloc
-{
-	[self setDelegate:nil];
-	
+{	
 	if ([self isPlaying])
 	{
 		[self stop];
 	}
 	
+	[self setDelegate:nil];
 	[self setStaticImage:nil];
 	[self setAnimationName:nil];
 	
