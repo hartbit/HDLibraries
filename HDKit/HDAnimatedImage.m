@@ -104,7 +104,11 @@
 
 - (void)play
 {
-	HDCheck(isFalse([self isPlaying]), HDFailureLevelInfo, return);
+	if ([self isPlaying])
+	{
+		return;
+	}
+	
 	HDCheck(isObjectNotNil([self animationName]), HDFailureLevelInfo, return);
 	
 	[self createImages];
@@ -117,7 +121,10 @@
 
 - (void)stop
 {
-	HDCheck(isTrue([self isPlaying]), HDFailureLevelInfo, return);
+	if (![self isPlaying])
+	{
+		return;
+	}
 	
 	[[self timer] invalidate];
 	[self setTimer:nil];
@@ -129,11 +136,6 @@
 	
 	[self setImage:[self staticImage]];
 	[self setImages:nil];
-	
-	if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
-	{
-		[[self delegate] animatedImageDidFinishPlaying:self];
-	}
 }
 
 #pragma mark - Private Methods
@@ -178,6 +180,11 @@
 	else
 	{
 		[self stop];
+		
+		if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+		{
+			[[self delegate] animatedImageDidFinishPlaying:self];
+		}
 	}
 }
 
@@ -185,6 +192,8 @@
 
 - (void)dealloc
 {
+	[self setDelegate:nil];
+	
 	if ([self isPlaying])
 	{
 		[self stop];
