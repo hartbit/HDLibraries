@@ -185,12 +185,14 @@
 	else if ([_sfxPlayers containsObject:player])
 	{
 		NSUInteger playerIndex = [_sfxPlayers indexOfObject:player];
-		id nullableInvocation = [_sfxInvocations objectAtIndex:playerIndex];
+		id nullableInvocation = [[_sfxInvocations objectAtIndex:playerIndex] retain];
 		
 		if ([nullableInvocation isMemberOfClass:[NSInvocation class]])
 		{
 			[nullableInvocation invoke];
 		}
+		
+		[nullableInvocation release];
 		
 		if ([_sfxPlayers count] > 0)
 		{
