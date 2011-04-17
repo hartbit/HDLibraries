@@ -93,7 +93,7 @@
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object
 {
 	HDCheck(isObjectNotNil(sfxName), HDFailureLevelWarning, return);
-	
+
 	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
 	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
 	[_sfxPlayers addObject:sfxPlayer];
@@ -101,7 +101,7 @@
 	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:object];
 	id nullableInvocation = (sfxInvocation != nil) ? (id)sfxInvocation : (id)[NSNull null];
 	[_sfxInvocations addObject:nullableInvocation];
-	
+
 	[sfxPlayer play];
 }
 
@@ -184,21 +184,19 @@
 	}
 	else if ([_sfxPlayers containsObject:player])
 	{
-		[player retain];
-		
 		NSUInteger playerIndex = [_sfxPlayers indexOfObject:player];
-		id nullableInvocation = [[_sfxInvocations objectAtIndex:playerIndex] retain];
+		id nullableInvocation = [_sfxInvocations objectAtIndex:playerIndex];
 		
 		if ([nullableInvocation isMemberOfClass:[NSInvocation class]])
 		{
 			[nullableInvocation invoke];
 		}
 		
-		[_sfxPlayers removeObject:player];
-		[_sfxInvocations removeObject:nullableInvocation];
-		
-		[player release];
-		[nullableInvocation release];
+		if ([_sfxPlayers count] > 0)
+		{
+			[_sfxPlayers removeObjectAtIndex:playerIndex];
+			[_sfxInvocations removeObjectAtIndex:playerIndex];
+		}
 	}
 	else
 	{
