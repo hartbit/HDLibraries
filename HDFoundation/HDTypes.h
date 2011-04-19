@@ -12,8 +12,8 @@
 
 typedef struct
 {
-	NSUInteger x;
-	NSUInteger y;
+	NSInteger x;
+	NSInteger y;
 } HDPoint;
 
 typedef struct
@@ -27,7 +27,7 @@ typedef struct
 
 static const HDPoint HDPointZero = {0, 0};
 
-static inline HDPoint HDPointMake(NSUInteger x, NSUInteger y)
+static inline HDPoint HDPointMake(NSInteger x, NSInteger y)
 {
 	return (HDPoint){x, y};
 }
@@ -37,7 +37,7 @@ static inline BOOL HDPointEquals(HDPoint first, HDPoint second)
 	return (first.x == second.x) && (first.y == second.y);
 }
 
-static inline HDPoint HDPointMultiply(HDPoint point, NSUInteger factor)
+static inline HDPoint HDPointMultiply(HDPoint point, NSInteger factor)
 {
 	return HDPointMake(point.x * factor, point.y * factor);
 }
@@ -83,7 +83,7 @@ static inline NSUInteger HDSizeArea(HDSize size)
 
 static inline BOOL HDSizeContainsHDPoint(HDSize size, HDPoint point)
 {
-	return (point.x < size.width) && (point.y < size.height);
+	return (point.x >= 0) && (point.y >= 0) && (point.x < size.width) && (point.y < size.height);
 }
 
 static inline NSString* NSStringFromHDSize(HDSize size)
