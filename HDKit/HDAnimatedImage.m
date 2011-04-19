@@ -68,6 +68,7 @@
 - (void)initialize
 {
 	[self setFramesPerSecond:12];
+	[self setAnimationRepeatCount:1];
 }
 
 #pragma mark - Properties
@@ -182,21 +183,30 @@
 
 - (void)changeFrame
 {	
-	if ([self nextIndex] < [[self images] count])
+	if ([self nextIndex] >= [[self images] count])
 	{
-		UIImage* nextImage = [[self images] objectAtIndex:[self nextIndex]];
-		[self setImage:nextImage];
-		[self setNextIndex:[self nextIndex] + 1];
-	}
-	else
-	{
-		[self stop];
+		[self setAnimationRepeatCount:[self animationRepeatCount] - 1];
 		
-		if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+		if ([self animationRepeatCount] == 0)
 		{
-			[[self delegate] animatedImageDidFinishPlaying:self];
+			[self stop];
+			
+			if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
+			{
+				[[self delegate] animatedImageDidFinishPlaying:self];
+			}
+			
+			return;
+		}
+		else
+		{
+			[self setNextIndex:0];
 		}
 	}
+	
+	UIImage* nextImage = [[self images] objectAtIndex:[self nextIndex]];
+	[self setImage:nextImage];
+	[self setNextIndex:[self nextIndex] + 1];
 }
 
 #pragma mark - Memory Management
