@@ -190,6 +190,7 @@
 		if ([self animationRepeatCount] == 0)
 		{
 			[self stop];
+			[self setAnimationRepeatCount:1];
 			
 			if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
 			{
