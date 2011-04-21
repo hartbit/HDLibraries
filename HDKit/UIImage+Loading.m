@@ -40,27 +40,35 @@
 {
 	HDCheck(isObjectNotNil(name), HDFailureLevelWarning, return nil);
 	
-	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
-	NSString* platformName = [name stringByAppendingString:platformSuffix];
-	UIImage* image = [UIImage loadImageWithName:platformName cached:cached];
+	NSString* shortName = [name stringByDeletingPathExtension];
+	NSString* extension = [name pathExtension];
+	BOOL hasPathExtension = [extension length] != 0;
+	
+	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];
+	NSString* platformName = [shortName stringByAppendingString:platformSuffix];
+	UIImage* image = nil;
+	
+	if (hasPathExtension)
+	{
+		image = [UIImage loadImageWithName:platformName andType:extension cached:cached];
+	}
+	else
+	{
+		image = [UIImage loadImageWithName:platformName cached:cached];
+	}
 	
 	if (image != nil)
 	{
 		return image;
 	}
+	else if (hasPathExtension)
+	{
+		return [UIImage loadImageWithName:shortName andType:extension cached:cached];
+	}
 	else
 	{
-		return [UIImage loadImageWithName:name cached:cached];
+		return [UIImage loadImageWithName:shortName cached:cached];		
 	}
-}
-
-+ (UIImage*)imageWithName:(NSString*)name andType:(NSString*)type cached:(BOOL)cached
-{
-	HDCheck(isObjectNotNil(name), HDFailureLevelWarning, return nil);
-	
-	NSString* platformSuffix = [[UIDevice currentDevice] platformSuffix];	
-	NSString* platformName = [name stringByAppendingString:platformSuffix];
-	return [UIImage loadImageWithName:platformName andType:type cached:cached];
 }
 
 #pragma - Private Methods
