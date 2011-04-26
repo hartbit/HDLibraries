@@ -52,6 +52,18 @@
 	[super viewWillDisappear:animated];
 }
 
+- (UIInterfaceOrientation)interfaceOrientation
+{
+	if ([self transitionController] != nil)
+	{
+		return [[self transitionController] interfaceOrientation];
+	}
+	else
+	{
+		return [super interfaceOrientation];
+	}
+}
+
 #pragma mark - Properties
 
 - (NSString*)controllerName
