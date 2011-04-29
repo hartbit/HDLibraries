@@ -8,6 +8,7 @@
 
 #import "HDErrorHandler.h"
 #import "HDCodeLocation.h"
+#import <UIKit/UIKit.h>
 
 
 @interface HDErrorHandler ()

@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
+		6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
+		6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
+		6322DDAF136AEE8200E8E9EF /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */; };
+		6322DDB0136AEE8200E8E9EF /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+Additions.m */; };
+		6322DDC5136AEF4800E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
+		6322DDCC136AEF5300E8E9EF /* HDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28B134C57F2000BDCFD /* HDManagedObject.m */; };
+		6322DDCD136AEF5300E8E9EF /* HDModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28D134C57F2000BDCFD /* HDModelController.m */; };
+		6322DDD3136AEF9600E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
+		6322DDDA136AEF9C00E8E9EF /* HDAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D287134C57F2000BDCFD /* HDAudioPlayer.m */; };
+		6322DDE0136AEFA400E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
+		6322DDE7136AEFBE00E8E9EF /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */; };
+		6322DDE8136AEFBE00E8E9EF /* HDClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D29E134C57F2000BDCFD /* HDClipView.m */; };
+		6322DDE9136AEFBE00E8E9EF /* HDDraggableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A0134C57F2000BDCFD /* HDDraggableButton.m */; };
+		6322DDEA136AEFBE00E8E9EF /* HDDrawableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A2134C57F2000BDCFD /* HDDrawableView.m */; };
+		6322DDEB136AEFBE00E8E9EF /* HDErasableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A4134C57F2000BDCFD /* HDErasableImage.m */; };
+		6322DDEC136AEFBE00E8E9EF /* HDImageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A7134C57F2000BDCFD /* HDImageGridView.m */; };
+		6322DDED136AEFBE00E8E9EF /* HDTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AA134C57F2000BDCFD /* HDTransitionController.m */; };
+		6322DDEE136AEFBE00E8E9EF /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AC134C57F2000BDCFD /* HDViewController.m */; };
+		6322DDEF136AEFBE00E8E9EF /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AE134C57F2000BDCFD /* UIDevice+Platform.m */; };
+		6322DDF0136AEFBE00E8E9EF /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */; };
+		6322DDF1136AEFBE00E8E9EF /* UIImage+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B2134C57F2000BDCFD /* UIImage+Loading.m */; };
+		6322DDF2136AEFBE00E8E9EF /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B4134C57F2000BDCFD /* UIView+Geometry.m */; };
 		6363D262134C56ED000BDCFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D261134C56ED000BDCFD /* UIKit.framework */; };
 		6363D263134C56ED000BDCFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
 		6363D265134C56ED000BDCFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D264134C56ED000BDCFD /* CoreGraphics.framework */; };
@@ -37,6 +60,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDCoreData.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6322DDC8136AEF4800E8E9EF /* HDCoreData-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDCoreData-Prefix.pch"; sourceTree = "<group>"; };
+		6322DDD2136AEF9600E8E9EF /* libHDAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6322DDD6136AEF9600E8E9EF /* HDAudio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDAudio-Prefix.pch"; sourceTree = "<group>"; };
+		6322DDDF136AEFA400E8E9EF /* libHDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6322DDE3136AEFA400E8E9EF /* HDKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDKit-Prefix.pch"; sourceTree = "<group>"; };
 		6363D256134C56ED000BDCFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6363D260134C56ED000BDCFD /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6363D261134C56ED000BDCFD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -97,6 +127,38 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6322DDA1136AEE6B00E8E9EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDC1136AEF4800E8E9EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDC5136AEF4800E8E9EF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDCF136AEF9600E8E9EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDD3136AEF9600E8E9EF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDDC136AEFA400E8E9EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDE0136AEFA400E8E9EF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6363D25C134C56ED000BDCFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +175,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6322DDC6136AEF4800E8E9EF /* HDCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDC7136AEF4800E8E9EF /* Supporting Files */,
+			);
+			path = HDCoreData;
+			sourceTree = "<group>";
+		};
+		6322DDC7136AEF4800E8E9EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDC8136AEF4800E8E9EF /* HDCoreData-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6322DDD4136AEF9600E8E9EF /* HDAudio */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDD5136AEF9600E8E9EF /* Supporting Files */,
+			);
+			path = HDAudio;
+			sourceTree = "<group>";
+		};
+		6322DDD5136AEF9600E8E9EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDD6136AEF9600E8E9EF /* HDAudio-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6322DDE1136AEFA400E8E9EF /* HDKit */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDE2136AEFA400E8E9EF /* Supporting Files */,
+			);
+			path = HDKit;
+			sourceTree = "<group>";
+		};
+		6322DDE2136AEFA400E8E9EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6322DDE3136AEFA400E8E9EF /* HDKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6363D248134C56ED000BDCFD = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +231,9 @@
 				6363D284134C57F2000BDCFD /* HDAudio */,
 				6363D29A134C57F2000BDCFD /* HDKit */,
 				6363D269134C56ED000BDCFD /* Tests */,
+				6322DDC6136AEF4800E8E9EF /* HDCoreData */,
+				6322DDD4136AEF9600E8E9EF /* HDAudio */,
+				6322DDE1136AEFA400E8E9EF /* HDKit */,
 				6363D255134C56ED000BDCFD /* Frameworks */,
 				6363D254134C56ED000BDCFD /* Products */,
 			);
@@ -130,6 +243,10 @@
 			isa = PBXGroup;
 			children = (
 				6363D260134C56ED000BDCFD /* Tests.octest */,
+				6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */,
+				6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */,
+				6322DDD2136AEF9600E8E9EF /* libHDAudio.a */,
+				6322DDDF136AEFA400E8E9EF /* libHDKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,7 +367,106 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		6322DDA2136AEE6B00E8E9EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDC2136AEF4800E8E9EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDD0136AEF9600E8E9EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDDD136AEFA400E8E9EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		6322DDA3136AEE6B00E8E9EF /* HDFoundation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6322DDAB136AEE6B00E8E9EF /* Build configuration list for PBXNativeTarget "HDFoundation" */;
+			buildPhases = (
+				6322DDA0136AEE6B00E8E9EF /* Sources */,
+				6322DDA1136AEE6B00E8E9EF /* Frameworks */,
+				6322DDA2136AEE6B00E8E9EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HDFoundation;
+			productName = HDLibraries;
+			productReference = 6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6322DDC3136AEF4800E8E9EF /* HDCoreData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6322DDC9136AEF4800E8E9EF /* Build configuration list for PBXNativeTarget "HDCoreData" */;
+			buildPhases = (
+				6322DDC0136AEF4800E8E9EF /* Sources */,
+				6322DDC1136AEF4800E8E9EF /* Frameworks */,
+				6322DDC2136AEF4800E8E9EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HDCoreData;
+			productName = HDCoreData;
+			productReference = 6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6322DDD1136AEF9600E8E9EF /* HDAudio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6322DDD7136AEF9600E8E9EF /* Build configuration list for PBXNativeTarget "HDAudio" */;
+			buildPhases = (
+				6322DDCE136AEF9600E8E9EF /* Sources */,
+				6322DDCF136AEF9600E8E9EF /* Frameworks */,
+				6322DDD0136AEF9600E8E9EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HDAudio;
+			productName = HDAudio;
+			productReference = 6322DDD2136AEF9600E8E9EF /* libHDAudio.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6322DDDE136AEFA400E8E9EF /* HDKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6322DDE4136AEFA400E8E9EF /* Build configuration list for PBXNativeTarget "HDKit" */;
+			buildPhases = (
+				6322DDDB136AEFA400E8E9EF /* Sources */,
+				6322DDDC136AEFA400E8E9EF /* Frameworks */,
+				6322DDDD136AEFA400E8E9EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HDKit;
+			productName = HDKit;
+			productReference = 6322DDDF136AEFA400E8E9EF /* libHDKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		6363D25F134C56ED000BDCFD /* Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6363D279134C56ED000BDCFD /* Build configuration list for PBXNativeTarget "Tests" */;
@@ -289,6 +505,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				6322DDA3136AEE6B00E8E9EF /* HDFoundation */,
+				6322DDC3136AEF4800E8E9EF /* HDCoreData */,
+				6322DDD1136AEF9600E8E9EF /* HDAudio */,
+				6322DDDE136AEFA400E8E9EF /* HDKit */,
 				6363D25F134C56ED000BDCFD /* Tests */,
 			);
 		};
@@ -322,6 +542,53 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6322DDA0136AEE6B00E8E9EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */,
+				6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */,
+				6322DDAF136AEE8200E8E9EF /* NSMutableArray+Queue.m in Sources */,
+				6322DDB0136AEE8200E8E9EF /* NSString+Additions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDC0136AEF4800E8E9EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDCC136AEF5300E8E9EF /* HDManagedObject.m in Sources */,
+				6322DDCD136AEF5300E8E9EF /* HDModelController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDCE136AEF9600E8E9EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDDA136AEF9C00E8E9EF /* HDAudioPlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6322DDDB136AEFA400E8E9EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6322DDE7136AEFBE00E8E9EF /* HDAnimatedImage.m in Sources */,
+				6322DDE8136AEFBE00E8E9EF /* HDClipView.m in Sources */,
+				6322DDE9136AEFBE00E8E9EF /* HDDraggableButton.m in Sources */,
+				6322DDEA136AEFBE00E8E9EF /* HDDrawableView.m in Sources */,
+				6322DDEB136AEFBE00E8E9EF /* HDErasableImage.m in Sources */,
+				6322DDEC136AEFBE00E8E9EF /* HDImageGridView.m in Sources */,
+				6322DDED136AEFBE00E8E9EF /* HDTransitionController.m in Sources */,
+				6322DDEE136AEFBE00E8E9EF /* HDViewController.m in Sources */,
+				6322DDEF136AEFBE00E8E9EF /* UIDevice+Platform.m in Sources */,
+				6322DDF0136AEFBE00E8E9EF /* UIImage+Alpha.m in Sources */,
+				6322DDF1136AEFBE00E8E9EF /* UIImage+Loading.m in Sources */,
+				6322DDF2136AEFBE00E8E9EF /* UIView+Geometry.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6363D25B134C56ED000BDCFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,6 +619,110 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6322DDA9136AEE6B00E8E9EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDLibraries.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6322DDAA136AEE6B00E8E9EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDLibraries.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6322DDCA136AEF4800E8E9EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDCoreData.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6322DDCB136AEF4800E8E9EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDCoreData.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6322DDD8136AEF9600E8E9EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDAudio.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6322DDD9136AEF9600E8E9EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDAudio.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6322DDE5136AEFA400E8E9EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6322DDE6136AEFA400E8E9EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HDKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		6363D274134C56ED000BDCFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -424,6 +795,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6322DDAB136AEE6B00E8E9EF /* Build configuration list for PBXNativeTarget "HDFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6322DDA9136AEE6B00E8E9EF /* Debug */,
+				6322DDAA136AEE6B00E8E9EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6322DDC9136AEF4800E8E9EF /* Build configuration list for PBXNativeTarget "HDCoreData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6322DDCA136AEF4800E8E9EF /* Debug */,
+				6322DDCB136AEF4800E8E9EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6322DDD7136AEF9600E8E9EF /* Build configuration list for PBXNativeTarget "HDAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6322DDD8136AEF9600E8E9EF /* Debug */,
+				6322DDD9136AEF9600E8E9EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6322DDE4136AEFA400E8E9EF /* Build configuration list for PBXNativeTarget "HDKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6322DDE5136AEFA400E8E9EF /* Debug */,
+				6322DDE6136AEFA400E8E9EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6363D24D134C56ED000BDCFD /* Build configuration list for PBXProject "HDLibraries" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

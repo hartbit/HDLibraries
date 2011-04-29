@@ -8,6 +8,7 @@
 
 #import "HDImageGridView.h"
 #import "UIView+Geometry.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface HDImageGridView ()
