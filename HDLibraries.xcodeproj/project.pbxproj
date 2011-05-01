@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6311FCEB136DC3780078D77E /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6311FCE9136DC3780078D77E /* Reachability.h */; };
+		6311FCEC136DC3780078D77E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCEA136DC3780078D77E /* Reachability.m */; };
 		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
 		6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
 		6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
@@ -60,13 +62,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6311FCE9136DC3780078D77E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6311FCEA136DC3780078D77E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDCoreData.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6322DDC8136AEF4800E8E9EF /* HDCoreData-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDCoreData-Prefix.pch"; sourceTree = "<group>"; };
 		6322DDD2136AEF9600E8E9EF /* libHDAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6322DDD6136AEF9600E8E9EF /* HDAudio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDAudio-Prefix.pch"; sourceTree = "<group>"; };
 		6322DDDF136AEFA400E8E9EF /* libHDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6322DDE3136AEFA400E8E9EF /* HDKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDKit-Prefix.pch"; sourceTree = "<group>"; };
 		6363D256134C56ED000BDCFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6363D260134C56ED000BDCFD /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6363D261134C56ED000BDCFD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -175,54 +176,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6322DDC6136AEF4800E8E9EF /* HDCoreData */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDC7136AEF4800E8E9EF /* Supporting Files */,
-			);
-			path = HDCoreData;
-			sourceTree = "<group>";
-		};
-		6322DDC7136AEF4800E8E9EF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDC8136AEF4800E8E9EF /* HDCoreData-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6322DDD4136AEF9600E8E9EF /* HDAudio */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDD5136AEF9600E8E9EF /* Supporting Files */,
-			);
-			path = HDAudio;
-			sourceTree = "<group>";
-		};
-		6322DDD5136AEF9600E8E9EF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDD6136AEF9600E8E9EF /* HDAudio-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6322DDE1136AEFA400E8E9EF /* HDKit */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDE2136AEFA400E8E9EF /* Supporting Files */,
-			);
-			path = HDKit;
-			sourceTree = "<group>";
-		};
-		6322DDE2136AEFA400E8E9EF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6322DDE3136AEFA400E8E9EF /* HDKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		6363D248134C56ED000BDCFD = {
 			isa = PBXGroup;
 			children = (
@@ -231,9 +184,6 @@
 				6363D284134C57F2000BDCFD /* HDAudio */,
 				6363D29A134C57F2000BDCFD /* HDKit */,
 				6363D269134C56ED000BDCFD /* Tests */,
-				6322DDC6136AEF4800E8E9EF /* HDCoreData */,
-				6322DDD4136AEF9600E8E9EF /* HDAudio */,
-				6322DDE1136AEFA400E8E9EF /* HDKit */,
 				6363D255134C56ED000BDCFD /* Frameworks */,
 				6363D254134C56ED000BDCFD /* Products */,
 			);
@@ -324,6 +274,8 @@
 				6363D294134C57F2000BDCFD /* HDFoundation.h */,
 				6363D2C9134C58B9000BDCFD /* HDFoundationFunctions.h */,
 				6363D295134C57F2000BDCFD /* HDTypes.h */,
+				6311FCE9136DC3780078D77E /* Reachability.h */,
+				6311FCEA136DC3780078D77E /* Reachability.m */,
 				6363D296134C57F2000BDCFD /* NSMutableArray+Queue.h */,
 				6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */,
 				6363D298134C57F2000BDCFD /* NSString+Additions.h */,
@@ -372,6 +324,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6311FCEB136DC3780078D77E /* Reachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +503,7 @@
 				6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */,
 				6322DDAF136AEE8200E8E9EF /* NSMutableArray+Queue.m in Sources */,
 				6322DDB0136AEE8200E8E9EF /* NSString+Additions.m in Sources */,
+				6311FCEC136DC3780078D77E /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +756,7 @@
 				6322DDAA136AEE6B00E8E9EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6322DDC9136AEF4800E8E9EF /* Build configuration list for PBXNativeTarget "HDCoreData" */ = {
 			isa = XCConfigurationList;
@@ -810,6 +765,7 @@
 				6322DDCB136AEF4800E8E9EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6322DDD7136AEF9600E8E9EF /* Build configuration list for PBXNativeTarget "HDAudio" */ = {
 			isa = XCConfigurationList;
@@ -818,6 +774,7 @@
 				6322DDD9136AEF9600E8E9EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6322DDE4136AEFA400E8E9EF /* Build configuration list for PBXNativeTarget "HDKit" */ = {
 			isa = XCConfigurationList;
@@ -826,6 +783,7 @@
 				6322DDE6136AEFA400E8E9EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6363D24D134C56ED000BDCFD /* Build configuration list for PBXProject "HDLibraries" */ = {
 			isa = XCConfigurationList;
