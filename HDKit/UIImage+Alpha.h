@@ -11,6 +11,6 @@
 
 @interface UIImage (HDAlpha)
 
-- (NSData*)alphaData;
+- (NSData*)imageData;
 
 @end

@@ -53,7 +53,7 @@
 {
 	[self setOpaque:NO];
 	[self setBackgroundColor:[UIColor clearColor]];
-	
+
 	[self setMaskLayer:[CALayer layer]];
 	[[self layer] setMask:[self maskLayer]];
 }
@@ -65,6 +65,9 @@
 	NSUInteger width = (NSUInteger)[self bounds].size.width;
 	NSUInteger height = (NSUInteger)[self bounds].size.height;
 	
+	NSAssert(width == [[self clipImage] size].width, @"Image and view width must be equal");
+	NSAssert(height == [[self clipImage] size].height, @"Image and view height must be equal");
+
 	if ((point.x < 0) || (point.y < 0) || (point.x > (width - 1)) || (point.y > (height - 1)))
 	{
 		return NO;
@@ -73,16 +76,19 @@
 	NSUInteger pointX = (NSUInteger)point.x;
 	NSUInteger pointY = (NSUInteger)point.y;
 	
-	NSData* imageAlphaData = [self clipImageData];
+	NSData* imageData = [self clipImageData];
 	
-	if (!imageAlphaData)
+	if (imageData == nil)
 	{
 		return YES;
 	}
 	
-	char* rawDataBytes = (char*)[imageAlphaData bytes];
-	NSUInteger index = pointX + (pointY * width);
-	return (rawDataBytes[index] != 0);
+	NSUInteger pixelIndex = (pointY * width) + pointX;
+	NSUInteger alphaIndex = pixelIndex * 4 + 3;
+	
+	char pixelData = 0;
+	[imageData getBytes:&pixelData range:NSMakeRange(alphaIndex, 1)];
+	return pixelData != 0;
 }
  
 #pragma mark - Private Methods
@@ -96,7 +102,7 @@
 		
 		if (clipImage)
 		{
-			[self setClipImageData:[clipImage alphaData]];
+			[self setClipImageData:[clipImage imageData]];
 
 			CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
 			[[self maskLayer] setFrame:maskFrame];
