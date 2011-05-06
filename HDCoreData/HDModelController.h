@@ -20,5 +20,6 @@
 
 - (void)addStoreWithURL:(NSURL*)storeURL;
 - (void)saveContext;
+- (void)saveContextWithError:(NSError**)error;
 
 @end

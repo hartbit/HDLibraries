@@ -104,13 +104,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HDModelController);
 
 - (void)saveContext
 {
+	NSError* error = nil;
+	[self saveContextWithError:&error];
+	HDCheck(isObjectNil(error), HDFailureLevelFatal, return);
+}
+
+- (void)saveContextWithError:(NSError**)error
+{
 	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
 	
 	if (managedObjectContext && [managedObjectContext hasChanges])
 	{
-		NSError* error = nil;
-		[managedObjectContext save:&error];
-		HDCheck(isObjectNil(error), HDFailureLevelFatal, return);
+		[managedObjectContext save:error];
 	}
 }
 
