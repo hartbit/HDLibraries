@@ -13,7 +13,7 @@
 		6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
 		6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
 		6322DDAF136AEE8200E8E9EF /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */; };
-		6322DDB0136AEE8200E8E9EF /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+Additions.m */; };
+		6322DDB0136AEE8200E8E9EF /* NSString+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */; };
 		6322DDC5136AEF4800E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
 		6322DDCC136AEF5300E8E9EF /* HDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28B134C57F2000BDCFD /* HDManagedObject.m */; };
 		6322DDCD136AEF5300E8E9EF /* HDModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28D134C57F2000BDCFD /* HDModelController.m */; };
@@ -43,7 +43,7 @@
 		6363D2B8134C57F2000BDCFD /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
 		6363D2B9134C57F2000BDCFD /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
 		6363D2BA134C57F2000BDCFD /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */; };
-		6363D2BB134C57F2000BDCFD /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+Additions.m */; };
+		6363D2BB134C57F2000BDCFD /* NSString+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */; };
 		6363D2BC134C57F2000BDCFD /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */; };
 		6363D2BD134C57F2000BDCFD /* HDClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D29E134C57F2000BDCFD /* HDClipView.m */; };
 		6363D2BE134C57F2000BDCFD /* HDDraggableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A0134C57F2000BDCFD /* HDDraggableButton.m */; };
@@ -59,6 +59,8 @@
 		6363D2CB134C5B2A000BDCFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */; };
 		6363D2CD134C5B2E000BDCFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */; };
 		6363D2CF134C5B32000BDCFD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CE134C5B32000BDCFD /* CoreData.framework */; };
+		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
+		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,8 +95,8 @@
 		6363D295134C57F2000BDCFD /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
 		6363D296134C57F2000BDCFD /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
-		6363D298134C57F2000BDCFD /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
-		6363D299134C57F2000BDCFD /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		6363D298134C57F2000BDCFD /* NSString+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HDAdditions.h"; sourceTree = "<group>"; };
+		6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HDAdditions.m"; sourceTree = "<group>"; };
 		6363D29B134C57F2000BDCFD /* HDAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnimatedImage.h; sourceTree = "<group>"; };
 		6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnimatedImage.m; sourceTree = "<group>"; };
 		6363D29D134C57F2000BDCFD /* HDClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDClipView.h; sourceTree = "<group>"; };
@@ -125,6 +127,8 @@
 		6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6363D2CE134C5B32000BDCFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDAdditions.h"; sourceTree = "<group>"; };
+		6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,8 +282,10 @@
 				6311FCEA136DC3780078D77E /* Reachability.m */,
 				6363D296134C57F2000BDCFD /* NSMutableArray+Queue.h */,
 				6363D297134C57F2000BDCFD /* NSMutableArray+Queue.m */,
-				6363D298134C57F2000BDCFD /* NSString+Additions.h */,
-				6363D299134C57F2000BDCFD /* NSString+Additions.m */,
+				6363D298134C57F2000BDCFD /* NSString+HDAdditions.h */,
+				6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */,
+				6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */,
+				6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */,
 			);
 			path = HDFoundation;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6311FCEB136DC3780078D77E /* Reachability.h in Headers */,
+				6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,8 +509,9 @@
 				6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */,
 				6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */,
 				6322DDAF136AEE8200E8E9EF /* NSMutableArray+Queue.m in Sources */,
-				6322DDB0136AEE8200E8E9EF /* NSString+Additions.m in Sources */,
+				6322DDB0136AEE8200E8E9EF /* NSString+HDAdditions.m in Sources */,
 				6311FCEC136DC3780078D77E /* Reachability.m in Sources */,
+				6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +562,7 @@
 				6363D2B8134C57F2000BDCFD /* HDCodeLocation.m in Sources */,
 				6363D2B9134C57F2000BDCFD /* HDErrorHandler.m in Sources */,
 				6363D2BA134C57F2000BDCFD /* NSMutableArray+Queue.m in Sources */,
-				6363D2BB134C57F2000BDCFD /* NSString+Additions.m in Sources */,
+				6363D2BB134C57F2000BDCFD /* NSString+HDAdditions.m in Sources */,
 				6363D2BC134C57F2000BDCFD /* HDAnimatedImage.m in Sources */,
 				6363D2BD134C57F2000BDCFD /* HDClipView.m in Sources */,
 				6363D2BE134C57F2000BDCFD /* HDDraggableButton.m in Sources */,

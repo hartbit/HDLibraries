@@ -1,5 +1,5 @@
 //
-//  NSString+Additions.h
+//  NSString+HDAdditions.h
 //  HDLibrairies
 //
 //  Created by David Hart on 3/30/11.

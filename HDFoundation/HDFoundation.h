@@ -13,4 +13,5 @@
 #import "HDFoundationFunctions.h"
 #import "HDGeometry.h"
 #import "NSMutableArray+Queue.h"
-#import "NSString+Additions.h"
+#import "NSString+HDAdditions.h"
+#import "NSArray+HDAdditions.h"

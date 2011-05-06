@@ -9,7 +9,7 @@
 #import "HDErrorHandler.h"
 #import "HDCodeLocation.h"
 #import "HDTypes.h"
-#import "NSString+Additions.h"
+#import "NSString+HDAdditions.h"
 
 #pragma mark - Asserts
 
