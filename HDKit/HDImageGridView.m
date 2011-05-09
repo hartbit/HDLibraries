@@ -56,7 +56,11 @@
 
 - (void)initialize
 {
+	[self setOpaque:NO];
+	[self setBackgroundColor:[UIColor clearColor]];
+	
 	[[self layer] setShouldRasterize:YES];
+	
 	[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
@@ -213,10 +217,11 @@
 {
 	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
-	NSUInteger minColumn = rect.origin.x / _cellSize.width;
-	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / _cellSize.width;
-	NSUInteger minRow = rect.origin.y / _cellSize.height;
-	NSUInteger maxRow = (rect.origin.y + rect.size.height) / _cellSize.height;
+	CGSize cellSize = [self cellSize];
+	NSUInteger minColumn = rect.origin.x / cellSize.width;
+	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / cellSize.width;
+	NSUInteger minRow = rect.origin.y / cellSize.height;
+	NSUInteger maxRow = (rect.origin.y + rect.size.height) / cellSize.height;
 	NSArray* sublayers = [[self layer] sublayers];
 	
 	[CATransaction begin];
@@ -232,16 +237,13 @@
 			HDPoint cellPosition = HDPointMake(columnIndex, rowIndex);
 			UIImage* image = [[self dataSource] gridView:self imageAtPosition:cellPosition];
 			
-			if (image != nil)
+			[cellLayer setFrame:[self frameForCellAtPosition:cellPosition]];
+			[cellLayer setContents:(id)[image CGImage]];
+			
+			if ([[self dataSource] respondsToSelector:@selector(gridView:transformAtPosition:)])
 			{
-				[cellLayer setFrame:[self frameForCellAtPosition:cellPosition]];
-				[cellLayer setContents:(id)[image CGImage]];
-				
-				if ([[self dataSource] respondsToSelector:@selector(gridView:transformAtPosition:)])
-				{
-					CGAffineTransform transform = [[self dataSource] gridView:self transformAtPosition:cellPosition];
-					[cellLayer setAffineTransform:transform];
-				}
+				CGAffineTransform transform = [[self dataSource] gridView:self transformAtPosition:cellPosition];
+				[cellLayer setAffineTransform:transform];
 			}
 		}
 	}
