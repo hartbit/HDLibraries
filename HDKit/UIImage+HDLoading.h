@@ -1,5 +1,5 @@
 //
-//  UIImage+Loading.h
+//  UIImage+HDLoading.h
 //  HDLibraries
 //
 //  Created by David Hart on 23/02/2011.
@@ -11,7 +11,6 @@
 
 @interface UIImage (HDLoading)
 
-+ (NSArray*)supportedTypes;
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
 
 @end

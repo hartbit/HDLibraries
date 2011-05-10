@@ -30,7 +30,7 @@
 		6322DDEE136AEFBE00E8E9EF /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AC134C57F2000BDCFD /* HDViewController.m */; };
 		6322DDEF136AEFBE00E8E9EF /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AE134C57F2000BDCFD /* UIDevice+Platform.m */; };
 		6322DDF0136AEFBE00E8E9EF /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */; };
-		6322DDF1136AEFBE00E8E9EF /* UIImage+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B2134C57F2000BDCFD /* UIImage+Loading.m */; };
+		6322DDF1136AEFBE00E8E9EF /* UIImage+HDLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B2134C57F2000BDCFD /* UIImage+HDLoading.m */; };
 		6322DDF2136AEFBE00E8E9EF /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B4134C57F2000BDCFD /* UIView+Geometry.m */; };
 		6363D262134C56ED000BDCFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D261134C56ED000BDCFD /* UIKit.framework */; };
 		6363D263134C56ED000BDCFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -54,7 +54,7 @@
 		6363D2C3134C57F2000BDCFD /* HDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AC134C57F2000BDCFD /* HDViewController.m */; };
 		6363D2C4134C57F2000BDCFD /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AE134C57F2000BDCFD /* UIDevice+Platform.m */; };
 		6363D2C5134C57F2000BDCFD /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */; };
-		6363D2C6134C57F2000BDCFD /* UIImage+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B2134C57F2000BDCFD /* UIImage+Loading.m */; };
+		6363D2C6134C57F2000BDCFD /* UIImage+HDLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B2134C57F2000BDCFD /* UIImage+HDLoading.m */; };
 		6363D2C7134C57F2000BDCFD /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B4134C57F2000BDCFD /* UIView+Geometry.m */; };
 		6363D2CB134C5B2A000BDCFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */; };
 		6363D2CD134C5B2E000BDCFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */; };
@@ -119,8 +119,8 @@
 		6363D2AE134C57F2000BDCFD /* UIDevice+Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Platform.m"; sourceTree = "<group>"; };
 		6363D2AF134C57F2000BDCFD /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		6363D2B1134C57F2000BDCFD /* UIImage+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Loading.h"; sourceTree = "<group>"; };
-		6363D2B2134C57F2000BDCFD /* UIImage+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Loading.m"; sourceTree = "<group>"; };
+		6363D2B1134C57F2000BDCFD /* UIImage+HDLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HDLoading.h"; sourceTree = "<group>"; };
+		6363D2B2134C57F2000BDCFD /* UIImage+HDLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HDLoading.m"; sourceTree = "<group>"; };
 		6363D2B3134C57F2000BDCFD /* UIView+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Geometry.h"; sourceTree = "<group>"; };
 		6363D2B4134C57F2000BDCFD /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
 		6363D2C9134C58B9000BDCFD /* HDFoundationFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundationFunctions.h; sourceTree = "<group>"; };
@@ -315,8 +315,8 @@
 				6363D2AE134C57F2000BDCFD /* UIDevice+Platform.m */,
 				6363D2AF134C57F2000BDCFD /* UIImage+Alpha.h */,
 				6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */,
-				6363D2B1134C57F2000BDCFD /* UIImage+Loading.h */,
-				6363D2B2134C57F2000BDCFD /* UIImage+Loading.m */,
+				6363D2B1134C57F2000BDCFD /* UIImage+HDLoading.h */,
+				6363D2B2134C57F2000BDCFD /* UIImage+HDLoading.m */,
 				6363D2B3134C57F2000BDCFD /* UIView+Geometry.h */,
 				6363D2B4134C57F2000BDCFD /* UIView+Geometry.m */,
 			);
@@ -546,7 +546,7 @@
 				6322DDEE136AEFBE00E8E9EF /* HDViewController.m in Sources */,
 				6322DDEF136AEFBE00E8E9EF /* UIDevice+Platform.m in Sources */,
 				6322DDF0136AEFBE00E8E9EF /* UIImage+Alpha.m in Sources */,
-				6322DDF1136AEFBE00E8E9EF /* UIImage+Loading.m in Sources */,
+				6322DDF1136AEFBE00E8E9EF /* UIImage+HDLoading.m in Sources */,
 				6322DDF2136AEFBE00E8E9EF /* UIView+Geometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,7 +573,7 @@
 				6363D2C3134C57F2000BDCFD /* HDViewController.m in Sources */,
 				6363D2C4134C57F2000BDCFD /* UIDevice+Platform.m in Sources */,
 				6363D2C5134C57F2000BDCFD /* UIImage+Alpha.m in Sources */,
-				6363D2C6134C57F2000BDCFD /* UIImage+Loading.m in Sources */,
+				6363D2C6134C57F2000BDCFD /* UIImage+HDLoading.m in Sources */,
 				6363D2C7134C57F2000BDCFD /* UIView+Geometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

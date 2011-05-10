@@ -10,7 +10,7 @@
 
 #import	"UIDevice+Platform.h"
 #import "UIImage+Alpha.h"
-#import "UIImage+Loading.h"
+#import "UIImage+HDLoading.h"
 #import "UIView+Geometry.h"
 
 #import "HDAnimatedImage.h"

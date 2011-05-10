@@ -185,7 +185,9 @@
 		
 		for (NSUInteger index = 0; index < difference; index++)
 		{
-			[viewLayer insertSublayer:[CALayer layer] below:[self gridLayer]];
+			CALayer* layer = [CALayer layer];
+			[layer setContentsScale:[[UIScreen mainScreen] scale]];
+			[viewLayer insertSublayer:layer below:[self gridLayer]];
 		}
 	}
 	else if ([sublayers count] > requiredSublayersCount)
