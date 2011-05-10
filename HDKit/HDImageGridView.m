@@ -84,7 +84,7 @@
 		CAShapeLayer* gridLayer = [CAShapeLayer layer];
 		[gridLayer setLineWidth:2];
 		[gridLayer setStrokeColor:[[UIColor blackColor] CGColor]];
-		[gridLayer setHidden:[self isGridHidden]];
+		[gridLayer setHidden:![self isGridVisible]];
 		
 		[viewLayer addSublayer:gridLayer];
 		[self setGridLayer:gridLayer];
@@ -93,21 +93,21 @@
 	return _gridLayer;
 }
 
-- (BOOL)isGridHidden
+- (BOOL)isGridVisible
 {
 	if (_gridLayer == nil)
 	{
-		return YES;
+		return NO;
 	}
 	else
 	{
-		return [_gridLayer isHidden];
+		return ![_gridLayer isHidden];
 	}
 }
 
-- (void)setGridHidden:(BOOL)gridHidden
+- (void)setGridVisible:(BOOL)gridVisible
 {
-	[[self gridLayer] setHidden:gridHidden];
+	[[self gridLayer] setHidden:!gridVisible];
 }
 
 #pragma mark - Public Methods

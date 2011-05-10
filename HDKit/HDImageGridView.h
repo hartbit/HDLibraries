@@ -15,7 +15,7 @@
 @interface HDImageGridView : UIView
 
 @property (nonatomic, assign) id <HDImageGridViewDataSource> dataSource;
-@property (nonatomic, assign, getter=isGridHidden) BOOL gridHidden;
+@property (nonatomic, assign, getter=isGridVisible) BOOL gridVisible;
 
 - (void)reloadData;
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point;
