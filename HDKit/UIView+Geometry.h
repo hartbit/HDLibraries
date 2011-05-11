@@ -16,6 +16,15 @@
 @property (nonatomic, assign) CGPoint boundsOrigin;
 @property (nonatomic, assign) CGSize boundsSize;
 
+@property (nonatomic, assign) CGFloat frameX;
+@property (nonatomic, assign) CGFloat frameY;
+@property (nonatomic, assign) CGFloat frameWidth;
+@property (nonatomic, assign) CGFloat frameHeight;
+@property (nonatomic, assign) CGFloat boundsX;
+@property (nonatomic, assign) CGFloat boundsY;
+@property (nonatomic, assign) CGFloat boundsWidth;
+@property (nonatomic, assign) CGFloat boundsHeight;
+
 - (void)translate:(CGPoint)offset;
 
 @end
