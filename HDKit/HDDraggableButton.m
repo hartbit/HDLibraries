@@ -9,6 +9,7 @@
 #import "HDDraggableButton.h"
 #import "UIView+Geometry.h"
 #import "HDFoundation.h"
+#import "HDKitFunctions.h"
 
 
 @interface HDDraggableButton ()

@@ -8,12 +8,19 @@
 
 #import "HDImageGridView.h"
 #import "UIView+Geometry.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface HDImageGridView ()
 
 @property (nonatomic, assign) CGSize cellSize;
 @property (nonatomic, assign) HDSize cellCount;
+@property (nonatomic, assign) CAShapeLayer* gridLayer;
+
+- (void)initialize;
+- (void)updateSize;
+- (void)updateGridLayer;
+- (void)updateCellLayers;
 
 @end
 
@@ -23,18 +30,84 @@
 @synthesize dataSource = _dataSource;
 @synthesize cellSize = _cellSize;
 @synthesize cellCount = _cellCount;
+@synthesize gridLayer = _gridLayer;
+
+#pragma mark - Initialization
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+	if ((self = [super initWithCoder:coder]))
+	{
+		[self initialize];
+	}
+	
+	return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+	if ((self = [super initWithFrame:frame]))
+	{
+		[self initialize];
+	}
+	
+	return self;
+}
+
+- (void)initialize
+{
+	[self setOpaque:NO];
+	[self setBackgroundColor:[UIColor clearColor]];
+	
+	[[self layer] setShouldRasterize:YES];
+	
+	[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+#pragma mark - Memory Management
+
+- (void)dealloc
+{
+	[self removeObserver:self forKeyPath:@"dataSource"];
+	
+	[super dealloc];
+}
 
 #pragma mark - Properties
 
-- (void)setDataSource:(id <HDImageGridViewDataSource>)dataSource
+- (CAShapeLayer*)gridLayer
 {
-	if (_dataSource == dataSource)
+	CALayer* viewLayer = [self layer];
+	
+	if (_gridLayer == nil)
 	{
-		return;
+		CAShapeLayer* gridLayer = [CAShapeLayer layer];
+		[gridLayer setLineWidth:2];
+		[gridLayer setStrokeColor:[[UIColor blackColor] CGColor]];
+		[gridLayer setHidden:![self isGridVisible]];
+		
+		[viewLayer addSublayer:gridLayer];
+		[self setGridLayer:gridLayer];
 	}
 	
-	_dataSource = dataSource;
-	[self reloadData];
+	return _gridLayer;
+}
+
+- (BOOL)isGridVisible
+{
+	if (_gridLayer == nil)
+	{
+		return NO;
+	}
+	else
+	{
+		return ![_gridLayer isHidden];
+	}
+}
+
+- (void)setGridVisible:(BOOL)gridVisible
+{
+	[[self gridLayer] setHidden:!gridVisible];
 }
 
 #pragma mark - Public Methods
@@ -43,14 +116,10 @@
 {
 	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
-	_cellSize = [_dataSource sizeOfCellsInGridView:self];
-	_cellCount = [_dataSource numberOfCellsInGridView:self];
-	
-	CGSize newSize = CGSizeMake(_cellSize.width * _cellCount.width, _cellSize.height * _cellCount.height);
-	[self setFrameSize:newSize];
-	
+	[self updateSize];
+	[self updateGridLayer];
+	[self updateCellLayers];
 	[self setNeedsDisplay];
-	[[self superview] setNeedsLayout];
 }
 
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point
@@ -66,28 +135,122 @@
 					  [self cellSize].height);
 }
 
+#pragma mark - Private Methods
+
+- (void)updateSize
+{
+	[self setCellSize:[[self dataSource] sizeOfCellsInGridView:self]];
+	[self setCellCount:[[self dataSource] numberOfCellsInGridView:self]];
+	
+	CGSize newSize = CGSizeMake([self cellSize].width * [self cellCount].width, [self cellSize].height * [self cellCount].height);
+	[self setFrameSize:newSize];
+}
+
+- (void)updateGridLayer
+{	
+	CGMutablePathRef path = CGPathCreateMutable();
+	
+	for (NSUInteger columnIndex = 0; columnIndex <= [self cellCount].width; columnIndex++)
+	{
+		CGFloat columnPostion = columnIndex * [self cellSize].width;
+		CGPathMoveToPoint(path, NULL, columnPostion, 0);
+		CGPathAddLineToPoint(path, NULL, columnPostion, [self boundsSize].height);
+	}
+	
+	for (NSUInteger rowIndex = 0; rowIndex <= [self cellCount].height; rowIndex++)
+	{
+		CGFloat rowPosition = rowIndex * [self cellSize].height;
+		CGPathMoveToPoint(path, NULL, 0, rowPosition);
+		CGPathAddLineToPoint(path, NULL, [self boundsSize].width, rowPosition);
+	}
+	
+	CAShapeLayer* gridLayer = [self gridLayer];
+	[gridLayer setFrame:[self bounds]];
+	[gridLayer setPath:path];
+	
+	CGPathRelease(path);
+}
+
+- (void)updateCellLayers
+{
+	CALayer* viewLayer = [self layer];
+	NSArray* sublayers = [viewLayer sublayers];
+	HDSize cellCount = [self cellCount];
+	
+	NSUInteger requiredSublayersCount = cellCount.width * cellCount.height + 1;
+	
+	if ([sublayers count] < requiredSublayersCount)
+	{
+		NSUInteger difference = requiredSublayersCount - [sublayers count];
+		
+		for (NSUInteger index = 0; index < difference; index++)
+		{
+			CALayer* layer = [CALayer layer];
+			[layer setContentsScale:[[UIScreen mainScreen] scale]];
+			[viewLayer insertSublayer:layer below:[self gridLayer]];
+		}
+	}
+	else if ([sublayers count] > requiredSublayersCount)
+	{
+		NSUInteger difference = [sublayers count] - requiredSublayersCount;
+		
+		for (NSUInteger index = 0; index < difference; index++)
+		{
+			[[sublayers objectAtIndex:index] removeFromSuperlayer];
+		}
+	}
+}
+
+- (void)observeValueForKeyPath:(NSString*)path ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+{
+	if ([path isEqualToString:@"dataSource"])
+	{
+		[self reloadData];
+	}
+	else
+	{
+		[super observeValueForKeyPath:path ofObject:object change:change context:context];
+	}
+}
+
 #pragma mark - UIView Methods
 
 - (void)drawRect:(CGRect)rect
 {
 	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
 	
-	NSUInteger minColumn = rect.origin.x / _cellSize.width;
-	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / _cellSize.width;
-	NSUInteger minRow = rect.origin.y / _cellSize.height;
-	NSUInteger maxRow = (rect.origin.y + rect.size.height) / _cellSize.height;
+	CGSize cellSize = [self cellSize];
+	NSUInteger minColumn = rect.origin.x / cellSize.width;
+	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / cellSize.width;
+	NSUInteger minRow = rect.origin.y / cellSize.height;
+	NSUInteger maxRow = (rect.origin.y + rect.size.height) / cellSize.height;
+	NSArray* sublayers = [[self layer] sublayers];
+	
+	[CATransaction begin];
+	[CATransaction setDisableActions:YES];
 	
 	for (NSUInteger columnIndex = minColumn; columnIndex < maxColumn; columnIndex++)
 	{
 		for (NSUInteger rowIndex = minRow; rowIndex < maxRow; rowIndex++)
 		{
-			HDPoint cellPosition = HDPointMake(columnIndex, rowIndex);
-			CGRect cellFrame = [self frameForCellAtPosition:cellPosition];
+			NSUInteger layerIndex = rowIndex * [self cellCount].width + columnIndex;
+			CALayer* cellLayer = [sublayers objectAtIndex:layerIndex];
 			
+			HDPoint cellPosition = HDPointMake(columnIndex, rowIndex);
 			UIImage* image = [[self dataSource] gridView:self imageAtPosition:cellPosition];
-			[image drawInRect:cellFrame];
+			
+			[cellLayer setFrame:[self frameForCellAtPosition:cellPosition]];
+			[cellLayer setContents:(id)[image CGImage]];
+			
+			if ([[self dataSource] respondsToSelector:@selector(gridView:transformAtPosition:)])
+			{
+				CGAffineTransform transform = [[self dataSource] gridView:self transformAtPosition:cellPosition];
+				[cellLayer setAffineTransform:transform];
+			}
 		}
 	}
+	
+	[CATransaction commit];
 }
-
+ 
 @end

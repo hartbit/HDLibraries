@@ -16,6 +16,6 @@
 @property (nonatomic, copy, readonly) NSString* controllerName;
 @property (nonatomic, retain) HDTransitionController* transitionController;
 
-- (NSSet*)outlets;
+- (void)releaseViewObjects;
 
 @end

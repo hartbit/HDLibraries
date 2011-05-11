@@ -15,8 +15,6 @@
 
 @property (nonatomic, copy) NSString* controllerName;
 
-- (void)releaseOutlets;
-
 @end
 
 
@@ -29,14 +27,14 @@
 
 - (void)viewDidUnload
 {
-	[self releaseOutlets];
+	[self releaseViewObjects];
 	
 	[super viewDidUnload];
 }
 
 - (void)dealloc
 {
-	[self releaseOutlets];
+	[self releaseViewObjects];
 	[self setControllerName:nil];
 	[self setTransitionController:nil];
 	
@@ -85,19 +83,8 @@
 
 #pragma mark - Public Methods
 
-- (NSSet*)outlets
+- (void)releaseViewObjects
 {
-	return [NSSet set];
-}
-
-#pragma mark - Private Methods
-		 
-- (void)releaseOutlets
-{
-	for (NSString* outlet in [self outlets])
-	{
-		[self setValue:nil forKey:outlet];
-	}
 }
 
 @end

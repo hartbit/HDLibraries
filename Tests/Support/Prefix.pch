@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'HDLibrariesTests' target in the 'HDLibrariesTests' project
+//
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+#endif

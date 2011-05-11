@@ -1,12 +1,12 @@
 //
-//  NSString+Additions.m
+//  NSString+HDAdditions.m
 //  HDLibrairies
 //
 //  Created by David Hart on 3/30/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import "NSString+Additions.h"
+#import "NSString+HDAdditions.h"
 
 
 @implementation NSString (HDAdditions)

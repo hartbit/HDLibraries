@@ -8,6 +8,7 @@
 
 #import "HDDrawableView.h"
 #import "HDFoundation.h"
+#import "HDKitFunctions.h"
 #import <QuartzCore/QuartzCore.h>
 
 
