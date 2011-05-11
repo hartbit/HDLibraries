@@ -12,8 +12,8 @@
 
 @interface HDAudioPlayer : NSObject <AVAudioPlayerDelegate>
 
-@property (nonatomic, readonly, getter = ambianceIsPlaying) BOOL ambiancePlaying;
-@property (nonatomic, readonly, getter = voiceIsPlaying) BOOL voicePlaying;
+@property (nonatomic, readonly, getter=ambianceIsPlaying) BOOL ambiancePlaying;
+@property (nonatomic, readonly, getter=voiceIsPlaying) BOOL voicePlaying;
 
 + (HDAudioPlayer*)sharedInstance;
 
