@@ -41,6 +41,8 @@
 		
 		[self setContentView:contentView];
 		[[self view] addSubview:contentView];
+		[[self view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+		[[self view] setAutoresizesSubviews:YES];
 		
 		[contentView release];
 	}
