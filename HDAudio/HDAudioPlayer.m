@@ -50,11 +50,11 @@
 
 - (id)init
 {
-	self = [super init];
-	if (!self) return nil;
-
-	[self setSfxPlayers:[NSMutableArray array]];
-	[self setSfxInvocations:[NSMutableArray array]];
+	if ((self = [super init]))
+	{
+		[self setSfxPlayers:[NSMutableArray array]];
+		[self setSfxInvocations:[NSMutableArray array]];
+	}
 	
 	return self;
 }
@@ -69,14 +69,14 @@
 	[self stopAmbiance];
 	[self setAmbiancePlayer:[self audioPlayerWithName:ambianceName andType:@"caf"]];
 	
-	[_ambiancePlayer setNumberOfLoops:-1];
-	[_ambiancePlayer setVolume:0.15];
-	[_ambiancePlayer play];
+	[[self ambiancePlayer] setNumberOfLoops:-1];
+	[[self ambiancePlayer] setVolume:0.15];
+	[[self ambiancePlayer] play];
 }
 
 - (void)stopAmbiance
 {
-	[_ambiancePlayer stop];
+	[[self ambiancePlayer] stop];
 	[self setAmbiancePlayer:nil];
 }
 
@@ -96,25 +96,25 @@
 
 	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
 	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
-	[_sfxPlayers addObject:sfxPlayer];
+	[[self sfxPlayers] addObject:sfxPlayer];
 	
 	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:object];
 	id nullableInvocation = (sfxInvocation != nil) ? (id)sfxInvocation : (id)[NSNull null];
-	[_sfxInvocations addObject:nullableInvocation];
+	[[self sfxInvocations] addObject:nullableInvocation];
 
 	[sfxPlayer play];
 }
 
 - (void)stopAllSfx
 {
-	for (AVAudioPlayer* sfxPlayer in _sfxPlayers)
+	for (AVAudioPlayer* sfxPlayer in [self sfxPlayers])
 	{
 		[sfxPlayer setDelegate:nil];
 		[sfxPlayer stop];
 	}
 	
-	[_sfxPlayers removeAllObjects];
-	[_sfxInvocations removeAllObjects];
+	[[self sfxPlayers] removeAllObjects];
+	[[self sfxInvocations] removeAllObjects];
 }
 
 - (void)playVoice:(NSString*)voiceName
@@ -143,8 +143,8 @@
 
 - (void)stopVoice
 {
-	[_voicePlayer setDelegate:nil];
-	[_voicePlayer stop];
+	[[self voicePlayer] setDelegate:nil];
+	[[self voicePlayer] stop];
 	
 	[self setVoicePlayer:nil];
 	[self setVoiceInvocation:nil];
@@ -162,12 +162,12 @@
 
 - (BOOL)ambianceIsPlaying
 {
-	return [_ambiancePlayer isPlaying];
+	return [[self ambiancePlayer] isPlaying];
 }
 
 - (BOOL)voiceIsPlaying
 {
-	return [_voicePlayer isPlaying];
+	return [[self voicePlayer] isPlaying];
 }
 
 #pragma mark -
@@ -175,17 +175,17 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
-	if (player == _voicePlayer)
+	if (player == [self voicePlayer])
 	{
-		NSInvocation* invocation = [_voiceInvocation retain];
+		NSInvocation* invocation = [[self voiceInvocation] retain];
 		[self stopVoice];
 		[invocation invoke];
 		[invocation release];
 	}
-	else if ([_sfxPlayers containsObject:player])
+	else if ([[self sfxPlayers] containsObject:player])
 	{
-		NSUInteger playerIndex = [_sfxPlayers indexOfObject:player];
-		id nullableInvocation = [[_sfxInvocations objectAtIndex:playerIndex] retain];
+		NSUInteger playerIndex = [[self sfxPlayers] indexOfObject:player];
+		id nullableInvocation = [[[self sfxInvocations] objectAtIndex:playerIndex] retain];
 		
 		if ([nullableInvocation isMemberOfClass:[NSInvocation class]])
 		{
@@ -194,10 +194,10 @@
 		
 		[nullableInvocation release];
 		
-		if ([_sfxPlayers count] > 0)
+		if ([[self sfxPlayers] count] > 0)
 		{
-			[_sfxPlayers removeObjectAtIndex:playerIndex];
-			[_sfxInvocations removeObjectAtIndex:playerIndex];
+			[[self sfxPlayers] removeObjectAtIndex:playerIndex];
+			[[self sfxInvocations] removeObjectAtIndex:playerIndex];
 		}
 	}
 	else

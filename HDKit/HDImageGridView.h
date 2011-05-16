@@ -14,7 +14,8 @@
 
 @interface HDImageGridView : UIView
 
-@property (nonatomic, assign ) id <HDImageGridViewDataSource> dataSource;
+@property (nonatomic, assign) id <HDImageGridViewDataSource> dataSource;
+@property (nonatomic, assign, getter=isGridVisible) BOOL gridVisible;
 
 - (void)reloadData;
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point;
@@ -29,5 +30,8 @@
 - (CGSize)sizeOfCellsInGridView:(HDImageGridView*)gridView;
 - (HDSize)numberOfCellsInGridView:(HDImageGridView*)gridView;
 - (UIImage*)gridView:(HDImageGridView*)gridView imageAtPosition:(HDPoint)position;
+
+@optional
+- (CGAffineTransform)gridView:(HDImageGridView*)gridView transformAtPosition:(HDPoint)position;
 
 @end

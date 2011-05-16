@@ -7,7 +7,7 @@
 //
 
 #import "HDAnimatedImage.h"
-#import "UIImage+Loading.h"
+#import "UIImage+HDLoading.h"
 #import "HDFoundation.h"
 
 
@@ -54,7 +54,7 @@
 - (id)initWithAnimationName:(NSString*)animationName
 {
 	NSString* imageName = [animationName stringByAppendingString:@"0"];
-	UIImage* image = [UIImage imageNamed:imageName cached:NO];
+	UIImage* image = [UIImage imageWithName:imageName cached:NO];
 	
 	if ((self = [super initWithImage:image]))
 	{
@@ -90,7 +90,7 @@
 	_animationName = [animationName copy];
 		
 	NSString* staticImageName = [self nameFromImageAtIndex:0];
-	UIImage* staticImage = [UIImage imageNamed:staticImageName cached:NO];
+	UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
 		
 	[self setStaticImage:staticImage];
 	[self setImage:staticImage];
@@ -167,7 +167,7 @@
 	while (YES)
 	{
 		NSString* imageName = [self nameFromImageAtIndex:index];
-		UIImage* image = [UIImage imageNamed:imageName cached:NO];
+		UIImage* image = [UIImage imageWithName:imageName cached:NO];
 		
 		if (!image)
 		{

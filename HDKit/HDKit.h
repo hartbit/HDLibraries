@@ -6,11 +6,11 @@
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import "HDFunctions.h"
+#import "HDKitFunctions.h"
 
 #import	"UIDevice+Platform.h"
 #import "UIImage+Alpha.h"
-#import "UIImage+Loading.h"
+#import "UIImage+HDLoading.h"
 #import "UIView+Geometry.h"
 
 #import "HDAnimatedImage.h"
