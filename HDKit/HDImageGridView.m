@@ -16,11 +16,13 @@
 @property (nonatomic, assign) CGSize cellSize;
 @property (nonatomic, assign) HDSize cellCount;
 @property (nonatomic, assign) CAShapeLayer* gridLayer;
+@property (nonatomic, retain) NSMutableDictionary* layers;
 
 - (void)initialize;
 - (void)updateSize;
 - (void)updateGridLayer;
-- (void)updateCellLayers;
+- (CALayer*)layerAtPosition:(HDPoint)position;
+- (void)removeLayerAtPosition:(HDPoint)position;
 
 @end
 
@@ -31,6 +33,7 @@
 @synthesize cellSize = _cellSize;
 @synthesize cellCount = _cellCount;
 @synthesize gridLayer = _gridLayer;
+@synthesize layers = _layers;
 
 #pragma mark - Initialization
 
@@ -58,8 +61,9 @@
 {
 	[self setOpaque:NO];
 	[self setBackgroundColor:[UIColor clearColor]];
-	
 	[[self layer] setShouldRasterize:YES];
+	
+	[self setLayers:[NSMutableDictionary dictionary]];
 	
 	[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
 }
@@ -69,6 +73,8 @@
 - (void)dealloc
 {
 	[self removeObserver:self forKeyPath:@"dataSource"];
+	
+	[self setLayers:nil];
 	
 	[super dealloc];
 }
@@ -118,7 +124,7 @@
 	
 	[self updateSize];
 	[self updateGridLayer];
-	[self updateCellLayers];
+//	[self updateCellLayers];
 	[self setNeedsDisplay];
 }
 
@@ -171,33 +177,32 @@
 	CGPathRelease(path);
 }
 
-- (void)updateCellLayers
+- (CALayer*)layerAtPosition:(HDPoint)position
 {
-	CALayer* viewLayer = [self layer];
-	NSArray* sublayers = [viewLayer sublayers];
-	HDSize cellCount = [self cellCount];
+	NSString* key = NSStringFromHDPoint(position);
+	CALayer* layer = [[self layers] objectForKey:key];
 	
-	NSUInteger requiredSublayersCount = cellCount.width * cellCount.height + 1;
-	
-	if ([sublayers count] < requiredSublayersCount)
+	if (layer == nil)
 	{
-		NSUInteger difference = requiredSublayersCount - [sublayers count];
-		
-		for (NSUInteger index = 0; index < difference; index++)
-		{
-			CALayer* layer = [CALayer layer];
-			[layer setContentsScale:[[UIScreen mainScreen] scale]];
-			[viewLayer insertSublayer:layer below:[self gridLayer]];
-		}
+		layer = [CALayer layer];
+		[layer setFrame:[self frameForCellAtPosition:position]];
+		[layer setContentsScale:[[UIScreen mainScreen] scale]];
+		[[self layer] insertSublayer:layer below:[self gridLayer]];
+		[[self layers] setObject:layer forKey:key];
 	}
-	else if ([sublayers count] > requiredSublayersCount)
+	
+	return layer;
+}
+
+- (void)removeLayerAtPosition:(HDPoint)position
+{
+	NSString* key = NSStringFromHDPoint(position);
+	CALayer* layer = [[self layers] objectForKey:key];
+	
+	if (layer != nil)
 	{
-		NSUInteger difference = [sublayers count] - requiredSublayersCount;
-		
-		for (NSUInteger index = 0; index < difference; index++)
-		{
-			[[sublayers objectAtIndex:index] removeFromSuperlayer];
-		}
+		[layer removeFromSuperlayer];
+		[[self layers] removeObjectForKey:key];
 	}
 }
 
@@ -224,7 +229,6 @@
 	NSUInteger maxColumn = (rect.origin.x + rect.size.width) / cellSize.width;
 	NSUInteger minRow = rect.origin.y / cellSize.height;
 	NSUInteger maxRow = (rect.origin.y + rect.size.height) / cellSize.height;
-	NSArray* sublayers = [[self layer] sublayers];
 	
 	[CATransaction begin];
 	[CATransaction setDisableActions:YES];
@@ -233,13 +237,16 @@
 	{
 		for (NSUInteger rowIndex = minRow; rowIndex < maxRow; rowIndex++)
 		{
-			NSUInteger layerIndex = rowIndex * [self cellCount].width + columnIndex;
-			CALayer* cellLayer = [sublayers objectAtIndex:layerIndex];
-			
 			HDPoint cellPosition = HDPointMake(columnIndex, rowIndex);
 			UIImage* image = [[self dataSource] gridView:self imageAtPosition:cellPosition];
+		
+			if (image == nil)
+			{
+				[self removeLayerAtPosition:cellPosition];
+				continue;
+			}
 			
-			[cellLayer setFrame:[self frameForCellAtPosition:cellPosition]];
+			CALayer* cellLayer = [self layerAtPosition:cellPosition];
 			[cellLayer setContents:(id)[image CGImage]];
 			
 			if ([[self dataSource] respondsToSelector:@selector(gridView:transformAtPosition:)])
