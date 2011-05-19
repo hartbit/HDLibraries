@@ -31,7 +31,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if (([super initWithCoder:coder]))
+	if ((self = [super initWithCoder:coder]))
 	{
 		[self initialize];
 	}

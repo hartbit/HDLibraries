@@ -43,7 +43,7 @@ static classname* kSharedInstance = nil; \
 	return NSUIntegerMax; \
 } \
 \
-- (void)release \
+- (oneway void)release \
 { \
 } \
 \

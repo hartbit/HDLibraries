@@ -11,6 +11,11 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 
+CGImageRef CreateMaskFromImageMask(CGImageRef imageMask);
+CGContextRef CreateImageMaskContext(CGSize size);
+void ReleaseImageMaskContext(CGContextRef context);
+
+
 @interface HDErasableImage ()
 
 @property (nonatomic, assign, getter=isErasing) BOOL erasing;
@@ -138,18 +143,6 @@
 
 #pragma mark - UIView Methods
 
-CGImageRef CreateMaskFromImageMask(CGImageRef imageMask)
-{
-	size_t width = CGImageGetWidth(imageMask);
-	size_t height = CGImageGetHeight(imageMask);
-	size_t bitsPerComponent = CGImageGetBitsPerComponent(imageMask);
-	size_t bitsPerPixel = CGImageGetBitsPerPixel(imageMask);
-	size_t bytesPerRow = CGImageGetBytesPerRow(imageMask);
-	CGDataProviderRef dataProvider = CGImageGetDataProvider(imageMask);
-	
-	return CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, dataProvider, NULL, false);
-}
-
 - (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
@@ -167,35 +160,6 @@ CGImageRef CreateMaskFromImageMask(CGImageRef imageMask)
 
 #pragma mark - Private Methods
 
-CGContextRef CreateImageMaskContext(CGSize size)
-{
-	size_t width = size.width;
-	size_t height = size.height;
-	size_t bitsPerComponent = 8;
-	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-	CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little;
-	
-	size_t components = 4;
-	size_t bytesPerRow = (width * bitsPerComponent * components + 7) / 8;
-	size_t dataLength = bytesPerRow * height;
-	
-    void* bitmapData = malloc(dataLength);
-	memset(bitmapData, 0, dataLength);
-	
-    CGContextRef context = CGBitmapContextCreate(bitmapData, width, height, bitsPerComponent, bytesPerRow, colorspace, bitmapInfo);
-	CGColorSpaceRelease(colorspace);
-	
-	HDCCheck(isPointerNotNull(context), HDFailureLevelWarning, free(bitmapData));
-	
-	return context;
-}
-
-void ReleaseImageMaskContext(CGContextRef context)
-{
-	void* bitmapData = CGBitmapContextGetData(context);
-	free(bitmapData);
-}
-
 - (void)setupImageMask
 {
 	CGContextRef context = CreateImageMaskContext([self bounds].size);
@@ -204,7 +168,9 @@ void ReleaseImageMaskContext(CGContextRef context)
 	CGContextSetFillColorWithColor(context, fillColor.CGColor);
 	CGContextFillRect(context, [self bounds]);
 	
-	[self setImageMaskRef:CGBitmapContextCreateImage(context)];
+	CGImageRef imageMask = CGBitmapContextCreateImage(context);
+	[self setImageMaskRef:imageMask];
+	CGImageRelease(imageMask);
 	
 	ReleaseImageMaskContext(context);
 	CGContextRelease(context);
@@ -225,7 +191,9 @@ void ReleaseImageMaskContext(CGContextRef context)
 	CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
 	CGContextStrokePath(context);
 	
-	[self setImageMaskRef:CGBitmapContextCreateImage(context)];
+	CGImageRef imageMask = CGBitmapContextCreateImage(context);
+	[self setImageMaskRef:imageMask];
+	CGImageRelease(imageMask);
 	
 	ReleaseImageMaskContext(context);
 	CGContextRelease(context);
@@ -278,3 +246,44 @@ void ReleaseImageMaskContext(CGContextRef context)
 }
 
 @end
+
+CGImageRef CreateMaskFromImageMask(CGImageRef imageMask)
+{
+	size_t width = CGImageGetWidth(imageMask);
+	size_t height = CGImageGetHeight(imageMask);
+	size_t bitsPerComponent = CGImageGetBitsPerComponent(imageMask);
+	size_t bitsPerPixel = CGImageGetBitsPerPixel(imageMask);
+	size_t bytesPerRow = CGImageGetBytesPerRow(imageMask);
+	CGDataProviderRef dataProvider = CGImageGetDataProvider(imageMask);
+	
+	return CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, dataProvider, NULL, false);
+}
+
+CGContextRef CreateImageMaskContext(CGSize size)
+{
+	size_t width = size.width;
+	size_t height = size.height;
+	size_t bitsPerComponent = 8;
+	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+	CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little;
+	
+	size_t components = 4;
+	size_t bytesPerRow = (width * bitsPerComponent * components + 7) / 8;
+	size_t dataLength = bytesPerRow * height;
+	
+    void* bitmapData = malloc(dataLength);
+	memset(bitmapData, 0, dataLength);
+	
+    CGContextRef context = CGBitmapContextCreate(bitmapData, width, height, bitsPerComponent, bytesPerRow, colorspace, bitmapInfo);
+	CGColorSpaceRelease(colorspace);
+	
+	HDCCheck(isPointerNotNull(context), HDFailureLevelWarning, free(bitmapData));
+	
+	return context;
+}
+
+void ReleaseImageMaskContext(CGContextRef context)
+{
+	void* bitmapData = CGBitmapContextGetData(context);
+	free(bitmapData);
+}
