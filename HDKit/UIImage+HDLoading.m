@@ -13,7 +13,7 @@
 @interface UIImage ()
 
 + (NSString*)insertRetinaPathModifier:(NSString*)path;
-+ (UIImage*)imageWithName:(NSString*)name;
++ (UIImage*)directImageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
 
 @end
 
@@ -30,22 +30,28 @@
 	}
 	else
 	{
-		UIScreen* screen = [UIScreen mainScreen];
-		
-		if ([screen respondsToSelector:@selector(scale)] && ([screen scale] == 2))
-		{
-			NSString* retinaName = [UIImage insertRetinaPathModifier:name];
-			UIImage* retinaImage = [UIImage imageWithName:retinaName];
-			
-			if (retinaImage != nil)
-			{
-				return [UIImage imageWithCGImage:[retinaImage CGImage] scale:2 orientation:UIImageOrientationUp];
-			}
-		}
-		
-		return [UIImage imageWithName:name];
+		return [UIImage imageWithName:name inBundle:[NSBundle mainBundle]];
 	}
 }
+
++ (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle
+{
+	UIScreen* screen = [UIScreen mainScreen];
+	
+	if ([screen respondsToSelector:@selector(scale)] && ([screen scale] == 2))
+	{
+		NSString* retinaName = [UIImage insertRetinaPathModifier:name];
+		UIImage* retinaImage = [UIImage directImageWithName:retinaName inBundle:bundle];
+		
+		if (retinaImage != nil)
+		{
+			return [UIImage imageWithCGImage:[retinaImage CGImage] scale:2 orientation:UIImageOrientationUp];
+		}
+	}
+	
+	return [UIImage directImageWithName:name inBundle:bundle];
+}
+
 #pragma - Private Methods
 
 + (NSString*)insertRetinaPathModifier:(NSString*)path
@@ -72,11 +78,11 @@
 	return [retinaPath stringByAppendingPathExtension:extension];
 }
 
-+ (UIImage*)imageWithName:(NSString*)name
++ (UIImage*)directImageWithName:(NSString*)name inBundle:(NSBundle*)bundle
 {
 	NSString* nameWithoutExtension = [name stringByDeletingPathExtension];
 	NSString* extension = [name pathExtension];
-	NSString* path = [[NSBundle mainBundle] pathForResource:nameWithoutExtension ofType:extension];
+	NSString* path = [bundle pathForResource:nameWithoutExtension ofType:extension];
 	
 	if (path == nil)
 	{

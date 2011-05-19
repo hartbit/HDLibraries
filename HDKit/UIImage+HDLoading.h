@@ -12,5 +12,6 @@
 @interface UIImage (HDLoading)
 
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
++ (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
 
 @end
