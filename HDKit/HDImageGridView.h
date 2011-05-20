@@ -16,6 +16,7 @@
 
 @property (nonatomic, assign) id <HDImageGridViewDataSource> dataSource;
 @property (nonatomic, assign, getter=isGridVisible) BOOL gridVisible;
+@property (nonatomic, assign) BOOL postponesRendering;
 
 - (void)reloadData;
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point;

@@ -30,6 +30,7 @@
 @implementation HDImageGridView
 
 @synthesize dataSource = _dataSource;
+@synthesize postponesRendering = _postponesRendering;
 @synthesize cellSize = _cellSize;
 @synthesize cellCount = _cellCount;
 @synthesize gridLayer = _gridLayer;
@@ -59,10 +60,6 @@
 
 - (void)initialize
 {
-	[self setOpaque:NO];
-	[self setBackgroundColor:[UIColor clearColor]];
-	[[self layer] setShouldRasterize:YES];
-	
 	[self setLayers:[NSMutableDictionary dictionary]];
 	
 	[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
@@ -124,7 +121,6 @@
 	
 	[self updateSize];
 	[self updateGridLayer];
-//	[self updateCellLayers];
 	[self setNeedsDisplay];
 }
 
