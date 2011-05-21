@@ -1,5 +1,5 @@
 //
-//  UIView+Geometry.h
+//  UIView+HDGeometry.h
 //  HDLibraries
 //
 //  Created by David Hart on 3/2/11.
