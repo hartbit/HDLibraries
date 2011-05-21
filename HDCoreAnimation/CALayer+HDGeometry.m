@@ -1,15 +1,15 @@
 //
-//  UIView+Geometry.m
-//  HDLibraries
+//  CALayer+HDGeometry.m
+//  Gravicube
 //
-//  Created by David Hart on 3/2/11.
+//  Created by David Hart on 5/20/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#import "UIView+Geometry.h"
+#import "CALayer+HDGeometry.h"
 
 
-@implementation UIView (HDGeometry)
+@implementation CALayer (HDGeometry)
 
 #pragma mark - Properties
 
@@ -155,16 +155,6 @@
 	CGRect bounds = [self bounds];
 	bounds.size.height = boundsHeight;
 	[self setBounds:bounds];
-}
-
-#pragma mark - Public Methods
-
-- (void)translate:(CGPoint)offset
-{
-	CGRect frame = [self frame];
-	frame.origin.x += offset.x;
-	frame.origin.y += offset.y;
-	[self setFrame:frame];
 }
 
 @end
