@@ -73,7 +73,7 @@
 		
 		[UIView beginAnimations:nil context:[_viewController retain]];
 		[UIView setAnimationDuration:1.0];
-		[UIView setAnimationTransition:transition forView:[self contentView] cache:NO];
+		[UIView setAnimationTransition:transition forView:[self contentView] cache:YES];
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(transitionDidStop:finished:context:)];
 	}
