@@ -18,6 +18,5 @@
 #import "HDDraggableButton.h"
 #import "HDDrawableView.h"
 #import "HDErasableImage.h"
-#import "HDImageGridLayer.h"
 #import "HDTransitionController.h"
 #import "HDViewController.h"
