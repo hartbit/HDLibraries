@@ -26,5 +26,6 @@
 @property (nonatomic, assign) CGFloat boundsHeight;
 
 - (void)translate:(CGPoint)offset;
+- (void)setRotationPoint:(CGPoint)rotationPoint;
 
 @end

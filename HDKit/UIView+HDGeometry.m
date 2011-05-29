@@ -167,4 +167,21 @@
 	[self setFrame:frame];
 }
 
+-(void)setRotationPoint:(CGPoint)rotationPoint
+{
+	CGPoint oldAnchorPoint = [[self layer] anchorPoint];
+	CGPoint oldPoint = CGPointMake([self boundsWidth] * oldAnchorPoint.x, [self boundsHeight] * oldAnchorPoint.y);
+	CGPoint newPoint = CGPointMake([self boundsWidth] * rotationPoint.x, [self boundsHeight] * rotationPoint.y);
+	
+	newPoint = CGPointApplyAffineTransform(newPoint, [self transform]);
+	oldPoint = CGPointApplyAffineTransform(oldPoint, [self transform]);
+	
+	CGPoint position = [[self layer] position];
+	position.x += newPoint.x - oldPoint.x;
+	position.y += newPoint.y - oldPoint.y;
+	
+	[[self layer] setPosition:position];
+	[[self layer] setAnchorPoint:rotationPoint];
+}
+
 @end
