@@ -186,13 +186,10 @@
 		for (NSUInteger columnIndex = minColumn; columnIndex < maxColumn; columnIndex++)
 		{
 			HDPoint position = HDPointMake(columnIndex, rowIndex);
-			NSArray* images = [[self dataSource] gridLayer:self imagesAtPosition:position];
+			UIImage* image = [[self dataSource] gridLayer:self imageAtPosition:position];
 			CGRect rect = [self frameForCellAtPosition:position];
-
-			for (UIImage* image in images)
-			{
-				[image drawInRect:rect];
-			}
+			
+			[image drawInRect:rect];
 		}
 	}
 	
