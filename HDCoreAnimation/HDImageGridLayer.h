@@ -28,6 +28,6 @@
 @required
 - (CGSize)sizeOfCellsInGridLayer:(HDImageGridLayer*)gridLayer;
 - (HDSize)numberOfCellsInGridLayer:(HDImageGridLayer*)gridLayer;
-- (NSArray*)gridLayer:(HDImageGridLayer*)gridLayer imagesAtPosition:(HDPoint)position;
+- (UIImage*)gridLayer:(HDImageGridLayer*)gridLayer imageAtPosition:(HDPoint)position;
 
 @end
