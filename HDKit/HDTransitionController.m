@@ -69,6 +69,7 @@
 	
 	if (animated)
 	{
+		[[_viewController view] setUserInteractionEnabled:NO];
 		[newView setUserInteractionEnabled:NO];
 		
 		[UIView beginAnimations:nil context:[_viewController retain]];
