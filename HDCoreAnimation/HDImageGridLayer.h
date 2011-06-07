@@ -7,6 +7,8 @@
 //
 
 #import "HDFoundation.h"
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 
 @protocol HDImageGridLayerDataSource;
