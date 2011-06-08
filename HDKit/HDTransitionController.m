@@ -100,7 +100,7 @@
 {
 	[[[self viewController] view] setUserInteractionEnabled:YES];
 	
-	HDViewController* previousViewController = (HDViewController*)context;
+	HDViewController* previousViewController = (HDViewController*)objc_unretainedObject(context);
 	[previousViewController viewDidDisappear:YES];
 	[[self viewController] viewDidAppear:YES];
 	[previousViewController release];

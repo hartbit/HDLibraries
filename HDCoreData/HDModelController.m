@@ -28,7 +28,17 @@
 
 #pragma mark - Lifecycle
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(HDModelController);
++ (HDModelController*)sharedInstance
+{
+	static HDModelController* kSharedInstance = nil;
+	
+	if (kSharedInstance == nil)
+	{
+		kSharedInstance = [HDModelController new];
+	}
+	
+	return kSharedInstance;
+}
 
 - (void)dealloc
 {

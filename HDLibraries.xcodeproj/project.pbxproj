@@ -69,7 +69,6 @@
 		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
 		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
 		639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 639BF1C81379812C00FD5A98 /* HDGeometry.h */; };
-		639BF1CB1379812C00FD5A98 /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 639BF1C91379812C00FD5A98 /* HDMacros.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,7 +145,6 @@
 		6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDAdditions.h"; sourceTree = "<group>"; };
 		6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDAdditions.m"; sourceTree = "<group>"; };
 		639BF1C81379812C00FD5A98 /* HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDGeometry.h; sourceTree = "<group>"; };
-		639BF1C91379812C00FD5A98 /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				639BF1C81379812C00FD5A98 /* HDGeometry.h */,
-				639BF1C91379812C00FD5A98 /* HDMacros.h */,
 				6363D28F134C57F2000BDCFD /* HDAssert.h */,
 				6363D290134C57F2000BDCFD /* HDCodeLocation.h */,
 				6363D291134C57F2000BDCFD /* HDCodeLocation.m */,
@@ -378,7 +375,6 @@
 				6311FCEB136DC3780078D77E /* Reachability.h in Headers */,
 				6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */,
 				639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */,
-				639BF1CB1379812C00FD5A98 /* HDMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

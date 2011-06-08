@@ -106,7 +106,7 @@
 
 			CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
 			[[self maskLayer] setFrame:maskFrame];
-			[[self maskLayer] setContents:(id)[clipImage CGImage]];
+			[[self maskLayer] setContents:(id)objc_unretainedObject([clipImage CGImage])];
 		}
 	}
 }
