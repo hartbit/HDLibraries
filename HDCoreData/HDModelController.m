@@ -28,18 +28,7 @@
 
 #pragma mark - Lifecycle
 
-+ (HDModelController*)sharedInstance
-{
-	static HDModelController* kSharedInstance = nil;
-	
-	if (kSharedInstance == nil)
-	{
-		kSharedInstance = [HDModelController new];
-	}
-	
-	return kSharedInstance;
-}
-
+SYNTHESIZE_SINGLETON(HDModelController)
 
 #pragma mark - Properties
 
