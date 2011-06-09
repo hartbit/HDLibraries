@@ -44,7 +44,6 @@
 		[[self view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 		[[self view] setAutoresizesSubviews:YES];
 		
-		[contentView release];
 	}
 	
 	return _contentView;
@@ -72,7 +71,7 @@
 		[[_viewController view] setUserInteractionEnabled:NO];
 		[newView setUserInteractionEnabled:NO];
 		
-		[UIView beginAnimations:nil context:[_viewController retain]];
+		[UIView beginAnimations:nil context:(void*)objc_unretainedPointer(_viewController)];
 		[UIView setAnimationDuration:1.0];
 		[UIView setAnimationTransition:transition forView:[self contentView] cache:YES];
 		[UIView setAnimationDelegate:self];
@@ -92,8 +91,7 @@
 		[viewController viewDidAppear:NO];
 	}
 	
-	[_viewController release];
-	_viewController = [viewController retain];
+	_viewController = viewController;
 }
 	 
 - (void)transitionDidStop:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context
@@ -103,7 +101,6 @@
 	HDViewController* previousViewController = (HDViewController*)objc_unretainedObject(context);
 	[previousViewController viewDidDisappear:YES];
 	[[self viewController] viewDidAppear:YES];
-	[previousViewController release];
 }
 
 #pragma mark - HDViewController Methods
@@ -126,7 +123,6 @@
 - (void)dealloc
 {
 	[self setViewController:nil];
-	[super dealloc];
 }
 
 @end

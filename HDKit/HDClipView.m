@@ -97,8 +97,7 @@
 {
 	if (clipImage != _clipImage)
 	{
-		[_clipImage release];
-		_clipImage = [clipImage retain];
+		_clipImage = clipImage;
 		
 		if (clipImage)
 		{
@@ -113,12 +112,5 @@
 
 #pragma mark - Memory Management
 
-- (void)dealloc
-{
-	[self setClipImageData:nil];
-	[self setMaskLayer:nil];
-	
-	[super dealloc];
-}
 
 @end

@@ -179,7 +179,6 @@
 		CGPathRelease(path);
 		
 		[[self layer] addSublayer:lastLayer];
-		[lastLayer release];
 	}
 	
 	return lastLayer;

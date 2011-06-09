@@ -35,10 +35,7 @@
 - (void)dealloc
 {
 	[self releaseViewObjects];
-	[self setControllerName:nil];
-	[self setTransitionController:nil];
 	
-	[super dealloc];
 }
 
 #pragma mark - UIVIewController Methods

@@ -66,9 +66,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 - (void)dealloc
 {
 	[self setImageMaskRef:NULL];
-	[self setImage:nil];
 	
-	[super dealloc];
 }
 
 #pragma mark - Properties
@@ -80,8 +78,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 		return;
 	}
 	
-	[_image release];
-	_image = [image retain];
+	_image = image;
 		
 	[self setNeedsDisplay];
 }

@@ -40,14 +40,6 @@
 	return kSharedInstance;
 }
 
-- (void)dealloc
-{
-	[self setPersistentStoreCoordinator:nil];
-	[self setManagedObjectContext:nil];
-	[self setManagedObjectModel:nil];
-	
-	[super dealloc];
-}
 
 #pragma mark - Properties
 
@@ -59,7 +51,6 @@
 		{
 			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
 			[self setManagedObjectModel:newManagedObjectModel];
-			[newManagedObjectModel release];
 		}
 		else
 		{
@@ -79,7 +70,6 @@
 		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 		[self setManagedObjectContext:newManagedObjectContext];
-		[newManagedObjectContext release];
 		
 		HDAssert(isObjectNotNil(_managedObjectContext), HDFailureLevelError);
 	}
@@ -93,7 +83,6 @@
 	{
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
-		[newPersistentStoreCoordinator release];
 		
 		HDAssert(isObjectNotNil(_persistentStoreCoordinator), HDFailureLevelError);
 	}

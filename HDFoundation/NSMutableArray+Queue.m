@@ -23,9 +23,9 @@
 {
 	HDCheck(isCollectionEmpty(self), HDFailureLevelError, return nil);
 	
-	id object = [[self objectAtIndex:0] retain];
+	id object = [self objectAtIndex:0];
 	[self removeObjectAtIndex:0];
-	return [object autorelease];
+	return object;
 }
 
 @end

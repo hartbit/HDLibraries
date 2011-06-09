@@ -48,7 +48,6 @@
 - (void)dealloc
 {
 	[self removeObserver:self forKeyPath:@"dataSource"];
-	[super dealloc];
 }
 
 #pragma mark - Properties

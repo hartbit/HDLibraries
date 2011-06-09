@@ -27,13 +27,13 @@
 
 + (id)codeLocationInFunction:(NSString*)function fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
 {
-	return [[[HDCodeLocation alloc] initWithObject:nil context:function fileName:fileName lineNumber:lineNumber] autorelease];
+	return [[HDCodeLocation alloc] initWithObject:nil context:function fileName:fileName lineNumber:lineNumber];
 }
 
 + (id)codeLocationInObject:(id)object method:(SEL)selector fileName:(NSString*)fileName lineNumber:(NSUInteger)lineNumber
 {
 	NSString* context = [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([object class]), NSStringFromSelector(selector)];
-	return [[[HDCodeLocation alloc] initWithObject:object context:context fileName:fileName lineNumber:lineNumber] autorelease];
+	return [[HDCodeLocation alloc] initWithObject:object context:context fileName:fileName lineNumber:lineNumber];
 }
 
 #pragma mark - NSObject Methods

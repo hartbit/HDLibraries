@@ -38,14 +38,14 @@
 
 + (HDAudioPlayer*)sharedInstance
 {
-	static HDAudioPlayer* sharedInstance = nil;
+	static HDAudioPlayer* kSharedInstance = nil;
 	
-	if (sharedInstance == nil)
+	if (kSharedInstance == nil)
 	{
-		sharedInstance = [[HDAudioPlayer alloc] init];
+		kSharedInstance = [HDAudioPlayer new];
 	}
 	
-	return sharedInstance;
+	return kSharedInstance;
 }
 
 - (id)init

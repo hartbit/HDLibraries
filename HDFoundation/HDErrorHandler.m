@@ -60,7 +60,6 @@
 													name:UIApplicationDidEnterBackgroundNotification
 												  object:nil];
 	
-	[super dealloc];
 }
 
 #pragma mark - Public Methods

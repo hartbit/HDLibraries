@@ -15,7 +15,7 @@
 
 - (NSData*)imageData
 {
-	return (NSData*)CGDataProviderCopyData(CGImageGetDataProvider([self CGImage]));
+	return (NSData*)objc_retainedObject(CGDataProviderCopyData(CGImageGetDataProvider([self CGImage])));
 } 
 
 @end

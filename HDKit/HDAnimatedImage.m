@@ -80,7 +80,6 @@
 		return;
 	}
 	
-	[_animationName release];
 		
 	if (animationName == nil)
 	{
@@ -220,10 +219,8 @@
 	}
 	
 	[self setDelegate:nil];
-	[self setStaticImage:nil];
 	[self setAnimationName:nil];
 	
-	[super dealloc];
 }
 
 @end
