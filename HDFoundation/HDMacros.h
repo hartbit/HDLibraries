@@ -6,28 +6,34 @@
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
+#ifndef SYNTHESIZE_SINGLETON
 #define SYNTHESIZE_SINGLETON(classname) \
 \
 static classname* kSharedInstance = nil; \
 \
-+ (id)sharedInstance \
++ (classname*)sharedInstance \
 { \
-	if (kSharedInstance == nil) \
+	@synchronized(self) \
 	{ \
-		kSharedInstance = [[classname alloc] init]; \
+		if (kSharedInstance == nil) \
+		{ \
+			kSharedInstance = [classname new]; \
+		} \
+		\
+		return kSharedInstance; \
 	} \
-	\
-	return self; \
 } \
 \
 - (id)init \
 { \
-	if (kSharedInstance == nil) \
+	@synchronized(self) \
 	{ \
-		return self; \
-	} \
-	else \
-	{ \
+		if (kSharedInstance == nil) \
+		{ \
+			kSharedInstance = [super init]; \
+		} \
+		\
 		return kSharedInstance; \
 	} \
-} \
+}
+#endif
