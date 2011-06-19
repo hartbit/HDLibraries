@@ -26,6 +26,44 @@
 	return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
 }
 
++ (NSSet*)fetchObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(id)stringOrPredicate, ...
+{
+	NSFetchRequest* request = [NSFetchRequest new];
+	
+	NSEntityDescription* entity = [[self class] entityInManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	
+	if (stringOrPredicate != nil)
+	{
+		NSPredicate* predicate;
+		
+		if ([stringOrPredicate isKindOfClass:[NSString class]])
+		{
+			va_list variadicArguments;
+			va_start(variadicArguments, stringOrPredicate);
+			predicate = [NSPredicate predicateWithFormat:stringOrPredicate arguments:variadicArguments];
+			va_end(variadicArguments);
+		}
+		else
+		{
+			HDCheck(isTrue([stringOrPredicate isKindOfClass:[NSPredicate class]]), HDFailureLevelError, return nil);
+			predicate = (NSPredicate*)stringOrPredicate;
+		}
+
+		[request setPredicate:predicate];
+	}
+	
+	NSError* error = nil;
+	NSArray* results = [managedObjectContext executeFetchRequest:request error:&error];
+
+	if (error != nil)
+	{
+		[NSException raise:NSGenericException format:[error description]];
+	}
+	
+	return [NSSet setWithArray:results];
+}
+
 #pragma mark - Public Methods
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason

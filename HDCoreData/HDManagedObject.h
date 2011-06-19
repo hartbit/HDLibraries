@@ -15,6 +15,7 @@
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSSet*)fetchObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(id)stringOrPredicate, ...;
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason;
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError;
