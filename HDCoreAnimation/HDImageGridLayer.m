@@ -37,20 +37,25 @@
 	if ((self = [super init]))
 	{
 		[self setOpaque:YES];
-		[self addObserver:self forKeyPath:@"dataSource" options:NSKeyValueObservingOptionNew context:NULL];
 	}
 	
 	return self;
 }
 
-#pragma mark - Memory Management
-
-- (void)dealloc
-{
-	[self removeObserver:self forKeyPath:@"dataSource"];
-}
-
 #pragma mark - Properties
+
+- (void)setDataSource:(id<HDImageGridLayerDataSource>)dataSource
+{
+	if (_dataSource != dataSource)
+	{
+		_dataSource = dataSource;
+		
+		if (dataSource != nil)
+		{
+			[self reloadData];
+		}
+	}
+}
 
 - (CAShapeLayer*)gridLayer
 {	
@@ -98,7 +103,8 @@
 
 - (HDPoint)cellPositionContainingPoint:(CGPoint)point
 {
-	return HDPointMake(point.x / [self cellSize].width, point.y / [self cellSize].height);
+	return HDPointMake(point.x / [self cellSize].width,
+					   point.y / [self cellSize].height);
 }
 
 - (CGRect)frameForCellAtPosition:(HDPoint)position
@@ -147,21 +153,6 @@
 	CGPathRelease(path);
 }
 
-- (void)observeValueForKeyPath:(NSString*)path ofObject:(id)object change:(NSDictionary*)change context:(void*)context
-{
-	if ([path isEqualToString:@"dataSource"])
-	{
-		if ([self dataSource] != nil)
-		{
-			[self reloadData];
-		}
-	}
-	else
-	{
-		[super observeValueForKeyPath:path ofObject:object change:change context:context];
-	}
-}
-
 #pragma mark - CALayer Methods
 
 - (void)drawInContext:(CGContextRef)context
@@ -173,10 +164,10 @@
 
 	CGSize cellSize = [self cellSize];
 	CGRect clipRect = CGContextGetClipBoundingBox(context);
-	NSUInteger minColumn = clipRect.origin.x / cellSize.width;
-	NSUInteger maxColumn = (clipRect.origin.x + clipRect.size.width) / cellSize.width;
-	NSUInteger minRow = clipRect.origin.y / cellSize.height;
-	NSUInteger maxRow = (clipRect.origin.y + clipRect.size.height) / cellSize.height;
+	NSUInteger minColumn = CGRectGetMinX(clipRect) / cellSize.width;
+	NSUInteger maxColumn = CGRectGetMaxX(clipRect) / cellSize.width;
+	NSUInteger minRow = CGRectGetMinY(clipRect) / cellSize.height;
+	NSUInteger maxRow = CGRectGetMaxY(clipRect) / cellSize.height;
 
 	UIGraphicsPushContext(context);
 	
@@ -186,9 +177,12 @@
 		{
 			HDPoint position = HDPointMake(columnIndex, rowIndex);
 			UIImage* image = [[self dataSource] gridLayer:self imageAtPosition:position];
-			CGRect rect = [self frameForCellAtPosition:position];
 			
-			[image drawInRect:rect];
+			if (image != nil)
+			{
+				CGRect rect = [self frameForCellAtPosition:position];
+				[image drawInRect:rect];
+			}
 		}
 	}
 	
