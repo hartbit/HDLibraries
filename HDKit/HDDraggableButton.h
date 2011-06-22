@@ -13,7 +13,7 @@
 
 @interface HDDraggableButton : UIButton
 
-@property (nonatomic, retain) IBOutlet id <HDDraggableButtonDelegate> delegate;
+@property (nonatomic, retain) IBOutlet id<HDDraggableButtonDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UIView* targetView;
 @property (nonatomic, assign) CGFloat speed;
 @property (nonatomic, assign) BOOL dragEnabled;

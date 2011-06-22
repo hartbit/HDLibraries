@@ -15,7 +15,7 @@
 
 @interface HDImageGridLayer : CALayer
 
-@property (nonatomic, assign) id <HDImageGridLayerDataSource> dataSource;
+@property (nonatomic, assign) id<HDImageGridLayerDataSource> dataSource;
 @property (nonatomic, assign, getter=isGridVisible) BOOL gridVisible;
 
 - (void)reloadData;
