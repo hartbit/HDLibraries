@@ -37,3 +37,7 @@ static classname* kSharedInstance = nil; \
 	} \
 }
 #endif
+
+#ifndef CLAMP
+#define CLAMP(value, min, max) MIN(MAX(value, min), max)
+#endif

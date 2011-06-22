@@ -19,7 +19,7 @@
 @property (nonatomic, assign, getter=isGridVisible) BOOL gridVisible;
 
 - (void)reloadData;
-- (HDPoint)cellPositionContainingPoint:(CGPoint)point;
+- (HDPoint)positionOfCellContainingPoint:(CGPoint)point;
 - (CGRect)frameForCellAtPosition:(HDPoint)position;
 
 @end

@@ -26,6 +26,7 @@ typedef struct
 #pragma mark - HDPoint
 
 static const HDPoint HDPointZero = {0, 0};
+static const HDPoint HDPointInfinite = {NSIntegerMax, NSIntegerMax};
 
 static inline HDPoint HDPointMake(NSInteger x, NSInteger y)
 {

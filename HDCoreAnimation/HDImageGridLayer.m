@@ -101,7 +101,7 @@
 	[self setNeedsDisplay];
 }
 
-- (HDPoint)cellPositionContainingPoint:(CGPoint)point
+- (HDPoint)positionOfCellContainingPoint:(CGPoint)point
 {
 	return HDPointMake(point.x / [self cellSize].width,
 					   point.y / [self cellSize].height);
