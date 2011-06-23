@@ -15,3 +15,4 @@
 #import "NSMutableArray+Queue.h"
 #import "NSString+HDAdditions.h"
 #import "NSArray+HDAdditions.h"
+#import "NSSet+HDAdditions.h"

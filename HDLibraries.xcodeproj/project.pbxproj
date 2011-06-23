@@ -68,6 +68,8 @@
 		6363D2CF134C5B32000BDCFD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CE134C5B32000BDCFD /* CoreData.framework */; };
 		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
 		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
+		6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */; };
+		6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */; };
 		6385801513A174D900CE35ED /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6385801413A174D900CE35ED /* HDMacros.h */; };
 		639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 639BF1C81379812C00FD5A98 /* HDGeometry.h */; };
 /* End PBXBuildFile section */
@@ -145,6 +147,8 @@
 		6363D2CE134C5B32000BDCFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDAdditions.h"; sourceTree = "<group>"; };
 		6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDAdditions.m"; sourceTree = "<group>"; };
+		6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+HDAdditions.h"; sourceTree = "<group>"; };
+		6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HDAdditions.m"; sourceTree = "<group>"; };
 		6385801413A174D900CE35ED /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
 		639BF1C81379812C00FD5A98 /* HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDGeometry.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				639BF1C81379812C00FD5A98 /* HDGeometry.h */,
+				6385801413A174D900CE35ED /* HDMacros.h */,
 				6363D28F134C57F2000BDCFD /* HDAssert.h */,
 				6363D290134C57F2000BDCFD /* HDCodeLocation.h */,
 				6363D291134C57F2000BDCFD /* HDCodeLocation.m */,
@@ -331,7 +336,8 @@
 				6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */,
 				6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */,
 				6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */,
-				6385801413A174D900CE35ED /* HDMacros.h */,
+				6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */,
+				6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */,
 			);
 			path = HDFoundation;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */,
 				639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */,
 				6385801513A174D900CE35ED /* HDMacros.h in Headers */,
+				6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +597,7 @@
 				6322DDB0136AEE8200E8E9EF /* NSString+HDAdditions.m in Sources */,
 				6311FCEC136DC3780078D77E /* Reachability.m in Sources */,
 				6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */,
+				6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
