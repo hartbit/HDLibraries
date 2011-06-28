@@ -11,6 +11,16 @@
 #import "HDFoundation.h"
 
 
+NSString* IndexedImageName(NSString* imageName, NSUInteger index);
+NSString* IndexedImageName(NSString* imageName, NSUInteger index)
+{
+	NSString* pathExtension = [imageName pathExtension];
+	NSString* nameWithoutExtension = [imageName stringByDeletingPathExtension];
+	NSString* indexedName = [nameWithoutExtension stringByAppendingFormat:@"%i", index];
+	return [indexedName stringByAppendingPathExtension:pathExtension];
+}
+
+
 @interface HDAnimatedImage ()
 
 @property (nonatomic, retain) UIImage* staticImage;
@@ -19,7 +29,6 @@
 @property (nonatomic, assign) NSUInteger nextIndex;
 
 - (void)initialize;
-- (NSString*)nameFromImageAtIndex:(NSUInteger)index;
 - (void)createImages;
 - (void)changeFrame;
 
@@ -53,7 +62,7 @@
 
 - (id)initWithAnimationName:(NSString*)animationName
 {
-	NSString* imageName = [animationName stringByAppendingString:@"0"];
+	NSString* imageName = IndexedImageName(animationName, 0);
 	UIImage* image = [UIImage imageWithName:imageName cached:NO];
 	
 	if ((self = [super initWithImage:image]))
@@ -89,7 +98,7 @@
 		
 	_animationName = [animationName copy];
 		
-	NSString* staticImageName = [self nameFromImageAtIndex:0];
+	NSString* staticImageName = IndexedImageName(animationName, 0);
 	UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
 		
 	[self setStaticImage:staticImage];
@@ -152,11 +161,6 @@
 
 #pragma mark - Private Methods
 
-- (NSString*)nameFromImageAtIndex:(NSUInteger)index
-{
-	return [[self animationName] stringByAppendingFormat:@"%i", index];
-}
-
 - (void)createImages
 {
 	HDAssert(isObjectNil([self images]), HDFailureLevelWarning);
@@ -166,7 +170,7 @@
 	
 	while (YES)
 	{
-		NSString* imageName = [self nameFromImageAtIndex:index];
+		NSString* imageName = IndexedImageName([self animationName], index);
 		UIImage* image = [UIImage imageWithName:imageName cached:NO];
 		
 		if (!image)
