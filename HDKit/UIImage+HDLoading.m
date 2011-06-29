@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+HDLoading.h"
+#import "UIDevice+HDPlatform.h"
 #import "HDFoundation.h"
 
 
@@ -55,13 +56,11 @@
 #pragma - Private Methods
 
 + (NSString*)insertRetinaPathModifier:(NSString*)path
-{
-	const NSArray* deviceModifiers = [NSArray arrayWithObjects:@"~iphone", @"~ipad", nil];
-	
+{	
 	NSString* pathWithoutExtension = [path stringByDeletingPathExtension];
 	NSInteger splitIndex = [pathWithoutExtension length];
 	
-	for (NSString* modifier in deviceModifiers)
+	for (NSString* modifier in [UIDevice platformSuffixes])
 	{
 		if ([pathWithoutExtension hasSuffix:modifier])
 		{
