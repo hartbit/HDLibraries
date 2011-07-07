@@ -63,9 +63,9 @@
 	
 	[viewController setTransitionController:self];
 	[_viewController viewWillDisappear:animated];
-	[viewController viewWillAppear:animated];
 	
 	UIView* newView = [viewController view];
+	[viewController viewWillAppear:animated];
 	
 	if (animated)
 	{
