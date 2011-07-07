@@ -16,7 +16,7 @@
 #import "HDAnimatedImage.h"
 #import "HDClipView.h"
 #import "HDDraggableButton.h"
-#import "HDDrawableView.h"
+#import "HDDrawableImageView.h"
 #import "HDErasableImage.h"
 #import "HDTransitionController.h"
 #import "HDViewController.h"
