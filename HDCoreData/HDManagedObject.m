@@ -66,6 +66,11 @@
 
 #pragma mark - Public Methods
 
+- (void)delete
+{
+	[[self managedObjectContext] deleteObject:self];
+}
+
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
 {
 	HDCheck(isObjectNotNil(domain), HDFailureLevelWarning, return nil);
