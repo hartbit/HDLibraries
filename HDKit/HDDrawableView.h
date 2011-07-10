@@ -14,8 +14,8 @@
 
 @interface HDDrawableView : UIView
 
-@property (nonatomic, assign) IBOutlet id<HDDrawableViewDataSource> dataSource;
-@property (nonatomic, assign) IBOutlet id<HDDrawableViewDelegate> delegate;
+@property (nonatomic, unsafe_unretained) IBOutlet id<HDDrawableViewDataSource> dataSource;
+@property (nonatomic, unsafe_unretained) IBOutlet id<HDDrawableViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat distanceThreshold;
 
 - (void)clear;

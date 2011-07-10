@@ -8,14 +8,18 @@
 
 #import "HDErrorHandler.h"
 #import "HDCodeLocation.h"
+#import "HDMacros.h"
 #import <UIKit/UIKit.h>
 
 
 @interface HDErrorHandler ()
 
+@property (nonatomic, strong) NSException* exception;
 @property (nonatomic, assign) BOOL shouldTerminateApplication;
 
-- (void)handleApplicationDidEnterBackground:(NSNotification*)notification;
+- (void)recordMessage:(NSString*)message;
+- (void)terminateApplication;
+- (void)handleApplicationDidEnterBackground;
 - (NSString*)levelStringFromLevel:(HDFailureLevel)level;
 
 @end
@@ -23,43 +27,31 @@
 
 @implementation HDErrorHandler
 
+@synthesize exception = _exception;
 @synthesize shouldTerminateApplication = _shouldTerminateApplication;
 
-#pragma mark - Singleton Methods
-
-+ (HDErrorHandler*)sharedHandler
-{
-	static HDErrorHandler* sharedHandler = nil;
-	
-	if (sharedHandler == nil)
-	{
-		sharedHandler = [[HDErrorHandler alloc] init];
-	}
-	
-	return sharedHandler;
-}
+SYNTHESIZE_SINGLETON(HDErrorHandler);
 
 #pragma mark - Lifecycle
 
-- (id)init
++ (void)initialize
 {
-	if ((self = [super init]))
-	{
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(handleApplicationDidEnterBackground)
-													 name:UIApplicationDidEnterBackgroundNotification
-												   object:nil];
-	}
-	
-	return self;
+	[[NSNotificationCenter defaultCenter] addObserver:[self sharedInstance]
+											 selector:@selector(handleApplicationDidEnterBackground)
+												 name:UIApplicationDidEnterBackgroundNotification
+											   object:nil];
 }
 
-- (void)dealloc
+#pragma mark - Properties
+
+- (NSException*)exception
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-													name:UIApplicationDidEnterBackgroundNotification
-												  object:nil];
+	if (_exception == nil)
+	{
+		[self setException:[NSException exceptionWithName:@"" reason:@"" userInfo:[NSMutableDictionary dictionary]]];
+	}
 	
+	return _exception;
 }
 
 #pragma mark - Public Methods
@@ -78,30 +70,42 @@
 	{
 		[description appendFormat:@"\n\t%@: %@", infoKey, [userInfo objectForKey:infoKey]];
 	}
-	
-	NSLog(@"%@", description);
-	
+
 #ifdef DEBUG
+	NSLog(@"%@", description);
 	abort();
 #else
+	[self recordMessage:description];
+	
 	if (level == HDFailureLevelError)
 	{
 		[self setShouldTerminateApplication:YES];
 	}
 	else if (level > HDFailureLevelError)
 	{
-		abort();
+		[self terminateApplication];
 	}
 #endif
 }
 
 #pragma mark - Private Methods
 
-- (void)handleApplicationDidEnterBackground:(NSNotification*)notification
+- (void)recordMessage:(NSString*)message
+{
+	NSMutableDictionary* userInfo = (NSMutableDictionary*)[[self exception] userInfo];
+	[userInfo setObject:message forKey:[NSDate date]];
+}
+
+- (void)terminateApplication
+{
+	[[self exception] raise];
+}
+				 
+- (void)handleApplicationDidEnterBackground
 {
 	if ([self shouldTerminateApplication])
 	{
-		abort();
+		[self terminateApplication];
 	}
 }
 

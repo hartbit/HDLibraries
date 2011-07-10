@@ -12,11 +12,11 @@
 
 @interface HDAudioPlayer ()
 
-@property (nonatomic, retain) NSMutableArray* sfxPlayers;
-@property (nonatomic, retain) NSMutableArray* sfxInvocations;
-@property (nonatomic, retain) AVAudioPlayer* ambiancePlayer;
-@property (nonatomic, retain) AVAudioPlayer* voicePlayer;
-@property (nonatomic, retain) NSInvocation* voiceInvocation;
+@property (nonatomic, strong) NSMutableArray* sfxPlayers;
+@property (nonatomic, strong) NSMutableArray* sfxInvocations;
+@property (nonatomic, strong) AVAudioPlayer* ambiancePlayer;
+@property (nonatomic, strong) AVAudioPlayer* voicePlayer;
+@property (nonatomic, strong) NSInvocation* voiceInvocation;
 
 - (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;

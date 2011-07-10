@@ -14,7 +14,7 @@
 @interface HDViewController : UIViewController
 
 @property (nonatomic, copy, readonly) NSString* controllerName;
-@property (nonatomic, retain) HDTransitionController* transitionController;
+@property (nonatomic, strong) HDTransitionController* transitionController;
 
 - (void)releaseViewObjects;
 

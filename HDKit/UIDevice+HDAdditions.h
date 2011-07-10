@@ -1,5 +1,5 @@
 //
-//  UIDevice+HDPlatform.h
+//  UIDevice+HDAdditions.h
 //  HDLibraries
 //
 //  Created by David Hart on 23/02/2011.
@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIDevice (HDPlatform)
+@interface UIDevice (HDAdditions)
 
 + (NSSet*)platformSuffixes;
 - (NSString*)platformSuffix;
+- (BOOL)isDeveloperDevice;
 
 @end

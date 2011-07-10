@@ -12,7 +12,7 @@
 
 @interface HDTransitionController : HDViewController
 
-@property (nonatomic, retain) IBOutlet HDViewController* viewController;
+@property (nonatomic, strong) IBOutlet HDViewController* viewController;
 
 - (void)setViewController:(HDViewController*)viewController withTransition:(UIViewAnimationTransition)transition;
 

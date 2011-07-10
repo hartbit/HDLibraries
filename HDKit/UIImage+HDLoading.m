@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+HDLoading.h"
-#import "UIDevice+HDPlatform.h"
+#import "UIDevice+HDAdditions.h"
 #import "HDFoundation.h"
 
 

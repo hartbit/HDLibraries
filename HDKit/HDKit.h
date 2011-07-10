@@ -8,7 +8,7 @@
 
 #import "HDKitFunctions.h"
 
-#import	"UIDevice+HDPlatform.h"
+#import	"UIDevice+HDAdditions.h"
 #import "UIImage+Alpha.h"
 #import "UIImage+HDLoading.h"
 #import "UIView+HDGeometry.h"

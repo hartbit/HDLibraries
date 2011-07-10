@@ -13,9 +13,9 @@
 
 @interface HDAnimatedImage ()
 
-@property (nonatomic, retain) UIImage* staticImage;
-@property (nonatomic, retain) NSTimer* timer;
-@property (nonatomic, retain) NSMutableArray* images;
+@property (nonatomic, strong) UIImage* staticImage;
+@property (nonatomic, strong) NSTimer* timer;
+@property (nonatomic, strong) NSMutableArray* images;
 @property (nonatomic, assign) NSUInteger nextIndex;
 
 - (void)initialize;

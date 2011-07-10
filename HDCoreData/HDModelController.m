@@ -12,9 +12,9 @@
 
 @interface HDModelController ()
 
-@property (nonatomic, retain) NSManagedObjectModel* managedObjectModel;
-@property (nonatomic, retain) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic, retain) NSPersistentStoreCoordinator* persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectModel* managedObjectModel;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
 @end
 

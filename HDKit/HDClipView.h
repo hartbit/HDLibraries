@@ -10,6 +10,6 @@
 
 @interface HDClipView : UIView
 
-@property (nonatomic, retain) UIImage* clipImage;
+@property (nonatomic, strong) UIImage* clipImage;
 
 @end

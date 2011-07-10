@@ -13,11 +13,11 @@
 
 #pragma mark - Asserts
 
-#define HDFail(message, failureLevel) [[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:failureLevel location:HDCurrentCodeLocation() userInfo:nil]
-#define HDCFail(message, failureLevel) [[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:failureLevel location:HDCCurrentCodeLocation() userInfo:nil]
+#define HDFail(message, failureLevel) [[HDErrorHandler sharedInstance] handleFailureWithMessage:message level:failureLevel location:HDCurrentCodeLocation() userInfo:nil]
+#define HDCFail(message, failureLevel) [[HDErrorHandler sharedInstance] handleFailureWithMessage:message level:failureLevel location:HDCCurrentCodeLocation() userInfo:nil]
 
-#define HDFailInfo(message, failureLevel, info) [[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:failureLevel location:HDCurrentCodeLocation() userInfo:info]
-#define HDCFailInfo(message, failureLevel, info) [[HDErrorHandler sharedHandler] handleFailureWithMessage:message level:failureLevel location:HDCCurrentCodeLocation() userInfo:info]
+#define HDFailInfo(message, failureLevel, info) [[HDErrorHandler sharedInstance] handleFailureWithMessage:message level:failureLevel location:HDCurrentCodeLocation() userInfo:info]
+#define HDCFailInfo(message, failureLevel, info) [[HDErrorHandler sharedInstance] handleFailureWithMessage:message level:failureLevel location:HDCCurrentCodeLocation() userInfo:info]
 
 #define HDAssert(info, level) if ((info) != nil) { HDFailInfo(@"Assertion failed", level, info); }
 #define HDCAssert(info, level) if ((info) != nil) { HDCFailInfo(@"Assertion failed", level, info); }

@@ -11,10 +11,10 @@
 
 @interface HDModelController : NSObject
 
-@property (nonatomic, retain) NSURL* modelURL;
-@property (nonatomic, retain, readonly) NSManagedObjectModel* managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator* persistentStoreCoordinator;
+@property (nonatomic, strong) NSURL* modelURL;
+@property (nonatomic, strong, readonly) NSManagedObjectModel* managedObjectModel;
+@property (nonatomic, strong, readonly) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
 + (HDModelController*)sharedInstance;
 

@@ -12,7 +12,7 @@
 
 @interface HDTransitionController ()
 
-@property (nonatomic, retain) UIView* contentView;
+@property (nonatomic, strong) UIView* contentView;
 
 @end
 

@@ -22,7 +22,7 @@ typedef enum
 
 @interface HDErrorHandler : NSObject
 
-+ (HDErrorHandler*)sharedHandler;
++ (HDErrorHandler*)sharedInstance;
 
 - (void)handleFailureWithMessage:(NSString*)message level:(HDFailureLevel)level location:(HDCodeLocation*)location userInfo:(NSDictionary*)userInfo;
 

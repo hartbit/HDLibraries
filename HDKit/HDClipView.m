@@ -13,8 +13,8 @@
 
 @interface HDClipView ()
 
-@property (nonatomic, retain) NSData* clipImageData;
-@property (nonatomic, retain) CALayer* maskLayer;
+@property (nonatomic, strong) NSData* clipImageData;
+@property (nonatomic, strong) CALayer* maskLayer;
 
 - (void)initialize;
 
