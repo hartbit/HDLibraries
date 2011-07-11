@@ -20,6 +20,7 @@
 
 @property (nonatomic, readonly) CGFloat brushSize;
 @property (nonatomic, readonly) UIColor* brushColor;
+@property (nonatomic, assign) BOOL hasStartedDrawing;
 
 - (void)initialize;
 
@@ -39,6 +40,7 @@
 @synthesize clipImageData = _clipImageData;
 @synthesize lastPoint = _lastPoint;
 @synthesize mouseSwiped = _mouseSwiped;
+@synthesize hasStartedDrawing = _hasStartedDrawing;
 
 #pragma mark - Initialization
 
@@ -66,7 +68,6 @@
 {
 	[self setUserInteractionEnabled:YES];
 	[self setDistanceThreshold:10];
-	[self clear];
 }
 
 - (void)dealloc
@@ -119,6 +120,11 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event
 {
+	if ([self clipImage] == nil)
+	{
+		[self setClipImage:[self image]];
+	}
+	
 	NSUInteger width = (NSUInteger)[self bounds].size.width;
 	NSUInteger height = (NSUInteger)[self bounds].size.height;
 	
@@ -201,6 +207,8 @@
 
 - (void)drawToPoint:(CGPoint)toPoint
 {
+	[self setHasStartedDrawing:YES];
+	
 	UIGraphicsBeginImageContextWithOptions([self boundsSize], NO, 0.0);
 	CGContextRef imageContext = UIGraphicsGetCurrentContext();
 	
