@@ -11,7 +11,7 @@
 
 @interface HDManagedObject : NSManagedObject
 
-@property (nonatomic, assign, getter=isImmutable) BOOL immutable;
+@property (nonatomic, assign, readonly) BOOL isImmutable;
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;

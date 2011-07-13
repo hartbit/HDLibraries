@@ -19,6 +19,8 @@
 + (HDModelController*)sharedInstance;
 
 - (void)addStoreWithURL:(NSURL*)storeURL;
+- (void)assignObjectToFirstWritableStore:(NSManagedObject*)object;
+
 - (void)saveContext;
 - (BOOL)saveContextWithError:(NSError**)error;
 
