@@ -11,8 +11,9 @@
 
 @interface UIDevice (HDAdditions)
 
+@property (nonatomic, copy, readonly) NSString* platformSuffix;
+@property (nonatomic, assign, readonly) BOOL isDeveloperDevice;
+
 + (NSSet*)platformSuffixes;
-- (NSString*)platformSuffix;
-- (BOOL)isDeveloperDevice;
 
 @end

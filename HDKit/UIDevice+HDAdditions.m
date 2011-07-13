@@ -42,15 +42,18 @@
 
 - (BOOL)isDeveloperDevice
 {
-	NSString* developersDictionaryPath = [[NSBundle mainBundle] pathForResource:@"Developers" ofType:@"plist"];
+#if TARGET_IPHONE_SIMULATOR
+	return YES;
+#else
+	NSString* developerDictionaryPath = [[NSBundle mainBundle] pathForResource:@"Developers" ofType:@"plist"];
 	
-	if (developersDictionaryPath == nil)
+	if (developerDictionaryPath != nil)
 	{
-		NSDictionary* developersDictionary = [NSDictionary dictionaryWithContentsOfFile:developersDictionaryPath];
+		NSDictionary* developerDictionary = [NSDictionary dictionaryWithContentsOfFile:developerDictionaryPath];
 		
-		for (NSString* developerUDID in [developersDictionary allValues])
+		for (id value in [developerDictionary allValues])
 		{
-			if ([developerUDID isEqualToString:[self uniqueIdentifier]])
+			if ([value isKindOfClass:[NSString class]] && [value isEqualToString:[self uniqueIdentifier]])
 			{
 				return YES;
 			}
@@ -58,6 +61,7 @@
 	}
 	
 	return NO;
+#endif
 }
 
 @end

@@ -12,11 +12,10 @@
 #import "UIImage+Alpha.h"
 #import "UIImage+HDLoading.h"
 #import "UIView+HDGeometry.h"
+#import "UIApplication+HDAdditions.h"
 
 #import "HDAnimatedImage.h"
 #import "HDClipView.h"
 #import "HDDraggableButton.h"
 #import "HDDrawableView.h"
 #import "HDErasableImage.h"
-#import "HDTransitionController.h"
-#import "HDViewController.h"
