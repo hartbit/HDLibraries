@@ -8,11 +8,17 @@
 
 #import "HDManagedObject.h"
 #import "HDFoundation.h"
+#import "HDModelController.h"
 
 
 @implementation HDManagedObject
 
-@synthesize immutable = _immutable;
+#pragma mark - Properties
+
+- (BOOL)isImmutable
+{
+	return [[[[[self objectID] persistentStore] options] objectForKey:NSReadOnlyPersistentStoreOption] boolValue];
+}
 
 #pragma mark - Class Methods
 
@@ -23,7 +29,9 @@
 
 + (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
-	return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+	NSManagedObject* object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+	[[HDModelController sharedInstance] assignObjectToFirstWritableStore:object];
+	return object;
 }
 
 + (NSSet*)fetchObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(id)stringOrPredicate, ...

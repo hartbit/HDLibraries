@@ -85,16 +85,43 @@ SYNTHESIZE_SINGLETON(HDModelController)
 {
 	HDCheck(isObjectNotNil(storeURL), HDFailureLevelWarning, return);
 	
+	NSMutableDictionary* storeOptions = [NSMutableDictionary dictionary];
+	NSFileManager* fileManager = [NSFileManager new];
+	
+	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]])
+	{
+		[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSReadOnlyPersistentStoreOption];
+	}
+	
+	[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
+	[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSInferMappingModelAutomaticallyOption];
+
 	NSError* error = nil;
-	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
 	HDCheck(isObjectNil(error), HDFailureLevelError, return);
+}
+
+- (void)assignObjectToFirstWritableStore:(NSManagedObject*)object
+{
+	for (NSPersistentStore* store in [[self persistentStoreCoordinator] persistentStores])
+	{
+		NSNumber* isReadOnlyNumber = [[store options] objectForKey:NSReadOnlyPersistentStoreOption];
+		
+		if ((isReadOnlyNumber == nil) || ![isReadOnlyNumber boolValue])
+		{
+			[[self managedObjectContext] assignObject:object toPersistentStore:store];
+			return;
+		}
+	}
+	
+	HDFail(@"Could not find a writable persistent store to save object.", HDFailureLevelFatal);
 }
 
 - (void)saveContext
 {
 	NSError* error = nil;
 	[self saveContextWithError:&error];
-	HDCheck(isObjectNil(error), HDFailureLevelFatal, return);
+	HDAssert(isObjectNil(error), HDFailureLevelFatal);
 }
 
 - (BOOL)saveContextWithError:(NSError**)error
