@@ -161,7 +161,10 @@
 	{
 		return;
 	}
-
+	
+	[CATransaction begin];
+	[CATransaction setDisableActions:YES];
+	
 	CGSize cellSize = [self cellSize];
 	CGRect clipRect = CGContextGetClipBoundingBox(context);
 	NSUInteger minColumn = CGRectGetMinX(clipRect) / cellSize.width;
@@ -187,6 +190,8 @@
 	}
 	
 	UIGraphicsPopContext();
+	
+	[CATransaction commit];
 }
 
 @end
