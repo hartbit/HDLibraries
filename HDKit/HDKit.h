@@ -11,7 +11,7 @@
 #import	"UIDevice+HDAdditions.h"
 #import "UIImage+Alpha.h"
 #import "UIImage+HDLoading.h"
-#import "UIView+HDGeometry.h"
+#import "UIView+HDAdditions.h"
 #import "UIApplication+HDAdditions.h"
 
 #import "HDAnimatedImage.h"

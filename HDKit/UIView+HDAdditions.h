@@ -1,5 +1,5 @@
 //
-//  UIView+HDGeometry.h
+//  UIView+HDAdditions.h
 //  HDLibraries
 //
 //  Created by David Hart on 3/2/11.
@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface UIView (HDGeometry)
+@interface UIView (HDAdditions)
 
 @property (nonatomic, assign) CGPoint frameOrigin;
 @property (nonatomic, assign) CGSize frameSize;
@@ -27,6 +27,6 @@
 @property (nonatomic, assign) CGFloat boundsHeight;
 
 - (void)translate:(CGPoint)offset;
-- (void)setRotationPoint:(CGPoint)rotationPoint;
+- (UIImage*)renderToImage;
 
 @end

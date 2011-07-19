@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */; };
 		630F09ED139BD46300CCA4C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630F09EC139BD46300CCA4C5 /* UIKit.framework */; };
 		630F09F2139BD48200CCA4C5 /* HDFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630F09EF139BD48200CCA4C5 /* HDFunctions.h */; };
-		630F09F3139BD48200CCA4C5 /* UIView+HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 630F09F0139BD48200CCA4C5 /* UIView+HDGeometry.h */; };
-		630F09F4139BD48200CCA4C5 /* UIView+HDGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDGeometry.m */; };
+		630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */; };
 		6311FCEB136DC3780078D77E /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6311FCE9136DC3780078D77E /* Reachability.h */; };
 		6311FCEC136DC3780078D77E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCEA136DC3780078D77E /* Reachability.m */; };
 		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -70,13 +70,14 @@
 		639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 639BF1C81379812C00FD5A98 /* HDGeometry.h */; };
 		63A0C03D13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */; };
 		63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */; };
+		63CF1C3513D5B746000E5E7D /* HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CF1C3413D5B746000E5E7D /* HDHelper.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HDAdditions.h"; sourceTree = "<group>"; };
 		630F09EC139BD46300CCA4C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		630F09EF139BD48200CCA4C5 /* HDFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFunctions.h; sourceTree = "<group>"; };
-		630F09F0139BD48200CCA4C5 /* UIView+HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HDGeometry.h"; sourceTree = "<group>"; };
-		630F09F1139BD48200CCA4C5 /* UIView+HDGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDGeometry.m"; sourceTree = "<group>"; };
+		630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDAdditions.m"; sourceTree = "<group>"; };
 		6311FCE9136DC3780078D77E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		6311FCEA136DC3780078D77E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +148,7 @@
 		639BF1C81379812C00FD5A98 /* HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDGeometry.h; sourceTree = "<group>"; };
 		63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+HDAdditions.h"; sourceTree = "<group>"; };
 		63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+HDAdditions.m"; sourceTree = "<group>"; };
+		63CF1C3413D5B746000E5E7D /* HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,9 +213,10 @@
 		634B6A07139BD2D4007EB45A /* HDCoreAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				634B6A21139BD364007EB45A /* HDCoreAnimation.h */,
+				63CF1C3413D5B746000E5E7D /* HDHelper.h */,
 				634B6A1F139BD364007EB45A /* CALayer+HDGeometry.h */,
 				634B6A20139BD364007EB45A /* CALayer+HDGeometry.m */,
-				634B6A21139BD364007EB45A /* HDCoreAnimation.h */,
 				634B6A22139BD364007EB45A /* HDImageGridLayer.h */,
 				634B6A23139BD364007EB45A /* HDImageGridLayer.m */,
 			);
@@ -346,8 +349,8 @@
 				63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */,
 				6363D2AD134C57F2000BDCFD /* UIDevice+HDAdditions.h */,
 				6363D2AE134C57F2000BDCFD /* UIDevice+HDAdditions.m */,
-				630F09F0139BD48200CCA4C5 /* UIView+HDGeometry.h */,
-				630F09F1139BD48200CCA4C5 /* UIView+HDGeometry.m */,
+				630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */,
+				630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */,
 				6363D2AF134C57F2000BDCFD /* UIImage+Alpha.h */,
 				6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */,
 				6363D2B1134C57F2000BDCFD /* UIImage+HDLoading.h */,
@@ -402,8 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				630F09F2139BD48200CCA4C5 /* HDFunctions.h in Headers */,
-				630F09F3139BD48200CCA4C5 /* UIView+HDGeometry.h in Headers */,
 				63A0C03D13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h in Headers */,
+				630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +417,7 @@
 				634B6A24139BD364007EB45A /* CALayer+HDGeometry.h in Headers */,
 				634B6A26139BD364007EB45A /* HDCoreAnimation.h in Headers */,
 				634B6A27139BD364007EB45A /* HDImageGridLayer.h in Headers */,
+				63CF1C3513D5B746000E5E7D /* HDHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,7 +629,7 @@
 				6322DDEF136AEFBE00E8E9EF /* UIDevice+HDAdditions.m in Sources */,
 				6322DDF0136AEFBE00E8E9EF /* UIImage+Alpha.m in Sources */,
 				6322DDF1136AEFBE00E8E9EF /* UIImage+HDLoading.m in Sources */,
-				630F09F4139BD48200CCA4C5 /* UIView+HDGeometry.m in Sources */,
+				630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */,
 				63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 //
 
 #import "HDDraggableButton.h"
-#import "UIView+HDGeometry.h"
+#import "UIView+HDAdditions.h"
 #import "HDFoundation.h"
 #import "HDKitFunctions.h"
 
