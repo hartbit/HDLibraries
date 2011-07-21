@@ -26,6 +26,7 @@
 @property (nonatomic, assign) CGFloat boundsWidth;
 @property (nonatomic, assign) CGFloat boundsHeight;
 
+- (CGRect)centerFrameOfSize:(CGSize)size;
 - (void)translate:(CGPoint)offset;
 - (UIImage*)renderToImage;
 
