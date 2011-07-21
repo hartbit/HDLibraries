@@ -17,3 +17,4 @@
 #import "NSString+HDAdditions.h"
 #import "NSArray+HDAdditions.h"
 #import "NSSet+HDAdditions.h"
+#import "NSIndexPath+HDAdditions.h"

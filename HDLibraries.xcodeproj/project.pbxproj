@@ -62,6 +62,8 @@
 		6363D2CB134C5B2A000BDCFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */; };
 		6363D2CD134C5B2E000BDCFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */; };
 		6363D2CF134C5B32000BDCFD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CE134C5B32000BDCFD /* CoreData.framework */; };
+		6365E7B613D8751B00BCC434 /* NSIndexPath+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6365E7B413D8751B00BCC434 /* NSIndexPath+HDAdditions.h */; };
+		6365E7B713D8751B00BCC434 /* NSIndexPath+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365E7B513D8751B00BCC434 /* NSIndexPath+HDAdditions.m */; };
 		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
 		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
 		6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */; };
@@ -142,6 +144,8 @@
 		6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6363D2CE134C5B32000BDCFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6365E7B413D8751B00BCC434 /* NSIndexPath+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+HDAdditions.h"; sourceTree = "<group>"; };
+		6365E7B513D8751B00BCC434 /* NSIndexPath+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+HDAdditions.m"; sourceTree = "<group>"; };
 		6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDAdditions.h"; sourceTree = "<group>"; };
 		6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDAdditions.m"; sourceTree = "<group>"; };
 		6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+HDAdditions.h"; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */,
 				6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */,
 				6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */,
+				6365E7B413D8751B00BCC434 /* NSIndexPath+HDAdditions.h */,
+				6365E7B513D8751B00BCC434 /* NSIndexPath+HDAdditions.m */,
 			);
 			path = HDFoundation;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 				6385801513A174D900CE35ED /* HDMacros.h in Headers */,
 				6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */,
 				639C900613D847F5006341FD /* HDDirection.h in Headers */,
+				6365E7B613D8751B00BCC434 /* NSIndexPath+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +612,7 @@
 				6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */,
 				6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */,
 				639C900713D847F5006341FD /* HDDirection.m in Sources */,
+				6365E7B713D8751B00BCC434 /* NSIndexPath+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
