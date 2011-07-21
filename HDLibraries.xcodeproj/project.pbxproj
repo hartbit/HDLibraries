@@ -68,6 +68,8 @@
 		6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */; };
 		6385801513A174D900CE35ED /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6385801413A174D900CE35ED /* HDMacros.h */; };
 		639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 639BF1C81379812C00FD5A98 /* HDGeometry.h */; };
+		639C900613D847F5006341FD /* HDDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 639C900413D847F5006341FD /* HDDirection.h */; };
+		639C900713D847F5006341FD /* HDDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 639C900513D847F5006341FD /* HDDirection.m */; };
 		63A0C03D13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */; };
 		63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */; };
 		63CF1C3513D5B746000E5E7D /* HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CF1C3413D5B746000E5E7D /* HDHelper.h */; };
@@ -136,7 +138,7 @@
 		6363D2B0134C57F2000BDCFD /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		6363D2B1134C57F2000BDCFD /* UIImage+HDLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HDLoading.h"; sourceTree = "<group>"; };
 		6363D2B2134C57F2000BDCFD /* UIImage+HDLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HDLoading.m"; sourceTree = "<group>"; };
-		6363D2C9134C58B9000BDCFD /* HDFoundationFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundationFunctions.h; sourceTree = "<group>"; };
+		6363D2C9134C58B9000BDCFD /* HDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMath.h; sourceTree = "<group>"; };
 		6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6363D2CE134C5B32000BDCFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -146,6 +148,8 @@
 		6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HDAdditions.m"; sourceTree = "<group>"; };
 		6385801413A174D900CE35ED /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
 		639BF1C81379812C00FD5A98 /* HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDGeometry.h; sourceTree = "<group>"; };
+		639C900413D847F5006341FD /* HDDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDirection.h; sourceTree = "<group>"; };
+		639C900513D847F5006341FD /* HDDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDirection.m; sourceTree = "<group>"; };
 		63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+HDAdditions.h"; sourceTree = "<group>"; };
 		63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+HDAdditions.m"; sourceTree = "<group>"; };
 		63CF1C3413D5B746000E5E7D /* HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDHelper.h; sourceTree = "<group>"; };
@@ -317,16 +321,18 @@
 		6363D28E134C57F2000BDCFD /* HDFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				6363D294134C57F2000BDCFD /* HDFoundation.h */,
 				639BF1C81379812C00FD5A98 /* HDGeometry.h */,
 				6385801413A174D900CE35ED /* HDMacros.h */,
 				6363D28F134C57F2000BDCFD /* HDAssert.h */,
+				6363D2C9134C58B9000BDCFD /* HDMath.h */,
+				6363D295134C57F2000BDCFD /* HDTypes.h */,
+				639C900413D847F5006341FD /* HDDirection.h */,
+				639C900513D847F5006341FD /* HDDirection.m */,
 				6363D290134C57F2000BDCFD /* HDCodeLocation.h */,
 				6363D291134C57F2000BDCFD /* HDCodeLocation.m */,
 				6363D292134C57F2000BDCFD /* HDErrorHandler.h */,
 				6363D293134C57F2000BDCFD /* HDErrorHandler.m */,
-				6363D294134C57F2000BDCFD /* HDFoundation.h */,
-				6363D2C9134C58B9000BDCFD /* HDFoundationFunctions.h */,
-				6363D295134C57F2000BDCFD /* HDTypes.h */,
 				6311FCE9136DC3780078D77E /* Reachability.h */,
 				6311FCEA136DC3780078D77E /* Reachability.m */,
 				6363D296134C57F2000BDCFD /* NSMutableArray+Queue.h */,
@@ -383,6 +389,7 @@
 				639BF1CA1379812C00FD5A98 /* HDGeometry.h in Headers */,
 				6385801513A174D900CE35ED /* HDMacros.h in Headers */,
 				6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */,
+				639C900613D847F5006341FD /* HDDirection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +604,7 @@
 				6311FCEC136DC3780078D77E /* Reachability.m in Sources */,
 				6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */,
 				6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */,
+				639C900713D847F5006341FD /* HDDirection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

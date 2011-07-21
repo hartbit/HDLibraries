@@ -1,5 +1,5 @@
 //
-//  HDFunctions.h
+//  HDMath.h
 //  Gravicube
 //
 //  Created by David Hart on 4/5/11.

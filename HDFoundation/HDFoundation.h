@@ -7,10 +7,11 @@
 //
 
 #import "HDMacros.h"
+#import "HDMath.h"
 #import "HDTypes.h"
+#import "HDDirection.h"
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
-#import "HDFoundationFunctions.h"
 #import "HDGeometry.h"
 #import "NSMutableArray+Queue.h"
 #import "NSString+HDAdditions.h"
