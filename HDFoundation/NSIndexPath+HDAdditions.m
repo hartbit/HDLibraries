@@ -40,4 +40,9 @@
 	return indexes;
 }
 
+- (NSUInteger)lastIndex
+{
+	return [self indexAtPosition:[self length] - 1];
+}
+
 @end

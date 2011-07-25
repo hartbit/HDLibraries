@@ -14,5 +14,6 @@
 + (NSIndexPath*)indexPathWithIndexes:(NSArray*)indexes;
 - (NSIndexPath*)initWithIndexes:(NSArray*)indexes;
 - (NSArray*)allIndexes;
+- (NSUInteger)lastIndex;
 
 @end
