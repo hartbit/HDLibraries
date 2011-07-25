@@ -83,19 +83,26 @@ SYNTHESIZE_SINGLETON(HDModelController)
 
 - (void)addStoreWithURL:(NSURL*)storeURL
 {
-	HDCheck(isObjectNotNil(storeURL), HDFailureLevelWarning, return);
-	
-	NSMutableDictionary* storeOptions = [NSMutableDictionary dictionary];
+	BOOL readOnly = NO;
 	NSFileManager* fileManager = [NSFileManager new];
 	
 	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]])
 	{
-		[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSReadOnlyPersistentStoreOption];
+		readOnly = YES;
 	}
 	
-	[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
-	[storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSInferMappingModelAutomaticallyOption];
+	[self addStoreWithURL:storeURL readOnly:readOnly];
+}
 
+- (void)addStoreWithURL:(NSURL*)storeURL readOnly:(BOOL)readOnly
+{
+	HDCheck(isObjectNotNil(storeURL), HDFailureLevelWarning, return);
+	
+	NSDictionary* storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+								  [NSNumber numberWithBool:readOnly], NSReadOnlyPersistentStoreOption,
+								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+								  [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+	
 	NSError* error = nil;
 	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
 	HDCheck(isObjectNil(error), HDFailureLevelError, return);

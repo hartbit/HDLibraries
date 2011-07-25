@@ -19,6 +19,7 @@
 + (HDModelController*)sharedInstance;
 
 - (void)addStoreWithURL:(NSURL*)storeURL;
+- (void)addStoreWithURL:(NSURL*)storeURL readOnly:(BOOL)readOnly;
 - (void)assignObjectToFirstWritableStore:(NSManagedObject*)object;
 
 - (void)saveContext;
