@@ -25,6 +25,11 @@
 
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached
 {
+	if ([[name pathExtension] length] == 0)
+	{
+		name = [name stringByAppendingPathExtension:@"png"];
+	}
+	
 	if (cached)
 	{
 		return [UIImage imageNamed:name];
@@ -37,6 +42,11 @@
 
 + (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle
 {
+	if ([[name pathExtension] length] == 0)
+	{
+		name = [name stringByAppendingPathExtension:@"png"];
+	}
+	
 	UIScreen* screen = [UIScreen mainScreen];
 	
 	if ([screen respondsToSelector:@selector(scale)] && ([screen scale] == 2))
