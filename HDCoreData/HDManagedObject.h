@@ -15,7 +15,10 @@
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (NSSet*)fetchObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(id)stringOrPredicate, ...;
++ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate;
++ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext sortedByKey:(NSString*)key ascending:(BOOL)ascending;
++ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending;
 
 - (void)delete;
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason;

@@ -34,42 +34,45 @@
 	return object;
 }
 
-+ (NSSet*)fetchObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(id)stringOrPredicate, ...
++ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+	return [NSSet setWithArray:[self allObjectsInManagedObjectContext:managedObjectContext withPredicate:nil sortedByKey:nil ascending:NO]];
+}
+
++ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate
+{
+	return [NSSet setWithArray:[self allObjectsInManagedObjectContext:managedObjectContext withPredicate:predicate sortedByKey:nil ascending:NO]];
+}
+
++ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext sortedByKey:(NSString*)key ascending:(BOOL)ascending
+{
+	return [self allObjectsInManagedObjectContext:managedObjectContext withPredicate:nil sortedByKey:key ascending:ascending];
+}
+
++ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending
 {
 	NSFetchRequest* request = [NSFetchRequest new];
 	
 	NSEntityDescription* entity = [[self class] entityInManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	
-	if (stringOrPredicate != nil)
+	if (predicate != nil)
 	{
-		NSPredicate* predicate;
-		
-		if ([stringOrPredicate isKindOfClass:[NSString class]])
-		{
-			va_list variadicArguments;
-			va_start(variadicArguments, stringOrPredicate);
-			predicate = [NSPredicate predicateWithFormat:stringOrPredicate arguments:variadicArguments];
-			va_end(variadicArguments);
-		}
-		else
-		{
-			HDCheck(isTrue([stringOrPredicate isKindOfClass:[NSPredicate class]]), HDFailureLevelError, return nil);
-			predicate = (NSPredicate*)stringOrPredicate;
-		}
-
 		[request setPredicate:predicate];
+	}
+	
+	if (key != nil)
+	{
+		NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
+		NSArray* sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+		[request setSortDescriptors:sortDescriptors];
 	}
 	
 	NSError* error = nil;
 	NSArray* results = [managedObjectContext executeFetchRequest:request error:&error];
-
-	if (error != nil)
-	{
-		[NSException raise:NSGenericException format:[error description]];
-	}
+	HDAssert(isObjectNil(error), HDFailureLevelError);
 	
-	return [NSSet setWithArray:results];
+	return results;
 }
 
 #pragma mark - Public Methods
