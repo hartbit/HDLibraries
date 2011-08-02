@@ -1,5 +1,5 @@
 //
-//  UIImage-RawData.h
+//  UIImage-HDAdditions.h
 //  HDLibraries
 //
 //  Created by David Hart on 22/02/2011.
@@ -10,6 +10,9 @@
 
 
 @interface UIImage (HDAlpha)
+
++ (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
++ (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
 
 - (NSData*)imageData;
 

@@ -7,7 +7,7 @@
 //
 
 #import "HDAnimatedImage.h"
-#import "UIImage+HDLoading.h"
+#import "UIImage+HDAdditions.h"
 #import "HDFoundation.h"
 
 

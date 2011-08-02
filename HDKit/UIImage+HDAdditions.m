@@ -1,14 +1,15 @@
 //
-//  UIImage+HDLoading.m
+//  UIImage+HDAdditions.m
 //  HDLibraries
 //
-//  Created by David Hart on 23/02/2011.
-//  Copyright 2011 hart[dev]. All rights reserved.
+//  Created by jeff on 3/26/10.
+//  Copyright 2010 hart[dev]. All rights reserved.
 //
 
-#import "UIImage+HDLoading.h"
-#import "UIDevice+HDAdditions.h"
+#import "UIImage+HDAdditions.h"
+#import <CoreGraphics/CoreGraphics.h>
 #import "HDFoundation.h"
+#import	"UIDevice+HDAdditions.h"
 
 
 @interface UIImage ()
@@ -19,9 +20,9 @@
 @end
 
 
-@implementation UIImage (HDLoading)
+@implementation UIImage (HDAdditions)
 
-#pragma - Public Methods
+#pragma - Loading
 
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached
 {
@@ -100,5 +101,12 @@
 	
 	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
+
+#pragma - Alpha
+
+- (NSData*)imageData
+{
+	return (NSData*)objc_retainedObject(CGDataProviderCopyData(CGImageGetDataProvider([self CGImage])));
+} 
 
 @end

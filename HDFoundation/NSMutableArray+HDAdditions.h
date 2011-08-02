@@ -1,5 +1,5 @@
 //
-//  NSArray+Queue.h
+//  NSArray+HDAdditions.h
 //  HDLibraries
 //
 //  Created by David Hart on 04/03/2011.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSMutableArray (HDQueue)
+@interface NSMutableArray (HDAdditions)
 
 - (void)enqueue:(id)object;
 - (id)dequeue;

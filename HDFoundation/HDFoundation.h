@@ -12,9 +12,9 @@
 #import "HDDirection.h"
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
-#import "HDGeometry.h"
-#import "NSMutableArray+Queue.h"
+
 #import "NSString+HDAdditions.h"
 #import "NSArray+HDAdditions.h"
+#import "NSMutableArray+HDAdditions.h"
 #import "NSSet+HDAdditions.h"
 #import "NSIndexPath+HDAdditions.h"

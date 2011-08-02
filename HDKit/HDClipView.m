@@ -7,7 +7,7 @@
 //
 
 #import "HDClipView.h"
-#import "UIImage+Alpha.h"
+#import "UIImage+HDAdditions.h"
 #import <QuartzCore/QuartzCore.h>
 
 
