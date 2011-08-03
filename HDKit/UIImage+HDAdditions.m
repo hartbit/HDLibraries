@@ -111,96 +111,93 @@
 
 #pragma mark - Orientation
 
-- (UIImage*)imageWithOrientation:(UIImageOrientation)orientation 
+- (UIImage*)imageWithOrientation:(UIImageOrientation)orientation
 {
-	CGImageRef cgImage = [self CGImage];
-	CGFloat width = CGImageGetWidth(cgImage);
-	CGFloat height = CGImageGetHeight(cgImage);
-	CGAffineTransform transform = CGAffineTransformIdentity;  
-	CGRect bounds = CGRectMake(0, 0, width, height);
-	
-	CGSize imageSize = [self size];
-    CGFloat boundHeight;
+	CGSize size = [self size];
+	CGRect bounds = CGRectMake(0, 0, size.width, size.height);
 
-    switch (orientation)
+	if ((orientation == UIImageOrientationLeft) || (orientation == UIImageOrientationRight) ||
+		(orientation == UIImageOrientationLeftMirrored) || (orientation == UIImageOrientationRightMirrored))
+	{
+		CGFloat oldHeight = bounds.size.height;  
+		bounds.size.height = bounds.size.width;  
+		bounds.size.width = oldHeight;
+	}
+	
+	CGAffineTransform transform = CGAffineTransformIdentity;
+	
+	switch (orientation)
 	{
 		case UIImageOrientationUp:
-			transform = CGAffineTransformIdentity;  
-			break;  
-
+			transform = CGAffineTransformIdentity;
+			break;
+			
 		case UIImageOrientationUpMirrored:
-			transform = CGAffineTransformMakeTranslation(width, 0);
+			transform = CGAffineTransformMakeTranslation(size.width, 0);
 			transform = CGAffineTransformScale(transform, -1, 1);
-			break;  
+			break;
 			
 		case UIImageOrientationDown:
-			transform = CGAffineTransformMakeTranslation(width, height);
+			transform = CGAffineTransformMakeTranslation(size.width, size.height);
 			transform = CGAffineTransformRotate(transform, M_PI);
-			break;  
+			break;
 			
 		case UIImageOrientationDownMirrored:
-			transform = CGAffineTransformMakeTranslation(0, height);  
-			transform = CGAffineTransformScale(transform, 1, -1); 
-			break;  
+			transform = CGAffineTransformMakeTranslation(0, size.height);
+			transform = CGAffineTransformScale(transform, 1, -1);
+			break;
 			
 		case UIImageOrientationLeftMirrored:
-			boundHeight = bounds.size.height;  
-			bounds.size.height = bounds.size.width;  
-			bounds.size.width = boundHeight;  
-			transform = CGAffineTransformMakeTranslation(height, width);  
-			transform = CGAffineTransformScale(transform, -1, 1);  
-			transform = CGAffineTransformRotate(transform, 3 * M_PI / 2);  
-			break;  
+			transform = CGAffineTransformMakeTranslation(size.height, size.width);
+			transform = CGAffineTransformScale(transform, -1, 1);
+			transform = CGAffineTransformRotate(transform, 3 * M_PI / 2);
+			break;
 			
-		case UIImageOrientationLeft: //EXIF = 6  
-			boundHeight = bounds.size.height;  
-			bounds.size.height = bounds.size.width;  
-			bounds.size.width = boundHeight;  
-			transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);  
-			transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);  
-			break;  
-
-		case UIImageOrientationRightMirrored: //EXIF = 7  
-			boundHeight = bounds.size.height;  
-			bounds.size.height = bounds.size.width;  
-			bounds.size.width = boundHeight;  
-			transform = CGAffineTransformMakeScale(-1.0, 1.0);  
-			transform = CGAffineTransformRotate(transform, M_PI / 2.0);  
-			break;  
+		case UIImageOrientationLeft:
+			transform = CGAffineTransformMakeTranslation(0, size.width);
+			transform = CGAffineTransformRotate(transform, 3 * M_PI / 2);
+			break;
 			
-		case UIImageOrientationRight: //EXIF = 8  
-			boundHeight = bounds.size.height;  
-			bounds.size.height = bounds.size.width;  
-			bounds.size.width = boundHeight;  
-			transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);  
-			transform = CGAffineTransformRotate(transform, M_PI / 2.0);  
-			break;  
+		case UIImageOrientationRightMirrored:
+			transform = CGAffineTransformMakeScale(-1, 1);
+			transform = CGAffineTransformRotate(transform, M_PI / 2);
+			break;
+			
+		case UIImageOrientationRight:
+			transform = CGAffineTransformMakeTranslation(size.height, 0);
+			transform = CGAffineTransformRotate(transform, M_PI / 2);
+			break;
 
-		default:  
+		default:
 			[NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
 	}
 	
 	UIGraphicsBeginImageContext(bounds.size);
-	CGContextRef context = UIGraphicsGetCurrentContext();  
-
-	if ((orientation == UIImageOrientationLeft) || (orientation == UIImageOrientationRight))
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	if (orientation == UIImageOrientationRight || orientation == UIImageOrientationLeft)
 	{
 		CGContextScaleCTM(context, -1, 1);
-        CGContextTranslateCTM(context, -height, 0);  
-    }  
-    else
-	{  
+		CGContextTranslateCTM(context, -size.height, 0);
+	}
+	else if (orientation == UIImageOrientationRightMirrored || orientation == UIImageOrientationLeftMirrored)
+	{
 		CGContextScaleCTM(context, 1, -1);
-		CGContextTranslateCTM(context, 0, -height);
-	}  
-
-	CGContextConcatCTM(context, transform);  
-	CGContextDrawImage(context, bounds, cgImage);
-
+		CGContextTranslateCTM(context, 0, -size.height * 2);
+	}
+	else
+	{
+		CGContextScaleCTM(context, 1, -1);
+		CGContextTranslateCTM(context, 0, -size.height);
+	}
+	
+	CGContextConcatCTM(context, transform);
+	CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height), [self CGImage]);
+	
 	UIImage* orientedImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
 	return orientedImage;  
-}  
+}
 
 @end
