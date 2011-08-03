@@ -7,15 +7,17 @@
 //
 
 #import	<Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
 
 
-@interface HDTenderManager : NSObject
+@interface HDTenderManager : NSObject <RKRequestDelegate>
 
 + (HDTenderManager*)sharedInstance;
 
 @property (nonatomic, copy) NSString* username;
 @property (nonatomic, copy) NSString* password;
+@property (nonatomic, copy) NSString* domain;
 
-- (void)createDiscussionWithEmail:(NSString*)email title:(NSString*)title message:(NSString*)message isPublic:(BOOL)isPublic;
+- (void)createDiscussionInCategory:(NSUInteger)categoryId from:(NSString*)authorName withEmail:(NSString*)authorEmail title:(NSString*)title body:(NSString*)body isPublic:(BOOL)isPublic;
 
 @end
