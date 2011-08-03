@@ -15,5 +15,6 @@
 + (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
 
 - (NSData*)imageData;
+- (UIImage*)imageWithOrientation:(UIImageOrientation)orientation;
 
 @end
