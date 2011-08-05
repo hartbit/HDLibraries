@@ -179,12 +179,12 @@
 	{
 		CGContextScaleCTM(context, -1, 1);
 		CGContextTranslateCTM(context, -size.height, 0);
-	}
+	}/*
 	else if (orientation == UIImageOrientationRightMirrored || orientation == UIImageOrientationLeftMirrored)
 	{
 		CGContextScaleCTM(context, 1, -1);
 		CGContextTranslateCTM(context, 0, -size.height * 2);
-	}
+	}*/
 	else
 	{
 		CGContextScaleCTM(context, 1, -1);

@@ -81,6 +81,8 @@
 		63B5F03A13E849BD00D1185F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B5F03713E849BC00D1185F /* MobileCoreServices.framework */; };
 		63B5F03B13E849BD00D1185F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B5F03813E849BC00D1185F /* SystemConfiguration.framework */; };
 		63CF1C3513D5B746000E5E7D /* HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CF1C3413D5B746000E5E7D /* HDHelper.h */; };
+		63F5FF9613EBF5BB004D30FF /* HDMatrixControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 63F5FF9413EBF5BB004D30FF /* HDMatrixControl.h */; };
+		63F5FF9713EBF5BB004D30FF /* HDMatrixControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +289,8 @@
 		63B5F03713E849BC00D1185F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		63B5F03813E849BC00D1185F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		63CF1C3413D5B746000E5E7D /* HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDHelper.h; sourceTree = "<group>"; };
+		63F5FF9413EBF5BB004D30FF /* HDMatrixControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMatrixControl.h; sourceTree = "<group>"; };
+		63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMatrixControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +528,8 @@
 				6363D2A2134C57F2000BDCFD /* HDDrawableView.m */,
 				6363D2A3134C57F2000BDCFD /* HDErasableImage.h */,
 				6363D2A4134C57F2000BDCFD /* HDErasableImage.m */,
+				63F5FF9413EBF5BB004D30FF /* HDMatrixControl.h */,
+				63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */,
 			);
 			path = HDKit;
 			sourceTree = "<group>";
@@ -592,6 +598,7 @@
 			files = (
 				63A0C03D13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h in Headers */,
 				630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */,
+				63F5FF9613EBF5BB004D30FF /* HDMatrixControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,6 +943,7 @@
 				6322DDF0136AEFBE00E8E9EF /* UIImage+HDAdditions.m in Sources */,
 				630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */,
 				63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */,
+				63F5FF9713EBF5BB004D30FF /* HDMatrixControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

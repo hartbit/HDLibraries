@@ -18,3 +18,4 @@
 #import "HDDraggableButton.h"
 #import "HDDrawableView.h"
 #import "HDErasableImage.h"
+#import "HDMatrixControl.h"
