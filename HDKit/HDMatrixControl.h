@@ -14,7 +14,7 @@
 @property (nonatomic, assign) NSUInteger numberOfColumns;
 @property (nonatomic, assign) NSUInteger numberOfRows;
 
-- (id)buttonAtColumn:(NSUInteger)column row:(NSUInteger)row;
-
+- (void)setTitle:(NSString*)title forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
+- (void)setImage:(UIImage*)image forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
 
 @end

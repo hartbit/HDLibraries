@@ -18,6 +18,7 @@
 - (void)updateButtons;
 - (void)updateButtonCount;
 - (void)updateButtonProperties;
+- (UIButton*)buttonAtColumn:(NSUInteger)column row:(NSUInteger)row;
 - (void)selectButton:(UIButton*)selectedButton;
 - (void)touchDownAction:(UIButton*)button;
 - (void)touchUpInsideAction:(UIButton*)button;
@@ -93,10 +94,14 @@
 
 #pragma mark - Public Methods
 
-- (id)buttonAtColumn:(NSUInteger)column row:(NSUInteger)row
+- (void)setTitle:(NSString*)title forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row
 {
-	NSUInteger index = row * [self numberOfColumns] + column;
-	return [[self buttons] objectAtIndex:index];
+	[[self buttonAtColumn:column row:row] setTitle:title forState:UIControlStateNormal];
+}
+
+- (void)setImage:(UIImage*)image forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row
+{
+	[[self buttonAtColumn:column row:row] setImage:image forState:UIControlStateNormal];
 }
 
 #pragma mark - Private Methods
@@ -163,6 +168,12 @@
 	{
 		[self selectButton:[[self buttons] objectAtIndex:0]];
 	}
+}
+
+- (id)buttonAtColumn:(NSUInteger)column row:(NSUInteger)row
+{
+	NSUInteger index = row * [self numberOfColumns] + column;
+	return [[self buttons] objectAtIndex:index];
 }
 
 - (void)selectButton:(UIButton*)selectedButton
