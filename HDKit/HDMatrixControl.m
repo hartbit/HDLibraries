@@ -13,6 +13,8 @@
 
 @interface HDMatrixControl ()
 
+@property (nonatomic, assign) NSUInteger selectedColumn;
+@property (nonatomic, assign) NSUInteger selectedRow;
 @property (nonatomic, strong) NSMutableArray* buttons;
 @property (nonatomic, strong) NSMutableArray* dividers;
 @property (nonatomic, strong) UIImage* normalBackgroundImage;
@@ -44,6 +46,8 @@
 @synthesize numberOfRows = _numberOfRows;
 @synthesize verticalDividerImage = _verticalDividerImage;
 @synthesize horizontalDividerImage = _horizontalDividerImage;
+@synthesize selectedColumn = _selectedColumn;
+@synthesize selectedRow = _selectedRow;
 @synthesize buttons = _buttons;
 @synthesize dividers = _dividers;
 @synthesize normalBackgroundImage = _normalBackgroundImage;
@@ -220,6 +224,9 @@
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchUpOutside];
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchDragOutside];
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchDragInside];
+//			[button setImageEdgeInsets:UIEdgeInsetsMake(30, 43, 56, 43)];
+//			[button setTitleEdgeInsets:UIEdgeInsetsMake(55, 0, 20, 0)];
+//			[button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
 		
 			[[self buttons] addObject:button];
 			[self addSubview:button];
@@ -428,13 +435,25 @@
 
 - (void)selectButton:(UIButton*)selectedButton
 {
-	for (UIButton* button in [self buttons])
+	for (NSUInteger row = 0; row < [self numberOfRows]; row++)
 	{
-		[button setHighlighted:NO];
-		[button setSelected:NO];
+		for (NSUInteger column = 0; column < [self numberOfColumns]; column++)
+		{
+			UIButton* button = [self buttonAtColumn:column row:row];
+			[button setHighlighted:NO];
+		
+			if (button == selectedButton)
+			{
+				[self setSelectedColumn:column];
+				[self setSelectedRow:row];
+				[button setSelected:YES];
+			}
+			else
+			{
+				[button setSelected:NO];
+			}
+		}
 	}
-	
-	[selectedButton setSelected:YES];
 }
 
 - (void)touchDownAction:(UIButton*)button

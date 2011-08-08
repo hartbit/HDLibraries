@@ -15,6 +15,8 @@
 @property (nonatomic, assign) NSUInteger numberOfRows;
 @property (nonatomic, strong) UIImage* verticalDividerImage;
 @property (nonatomic, strong) UIImage* horizontalDividerImage;
+@property (nonatomic, assign, readonly) NSUInteger selectedColumn;
+@property (nonatomic, assign, readonly) NSUInteger selectedRow;
 
 - (NSString*)titleForSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
 - (void)setTitle:(NSString*)title forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
