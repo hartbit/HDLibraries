@@ -13,8 +13,16 @@
 
 @property (nonatomic, assign) NSUInteger numberOfColumns;
 @property (nonatomic, assign) NSUInteger numberOfRows;
+@property (nonatomic, strong) UIImage* verticalDividerImage;
+@property (nonatomic, strong) UIImage* horizontalDividerImage;
 
+- (NSString*)titleForSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
 - (void)setTitle:(NSString*)title forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
+
+- (UIImage*)imageForSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
 - (void)setImage:(UIImage*)image forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
+
+- (UIImage*)backgroundImageForState:(UIControlState)state;
+- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
 
 @end
