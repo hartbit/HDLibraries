@@ -224,9 +224,6 @@
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchUpOutside];
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchDragOutside];
 			[button addTarget:self action:@selector(otherTouchesAction:) forControlEvents:UIControlEventTouchDragInside];
-//			[button setImageEdgeInsets:UIEdgeInsetsMake(30, 43, 56, 43)];
-//			[button setTitleEdgeInsets:UIEdgeInsetsMake(55, 0, 20, 0)];
-//			[button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
 		
 			[[self buttons] addObject:button];
 			[self addSubview:button];
