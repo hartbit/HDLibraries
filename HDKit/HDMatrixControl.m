@@ -372,15 +372,14 @@
 	CGSize buttonSize = [self buttonSize];
 	UIGraphicsBeginImageContextWithOptions(buttonSize, NO, 0.0);
 	
-	UIEdgeInsets capInsets = [image capInsets];
 	CGFloat leftWithLeftCap = 0;
-	CGFloat leftWithoutLeftCap = -capInsets.left;
+	CGFloat leftWithoutLeftCap = -[image leftCapWidth];
 	CGFloat topWithTopCap = 0;
-	CGFloat topWithoutTopCap = -capInsets.top;
+	CGFloat topWithoutTopCap = -[image topCapHeight];
 	CGFloat rightWithRightCap = buttonSize.width;
-	CGFloat rightWithoutRightCap = buttonSize.width + capInsets.right;
+	CGFloat rightWithoutRightCap = buttonSize.width + [image leftCapWidth];
 	CGFloat bottomWithBottomCap = buttonSize.height;
-	CGFloat bottomWithoutBottomCap = buttonSize.height + capInsets.bottom;
+	CGFloat bottomWithoutBottomCap = buttonSize.height + [image topCapHeight];
 	
 	NSUInteger maxColumn = [self numberOfColumns] - 1;
 	NSUInteger maxRow = [self numberOfRows] - 1;
