@@ -10,19 +10,21 @@
 #import "UIView+HDAdditions.h"
 
 
+CGFloat const kPlaceholderLabelMargin = 8;
+
+
 @interface HDPlaceholderTextView ()
 
 @property (nonatomic, retain) UILabel* placeholderLabel;
 
 - (void)initialize;
-- (void)textDidChange:(NSNotification*)notification;
+- (void)updatePlaceholderLabel;
 
 @end
 
 
 @implementation HDPlaceholderTextView
 
-@synthesize placeholder = _placeholder;
 @synthesize placeholderLabel = _placeholderLabel;
 
 #pragma mark - Lifecycle
@@ -59,8 +61,7 @@
 
 - (void)initialize
 {
-	[self setPlaceholder:@""];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextViewTextDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlaceholderLabel) name:UITextViewTextDidChangeNotification object:nil];
 }
 
 - (void)dealloc
@@ -70,13 +71,27 @@
 
 #pragma mark - Properties
 
-- (UILabel*)placeholderLabel
+- (NSString*)placeholder
 {
-	CGFloat const kMargin = 8;
+	return [[self placeholderLabel] text];
+}
+
+- (void)setPlaceholder:(NSString*)placeholder
+{	
+	[[self placeholderLabel] setText:placeholder];
 	
+	CGFloat contrainedWidth = [self boundsWidth] - 2 * kPlaceholderLabelMargin;
+	CGFloat contrainedHeight = [self boundsHeight] - 2 * kPlaceholderLabelMargin;
+	CGSize contrainedSize = CGSizeMake(contrainedWidth, contrainedHeight);
+	CGSize placeholderSize = [placeholder sizeWithFont:[self font] constrainedToSize:contrainedSize];
+	[[self placeholderLabel] setFrameSize:placeholderSize];
+}
+
+- (UILabel*)placeholderLabel
+{	
 	if (_placeholderLabel == nil)
 	{
-		CGRect frame = CGRectMake(kMargin, kMargin, [self boundsWidth] - 2 * kMargin, 0);
+		CGRect frame = CGRectMake(kPlaceholderLabelMargin, kPlaceholderLabelMargin, 0, 0);
 		UILabel* placeholderLabel = [[UILabel alloc] initWithFrame:frame];
 		[placeholderLabel setLineBreakMode:UILineBreakModeWordWrap];
 		[placeholderLabel setNumberOfLines:0];
@@ -86,6 +101,8 @@
 
 		[self addSubview:placeholderLabel];
 		[self setPlaceholderLabel:placeholderLabel];
+		
+		[self updatePlaceholderLabel];
 	}
 	
 	return _placeholderLabel;
@@ -93,13 +110,8 @@
 
 #pragma mark - Private Methods
 
-- (void)textDidChange:(NSNotification*)notification
+- (void)updatePlaceholderLabel
 {
-	if ([[self placeholder] length] == 0)
-    {
-		return;
-	}
-
 	BOOL isTextViewEmpty = [[self text] length] == 0;
 	[[self placeholderLabel] setHidden:!isTextViewEmpty];
 }
