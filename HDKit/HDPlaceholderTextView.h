@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface HDPlaceholderTextView : UITextView
+
+@property (nonatomic, copy) NSString* placeholder;
 
 @end

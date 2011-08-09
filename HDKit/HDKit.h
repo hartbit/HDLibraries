@@ -19,3 +19,4 @@
 #import "HDDrawableView.h"
 #import "HDErasableImage.h"
 #import "HDMatrixControl.h"
+#import "HDPlaceholderTextView.h"
