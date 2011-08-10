@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString* username;
 @property (nonatomic, copy) NSString* password;
 @property (nonatomic, copy) NSString* domain;
+@property (nonatomic, assign, readonly) BOOL isNetworkAvailable;
 
 - (void)createDiscussionInCategory:(NSUInteger)categoryId from:(NSString*)authorName withEmail:(NSString*)authorEmail title:(NSString*)title body:(NSString*)body isPublic:(BOOL)isPublic;
 

@@ -24,6 +24,8 @@ NSString* const HDTenderSkipSpamParam = @"skip_spam";
 
 @property (nonatomic, strong) RKClient* tenderClient;
 
+- (void)attemptToConnect;
+
 @end
 
 
@@ -38,6 +40,38 @@ SYNTHESIZE_SINGLETON(HDTenderManager);
 
 #pragma mark - Properties
 
+- (void)setUsername:(NSString*)username
+{
+	if (username != _username)
+	{
+		_username = username;
+		[self attemptToConnect];
+	}
+}
+
+- (void)setPassword:(NSString*)password
+{
+	if (password != _password)
+	{
+		_password = password;
+		[self attemptToConnect];
+	}
+}
+
+- (void)setDomain:(NSString*)domain
+{
+	if (domain != _domain)
+	{
+		_domain = domain;
+		[self attemptToConnect];
+	}
+}
+
+- (BOOL)isNetworkAvailable
+{
+	return [[self tenderClient] isNetworkAvailable];
+}
+
 - (RKClient*)tenderClient
 {
 	if (_tenderClient == nil)
@@ -50,6 +84,7 @@ SYNTHESIZE_SINGLETON(HDTenderManager);
 		RKClient* tenderClient = [RKClient clientWithBaseURL:baseURL username:[self username] password:[self password]];
 		[tenderClient setForceBasicAuthentication:YES];
 		[tenderClient setValue:@"application/vnd.tender-v1+json" forHTTPHeaderField:@"Accept"];
+		[tenderClient setServiceUnavailableAlertEnabled:YES];
 		 
 		[self setTenderClient:tenderClient];
 	}
@@ -74,14 +109,26 @@ SYNTHESIZE_SINGLETON(HDTenderManager);
 	[[self tenderClient] post:resourcePath params:params delegate:self];
 }
 
+#pragma mark - RKRequestDelegate Methods
+
 - (void)request:(RKRequest*)request didFailLoadWithError:(NSError*)error
 {
-	HDFail([error localizedDescription], HDFailureLevelError);
+	NSLog(@"%@", [error localizedDescription]);
 }
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
 {
 	NSLog(@"Status %i\n%@", [response statusCode], [response bodyAsString]);
+}
+
+#pragma mark - Private Methods
+
+- (void)attemptToConnect
+{
+	if (([self username] != nil) && ([self password] != nil) && ([self domain] != nil))
+	{
+		[self isNetworkAvailable];
+	}
 }
 
 @end
