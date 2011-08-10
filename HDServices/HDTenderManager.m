@@ -94,7 +94,13 @@ SYNTHESIZE_SINGLETON(HDTenderManager);
 
 #pragma marl - Public Methods
 
-- (void)createDiscussionInCategory:(NSUInteger)categoryId from:(NSString*)authorName withEmail:(NSString*)authorEmail title:(NSString*)title body:(NSString*)body isPublic:(BOOL)isPublic
+- (void)createDiscussionInCategory:(NSUInteger)categoryId
+							  from:(NSString*)authorName
+						 withEmail:(NSString*)authorEmail
+							 title:(NSString*)title
+							  body:(NSString*)body
+						  isPublic:(BOOL)isPublic
+						  delegate:(NSObject<RKRequestDelegate>*)delegate
 {
 	NSDictionary* paramsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 									  authorName,							HDTenderAuthorNameParam,
@@ -106,19 +112,7 @@ SYNTHESIZE_SINGLETON(HDTenderManager);
 
 	NSString* resourcePath = [NSString stringWithFormat:@"/categories/%i/discussions", categoryId];
 	RKRequestSerialization* params = [RKRequestSerialization serializationWithData:[paramsDictionary JSONData] MIMEType:@"application/json"];
-	[[self tenderClient] post:resourcePath params:params delegate:self];
-}
-
-#pragma mark - RKRequestDelegate Methods
-
-- (void)request:(RKRequest*)request didFailLoadWithError:(NSError*)error
-{
-	NSLog(@"%@", [error localizedDescription]);
-}
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
-{
-	NSLog(@"Status %i\n%@", [response statusCode], [response bodyAsString]);
+	[[self tenderClient] post:resourcePath params:params delegate:delegate];
 }
 
 #pragma mark - Private Methods
