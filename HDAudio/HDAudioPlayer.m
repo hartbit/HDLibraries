@@ -14,9 +14,8 @@
 
 @property (nonatomic, strong) NSMutableArray* sfxPlayers;
 @property (nonatomic, strong) NSMutableArray* sfxInvocations;
-@property (nonatomic, strong) AVAudioPlayer* ambiancePlayer;
-@property (nonatomic, strong) AVAudioPlayer* voicePlayer;
-@property (nonatomic, strong) NSInvocation* voiceInvocation;
+@property (nonatomic, strong) AVAudioPlayer* musicPlayer;
+@property (nonatomic, strong) NSInvocation* musicInvocation;
 
 - (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;
@@ -29,9 +28,8 @@
 
 @synthesize sfxPlayers = _sfxPlayers;
 @synthesize sfxInvocations = _sfxInvocations;
-@synthesize ambiancePlayer = _ambiancePlayer;
-@synthesize voicePlayer = _voicePlayer;
-@synthesize voiceInvocation = _voiceInvocation;
+@synthesize musicPlayer = _musicPlayer;
+@synthesize musicInvocation = _musicInvocation;
 
 #pragma mark -
 #pragma mark Initializing Methods
@@ -61,24 +59,6 @@
 
 #pragma mark -
 #pragma mark Public Methods
-
-- (void)playAmbiance:(NSString*)ambianceName
-{
-	HDCheck(isObjectNotNil(ambianceName), HDFailureLevelWarning, return);
-	
-	[self stopAmbiance];
-	[self setAmbiancePlayer:[self audioPlayerWithName:ambianceName andType:@"caf"]];
-	
-	[[self ambiancePlayer] setNumberOfLoops:-1];
-	[[self ambiancePlayer] setVolume:0.15];
-	[[self ambiancePlayer] play];
-}
-
-- (void)stopAmbiance
-{
-	[[self ambiancePlayer] stop];
-	[self setAmbiancePlayer:nil];
-}
 
 - (void)playSfx:(NSString*)sfxName
 {
@@ -117,57 +97,57 @@
 	[[self sfxInvocations] removeAllObjects];
 }
 
-- (void)playVoice:(NSString*)voiceName
+- (void)playMusic:(NSString*)musicName
 {
-	[self playVoice:voiceName target:nil action:NULL withObject:nil];
+	[self playMusic:musicName target:nil action:NULL withObject:nil];
 }
 
-- (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector
+- (void)playMusic:(NSString*)musicName looping:(BOOL)looping
 {
-	[self playVoice:voiceName target:target action:selector withObject:nil];
+	HDCheck(isObjectNotNil(musicName), HDFailureLevelWarning, return);
+	
+	AVAudioPlayer* musicPlayer = [self audioPlayerWithName:musicName andType:@"m4a"];
+	HDCheck(isObjectNotNil(musicPlayer), HDFailureLevelWarning, return);
+	
+	[self stopMusic];
+	[self setMusicPlayer:musicPlayer];
+	
+	[musicPlayer setNumberOfLoops:looping ? -1 : 0];
+	[musicPlayer play];
 }
 
-- (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector withObject:(id)object
+- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector
 {
-	HDCheck(isObjectNotNil(voiceName), HDFailureLevelWarning, return);
-	
-	AVAudioPlayer* voicePlayer = [self audioPlayerWithName:voiceName andType:@"m4a"];
-	HDCheck(isObjectNotNil(voicePlayer), HDFailureLevelWarning, return);
-	
-	[self stopVoice];
-	[self setVoicePlayer:voicePlayer];
-	[self setVoiceInvocation:[self invocationForTarget:target andSelector:selector withObject:object]];
-	
-	[voicePlayer play];
+	[self playMusic:musicName target:target action:selector withObject:nil];
 }
 
-- (void)stopVoice
+- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector withObject:(id)object
 {
-	[[self voicePlayer] setDelegate:nil];
-	[[self voicePlayer] stop];
+	[self playMusic:musicName looping:NO];
+	[self setMusicInvocation:[self invocationForTarget:target andSelector:selector withObject:object]];
+}
+
+- (void)stopMusic
+{
+	[[self musicPlayer] setDelegate:nil];
+	[[self musicPlayer] stop];
 	
-	[self setVoicePlayer:nil];
-	[self setVoiceInvocation:nil];
+	[self setMusicPlayer:nil];
+	[self setMusicInvocation:nil];
 }
 
 - (void)stopAllSounds
 {
-	[self stopAmbiance];
 	[self stopAllSfx];
-	[self stopVoice];
+	[self stopMusic];
 }
 
 #pragma mark -
 #pragma mark Properties
 
-- (BOOL)ambianceIsPlaying
+- (BOOL)musicIsPlaying
 {
-	return [[self ambiancePlayer] isPlaying];
-}
-
-- (BOOL)voiceIsPlaying
-{
-	return [[self voicePlayer] isPlaying];
+	return [[self musicPlayer] isPlaying];
 }
 
 #pragma mark -
@@ -175,10 +155,10 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
-	if (player == [self voicePlayer])
+	if (player == [self musicPlayer])
 	{
-		NSInvocation* invocation = [[self voiceInvocation] retain];
-		[self stopVoice];
+		NSInvocation* invocation = [[self musicInvocation] retain];
+		[self stopMusic];
 		[invocation invoke];
 		[invocation release];
 	}

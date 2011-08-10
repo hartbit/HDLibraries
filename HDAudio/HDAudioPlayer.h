@@ -12,23 +12,20 @@
 
 @interface HDAudioPlayer : NSObject <AVAudioPlayerDelegate>
 
-@property (nonatomic, readonly, getter=ambianceIsPlaying) BOOL ambiancePlaying;
-@property (nonatomic, readonly, getter=voiceIsPlaying) BOOL voicePlaying;
+@property (nonatomic, readonly, getter=musicIsPlaying) BOOL musicPlaying;
 
 + (HDAudioPlayer*)sharedInstance;
-
-- (void)playAmbiance:(NSString*)ambianceName;
-- (void)stopAmbiance;
 
 - (void)playSfx:(NSString*)sfxName;
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector;
 - (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object;
 
-- (void)playVoice:(NSString*)voiceName;
-- (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector;
-- (void)playVoice:(NSString*)voiceName target:(id)target action:(SEL)selector withObject:(id)object;
+- (void)playMusic:(NSString*)musicName;
+- (void)playMusic:(NSString*)musicName looping:(BOOL)looping;
+- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector;
+- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector withObject:(id)object;
 
-- (void)stopVoice;
+- (void)stopMusic;
 - (void)stopAllSfx;
 - (void)stopAllSounds;
 
