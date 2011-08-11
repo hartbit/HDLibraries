@@ -62,10 +62,6 @@
 		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
 		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
 		6375C66413E9670500CEE9C7 /* HDServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 6375C66313E9670500CEE9C7 /* HDServices.h */; };
-		6375C67213E9688B00CEE9C7 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375C65813E965F500CEE9C7 /* libRestKitJSONParserJSONKit.a */; };
-		6375C67313E9688B00CEE9C7 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375C64C13E965F500CEE9C7 /* libRestKitNetwork.a */; };
-		6375C67413E9688B00CEE9C7 /* libRestKitObjectMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375C64E13E965F500CEE9C7 /* libRestKitObjectMapping.a */; };
-		6375C67513E9688B00CEE9C7 /* libRestKitSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375C65013E965F500CEE9C7 /* libRestKitSupport.a */; };
 		6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */; };
 		6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */; };
 		6385801513A174D900CE35ED /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6385801413A174D900CE35ED /* HDMacros.h */; };
@@ -164,13 +160,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3F6C39A510FE5C95008F47C5;
 			remoteInfo = UISpec;
-		};
-		6375C66513E9673A00CEE9C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
-			remoteInfo = RestKit;
 		};
 		6375C66713E9673F00CEE9C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -357,10 +346,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6375C67213E9688B00CEE9C7 /* libRestKitJSONParserJSONKit.a in Frameworks */,
-				6375C67313E9688B00CEE9C7 /* libRestKitNetwork.a in Frameworks */,
-				6375C67413E9688B00CEE9C7 /* libRestKitObjectMapping.a in Frameworks */,
-				6375C67513E9688B00CEE9C7 /* libRestKitSupport.a in Frameworks */,
 				63B5F03913E849BD00D1185F /* CFNetwork.framework in Frameworks */,
 				63B5F03A13E849BD00D1185F /* MobileCoreServices.framework in Frameworks */,
 				63B5F03B13E849BD00D1185F /* SystemConfiguration.framework in Frameworks */,
@@ -751,7 +736,6 @@
 			);
 			dependencies = (
 				6375C67013E9674F00CEE9C7 /* PBXTargetDependency */,
-				6375C66613E9673A00CEE9C7 /* PBXTargetDependency */,
 			);
 			name = HDServices;
 			productName = HDKit;
@@ -997,11 +981,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6375C66613E9673A00CEE9C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RestKit;
-			targetProxy = 6375C66513E9673A00CEE9C7 /* PBXContainerItemProxy */;
-		};
 		6375C66813E9673F00CEE9C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6322DDA3136AEE6B00E8E9EF /* HDFoundation */;
@@ -1215,7 +1194,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1239,7 +1217,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
