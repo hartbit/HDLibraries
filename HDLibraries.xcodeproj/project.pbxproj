@@ -84,6 +84,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		631D54DB13F3E9CA00836065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
+			remoteInfo = RestKit;
+		};
 		6375C64B13E965F500CEE9C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
@@ -735,6 +742,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				631D54DC13F3E9CA00836065 /* PBXTargetDependency */,
 				6375C67013E9674F00CEE9C7 /* PBXTargetDependency */,
 			);
 			name = HDServices;
@@ -981,6 +989,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		631D54DC13F3E9CA00836065 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 631D54DB13F3E9CA00836065 /* PBXContainerItemProxy */;
+		};
 		6375C66813E9673F00CEE9C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6322DDA3136AEE6B00E8E9EF /* HDFoundation */;
@@ -1181,8 +1194,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1207,8 +1220,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
