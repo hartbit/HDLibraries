@@ -1198,27 +1198,13 @@
 			};
 			name = Release;
 		};
-		634B6A1A139BD2F1007EB45A /* AdHoc */ = {
+		6363D274134C56ED000BDCFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DSTROOT = /tmp/HDCoreAnimation.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = HDCoreAnimation;
-			};
-			name = AdHoc;
-		};
-		6363D274134C56ED000BDCFD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -1227,9 +1213,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1242,15 +1228,18 @@
 		6363D275134C56ED000BDCFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1334,131 +1323,6 @@
 			};
 			name = Release;
 		};
-		63B5EFF513E8410C00D1185F /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DSTROOT = /tmp/HDServices.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = HDServices;
-			};
-			name = AdHoc;
-		};
-		63CAFABE136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = AdHoc;
-		};
-		63CAFABF136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DSTROOT = /tmp/HDLibraries.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = AdHoc;
-		};
-		63CAFAC0136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DSTROOT = /tmp/HDCoreData.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = AdHoc;
-		};
-		63CAFAC1136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				DSTROOT = /tmp/HDAudio.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = AdHoc;
-		};
-		63CAFAC2136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DSTROOT = /tmp/HDKit.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = AdHoc;
-		};
-		63CAFAC3136E164C00D65C24 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
-				INFOPLIST_FILE = Tests/Support/Info.plist;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = AdHoc;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1467,7 +1331,6 @@
 			buildConfigurations = (
 				6322DDA9136AEE6B00E8E9EF /* Debug */,
 				6322DDAA136AEE6B00E8E9EF /* Release */,
-				63CAFABF136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1477,7 +1340,6 @@
 			buildConfigurations = (
 				6322DDCA136AEF4800E8E9EF /* Debug */,
 				6322DDCB136AEF4800E8E9EF /* Release */,
-				63CAFAC0136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1487,7 +1349,6 @@
 			buildConfigurations = (
 				6322DDD8136AEF9600E8E9EF /* Debug */,
 				6322DDD9136AEF9600E8E9EF /* Release */,
-				63CAFAC1136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1497,7 +1358,6 @@
 			buildConfigurations = (
 				6322DDE5136AEFA400E8E9EF /* Debug */,
 				6322DDE6136AEFA400E8E9EF /* Release */,
-				63CAFAC2136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1507,7 +1367,6 @@
 			buildConfigurations = (
 				634B6A18139BD2F1007EB45A /* Debug */,
 				634B6A19139BD2F1007EB45A /* Release */,
-				634B6A1A139BD2F1007EB45A /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1517,7 +1376,6 @@
 			buildConfigurations = (
 				6363D274134C56ED000BDCFD /* Debug */,
 				6363D275134C56ED000BDCFD /* Release */,
-				63CAFABE136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1527,7 +1385,6 @@
 			buildConfigurations = (
 				6363D27A134C56ED000BDCFD /* Debug */,
 				6363D27B134C56ED000BDCFD /* Release */,
-				63CAFAC3136E164C00D65C24 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1537,7 +1394,6 @@
 			buildConfigurations = (
 				63B5EFF313E8410C00D1185F /* Debug */,
 				63B5EFF413E8410C00D1185F /* Release */,
-				63B5EFF513E8410C00D1185F /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
