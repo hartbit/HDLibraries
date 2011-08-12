@@ -6,8 +6,7 @@
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#ifndef SYNTHESIZE_SINGLETON
-#define SYNTHESIZE_SINGLETON(classname) \
+#define SINGLETON_INIT_BEGIN(classname) \
 \
 static classname* kSharedInstance = nil; \
 \
@@ -29,14 +28,20 @@ static classname* kSharedInstance = nil; \
 	@synchronized(self) \
 	{ \
 		if (kSharedInstance == nil) \
-		{ \
-			kSharedInstance = [super init]; \
+		{
+
+#define SINGLETON_INIT_END \
+			kSharedInstance = self; \
 		} \
 		\
 		return kSharedInstance; \
 	} \
 }
-#endif
+
+#define SYNTHESIZE_SINGLETON(classname) \
+SINGLETON_INIT_BEGIN(classname) \
+	self = [super init]; \
+SINGLETON_INIT_END
 
 #ifndef CLAMP
 #define CLAMP(value, min, max) MIN(MAX(value, min), max)

@@ -12,6 +12,7 @@
 #import "HDDirection.h"
 #import "HDErrorHandler.h"
 #import "HDAssert.h"
+#import "HDKeyValueStore.h"
 
 #import "NSString+HDAdditions.h"
 #import "NSArray+HDAdditions.h"

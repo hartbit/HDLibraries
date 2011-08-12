@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630A1D4713F427C300286CC4 /* HDKeyValueStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 630A1D4513F427C300286CC4 /* HDKeyValueStore.h */; };
+		630A1D4813F427C300286CC4 /* HDKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A1D4613F427C300286CC4 /* HDKeyValueStore.m */; };
 		630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */; };
 		630F09ED139BD46300CCA4C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630F09EC139BD46300CCA4C5 /* UIKit.framework */; };
 		630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */; };
@@ -206,6 +208,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630A1D4513F427C300286CC4 /* HDKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDKeyValueStore.h; sourceTree = "<group>"; };
+		630A1D4613F427C300286CC4 /* HDKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDKeyValueStore.m; sourceTree = "<group>"; };
 		630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HDAdditions.h"; sourceTree = "<group>"; };
 		630F09EC139BD46300CCA4C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDAdditions.m"; sourceTree = "<group>"; };
@@ -497,6 +501,8 @@
 				6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */,
 				6365E7B413D8751B00BCC434 /* NSIndexPath+HDAdditions.h */,
 				6365E7B513D8751B00BCC434 /* NSIndexPath+HDAdditions.m */,
+				630A1D4513F427C300286CC4 /* HDKeyValueStore.h */,
+				630A1D4613F427C300286CC4 /* HDKeyValueStore.m */,
 			);
 			path = HDFoundation;
 			sourceTree = "<group>";
@@ -573,6 +579,7 @@
 				639C900613D847F5006341FD /* HDDirection.h in Headers */,
 				6365E7B613D8751B00BCC434 /* NSIndexPath+HDAdditions.h in Headers */,
 				6375C66413E9670500CEE9C7 /* HDServices.h in Headers */,
+				630A1D4713F427C300286CC4 /* HDKeyValueStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +916,7 @@
 				6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */,
 				639C900713D847F5006341FD /* HDDirection.m in Sources */,
 				6365E7B713D8751B00BCC434 /* NSIndexPath+HDAdditions.m in Sources */,
+				630A1D4813F427C300286CC4 /* HDKeyValueStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
