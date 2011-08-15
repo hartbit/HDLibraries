@@ -34,9 +34,9 @@ SYNTHESIZE_SINGLETON(HDModelController)
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (!_manageObjectModel)
+	if (_manageObjectModel == nil)
 	{
-		if ([self modelURL])
+		if ([self modelURL] != nil)
 		{
 			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
 			[self setManagedObjectModel:newManagedObjectModel];
@@ -54,7 +54,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-	if (!_managedObjectContext)
+	if (_managedObjectContext == nil)
 	{
 		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
@@ -68,7 +68,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
-	if (!_persistentStoreCoordinator)
+	if (_persistentStoreCoordinator == nil)
 	{
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
