@@ -93,6 +93,13 @@
 			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
 			remoteInfo = RestKit;
 		};
+		6332C8EA13FBB238003FDB95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
+			remoteInfo = RestKit;
+		};
 		6375C64B13E965F500CEE9C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
@@ -642,6 +649,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6332C8EB13FBB238003FDB95 /* PBXTargetDependency */,
 			);
 			name = HDFoundation;
 			productName = HDLibraries;
@@ -1001,6 +1009,11 @@
 			isa = PBXTargetDependency;
 			name = RestKit;
 			targetProxy = 631D54DB13F3E9CA00836065 /* PBXContainerItemProxy */;
+		};
+		6332C8EB13FBB238003FDB95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 6332C8EA13FBB238003FDB95 /* PBXContainerItemProxy */;
 		};
 		6375C66813E9673F00CEE9C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
