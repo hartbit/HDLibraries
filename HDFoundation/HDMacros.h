@@ -46,3 +46,6 @@ SINGLETON_INIT_END
 #ifndef CLAMP
 #define CLAMP(value, min, max) MIN(MAX(value, min), max)
 #endif
+
+#define __NSStringFromMacro(f) @#f
+#define NSStringFromMacro(f) __NSStringFromMacro(f)

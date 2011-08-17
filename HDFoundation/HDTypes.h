@@ -123,10 +123,3 @@ static inline NSString* NSStringFromBoolean(BOOL value)
 {
 	return value ? @"YES" : @"NO";
 }
-
-#pragma mark - Misc
-
-static inline CGRect CGRectMakeWithEdges(CGFloat left, CGFloat top, CGFloat right, CGFloat bottom)
-{
-	return (CGRect){left, top, right - left, bottom - top};
-}
