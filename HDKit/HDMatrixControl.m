@@ -9,6 +9,7 @@
 #import "HDMatrixControl.h"
 #import "UIView+HDAdditions.h"
 #import "HDAssert.h"
+#import "HDKitFunctions.h"
 
 
 @interface HDMatrixControl ()
