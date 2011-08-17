@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIImage (HDAlpha)
+@interface UIImage (HDAdditions)
 
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
 + (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle;

@@ -12,6 +12,7 @@
 #import "UIApplication+HDAdditions.h"
 #import "UIImage+HDAdditions.h"
 #import "UIView+HDAdditions.h"
+#import "UINavigationController+HDAdditions.h"
 
 #import "HDAnimatedImage.h"
 #import "HDClipView.h"

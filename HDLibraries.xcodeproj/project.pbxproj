@@ -66,6 +66,8 @@
 		6375C66413E9670500CEE9C7 /* HDServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 6375C66313E9670500CEE9C7 /* HDServices.h */; };
 		6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */; };
 		6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */; };
+		63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */; };
+		63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */; };
 		6385801513A174D900CE35ED /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6385801413A174D900CE35ED /* HDMacros.h */; };
 		639C900613D847F5006341FD /* HDDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 639C900413D847F5006341FD /* HDDirection.h */; };
 		639C900713D847F5006341FD /* HDDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 639C900513D847F5006341FD /* HDDirection.m */; };
@@ -286,6 +288,8 @@
 		6375C66313E9670500CEE9C7 /* HDServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDServices.h; sourceTree = "<group>"; };
 		6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+HDAdditions.h"; sourceTree = "<group>"; };
 		6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HDAdditions.m"; sourceTree = "<group>"; };
+		63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+HDAdditions.h"; sourceTree = "<group>"; };
+		63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+HDAdditions.m"; sourceTree = "<group>"; };
 		6385801413A174D900CE35ED /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
 		639C900413D847F5006341FD /* HDDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDirection.h; sourceTree = "<group>"; };
 		639C900513D847F5006341FD /* HDDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDirection.m; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 				6363D2B0134C57F2000BDCFD /* UIImage+HDAdditions.m */,
 				630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */,
 				630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */,
+				63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */,
+				63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */,
 				6363D29B134C57F2000BDCFD /* HDAnimatedImage.h */,
 				6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */,
 				6363D29D134C57F2000BDCFD /* HDClipView.h */,
@@ -612,6 +618,7 @@
 				630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */,
 				63F5FF9613EBF5BB004D30FF /* HDMatrixControl.h in Headers */,
 				63D3103C13F16595008C8BF8 /* HDPlaceholderTextView.h in Headers */,
+				63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +967,7 @@
 				63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */,
 				63F5FF9713EBF5BB004D30FF /* HDMatrixControl.m in Sources */,
 				63D3103D13F16595008C8BF8 /* HDPlaceholderTextView.m in Sources */,
+				63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
