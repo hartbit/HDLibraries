@@ -11,10 +11,10 @@
 
 @interface UINavigationController (HDAdditions)
 
-- (void)setViewControllers:(NSArray*)viewControllers withTransition:(UIViewAnimationOptions)transition;
-- (void)pushViewController:(UIViewController*)viewController withTransition:(UIViewAnimationOptions)transition;
-- (void)popViewControllerWithTransition:(UIViewAnimationOptions)transition;
-- (void)popToRootViewControllerWithTransition:(UIViewAnimationOptions)transition;
-- (void)popToViewController:(UIViewController*)viewController withTransition:(UIViewAnimationOptions)transition;
+- (void)setViewControllers:(NSArray*)viewControllers withTransitionOption:(UIViewAnimationOptions)transition;
+- (void)pushViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition;
+- (void)popViewControllerWithTransitionOption:(UIViewAnimationOptions)transition;
+- (void)popToRootViewControllerWithTransitionOption:(UIViewAnimationOptions)transition;
+- (void)popToViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition;
 
 @end

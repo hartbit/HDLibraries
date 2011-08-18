@@ -14,7 +14,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 
 @implementation UINavigationController (HDAdditions)
 
-- (void)setViewControllers:(NSArray*)viewControllers withTransition:(UIViewAnimationOptions)transition
+- (void)setViewControllers:(NSArray*)viewControllers withTransitionOption:(UIViewAnimationOptions)transition
 {
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
@@ -23,7 +23,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 					 completion:NULL];
 }
 
-- (void)pushViewController:(UIViewController*)viewController withTransition:(UIViewAnimationOptions)transition
+- (void)pushViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition
 {
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
@@ -32,7 +32,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 					completion:NULL];
 }
 
-- (void)popViewControllerWithTransition:(UIViewAnimationOptions)transition
+- (void)popViewControllerWithTransitionOption:(UIViewAnimationOptions)transition
 {
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
@@ -41,16 +41,16 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 					 completion:NULL];
 }
 
-- (void)popToRootViewControllerWithTransition:(UIViewAnimationOptions)transition
+- (void)popToRootViewControllerWithTransitionOption:(UIViewAnimationOptions)transition
 {
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					 animations:^() { [self popViewControllerAnimated:NO]; }
+					 animations:^() { [self popToRootViewControllerAnimated:NO]; }
 					 completion:NULL];
 }
 
-- (void)popToViewController:(UIViewController*)viewController withTransition:(UIViewAnimationOptions)transition
+- (void)popToViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition
 {
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
