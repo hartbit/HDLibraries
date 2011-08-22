@@ -73,6 +73,19 @@
 	[UIView commitAnimations];
 }
 
+- (void)didDrop:(BOOL)onTarget
+{
+	if (!onTarget)
+	{
+		[self returnToStart];
+	}
+
+	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
+	{
+		[[self delegate] draggableButton:self didDropOnTarget:onTarget];
+	}
+}
+
 #pragma mark - UIResponder Methods
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
@@ -109,15 +122,7 @@
 		CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[[self targetView] superview]];
 		BOOL onTarget = [self targetView] && CGRectContainsPoint([[self targetView] frame], centerInTarget);
 		
-		if (!onTarget)
-		{
-			[self returnToStart];
-		}
-		
-		if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
-		{
-			[[self delegate] draggableButton:self didDropOnTarget:onTarget];
-		}
+		[self didDrop:onTarget];
 	}
 }
 
