@@ -11,7 +11,11 @@
 
 @interface NSMutableArray (HDAdditions)
 
-- (void)enqueue:(id)object;
-- (id)dequeue;
+- (void)enqueueObject:(id)object;
+- (id)dequeueObject;
+
+- (void)pushObject:(id)object;
+- (id)popObject;
+- (id)topObject;
 
 @end

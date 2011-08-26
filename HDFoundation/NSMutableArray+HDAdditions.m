@@ -12,20 +12,37 @@
 
 @implementation NSMutableArray (HDAdditions)
 
-- (void)enqueue:(id)object
+- (void)enqueueObject:(id)object
 {
 	HDCheck(isObjectNotNil(object), HDFailureLevelError, return);
 	
 	[self addObject:object];
 }
 
-- (id)dequeue
+- (id)dequeueObject
 {
 	HDCheck(isCollectionEmpty(self), HDFailureLevelError, return nil);
 	
 	id object = [self objectAtIndex:0];
 	[self removeObjectAtIndex:0];
 	return object;
+}
+
+- (void)pushObject:(id)object
+{
+	[self addObject:object];
+}
+
+- (id)popObject
+{
+	id object = [self lastObject];
+	[self removeLastObject];
+	return object;
+}
+
+- (id)topObject
+{
+	return [self lastObject];
 }
 
 @end
