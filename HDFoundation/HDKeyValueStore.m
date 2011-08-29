@@ -7,6 +7,7 @@
 //
 
 #import "HDKeyValueStore.h"
+#import "NSString+HDAdditions.h"
 #import "HDMacros.h"
 
 
@@ -239,7 +240,16 @@
 		dictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	}
 	
-	return dictionary;
+	if (dictionary == nil)
+	{
+		return nil;
+	}
+	
+	NSSet* filteredKeys = [dictionary keysOfEntriesPassingTest:^BOOL(NSString* key, id object, BOOL* stop) {
+		return [key startsWithString:[self keyPrefix]];
+	}];
+		
+	return [dictionary dictionaryWithValuesForKeys:[filteredKeys allObjects]];
 }
 
 - (NSString*)fullKeyForKey:(NSString*)key
