@@ -46,6 +46,51 @@ static inline NSString* NSStringFromInterfaceOrientation(UIInterfaceOrientation 
 	}
 }
 
+static inline CGPoint CGRectGetTopLeft(CGRect rect)
+{
+	return rect.origin;
+}
+
+static inline CGPoint CGRectGetTopRight(CGRect rect)
+{
+	return CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+}
+
+static inline CGPoint CGRectGetBottomLeft(CGRect rect)
+{
+	return CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
+}
+
+static inline CGPoint CGRectGetBottomRight(CGRect rect)
+{
+	return CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+}
+
+static inline CGPoint CGRectGetCenter(CGRect rect)
+{
+	return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
+static inline CGPoint CGRectGetCenterLeft(CGRect rect)
+{
+	return CGPointMake(CGRectGetMinX(rect), CGRectGetMidY(rect));
+}
+
+static inline CGPoint CGRectGetCenterRight(CGRect rect)
+{
+	return CGPointMake(CGRectGetMaxX(rect), CGRectGetMidY(rect));
+}
+
+static inline CGPoint CGRectGetCenterTop(CGRect rect)
+{
+	return CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+}
+
+static inline CGPoint CGRectGetCenterBottom(CGRect rect)
+{
+	return CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+}
+
 static inline CGPoint CGPointAdd(CGPoint a, CGPoint b)
 {
 	return CGPointMake(a.x + b.x, a.y + b.y);
