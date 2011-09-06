@@ -73,6 +73,14 @@
 	[UIView commitAnimations];
 }
 
+- (void)didDrag
+{
+	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)])
+	{
+		[[self delegate] draggableButtonWillDrag:self];
+	}
+}
+
 - (void)didDrop:(BOOL)onTarget
 {
 	if (!onTarget)
@@ -92,10 +100,7 @@
 {
 	[super touchesBegan:touches withEvent:event];
 
-	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)])
-	{
-		[[self delegate] draggableButtonWillDrag:self];
-	}
+	[self didDrag];
 } 
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event 
