@@ -17,13 +17,11 @@
 + (HDAudioPlayer*)sharedInstance;
 
 - (void)playSfx:(NSString*)sfxName;
-- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector;
-- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object;
+- (void)playSfx:(NSString*)sfxName completion:(void(^)(void))block;
 
 - (void)playMusic:(NSString*)musicName;
 - (void)playMusic:(NSString*)musicName looping:(BOOL)looping;
-- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector;
-- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector withObject:(id)object;
+- (void)playMusic:(NSString*)musicName completion:(void(^)(void))block;
 
 - (void)stopMusic;
 - (void)stopAllSfx;

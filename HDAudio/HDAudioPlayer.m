@@ -13,11 +13,11 @@
 @interface HDAudioPlayer ()
 
 @property (nonatomic, strong) NSMutableArray* sfxPlayers;
-@property (nonatomic, strong) NSMutableArray* sfxInvocations;
+@property (nonatomic, strong) NSMutableArray* sfxBlocks;
 @property (nonatomic, strong) AVAudioPlayer* musicPlayer;
-@property (nonatomic, strong) NSInvocation* musicInvocation;
+@property (nonatomic, copy) void(^musicBlock)(void);
 
-- (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
+//- (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;
 - (AVAudioPlayer*)audioPlayerWithPath:(NSString*)path;
 
@@ -27,9 +27,9 @@
 @implementation HDAudioPlayer
 
 @synthesize sfxPlayers = _sfxPlayers;
-@synthesize sfxInvocations = _sfxInvocations;
+@synthesize sfxBlocks = _sfxBlocks;
 @synthesize musicPlayer = _musicPlayer;
-@synthesize musicInvocation = _musicInvocation;
+@synthesize musicBlock = _musicBlock;
 
 #pragma mark -
 #pragma mark Initializing Methods
@@ -51,7 +51,7 @@
 	if ((self = [super init]))
 	{
 		[self setSfxPlayers:[NSMutableArray array]];
-		[self setSfxInvocations:[NSMutableArray array]];
+		[self setSfxBlocks:[NSMutableArray array]];
 	}
 	
 	return self;
@@ -62,26 +62,20 @@
 
 - (void)playSfx:(NSString*)sfxName
 {
-	[self playSfx:sfxName target:nil action:NULL withObject:nil];
+	[self playSfx:sfxName completion:NULL];
 }
 
-- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector
-{
-	[self playSfx:sfxName target:target action:selector withObject:nil];
-}
-
-- (void)playSfx:(NSString*)sfxName target:(id)target action:(SEL)selector withObject:(id)object
+- (void)playSfx:(NSString*)sfxName completion:(void(^)(void))block
 {
 	HDCheck(isObjectNotNil(sfxName), HDFailureLevelWarning, return);
-
+	
 	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
 	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
 	[[self sfxPlayers] addObject:sfxPlayer];
 	
-	NSInvocation* sfxInvocation = [self invocationForTarget:target andSelector:selector withObject:object];
-	id nullableInvocation = (sfxInvocation != nil) ? (id)sfxInvocation : (id)[NSNull null];
-	[[self sfxInvocations] addObject:nullableInvocation];
-
+	id nullableBlock = (block != NULL) ? (id)[block copy] : (id)[NSNull null];
+	[[self sfxBlocks] addObject:nullableBlock];
+	
 	[sfxPlayer play];
 }
 
@@ -94,37 +88,30 @@
 	}
 	
 	[[self sfxPlayers] removeAllObjects];
-	[[self sfxInvocations] removeAllObjects];
+	[[self sfxBlocks] removeAllObjects];
 }
 
 - (void)playMusic:(NSString*)musicName
 {
-	[self playMusic:musicName target:nil action:NULL withObject:nil];
+	[self playMusic:musicName completion:NULL];
 }
 
 - (void)playMusic:(NSString*)musicName looping:(BOOL)looping
+{
+	[self playMusic:musicName completion:NULL];
+	[[self musicPlayer] setNumberOfLoops:looping ? -1 : 0];
+}
+
+- (void)playMusic:(NSString*)musicName completion:(void(^)(void))block
 {
 	HDCheck(isObjectNotNil(musicName), HDFailureLevelWarning, return);
 	
 	AVAudioPlayer* musicPlayer = [self audioPlayerWithName:musicName andType:@"m4a"];
 	HDCheck(isObjectNotNil(musicPlayer), HDFailureLevelWarning, return);
-	
-	[self stopMusic];
 	[self setMusicPlayer:musicPlayer];
+	[self setMusicBlock:block];
 	
-	[musicPlayer setNumberOfLoops:looping ? -1 : 0];
 	[musicPlayer play];
-}
-
-- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector
-{
-	[self playMusic:musicName target:target action:selector withObject:nil];
-}
-
-- (void)playMusic:(NSString*)musicName target:(id)target action:(SEL)selector withObject:(id)object
-{
-	[self playMusic:musicName looping:NO];
-	[self setMusicInvocation:[self invocationForTarget:target andSelector:selector withObject:object]];
 }
 
 - (void)stopMusic
@@ -133,7 +120,7 @@
 	[[self musicPlayer] stop];
 	
 	[self setMusicPlayer:nil];
-	[self setMusicInvocation:nil];
+	[self setMusicBlock:NULL];
 }
 
 - (void)stopAllSounds
@@ -157,28 +144,25 @@
 {
 	if (player == [self musicPlayer])
 	{
-		NSInvocation* invocation = [[self musicInvocation] retain];
+		if ([self musicBlock] != NULL)
+		{
+			[self musicBlock]();
+		}
+		
 		[self stopMusic];
-		[invocation invoke];
-		[invocation release];
 	}
 	else if ([[self sfxPlayers] containsObject:player])
 	{
 		NSUInteger playerIndex = [[self sfxPlayers] indexOfObject:player];
-		id nullableInvocation = [[[self sfxInvocations] objectAtIndex:playerIndex] retain];
+		id nullableBlock = [[self sfxBlocks] objectAtIndex:playerIndex];
 		
-		if ([nullableInvocation isMemberOfClass:[NSInvocation class]])
+		if (![nullableBlock isMemberOfClass:[NSNull class]])
 		{
-			[nullableInvocation invoke];
+			((void(^)(void))nullableBlock)();
 		}
 		
-		[nullableInvocation release];
-		
-		if ([[self sfxPlayers] count] > 0)
-		{
-			[[self sfxPlayers] removeObjectAtIndex:playerIndex];
-			[[self sfxInvocations] removeObjectAtIndex:playerIndex];
-		}
+		[[self sfxPlayers] removeObjectAtIndex:playerIndex];
+		[[self sfxBlocks] removeObjectAtIndex:playerIndex];
 	}
 	else
 	{
@@ -188,29 +172,6 @@
 
 #pragma mark -
 #pragma mark Private Methods
-	 
-- (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object
-{
-	if (!target && !selector)
-	{
-		return nil;
-	}
-	
-	HDCheck(isObjectNotNil(target), HDFailureLevelWarning, return nil);
-	HDCheck(isSelectorNotNull(selector), HDFailureLevelWarning, return nil);
-	
-	NSMethodSignature* methodSignature = [target methodSignatureForSelector:selector];	
-	NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-	[invocation setTarget:target];
-	[invocation setSelector:selector];
-	
-	if (object)
-	{
-		[invocation setArgument:&object atIndex:2];
-	}
-	
-	return invocation;
-}
 
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type
 {
@@ -224,24 +185,12 @@
 {
 	NSData* data = [NSData dataWithContentsOfFile:path];
 	
-	NSError* error;
-	AVAudioPlayer* player = [[[AVAudioPlayer alloc] initWithData:data error:&error] autorelease];
+	NSError* error = nil;
+	AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithData:data error:&error];
 	HDCheck(isObjectNil(error), HDFailureLevelWarning, return nil);
 	
 	[player setDelegate:self];
 	return player;
-}
-
-#pragma mark -
-#pragma mark Memory Management
-
-- (void)dealloc
-{
-	[self stopAllSounds];
-	[self setSfxPlayers:nil];
-	[self setSfxInvocations:nil];
-	
-	[super dealloc];
 }
 
 @end

@@ -1110,6 +1110,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1125,6 +1126,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
