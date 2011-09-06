@@ -16,47 +16,97 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 
 - (void)setViewControllers:(NSArray*)viewControllers withTransitionOption:(UIViewAnimationOptions)transition
 {
+	UIViewController* disappearingViewController = [self topViewController];
+	UIViewController* appearingViewController = [viewControllers lastObject];
+	
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					 animations:^() { [self setViewControllers:viewControllers animated:NO]; }
-					 completion:NULL];
+					animations:^() {
+						[disappearingViewController viewWillDisappear:YES];
+						[appearingViewController viewWillAppear:YES];
+						[self setViewControllers:viewControllers animated:NO];
+					}
+					completion:^(BOOL finished) {
+						[disappearingViewController viewDidDisappear:YES];
+						[appearingViewController viewDidAppear:YES];
+					}];
 }
 
 - (void)pushViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition
 {
+	UIViewController* disappearingViewController = [self topViewController];
+	UIViewController* appearingViewController = viewController;
+	
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					animations:^{ [self pushViewController:viewController animated:NO]; }
-					completion:NULL];
+					animations:^{
+						[disappearingViewController viewWillDisappear:YES];
+						[appearingViewController viewWillAppear:YES];
+						[self pushViewController:viewController animated:NO];
+					}
+					completion:^(BOOL finished) {
+						[disappearingViewController viewDidDisappear:YES];
+						[appearingViewController viewDidAppear:YES];
+					}];
 }
 
 - (void)popViewControllerWithTransitionOption:(UIViewAnimationOptions)transition
 {
+	UIViewController* disappearingViewController = [self topViewController];
+	UIViewController* appearingViewController = [[self viewControllers] objectAtIndex:[[self viewControllers] count] - 2];
+	
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					 animations:^() { [self popViewControllerAnimated:NO]; }
-					 completion:NULL];
+					animations:^() {
+						[disappearingViewController viewWillDisappear:YES];
+						[appearingViewController viewWillAppear:YES];
+						[self popViewControllerAnimated:NO];
+					}
+					completion:^(BOOL finished) {
+						[disappearingViewController viewDidDisappear:YES];
+						[appearingViewController viewDidAppear:YES];
+					}];
 }
 
 - (void)popToRootViewControllerWithTransitionOption:(UIViewAnimationOptions)transition
 {
+	UIViewController* disappearingViewController = [self topViewController];
+	UIViewController* appearingViewController = [[self viewControllers] objectAtIndex:0];
+	
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					 animations:^() { [self popToRootViewControllerAnimated:NO]; }
-					 completion:NULL];
+					animations:^() {
+						[disappearingViewController viewWillDisappear:YES];
+						[appearingViewController viewWillAppear:YES];
+						[self popToRootViewControllerAnimated:NO];
+					}
+					completion:^(BOOL finished) {
+						[disappearingViewController viewDidDisappear:YES];
+						[appearingViewController viewDidAppear:YES];
+					}];
 }
 
 - (void)popToViewController:(UIViewController*)viewController withTransitionOption:(UIViewAnimationOptions)transition
 {
+	UIViewController* disappearingViewController = [self topViewController];
+	UIViewController* appearingViewController = viewController;
+	
 	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
-					 animations:^() { [self popToViewController:viewController animated:NO]; }
-					 completion:NULL];
+					animations:^() {
+						[disappearingViewController viewWillDisappear:YES];
+						[appearingViewController viewWillAppear:YES];
+						[self popToViewController:viewController animated:NO];
+					}
+					completion:^(BOOL finished) {
+						[disappearingViewController viewDidDisappear:YES];
+						[appearingViewController viewDidAppear:YES];
+					}];
 }
 
 @end
