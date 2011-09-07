@@ -233,16 +233,14 @@
 
 - (NSDictionary*)dictionaryRepresentation
 {
-	NSDictionary* dictionary = [[self cloudStore] dictionaryRepresentation];
+	NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	NSDictionary* cloudDictionary = [[self cloudStore] dictionaryRepresentation];
 	
-	if (dictionary == nil)
+	if (cloudDictionary != nil)
 	{
-		dictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	}
-	
-	if (dictionary == nil)
-	{
-		return nil;
+		NSMutableDictionary* mergedDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+		[mergedDictionary addEntriesFromDictionary:cloudDictionary];
+		dictionary = mergedDictionary;
 	}
 	
 	NSSet* filteredKeys = [dictionary keysOfEntriesPassingTest:^BOOL(NSString* key, id object, BOOL* stop) {
