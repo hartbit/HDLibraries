@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL dragEnabled;
 
 - (void)returnToStart;
+- (void)didDrag;
 - (void)didDrop:(BOOL)onTarget;
 
 @end
