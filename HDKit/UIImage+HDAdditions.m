@@ -106,7 +106,7 @@
 
 - (NSData*)imageData
 {
-	return (NSData*)objc_retainedObject(CGDataProviderCopyData(CGImageGetDataProvider([self CGImage])));
+	return (__bridge NSData*)CGDataProviderCopyData(CGImageGetDataProvider([self CGImage]));
 }
 
 #pragma mark - Orientation
