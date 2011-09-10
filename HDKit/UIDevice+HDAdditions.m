@@ -12,6 +12,8 @@
 
 @implementation UIDevice (HDAdditions)
 
+#pragma mark - Class Methods
+
 + (NSSet*)platformSuffixes
 {
 	static NSSet* kPlatformSuffixes = nil;
@@ -23,6 +25,8 @@
 	
 	return kPlatformSuffixes;
 }
+
+#pragma mark - Properties
 
 - (NSString*)platformSuffix
 {
@@ -62,6 +66,13 @@
 	
 	return NO;
 #endif
+}
+
+#pragma mark - Public Methods
+
+- (BOOL)isOSVersionAtLeast:(NSString*)version
+{
+	return [[self systemVersion] compare:version options:NSNumericSearch] != NSOrderedAscending;
 }
 
 @end

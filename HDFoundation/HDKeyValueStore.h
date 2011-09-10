@@ -19,7 +19,7 @@ typedef enum
 
 @interface HDKeyValueStore : NSObject
 
-- (id)initWithKeyPrefix:(NSString*)keyPrefix;
+@property (nonatomic, strong) NSString* keyPrefix;
 
 - (void)registerDefaults:(NSDictionary*)defaults;
 
@@ -41,6 +41,7 @@ typedef enum
 - (void)setDate:(NSDate*)value forKey:(NSString*)key;
 - (void)setObject:(id)object forKey:(NSString*)key;
 
+- (void)removeObjectForKey:(NSString*)key;
 - (HDKeyValueStoreSychronizationSuccess)synchronize;
 - (NSDictionary*)dictionaryRepresentation;
 - (NSString*)fullKeyForKey:(NSString*)key;

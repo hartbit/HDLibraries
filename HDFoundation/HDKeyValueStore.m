@@ -13,7 +13,6 @@
 
 @interface HDKeyValueStore ()
 
-@property (nonatomic, strong) NSString* keyPrefix;
 @property (nonatomic, strong) NSUbiquitousKeyValueStore* cloudStore;
 
 @end
@@ -26,11 +25,10 @@
 
 #pragma mark - Lifecycle
 
-- (id)initWithKeyPrefix:(NSString*)keyPrefix
+- (id)init
 {
 	if ((self = [super init]))
 	{
-		[self setKeyPrefix:keyPrefix];
 		[self setCloudStore:[NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore]];
 		[self synchronize];
 	}
@@ -46,8 +44,7 @@
 	{
 		NSMutableDictionary* prefixedDefaults = [NSMutableDictionary dictionary];
 		
-		[defaults enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL* stop)
-		{
+		[defaults enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL* stop) {
 			[prefixedDefaults setObject:object forKey:[self fullKeyForKey:key]];
 		}];
 		
@@ -214,6 +211,13 @@
 	[[self cloudStore] setObject:object forKey:fullKey];
 }
 
+- (void)removeObjectForKey:(NSString*)key
+{
+	NSString* fullKey = [self fullKeyForKey:key];
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:fullKey];
+	[[self cloudStore] removeObjectForKey:fullKey];
+}
+
 - (HDKeyValueStoreSychronizationSuccess)synchronize
 {
 	HDKeyValueStoreSychronizationSuccess success = HDKeyValueStoreSychronizationFailed;
@@ -233,21 +237,31 @@
 
 - (NSDictionary*)dictionaryRepresentation
 {
-	NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	NSDictionary* localDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	NSDictionary* cloudDictionary = [[self cloudStore] dictionaryRepresentation];
+	NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:localDictionary];
 	
 	if (cloudDictionary != nil)
 	{
-		NSMutableDictionary* mergedDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-		[mergedDictionary addEntriesFromDictionary:cloudDictionary];
-		dictionary = mergedDictionary;
+		[dictionary addEntriesFromDictionary:cloudDictionary];
 	}
 	
-	NSSet* filteredKeys = [dictionary keysOfEntriesPassingTest:^BOOL(NSString* key, id object, BOOL* stop) {
-		return [key startsWithString:[self keyPrefix]];
-	}];
+	if ([self keyPrefix] != nil)
+	{
+		NSMutableDictionary* filteredDictionary = [NSMutableDictionary dictionary];
+		NSRange prefixRange = NSMakeRange(0, [[self keyPrefix] length]);
 		
-	return [dictionary dictionaryWithValuesForKeys:[filteredKeys allObjects]];
+		[dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+			if ([key startsWithString:[self keyPrefix]]) {
+				NSString* newKey = [key stringByReplacingCharactersInRange:prefixRange withString:@""];
+				[filteredDictionary setObject:object forKey:newKey];
+			}
+		}];
+		
+		dictionary = filteredDictionary;
+	}
+
+	return dictionary;
 }
 
 - (NSString*)fullKeyForKey:(NSString*)key

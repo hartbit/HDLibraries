@@ -16,4 +16,6 @@
 
 + (NSSet*)platformSuffixes;
 
+- (BOOL)isOSVersionAtLeast:(NSString*)version;
+
 @end
