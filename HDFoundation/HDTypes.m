@@ -1,23 +1,18 @@
 //
-//  HDDirection.m
+//  HDTypes.m
 //  HDLibraries
 //
-//  Created by David Hart on 21.07.11.
-//  Copyright 2011 hart[dev]. All rights reserved.
+//  Created by Hart David on 16.09.11.
+//  Copyright (c) 2011 hart[dev]. All rights reserved.
 //
 
-#import "HDDirection.h"
-#import "HDAssert.h"
-
-HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise);
-HDDirection HDHDDirectionDirectionOpposite(HDDirection direction);
-HDPoint HDPointInDirection(HDPoint point, HDDirection direction);
-NSString* NSStringFromHDDirection(HDDirection direction);
+#import "HDTypes.h"
+#import "NimbusCore.h"
 
 
 HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise)
 {
-    HDCCheck(isNSIntegerInExclusiveRange(direction, HDDirectionNone, HDDirectionLast), HDFailureLevelError, return direction);
+	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
 	
     HDDirection returnDirection = HDDirectionNone;
 	
@@ -33,9 +28,9 @@ HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise)
     {
         returnDirection = direction + (clockwise ? 1 : -1);
     }
-	
-    HDCCheck(isNSIntegerInExclusiveRange(returnDirection, HDDirectionNone, HDDirectionLast), HDFailureLevelError, return direction);
-    return returnDirection;
+
+	NIDASSERT((returnDirection > HDDirectionNone) && (returnDirection < HDDirectionLast));
+	return returnDirection;
 }
 
 HDDirection HDDirectionOpposite(HDDirection direction)
@@ -45,7 +40,7 @@ HDDirection HDDirectionOpposite(HDDirection direction)
 
 HDPoint HDPointInDirection(HDPoint point, HDDirection direction)
 {
-	HDCCheck(isNSIntegerInExclusiveRange(direction, HDDirectionNone, HDDirectionLast), HDFailureLevelError, return point);
+	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
 	
 	switch (direction)
 	{
@@ -53,9 +48,7 @@ HDPoint HDPointInDirection(HDPoint point, HDDirection direction)
 		case HDDirectionRight: point.x++; break;
 		case HDDirectionDown: point.y++; break;
 		case HDDirectionLeft: point.x--; break;
-		default:
-			HDCFail(@"Invalid direction", HDFailureLevelError);
-			return point;
+		default: return point;
 	}
 	
 	return point;
@@ -63,6 +56,8 @@ HDPoint HDPointInDirection(HDPoint point, HDDirection direction)
 
 NSString* NSStringFromHDDirection(HDDirection direction)
 {
+	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
+	
 	switch (direction)
 	{
 		case HDDirectionNone: return @"None";
@@ -70,8 +65,6 @@ NSString* NSStringFromHDDirection(HDDirection direction)
 		case HDDirectionRight: return @"Right";
 		case HDDirectionDown: return @"Down";
 		case HDDirectionLeft: return @"Left";
-		default:
-			NSCAssert(NO, @"Not Implemented");
-			return nil;
+		default: return nil;
 	}
 }

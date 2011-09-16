@@ -7,21 +7,21 @@
 //
 
 #import "NSMutableArray+HDAdditions.h"
-#import "HDAssert.h"
+#import "NimbusCore.h"
 
 
 @implementation NSMutableArray (HDAdditions)
 
 - (void)enqueueObject:(id)object
 {
-	HDCheck(isObjectNotNil(object), HDFailureLevelError, return);
+	NIDASSERT(object != nil);
 	
 	[self addObject:object];
 }
 
 - (id)dequeueObject
 {
-	HDCheck(isCollectionEmpty(self), HDFailureLevelError, return nil);
+	NIDASSERT([self count] > 0);
 	
 	id object = [self objectAtIndex:0];
 	[self removeObjectAtIndex:0];

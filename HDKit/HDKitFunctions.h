@@ -30,7 +30,6 @@ static inline NSString* NSStringFromDeviceOrientation(UIDeviceOrientation orient
 		case UIDeviceOrientationLandscapeRight: return @"UIDeviceOrientationLandscapeRight";
 		case UIDeviceOrientationFaceUp: return @"UIDeviceOrientationFaceUp";
 		case UIDeviceOrientationFaceDown: return @"UIDeviceOrientationFaceDown";
-		default: HDCFail(@"Unkown device orientation", HDFailureLevelError); return nil;
 	}
 }
 
@@ -42,7 +41,6 @@ static inline NSString* NSStringFromInterfaceOrientation(UIInterfaceOrientation 
 		case UIInterfaceOrientationPortraitUpsideDown: return @"UIInterfaceOrientationPortraitUpsideDown";
 		case UIInterfaceOrientationLandscapeLeft: return @"UIInterfaceOrientationLandscapeLeft";
 		case UIInterfaceOrientationLandscapeRight: return @"UIInterfaceOrientationLandscapeRight";
-		default: HDCFail(@"Unkown interface orientation", HDFailureLevelError); return nil;
 	}
 }
 

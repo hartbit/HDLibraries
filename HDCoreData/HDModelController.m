@@ -8,6 +8,7 @@
 
 #import "HDModelController.h"
 #import "HDFoundation.h"
+#import "NimbusCore.h"
 
 
 @interface HDModelController ()
@@ -28,7 +29,7 @@
 
 #pragma mark - Lifecycle
 
-SYNTHESIZE_SINGLETON(HDModelController)
+SYNTHESIZE_SINGLETON(HDModelController);
 
 #pragma mark - Properties
 
@@ -46,7 +47,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
 		}
 		
-		HDAssert(isObjectNotNil(_manageObjectModel), HDFailureLevelError);
+		NIDASSERT(_manageObjectModel != nil);
 	}
 	
 	return _manageObjectModel;
@@ -60,7 +61,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 		[self setManagedObjectContext:newManagedObjectContext];
 		
-		HDAssert(isObjectNotNil(_managedObjectContext), HDFailureLevelError);
+		NIDASSERT(_managedObjectContext != nil);
 	}
 	
 	return _managedObjectContext;
@@ -73,7 +74,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
 		
-		HDAssert(isObjectNotNil(_persistentStoreCoordinator), HDFailureLevelError);
+		NIDASSERT(_persistentStoreCoordinator != nil);
 	}
 
 	return _persistentStoreCoordinator;
@@ -96,7 +97,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 
 - (void)addStoreWithURL:(NSURL*)storeURL readOnly:(BOOL)readOnly
 {
-	HDCheck(isObjectNotNil(storeURL), HDFailureLevelWarning, return);
+	NIDASSERT(storeURL != nil);
 	
 	NSDictionary* storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
 								  [NSNumber numberWithBool:readOnly], NSReadOnlyPersistentStoreOption,
@@ -105,7 +106,7 @@ SYNTHESIZE_SINGLETON(HDModelController)
 	
 	NSError* error = nil;
 	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
-	HDCheck(isObjectNil(error), HDFailureLevelError, return);
+	NIDASSERT(error == nil);
 }
 
 - (void)assignObjectToFirstWritableStore:(NSManagedObject*)object
@@ -121,14 +122,14 @@ SYNTHESIZE_SINGLETON(HDModelController)
 		}
 	}
 	
-	HDFail(@"Could not find a writable persistent store to save object.", HDFailureLevelFatal);
+	NIDERROR(@"Could not find a writable persistent store to save object.");
 }
 
 - (void)saveContext
 {
 	NSError* error = nil;
 	[self saveContextWithError:&error];
-	HDAssert(isObjectNil(error), HDFailureLevelFatal);
+	NIDASSERT(error == nil);
 }
 
 - (BOOL)saveContextWithError:(NSError**)error

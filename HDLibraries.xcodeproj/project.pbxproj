@@ -13,8 +13,6 @@
 		630F09ED139BD46300CCA4C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630F09EC139BD46300CCA4C5 /* UIKit.framework */; };
 		630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */; };
 		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
-		6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
-		6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
 		6322DDAF136AEE8200E8E9EF /* NSMutableArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D297134C57F2000BDCFD /* NSMutableArray+HDAdditions.m */; };
 		6322DDB0136AEE8200E8E9EF /* NSString+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */; };
 		6322DDC5136AEF4800E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -30,6 +28,8 @@
 		6322DDEB136AEFBE00E8E9EF /* HDErasableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A4134C57F2000BDCFD /* HDErasableImage.m */; };
 		6322DDEF136AEFBE00E8E9EF /* UIDevice+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AE134C57F2000BDCFD /* UIDevice+HDAdditions.m */; };
 		6322DDF0136AEFBE00E8E9EF /* UIImage+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+HDAdditions.m */; };
+		632742941423CA07004943A6 /* HDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742931423CA06004943A6 /* HDTypes.m */; };
+		632742981423CA96004943A6 /* HDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742971423CA96004943A6 /* HDMath.m */; };
 		634B6A15139BD2F1007EB45A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
 		634B6A24139BD364007EB45A /* CALayer+HDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 634B6A1F139BD364007EB45A /* CALayer+HDGeometry.h */; };
 		634B6A25139BD364007EB45A /* CALayer+HDGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 634B6A20139BD364007EB45A /* CALayer+HDGeometry.m */; };
@@ -45,8 +45,6 @@
 		6363D2B5134C57F2000BDCFD /* HDAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D287134C57F2000BDCFD /* HDAudioPlayer.m */; };
 		6363D2B6134C57F2000BDCFD /* HDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28B134C57F2000BDCFD /* HDManagedObject.m */; };
 		6363D2B7134C57F2000BDCFD /* HDModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D28D134C57F2000BDCFD /* HDModelController.m */; };
-		6363D2B8134C57F2000BDCFD /* HDCodeLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D291134C57F2000BDCFD /* HDCodeLocation.m */; };
-		6363D2B9134C57F2000BDCFD /* HDErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D293134C57F2000BDCFD /* HDErrorHandler.m */; };
 		6363D2BA134C57F2000BDCFD /* NSMutableArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D297134C57F2000BDCFD /* NSMutableArray+HDAdditions.m */; };
 		6363D2BB134C57F2000BDCFD /* NSString+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */; };
 		6363D2BC134C57F2000BDCFD /* HDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */; };
@@ -69,8 +67,6 @@
 		63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */; };
 		63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */; };
 		6385801513A174D900CE35ED /* HDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6385801413A174D900CE35ED /* HDMacros.h */; };
-		639C900613D847F5006341FD /* HDDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 639C900413D847F5006341FD /* HDDirection.h */; };
-		639C900713D847F5006341FD /* HDDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 639C900513D847F5006341FD /* HDDirection.m */; };
 		63A0C03D13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */; };
 		63A0C03E13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */; };
 		63B5EFED13E8410C00D1185F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -94,6 +90,153 @@
 			proxyType = 1;
 			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
 			remoteInfo = RestKit;
+		};
+		6327426B1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03C0913E6E85E00B514F3;
+			remoteInfo = NimbusCore;
+		};
+		6327426D1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03C1913E6E85E00B514F3;
+			remoteInfo = NimbusCoreTests;
+		};
+		6327426F1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675731213E771380076F555;
+			remoteInfo = NimbusInterapp;
+		};
+		632742711423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675731F13E771380076F555;
+			remoteInfo = NimbusInterappTests;
+		};
+		632742731423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03CBF13E6F0ED00B514F3;
+			remoteInfo = NimbusLauncher;
+		};
+		632742751423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03CCC13E6F0EE00B514F3;
+			remoteInfo = NimbusLauncherTests;
+		};
+		632742771423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03D2713E6F97500B514F3;
+			remoteInfo = NimbusNetworkImage;
+		};
+		632742791423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03D3413E6F97500B514F3;
+			remoteInfo = NimbusNetworkImageTests;
+		};
+		6327427B1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675722913E765BF0076F555;
+			remoteInfo = NimbusOverview;
+		};
+		6327427D1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675723613E765BF0076F555;
+			remoteInfo = NimbusOverviewTests;
+		};
+		6327427F1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675727A13E769150076F555;
+			remoteInfo = NimbusPhotos;
+		};
+		632742811423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6675728713E769150076F555;
+			remoteInfo = NimbusPhotosTests;
+		};
+		632742831423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 667572BD13E76F460076F555;
+			remoteInfo = NimbusProcessors;
+		};
+		632742851423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 667572CA13E76F460076F555;
+			remoteInfo = NimbusProcessorsTests;
+		};
+		632742871423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6661BBCC13F1A3BB00D14F92;
+			remoteInfo = NimbusModels;
+		};
+		632742891423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6661BBD913F1A3BB00D14F92;
+			remoteInfo = NimbusModelsTests;
+		};
+		6327428B1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB84BD7413EFDDC900DACCFE;
+			remoteInfo = NimbusWebController;
+		};
+		6327428D1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB84BD8113EFDDCA00DACCFE;
+			remoteInfo = NimbusWebControllerTests;
+		};
+		6327428F1423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 667572F713E7705F0076F555;
+			remoteInfo = JSONKit;
+		};
+		632742911423C83B004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03D6813E6FA9700B514F3;
+			remoteInfo = ASIHTTPRequest;
+		};
+		632742951423CA7A004943A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
+			remoteInfo = NimbusCore;
 		};
 		6375C64B13E965F500CEE9C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -219,6 +362,9 @@
 		6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDCoreData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6322DDD2136AEF9600E8E9EF /* libHDAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6322DDDF136AEFA400E8E9EF /* libHDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		632742501423C83A004943A6 /* Nimbus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimbus.xcodeproj; path = Libraries/nimbus/src/Nimbus.xcodeproj; sourceTree = "<group>"; };
+		632742931423CA06004943A6 /* HDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDTypes.m; sourceTree = "<group>"; };
+		632742971423CA96004943A6 /* HDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMath.m; sourceTree = "<group>"; };
 		634B6A1B139BD2F1007EB45A /* libHDCoreAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDCoreAnimation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		634B6A1F139BD364007EB45A /* CALayer+HDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+HDGeometry.h"; sourceTree = "<group>"; };
 		634B6A20139BD364007EB45A /* CALayer+HDGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+HDGeometry.m"; sourceTree = "<group>"; };
@@ -242,11 +388,6 @@
 		6363D28B134C57F2000BDCFD /* HDManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDManagedObject.m; sourceTree = "<group>"; };
 		6363D28C134C57F2000BDCFD /* HDModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDModelController.h; sourceTree = "<group>"; };
 		6363D28D134C57F2000BDCFD /* HDModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDModelController.m; sourceTree = "<group>"; };
-		6363D28F134C57F2000BDCFD /* HDAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAssert.h; sourceTree = "<group>"; };
-		6363D290134C57F2000BDCFD /* HDCodeLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDCodeLocation.h; sourceTree = "<group>"; };
-		6363D291134C57F2000BDCFD /* HDCodeLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDCodeLocation.m; sourceTree = "<group>"; };
-		6363D292134C57F2000BDCFD /* HDErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDErrorHandler.h; sourceTree = "<group>"; };
-		6363D293134C57F2000BDCFD /* HDErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDErrorHandler.m; sourceTree = "<group>"; };
 		6363D294134C57F2000BDCFD /* HDFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDFoundation.h; sourceTree = "<group>"; };
 		6363D295134C57F2000BDCFD /* HDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTypes.h; sourceTree = "<group>"; };
 		6363D296134C57F2000BDCFD /* NSMutableArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+HDAdditions.h"; sourceTree = "<group>"; };
@@ -284,8 +425,6 @@
 		63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+HDAdditions.h"; sourceTree = "<group>"; };
 		63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+HDAdditions.m"; sourceTree = "<group>"; };
 		6385801413A174D900CE35ED /* HDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMacros.h; sourceTree = "<group>"; };
-		639C900413D847F5006341FD /* HDDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDDirection.h; sourceTree = "<group>"; };
-		639C900513D847F5006341FD /* HDDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDDirection.m; sourceTree = "<group>"; };
 		63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+HDAdditions.h"; sourceTree = "<group>"; };
 		63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+HDAdditions.m"; sourceTree = "<group>"; };
 		63B5EFF613E8410C00D1185F /* libHDServices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDServices.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -371,6 +510,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632742511423C83A004943A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6327426C1423C83B004943A6 /* libNimbusCore.a */,
+				6327426E1423C83B004943A6 /* NimbusCoreTests.octest */,
+				632742701423C83B004943A6 /* libNimbusInterapp.a */,
+				632742721423C83B004943A6 /* NimbusInterappTests.octest */,
+				632742741423C83B004943A6 /* libNimbusLauncher.a */,
+				632742761423C83B004943A6 /* NimbusLauncherTests.octest */,
+				632742781423C83B004943A6 /* libNimbusNetworkImage.a */,
+				6327427A1423C83B004943A6 /* NimbusNetworkImageTests.octest */,
+				6327427C1423C83B004943A6 /* libNimbusOverview.a */,
+				6327427E1423C83B004943A6 /* NimbusOverviewTests.octest */,
+				632742801423C83B004943A6 /* libNimbusPhotos.a */,
+				632742821423C83B004943A6 /* NimbusPhotosTests.octest */,
+				632742841423C83B004943A6 /* libNimbusProcessors.a */,
+				632742861423C83B004943A6 /* NimbusProcessorsTests.octest */,
+				632742881423C83B004943A6 /* libNimbusModels.a */,
+				6327428A1423C83B004943A6 /* NimbusModelsTests.octest */,
+				6327428C1423C83B004943A6 /* libNimbusWebController.a */,
+				6327428E1423C83B004943A6 /* NimbusWebControllerTests.octest */,
+				632742901423C83B004943A6 /* libJSONKit.a */,
+				632742921423C83B004943A6 /* libASIHTTPRequest.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		634B6A07139BD2D4007EB45A /* HDCoreAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +553,7 @@
 		6363D248134C56ED000BDCFD = {
 			isa = PBXGroup;
 			children = (
+				632742501423C83A004943A6 /* Nimbus.xcodeproj */,
 				6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */,
 				6363D28E134C57F2000BDCFD /* HDFoundation */,
 				6363D288134C57F2000BDCFD /* HDCoreData */,
@@ -487,14 +654,9 @@
 				6363D294134C57F2000BDCFD /* HDFoundation.h */,
 				6385801413A174D900CE35ED /* HDMacros.h */,
 				6363D2C9134C58B9000BDCFD /* HDMath.h */,
+				632742971423CA96004943A6 /* HDMath.m */,
 				6363D295134C57F2000BDCFD /* HDTypes.h */,
-				639C900413D847F5006341FD /* HDDirection.h */,
-				639C900513D847F5006341FD /* HDDirection.m */,
-				6363D292134C57F2000BDCFD /* HDErrorHandler.h */,
-				6363D293134C57F2000BDCFD /* HDErrorHandler.m */,
-				6363D290134C57F2000BDCFD /* HDCodeLocation.h */,
-				6363D291134C57F2000BDCFD /* HDCodeLocation.m */,
-				6363D28F134C57F2000BDCFD /* HDAssert.h */,
+				632742931423CA06004943A6 /* HDTypes.m */,
 				6363D298134C57F2000BDCFD /* NSString+HDAdditions.h */,
 				6363D299134C57F2000BDCFD /* NSString+HDAdditions.m */,
 				6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */,
@@ -582,7 +744,6 @@
 				6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */,
 				6385801513A174D900CE35ED /* HDMacros.h in Headers */,
 				6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */,
-				639C900613D847F5006341FD /* HDDirection.h in Headers */,
 				6365E7B613D8751B00BCC434 /* NSIndexPath+HDAdditions.h in Headers */,
 				6375C66413E9670500CEE9C7 /* HDServices.h in Headers */,
 				630A1D4713F427C300286CC4 /* HDKeyValueStore.h in Headers */,
@@ -649,6 +810,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				632742961423CA7A004943A6 /* PBXTargetDependency */,
 			);
 			name = HDFoundation;
 			productName = HDLibraries;
@@ -785,6 +947,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 632742511423C83A004943A6 /* Products */;
+					ProjectRef = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+				},
+				{
 					ProductGroup = 6375C63813E965F400CEE9C7 /* Products */;
 					ProjectRef = 6375C63713E965F400CEE9C7 /* RestKit.xcodeproj */;
 				},
@@ -803,6 +969,146 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6327426C1423C83B004943A6 /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = 6327426B1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327426E1423C83B004943A6 /* NimbusCoreTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreTests.octest;
+			remoteRef = 6327426D1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742701423C83B004943A6 /* libNimbusInterapp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusInterapp.a;
+			remoteRef = 6327426F1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742721423C83B004943A6 /* NimbusInterappTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusInterappTests.octest;
+			remoteRef = 632742711423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742741423C83B004943A6 /* libNimbusLauncher.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusLauncher.a;
+			remoteRef = 632742731423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742761423C83B004943A6 /* NimbusLauncherTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusLauncherTests.octest;
+			remoteRef = 632742751423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742781423C83B004943A6 /* libNimbusNetworkImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusNetworkImage.a;
+			remoteRef = 632742771423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327427A1423C83B004943A6 /* NimbusNetworkImageTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusNetworkImageTests.octest;
+			remoteRef = 632742791423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327427C1423C83B004943A6 /* libNimbusOverview.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusOverview.a;
+			remoteRef = 6327427B1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327427E1423C83B004943A6 /* NimbusOverviewTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusOverviewTests.octest;
+			remoteRef = 6327427D1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742801423C83B004943A6 /* libNimbusPhotos.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusPhotos.a;
+			remoteRef = 6327427F1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742821423C83B004943A6 /* NimbusPhotosTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusPhotosTests.octest;
+			remoteRef = 632742811423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742841423C83B004943A6 /* libNimbusProcessors.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusProcessors.a;
+			remoteRef = 632742831423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742861423C83B004943A6 /* NimbusProcessorsTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusProcessorsTests.octest;
+			remoteRef = 632742851423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742881423C83B004943A6 /* libNimbusModels.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusModels.a;
+			remoteRef = 632742871423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327428A1423C83B004943A6 /* NimbusModelsTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusModelsTests.octest;
+			remoteRef = 632742891423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327428C1423C83B004943A6 /* libNimbusWebController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusWebController.a;
+			remoteRef = 6327428B1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6327428E1423C83B004943A6 /* NimbusWebControllerTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusWebControllerTests.octest;
+			remoteRef = 6327428D1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742901423C83B004943A6 /* libJSONKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libJSONKit.a;
+			remoteRef = 6327428F1423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		632742921423C83B004943A6 /* libASIHTTPRequest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASIHTTPRequest.a;
+			remoteRef = 632742911423C83B004943A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6375C64C13E965F500CEE9C7 /* libRestKitNetwork.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -915,15 +1221,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6322DDAD136AEE8200E8E9EF /* HDCodeLocation.m in Sources */,
-				6322DDAE136AEE8200E8E9EF /* HDErrorHandler.m in Sources */,
 				6322DDAF136AEE8200E8E9EF /* NSMutableArray+HDAdditions.m in Sources */,
 				6322DDB0136AEE8200E8E9EF /* NSString+HDAdditions.m in Sources */,
 				6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */,
 				6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */,
-				639C900713D847F5006341FD /* HDDirection.m in Sources */,
 				6365E7B713D8751B00BCC434 /* NSIndexPath+HDAdditions.m in Sources */,
 				630A1D4813F427C300286CC4 /* HDKeyValueStore.m in Sources */,
+				632742941423CA07004943A6 /* HDTypes.m in Sources */,
+				632742981423CA96004943A6 /* HDMath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,8 +1285,6 @@
 				6363D2B5134C57F2000BDCFD /* HDAudioPlayer.m in Sources */,
 				6363D2B6134C57F2000BDCFD /* HDManagedObject.m in Sources */,
 				6363D2B7134C57F2000BDCFD /* HDModelController.m in Sources */,
-				6363D2B8134C57F2000BDCFD /* HDCodeLocation.m in Sources */,
-				6363D2B9134C57F2000BDCFD /* HDErrorHandler.m in Sources */,
 				6363D2BA134C57F2000BDCFD /* NSMutableArray+HDAdditions.m in Sources */,
 				6363D2BB134C57F2000BDCFD /* NSString+HDAdditions.m in Sources */,
 				6363D2BC134C57F2000BDCFD /* HDAnimatedImage.m in Sources */,
@@ -1009,6 +1312,11 @@
 			isa = PBXTargetDependency;
 			name = RestKit;
 			targetProxy = 631D54DB13F3E9CA00836065 /* PBXContainerItemProxy */;
+		};
+		632742961423CA7A004943A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = 632742951423CA7A004943A6 /* PBXContainerItemProxy */;
 		};
 		6375C66813E9673F00CEE9C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1214,7 +1522,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = "Libraries/nimbus/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1239,7 +1547,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
+				HEADER_SEARCH_PATHS = "Libraries/nimbus/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1302,6 +1610,10 @@
 				DSTROOT = /tmp/HDServices.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					Libraries/ResKit/Build,
+					"Libraries/nimbus/**",
+				);
 				PRODUCT_NAME = HDServices;
 			};
 			name = Debug;
@@ -1318,6 +1630,10 @@
 				DSTROOT = /tmp/HDServices.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					Libraries/ResKit/Build,
+					"Libraries/nimbus/**",
+				);
 				PRODUCT_NAME = HDServices;
 			};
 			name = Release;

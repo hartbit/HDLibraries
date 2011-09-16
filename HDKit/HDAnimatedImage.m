@@ -8,7 +8,7 @@
 
 #import "HDAnimatedImage.h"
 #import "UIImage+HDAdditions.h"
-#import "HDFoundation.h"
+#import "NimbusCore.h"
 
 
 @interface HDAnimatedImage ()
@@ -109,8 +109,8 @@
 		return;
 	}
 	
-	HDCheck(isObjectNotNil([self superview]), HDFailureLevelInfo, return);
-	HDCheck(isObjectNotNil([self animationName]), HDFailureLevelInfo, return);
+	NIDASSERT([self superview] != nil);
+	NIDASSERT([self animationName] != nil);
 	
 	[self createImages];
 	[self setNextIndex:0];
@@ -158,7 +158,7 @@
 
 - (void)createImages
 {
-	HDAssert(isObjectNil([self images]), HDFailureLevelWarning);
+	NIDASSERT([self images] == nil);
 	
 	NSMutableArray* images = [NSMutableArray array];
 	NSUInteger index = 1;

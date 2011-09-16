@@ -9,9 +9,6 @@
 #import "HDMacros.h"
 #import "HDMath.h"
 #import "HDTypes.h"
-#import "HDDirection.h"
-#import "HDErrorHandler.h"
-#import "HDAssert.h"
 #import "HDKeyValueStore.h"
 
 #import "NSString+HDAdditions.h"

@@ -22,6 +22,15 @@ typedef struct
 	NSUInteger height;
 } HDSize;
 
+typedef enum {
+    HDDirectionNone   = 0,
+    HDDirectionUp     = 1,
+    HDDirectionRight  = 2,
+    HDDirectionDown   = 3,
+    HDDirectionLeft   = 4,
+    HDDirectionLast   = 5
+} HDDirection;
+
 
 #pragma mark - HDPoint
 
@@ -48,16 +57,6 @@ static inline NSUInteger HDPointDistance(HDPoint first, HDPoint second)
 	NSInteger a = first.x - second.x;
 	NSInteger b = first.y - second.y;
 	return (NSUInteger)sqrt(a*a + b*b);
-}
-
-static inline NSString*	NSStringFromHDPoint(HDPoint point)
-{
-	return [NSString stringWithFormat:@"(%i, %i)", point.x, point.y];
-}
-
-static inline CGPoint CGPointFromHDPoint(HDPoint point)
-{
-	return CGPointMake(point.x, point.y);
 }
 
 #pragma mark - HDSize
@@ -87,15 +86,11 @@ static inline BOOL HDSizeContainsHDPoint(HDSize size, HDPoint point)
 	return (point.x >= 0) && (point.y >= 0) && (point.x < size.width) && (point.y < size.height);
 }
 
-static inline NSString* NSStringFromHDSize(HDSize size)
-{
-	return [NSString stringWithFormat:@"(%i, %i)", size.width, size.height];
-}
+#pragma mark - HDDirection
 
-static inline CGSize CGSizeFromHDSize(HDSize size)
-{
-	return CGSizeMake(size.width, size.height);
-}
+HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise);
+HDDirection HDDirectionOpposite(HDDirection direction);
+HDPoint HDPointInDirection(HDPoint point, HDDirection direction);
 
 #pragma mark - Convertions
 
@@ -123,3 +118,25 @@ static inline NSString* NSStringFromBoolean(BOOL value)
 {
 	return value ? @"YES" : @"NO";
 }
+
+static inline NSString*	NSStringFromHDPoint(HDPoint point)
+{
+	return [NSString stringWithFormat:@"(%i, %i)", point.x, point.y];
+}
+
+static inline CGPoint CGPointFromHDPoint(HDPoint point)
+{
+	return CGPointMake(point.x, point.y);
+}
+
+static inline NSString* NSStringFromHDSize(HDSize size)
+{
+	return [NSString stringWithFormat:@"(%i, %i)", size.width, size.height];
+}
+
+static inline CGSize CGSizeFromHDSize(HDSize size)
+{
+	return CGSizeMake(size.width, size.height);
+}
+
+NSString* NSStringFromHDDirection(HDDirection direction);

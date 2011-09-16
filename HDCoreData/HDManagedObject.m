@@ -7,8 +7,8 @@
 //
 
 #import "HDManagedObject.h"
-#import "HDFoundation.h"
 #import "HDModelController.h"
+#import "NimbusCore.h"
 
 
 @implementation HDManagedObject
@@ -70,7 +70,7 @@
 	
 	NSError* error = nil;
 	NSArray* results = [managedObjectContext executeFetchRequest:request error:&error];
-	HDAssert(isObjectNil(error), HDFailureLevelError);
+	NIDASSERT(error == nil);
 	
 	return results;
 }
@@ -84,8 +84,8 @@
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
 {
-	HDCheck(isObjectNotNil(domain), HDFailureLevelWarning, return nil);
-	HDCheck(isObjectNotNil(reason), HDFailureLevelWarning, return nil);
+	NIDASSERT(domain != nil);
+	NIDASSERT(reason != nil);
 	
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	[userInfo setObject:self forKey:NSValidationObjectErrorKey];
@@ -100,7 +100,7 @@
 
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError
 {
-	HDAssert(isObjectNotNil(secondError), HDFailureLevelWarning);
+	NIDASSERT(secondError != nil);
 	
 	if (!originalError || !secondError)
 	{
@@ -129,7 +129,7 @@
 
 - (void)willChangeValueForKey:(NSString*)key
 {
-	HDAssert(isFalse([self isImmutable]), HDFailureLevelError);
+	NIDASSERT(![self isImmutable]);
 	[super willChangeValueForKey:key];
 }
 

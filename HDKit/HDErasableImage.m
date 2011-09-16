@@ -7,8 +7,8 @@
 //
 
 #import "HDErasableImage.h"
-#import "HDAssert.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "NimbusCore.h"
 
 
 CGImageRef CreateMaskFromImageMask(CGImageRef imageMask);
@@ -274,8 +274,7 @@ CGContextRef CreateImageMaskContext(CGSize size)
     CGContextRef context = CGBitmapContextCreate(bitmapData, width, height, bitsPerComponent, bytesPerRow, colorspace, bitmapInfo);
 	CGColorSpaceRelease(colorspace);
 	
-	HDCCheck(isPointerNotNull(context), HDFailureLevelWarning, free(bitmapData));
-	
+	NIDASSERT(context != NULL);
 	return context;
 }
 

@@ -8,7 +8,6 @@
 
 #import "HDMatrixControl.h"
 #import "UIView+HDAdditions.h"
-#import "HDAssert.h"
 #import "HDKitFunctions.h"
 
 
@@ -177,7 +176,7 @@
 		case UIControlStateHighlighted: return [self highlightedBackgroundImage];
 		case UIControlStateDisabled: return [self disabledBackgroundImage];
 		case UIControlStateSelected: return [self selectedBackgroundImage];
-		default: HDFail(@"Invalid control state.", HDFailureLevelError); return nil;
+		default: return nil;
 	}
 }
 
@@ -189,7 +188,6 @@
 		case UIControlStateHighlighted: [self setHighlightedBackgroundImage:image]; break;
 		case UIControlStateDisabled: [self setDisabledBackgroundImage:image]; break;
 		case UIControlStateSelected: [self setSelectedBackgroundImage:image]; break;
-		default: HDFail(@"Invalid control state.", HDFailureLevelError); return;
 	}
 	
 	[self updateButtonBackgroundImages];
