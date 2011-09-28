@@ -7,7 +7,7 @@
 //
 
 #import "HDAudioPlayer.h"
-#import "HDAssert.h"
+#import "NimbusCore.h"
 
 
 @interface HDAudioPlayer ()
@@ -17,7 +17,6 @@
 @property (nonatomic, strong) AVAudioPlayer* musicPlayer;
 @property (nonatomic, copy) void(^musicBlock)(void);
 
-//- (NSInvocation*)invocationForTarget:(id)target andSelector:(SEL)selector withObject:(id)object;
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;
 - (AVAudioPlayer*)audioPlayerWithPath:(NSString*)path;
 
@@ -67,10 +66,11 @@
 
 - (void)playSfx:(NSString*)sfxName completion:(void(^)(void))block
 {
-	HDCheck(isObjectNotNil(sfxName), HDFailureLevelWarning, return);
+	NIDASSERT(sfxName != nil);
 	
 	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
-	HDCheck(isObjectNotNil(sfxPlayer), HDFailureLevelWarning, return);
+	NIDASSERT(sfxPlayer != nil);
+
 	[[self sfxPlayers] addObject:sfxPlayer];
 	
 	id nullableBlock = (block != NULL) ? (id)[block copy] : (id)[NSNull null];
@@ -104,10 +104,11 @@
 
 - (void)playMusic:(NSString*)musicName completion:(void(^)(void))block
 {
-	HDCheck(isObjectNotNil(musicName), HDFailureLevelWarning, return);
+	NIDASSERT(musicName != nil);
 	
 	AVAudioPlayer* musicPlayer = [self audioPlayerWithName:musicName andType:@"m4a"];
-	HDCheck(isObjectNotNil(musicPlayer), HDFailureLevelWarning, return);
+	NIDASSERT(musicPlayer != nil);
+	
 	[self setMusicPlayer:musicPlayer];
 	[self setMusicBlock:block];
 	
@@ -166,7 +167,7 @@
 	}
 	else
 	{
-		HDFail(@"A unkown sound has finished.", HDFailureLevelWarning);
+		NIDERROR(@"A unkown sound has finished.");
 	}
 }
 
@@ -176,7 +177,7 @@
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type
 {
 	NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:type];
-	HDCheck(isObjectNotNil(path), HDFailureLevelWarning, return nil);
+	NIDASSERT(path != nil);
 	
 	return [self audioPlayerWithPath:path];
 }
@@ -187,7 +188,7 @@
 	
 	NSError* error = nil;
 	AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithData:data error:&error];
-	HDCheck(isObjectNil(error), HDFailureLevelWarning, return nil);
+	NIDASSERT(error == nil);
 	
 	[player setDelegate:self];
 	return player;

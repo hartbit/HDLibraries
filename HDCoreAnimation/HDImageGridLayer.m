@@ -8,6 +8,7 @@
 
 #import "HDImageGridLayer.h"
 #import "CALayer+HDGeometry.h"
+#import "NimbusCore.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -94,7 +95,7 @@
 
 - (void)reloadData
 {
-	HDCheck(isObjectNotNil([self dataSource]), HDFailureLevelWarning, return);
+	NIDASSERT([self dataSource] != nil);
 	
 	[self updateSize];
 	[self updateGridLayer];
