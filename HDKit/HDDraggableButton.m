@@ -24,7 +24,7 @@
 @implementation HDDraggableButton
 
 @synthesize delegate = _delegate;
-@synthesize targetView = _targetView;
+@synthesize targetViews = _targetViews;
 @synthesize dragEnabled = _dragEnabled;
 @synthesize startOrigin = _startOrigin;
 @synthesize speed = _speed;
@@ -81,16 +81,16 @@
 	}
 }
 
-- (void)didDrop:(BOOL)onTarget
+- (void)didDropOnTarget:(UIView*)target
 {
-	if (!onTarget)
+	if (target == nil)
 	{
 		[self returnToStart];
 	}
 
 	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
 	{
-		[[self delegate] draggableButton:self didDropOnTarget:onTarget];
+		[[self delegate] draggableButton:self didDropOnTarget:target];
 	}
 }
 
@@ -124,10 +124,19 @@
 	
 	if ([self dragEnabled])
 	{
-		CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[[self targetView] superview]];
-		BOOL onTarget = [self targetView] && CGRectContainsPoint([[self targetView] frame], centerInTarget);
+		for (UIView* target in [self targetViews])
+		{
+			CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[target superview]];
+			BOOL onTarget = CGRectContainsPoint([target frame], centerInTarget);
 		
-		[self didDrop:onTarget];
+			if (onTarget)
+			{
+				[self didDropOnTarget:target];
+				return;
+			}
+		}
+		
+		[self didDropOnTarget:nil];
 	}
 }
 
