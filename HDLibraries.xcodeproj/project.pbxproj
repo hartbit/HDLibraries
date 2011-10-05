@@ -62,6 +62,8 @@
 		6366C0191373F4490032B6F9 /* NSArray+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */; };
 		6366C01A1373F4490032B6F9 /* NSArray+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */; };
 		6375C66413E9670500CEE9C7 /* HDServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 6375C66313E9670500CEE9C7 /* HDServices.h */; };
+		6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63777138143C959700594D7E /* UIControl+HDAdditions.h */; };
+		6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63777139143C959700594D7E /* UIControl+HDAdditions.m */; };
 		6377F05113B3B2D200AB8DD3 /* NSSet+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */; };
 		6377F05213B3B2D200AB8DD3 /* NSSet+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */; };
 		63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */; };
@@ -342,6 +344,8 @@
 		6366C0171373F4490032B6F9 /* NSArray+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDAdditions.h"; sourceTree = "<group>"; };
 		6366C0181373F4490032B6F9 /* NSArray+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDAdditions.m"; sourceTree = "<group>"; };
 		6375C66313E9670500CEE9C7 /* HDServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDServices.h; sourceTree = "<group>"; };
+		63777138143C959700594D7E /* UIControl+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+HDAdditions.h"; sourceTree = "<group>"; };
+		63777139143C959700594D7E /* UIControl+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+HDAdditions.m"; sourceTree = "<group>"; };
 		6377F04F13B3B2D200AB8DD3 /* NSSet+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+HDAdditions.h"; sourceTree = "<group>"; };
 		6377F05013B3B2D200AB8DD3 /* NSSet+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HDAdditions.m"; sourceTree = "<group>"; };
 		63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+HDAdditions.h"; sourceTree = "<group>"; };
@@ -605,6 +609,8 @@
 				63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */,
 				6363D2AF134C57F2000BDCFD /* UIImage+HDAdditions.h */,
 				6363D2B0134C57F2000BDCFD /* UIImage+HDAdditions.m */,
+				63777138143C959700594D7E /* UIControl+HDAdditions.h */,
+				63777139143C959700594D7E /* UIControl+HDAdditions.m */,
 				630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */,
 				630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */,
 				63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */,
@@ -676,6 +682,7 @@
 				63F5FF9613EBF5BB004D30FF /* HDMatrixControl.h in Headers */,
 				63D3103C13F16595008C8BF8 /* HDPlaceholderTextView.h in Headers */,
 				63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */,
+				6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1093,7 @@
 				63F5FF9713EBF5BB004D30FF /* HDMatrixControl.m in Sources */,
 				63D3103D13F16595008C8BF8 /* HDPlaceholderTextView.m in Sources */,
 				63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */,
+				6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

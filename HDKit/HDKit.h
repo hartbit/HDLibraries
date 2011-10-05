@@ -11,6 +11,7 @@
 #import	"UIDevice+HDAdditions.h"
 #import "UIApplication+HDAdditions.h"
 #import "UIImage+HDAdditions.h"
+#import "UIControl+HDAdditions.h"
 #import "UIView+HDAdditions.h"
 #import "UINavigationController+HDAdditions.h"
 
