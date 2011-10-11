@@ -24,4 +24,26 @@
 	}
 }
 
+- (NSArray*)arrayByRemovingObject:(id)object
+{
+	if ([self containsObject:object])
+	{
+		NSMutableArray* newArray = [NSMutableArray array];
+		
+		for (id arrayObject in self)
+		{
+			if (arrayObject != object)
+			{
+				[newArray addObject:arrayObject];
+			}
+		}
+		
+		return newArray;
+	}
+	else
+	{
+		return self;
+	}
+}
+
 @end

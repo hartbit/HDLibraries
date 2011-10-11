@@ -12,5 +12,6 @@
 @interface NSArray (HDAdditions)
 
 - (id)randomObject;
+- (NSArray*)arrayByRemovingObject:(id)object;
 
 @end
