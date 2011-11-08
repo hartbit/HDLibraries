@@ -23,17 +23,25 @@
 @synthesize keyPrefix = _keyPrefix;
 @synthesize cloudStore = _cloudStore;
 
-#pragma mark - Lifecycle
+#pragma mark - Properties
 
-- (id)init
+- (BOOL)isCloudEnabled
 {
-	if ((self = [super init]))
+	return [self cloudStore] != nil;
+}
+
+- (void)setCloudEnabled:(BOOL)cloudEnabled
+{
+	if (cloudEnabled && ![self isCloudEnabled])
 	{
 		[self setCloudStore:[NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore]];
 		[self synchronize];
 	}
-	
-	return self;
+	else if (!cloudEnabled && [self isCloudEnabled])
+	{
+		[self synchronize];
+		[self setCloudStore:nil];
+	}
 }
 
 #pragma mark - Public Methods
@@ -218,9 +226,9 @@
 	[[self cloudStore] removeObjectForKey:fullKey];
 }
 
-- (HDKeyValueStoreSychronizationSuccess)synchronize
+- (HDKeyValueStoreSychronizationState)synchronize
 {
-	HDKeyValueStoreSychronizationSuccess success = HDKeyValueStoreSychronizationFailed;
+	HDKeyValueStoreSychronizationState success = HDKeyValueStoreSychronizationFailed;
 	
 	if ([[NSUserDefaults standardUserDefaults] synchronize])
 	{
