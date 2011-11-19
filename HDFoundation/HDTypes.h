@@ -52,11 +52,11 @@ static inline HDPoint HDPointMultiply(HDPoint point, NSInteger factor)
 	return HDPointMake(point.x * factor, point.y * factor);
 }
 
-static inline NSUInteger HDPointDistance(HDPoint first, HDPoint second)
+static inline CGFloat HDPointDistance(HDPoint first, HDPoint second)
 {
-	NSInteger a = first.x - second.x;
-	NSInteger b = first.y - second.y;
-	return (NSUInteger)sqrt(a*a + b*b);
+	NSUInteger a = second.x - first.x;
+	NSUInteger b = second.y - first.y;
+	return sqrt(a * a + b * b);
 }
 
 #pragma mark - HDSize
@@ -90,6 +90,7 @@ static inline BOOL HDSizeContainsHDPoint(HDSize size, HDPoint point)
 
 HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise);
 HDDirection HDDirectionOpposite(HDDirection direction);
+HDDirection HDDirectionBetweenPoints(HDPoint fromPoint, HDPoint toPoint);
 HDPoint HDPointInDirection(HDPoint point, HDDirection direction);
 
 #pragma mark - Convertions
