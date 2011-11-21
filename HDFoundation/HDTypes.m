@@ -38,6 +38,34 @@ HDDirection HDDirectionOpposite(HDDirection direction)
 	return HDDirectionNext(HDDirectionNext(direction, YES), YES);
 }
 
+HDDirection HDDirectionBetweenPoints(HDPoint fromPoint, HDPoint toPoint)
+{
+	if (fromPoint.x == toPoint.x)
+	{
+		if (toPoint.y == fromPoint.y + 1)
+		{
+			return HDDirectionDown;
+		}
+		else if (toPoint.y == fromPoint.y - 1)
+		{
+			return HDDirectionUp;
+		}
+	}
+	else if (fromPoint.y == toPoint.y)
+	{
+		if (toPoint.x == fromPoint.x + 1)
+		{
+			return HDDirectionRight;
+		}
+		else if (toPoint.x == fromPoint.x - 1)
+		{
+			return HDDirectionLeft;
+		}
+	}
+	
+	return HDDirectionNone;
+}
+
 HDPoint HDPointInDirection(HDPoint point, HDDirection direction)
 {
 	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
