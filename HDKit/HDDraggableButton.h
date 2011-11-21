@@ -21,6 +21,7 @@
 - (void)returnToStart;
 - (void)didDrag;
 - (void)didDropOnTarget:(UIView*)target;
+- (void)didReturnToStart;
 
 @end
 
@@ -30,5 +31,6 @@
 @optional
 - (void)draggableButtonWillDrag:(HDDraggableButton*)button;
 - (void)draggableButton:(HDDraggableButton*)button didDropOnTarget:(UIView*)onTarget;
+- (void)draggableButtonDidReturnToStart:(HDDraggableButton*)button;
 
 @end

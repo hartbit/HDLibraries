@@ -67,6 +67,8 @@
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 	[UIView setAnimationDuration:duration];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(didReturnToStart)];
 	
 	[self setFrameOrigin:[self startOrigin]];
 	
@@ -94,6 +96,14 @@
 	}
 }
 
+- (void)didReturnToStart
+{
+	if ([[self delegate] respondsToSelector:@selector(draggableButtonDidReturnToStart:)])
+	{
+		[[self delegate] draggableButtonDidReturnToStart:self];
+	}
+}
+
 #pragma mark - UIResponder Methods
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
@@ -101,7 +111,7 @@
 	[super touchesBegan:touches withEvent:event];
 
 	[self didDrag];
-} 
+}
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event 
 {

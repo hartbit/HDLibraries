@@ -19,7 +19,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 	UIViewController* disappearingViewController = [self topViewController];
 	UIViewController* appearingViewController = [viewControllers lastObject];
 	
-	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
+	[UIView transitionWithView:[[[disappearingViewController view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
 					animations:^() {
@@ -38,7 +38,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 	UIViewController* disappearingViewController = [self topViewController];
 	UIViewController* appearingViewController = viewController;
 	
-	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
+	[UIView transitionWithView:[[[disappearingViewController view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
 					animations:^{
@@ -57,7 +57,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 	UIViewController* disappearingViewController = [self topViewController];
 	UIViewController* appearingViewController = [[self viewControllers] objectAtIndex:[[self viewControllers] count] - 2];
 	
-	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
+	[UIView transitionWithView:[[[disappearingViewController view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
 					animations:^() {
@@ -76,7 +76,7 @@ const NSTimeInterval kNavigationTransitionDuration = 1;
 	UIViewController* disappearingViewController = [self topViewController];
 	UIViewController* appearingViewController = [[self viewControllers] objectAtIndex:0];
 	
-	[UIView transitionWithView:[[[[self topViewController] view] superview] superview]
+	[UIView transitionWithView:[[[disappearingViewController view] superview] superview]
 					  duration:kNavigationTransitionDuration
 					   options:transition
 					animations:^() {
