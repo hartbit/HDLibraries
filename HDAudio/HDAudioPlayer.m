@@ -145,12 +145,13 @@
 {
 	if (player == [self musicPlayer])
 	{
-		if ([self musicBlock] != NULL)
-		{
-			[self musicBlock]();
-		}
-		
+		void(^musicBlock)(void) = [self musicBlock];
 		[self stopMusic];
+		
+		if (musicBlock != NULL)
+		{
+			musicBlock();
+		}
 	}
 	else if ([[self sfxPlayers] containsObject:player])
 	{
