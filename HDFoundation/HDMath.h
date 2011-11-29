@@ -10,6 +10,11 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 
+static inline double HDPercentage(double value, double max)
+{
+	return MIN(100 * value / max, 100);
+}
+
 NSUInteger HDPower(NSUInteger base, NSUInteger exp);
 NSUInteger HDShiftLeftCircular(NSUInteger value, NSUInteger shift, NSUInteger size);
 NSUInteger HDShiftRightCircular(NSUInteger value, NSUInteger shift, NSUInteger size);
