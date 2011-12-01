@@ -62,17 +62,28 @@
 
 - (void)returnToStart
 {	
-	NSTimeInterval duration = CGPointDistance([self frameOrigin], [self startOrigin]) / [self speed];
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-	[UIView setAnimationDuration:duration];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(didReturnToStart)];
+	[self returnToStartAnimated:YES];
+}
+
+- (void)returnToStartAnimated:(BOOL)animated
+{
+	if (animated)
+	{
+		NSTimeInterval duration = CGPointDistance([self frameOrigin], [self startOrigin]) / [self speed];
+		
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+		[UIView setAnimationDuration:duration];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(didReturnToStart)];
+	}
 	
 	[self setFrameOrigin:[self startOrigin]];
 	
-	[UIView commitAnimations];
+	if (animated)
+	{
+		[UIView commitAnimations];
+	}
 }
 
 - (void)didDrag
