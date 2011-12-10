@@ -14,8 +14,6 @@
 
 @interface HDDraggableButton ()
 
-@property (nonatomic, assign) CGPoint startOrigin;
-
 - (void)initialize;
 
 @end

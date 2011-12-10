@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutletCollection(UIView) NSArray* targetViews;
 @property (nonatomic, assign) CGFloat speed;
 @property (nonatomic, assign) BOOL dragEnabled;
+@property (nonatomic, assign) CGPoint startOrigin;
 
 - (void)returnToStart;
 - (void)returnToStartAnimated:(BOOL)animated;
