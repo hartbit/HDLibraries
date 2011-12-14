@@ -1406,6 +1406,123 @@
 			};
 			name = Release;
 		};
+		632DD90C1499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "Libraries/nimbus/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = AppStore;
+		};
+		632DD90D1499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDLibraries.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStore;
+		};
+		632DD90E1499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDCoreData.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStore;
+		};
+		632DD90F1499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDAudio.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStore;
+		};
+		632DD9101499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDCoreAnimation.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = HDCoreAnimation;
+			};
+			name = AppStore;
+		};
+		632DD9111499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStore;
+		};
+		632DD9121499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/HDServices.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					Libraries/ResKit/Build,
+					"Libraries/nimbus/**",
+				);
+				PRODUCT_NAME = HDServices;
+			};
+			name = AppStore;
+		};
+		632DD9131499162D0029F775 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
+				INFOPLIST_FILE = Tests/Support/Info.plist;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = AppStore;
+		};
 		634B6A18139BD2F1007EB45A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1557,6 +1674,7 @@
 			buildConfigurations = (
 				6322DDA9136AEE6B00E8E9EF /* Debug */,
 				6322DDAA136AEE6B00E8E9EF /* Release */,
+				632DD90D1499162D0029F775 /* AppStore */,
 				63207E6C142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1567,6 +1685,7 @@
 			buildConfigurations = (
 				6322DDCA136AEF4800E8E9EF /* Debug */,
 				6322DDCB136AEF4800E8E9EF /* Release */,
+				632DD90E1499162D0029F775 /* AppStore */,
 				63207E6D142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1577,6 +1696,7 @@
 			buildConfigurations = (
 				6322DDD8136AEF9600E8E9EF /* Debug */,
 				6322DDD9136AEF9600E8E9EF /* Release */,
+				632DD90F1499162D0029F775 /* AppStore */,
 				63207E6E142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1587,6 +1707,7 @@
 			buildConfigurations = (
 				6322DDE5136AEFA400E8E9EF /* Debug */,
 				6322DDE6136AEFA400E8E9EF /* Release */,
+				632DD9111499162D0029F775 /* AppStore */,
 				63207E70142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1597,6 +1718,7 @@
 			buildConfigurations = (
 				634B6A18139BD2F1007EB45A /* Debug */,
 				634B6A19139BD2F1007EB45A /* Release */,
+				632DD9101499162D0029F775 /* AppStore */,
 				63207E6F142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1607,6 +1729,7 @@
 			buildConfigurations = (
 				6363D274134C56ED000BDCFD /* Debug */,
 				6363D275134C56ED000BDCFD /* Release */,
+				632DD90C1499162D0029F775 /* AppStore */,
 				63207E6B142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1617,6 +1740,7 @@
 			buildConfigurations = (
 				6363D27A134C56ED000BDCFD /* Debug */,
 				6363D27B134C56ED000BDCFD /* Release */,
+				632DD9131499162D0029F775 /* AppStore */,
 				63207E72142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1627,6 +1751,7 @@
 			buildConfigurations = (
 				63B5EFF313E8410C00D1185F /* Debug */,
 				63B5EFF413E8410C00D1185F /* Release */,
+				632DD9121499162D0029F775 /* AppStore */,
 				63207E71142A4FEA0095E62C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
