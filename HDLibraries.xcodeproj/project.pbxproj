@@ -90,12 +90,89 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		631FD30F142B396F00AC2E54 /* PBXContainerItemProxy */ = {
+		630E93B7149D6D8B005B16DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 66A03D6713E6FA9700B514F3;
-			remoteInfo = ASIHTTPRequest;
+			proxyType = 2;
+			remoteGlobalIDString = DB3A230913FD4B8E00614220;
+			remoteInfo = NimbusAttributedLabel;
+		};
+		630E93B9149D6D8B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB3A231613FD4B8E00614220;
+			remoteInfo = NimbusAttributedLabelTests;
+		};
+		630E93BB149D6D8B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C3A6A1143D61130048542F;
+			remoteInfo = NimbusCss;
+		};
+		630E93BD149D6D8B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C3A6AE143D61140048542F;
+			remoteInfo = NimbusCssTests;
+		};
+		630E93BF149D6D8B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 663B523F1445052700CC26DF;
+			remoteInfo = NimbusPagingScrollView;
+		};
+		630E93C1149D6D8B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 663B524C1445052800CC26DF;
+			remoteInfo = NimbusPagingScrollViewTests;
+		};
+		630E9408149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC40A2A1447B58600E47595;
+			remoteInfo = "iOS Framework";
+		};
+		630E940A149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC40A751447BB1400E47595;
+			remoteInfo = "OS X Framework";
+		};
+		630E940C149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C3DBF8D1382F1BA00E6C9AA;
+			remoteInfo = "iOS Library";
+		};
+		630E940E149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC08FCE1385555D00DDEABB;
+			remoteInfo = "OS X Library";
+		};
+		630E9410149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC0900913855CAE00DDEABB;
+			remoteInfo = "Chameleon Library";
+		};
+		630E9412149D6E2B005B16DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60FF000713C023CB004A1394;
+			remoteInfo = "iOS Tests";
 		};
 		6327426B1423C83B004943A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -223,20 +300,6 @@
 			remoteGlobalIDString = DB84BD8113EFDDCA00DACCFE;
 			remoteInfo = NimbusWebControllerTests;
 		};
-		6327428F1423C83B004943A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 667572F713E7705F0076F555;
-			remoteInfo = JSONKit;
-		};
-		632742911423C83B004943A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66A03D6813E6FA9700B514F3;
-			remoteInfo = ASIHTTPRequest;
-		};
 		632742951423CA7A004943A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
@@ -285,6 +348,7 @@
 		630A1D4513F427C300286CC4 /* HDKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDKeyValueStore.h; sourceTree = "<group>"; };
 		630A1D4613F427C300286CC4 /* HDKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDKeyValueStore.m; sourceTree = "<group>"; };
 		630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HDAdditions.h"; sourceTree = "<group>"; };
+		630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlocksKit.xcodeproj; path = Libraries/BlocksKit/BlocksKit.xcodeproj; sourceTree = "<group>"; };
 		630F09EC139BD46300CCA4C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDAdditions.m"; sourceTree = "<group>"; };
 		631F690F14594A8700BC7E00 /* UIAlertView+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+HDAdditions.h"; sourceTree = "<group>"; };
@@ -444,11 +508,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630E93FC149D6E2B005B16DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				630E9409149D6E2B005B16DC /* BlocksKit.framework */,
+				630E940B149D6E2B005B16DC /* BlocksKit.framework */,
+				630E940D149D6E2B005B16DC /* libBlocksKit.a */,
+				630E940F149D6E2B005B16DC /* BlocksKit.dylib */,
+				630E9411149D6E2B005B16DC /* BlocksKit_Chameleon.dylib */,
+				630E9413149D6E2B005B16DC /* iOS Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		632742511423C83A004943A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				630E93B8149D6D8B005B16DC /* libNimbusAttributedLabel.a */,
+				630E93BA149D6D8B005B16DC /* NimbusAttributedLabelTests.octest */,
 				6327426C1423C83B004943A6 /* libNimbusCore.a */,
 				6327426E1423C83B004943A6 /* NimbusCoreTests.octest */,
+				630E93BC149D6D8B005B16DC /* libNimbusCss.a */,
+				630E93BE149D6D8B005B16DC /* NimbusCssTests.octest */,
 				632742701423C83B004943A6 /* libNimbusInterapp.a */,
 				632742721423C83B004943A6 /* NimbusInterappTests.octest */,
 				632742741423C83B004943A6 /* libNimbusLauncher.a */,
@@ -457,6 +538,8 @@
 				6327427A1423C83B004943A6 /* NimbusNetworkImageTests.octest */,
 				6327427C1423C83B004943A6 /* libNimbusOverview.a */,
 				6327427E1423C83B004943A6 /* NimbusOverviewTests.octest */,
+				630E93C0149D6D8B005B16DC /* libNimbusPagingScrollView.a */,
+				630E93C2149D6D8B005B16DC /* NimbusPagingScrollViewTests.octest */,
 				632742801423C83B004943A6 /* libNimbusPhotos.a */,
 				632742821423C83B004943A6 /* NimbusPhotosTests.octest */,
 				632742841423C83B004943A6 /* libNimbusProcessors.a */,
@@ -465,8 +548,6 @@
 				6327428A1423C83B004943A6 /* NimbusModelsTests.octest */,
 				6327428C1423C83B004943A6 /* libNimbusWebController.a */,
 				6327428E1423C83B004943A6 /* NimbusWebControllerTests.octest */,
-				632742901423C83B004943A6 /* libJSONKit.a */,
-				632742921423C83B004943A6 /* libASIHTTPRequest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -488,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				632742501423C83A004943A6 /* Nimbus.xcodeproj */,
+				630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */,
 				6363D28E134C57F2000BDCFD /* HDFoundation */,
 				6363D288134C57F2000BDCFD /* HDCoreData */,
 				6363D284134C57F2000BDCFD /* HDAudio */,
@@ -842,7 +924,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				631FD310142B396F00AC2E54 /* PBXTargetDependency */,
 				6375C67013E9674F00CEE9C7 /* PBXTargetDependency */,
 			);
 			name = HDServices;
@@ -871,6 +952,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 630E93FC149D6E2B005B16DC /* Products */;
+					ProjectRef = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 632742511423C83A004943A6 /* Products */;
 					ProjectRef = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
 				},
@@ -889,6 +974,90 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		630E93B8149D6D8B005B16DC /* libNimbusAttributedLabel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusAttributedLabel.a;
+			remoteRef = 630E93B7149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E93BA149D6D8B005B16DC /* NimbusAttributedLabelTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusAttributedLabelTests.octest;
+			remoteRef = 630E93B9149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E93BC149D6D8B005B16DC /* libNimbusCss.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCss.a;
+			remoteRef = 630E93BB149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E93BE149D6D8B005B16DC /* NimbusCssTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCssTests.octest;
+			remoteRef = 630E93BD149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E93C0149D6D8B005B16DC /* libNimbusPagingScrollView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusPagingScrollView.a;
+			remoteRef = 630E93BF149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E93C2149D6D8B005B16DC /* NimbusPagingScrollViewTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusPagingScrollViewTests.octest;
+			remoteRef = 630E93C1149D6D8B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E9409149D6E2B005B16DC /* BlocksKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BlocksKit.framework;
+			remoteRef = 630E9408149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E940B149D6E2B005B16DC /* BlocksKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlocksKit.framework;
+			remoteRef = 630E940A149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E940D149D6E2B005B16DC /* libBlocksKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBlocksKit.a;
+			remoteRef = 630E940C149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E940F149D6E2B005B16DC /* BlocksKit.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = BlocksKit.dylib;
+			remoteRef = 630E940E149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E9411149D6E2B005B16DC /* BlocksKit_Chameleon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = BlocksKit_Chameleon.dylib;
+			remoteRef = 630E9410149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		630E9413149D6E2B005B16DC /* iOS Tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "iOS Tests.app";
+			remoteRef = 630E9412149D6E2B005B16DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6327426C1423C83B004943A6 /* libNimbusCore.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1015,20 +1184,6 @@
 			remoteRef = 6327428D1423C83B004943A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		632742901423C83B004943A6 /* libJSONKit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJSONKit.a;
-			remoteRef = 6327428F1423C83B004943A6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		632742921423C83B004943A6 /* libASIHTTPRequest.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libASIHTTPRequest.a;
-			remoteRef = 632742911423C83B004943A6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1153,11 +1308,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		631FD310142B396F00AC2E54 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ASIHTTPRequest;
-			targetProxy = 631FD30F142B396F00AC2E54 /* PBXContainerItemProxy */;
-		};
 		632742961423CA7A004943A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NimbusCore;
