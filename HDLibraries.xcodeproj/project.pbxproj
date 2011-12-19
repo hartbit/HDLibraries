@@ -12,8 +12,6 @@
 		630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */; };
 		630F09ED139BD46300CCA4C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630F09EC139BD46300CCA4C5 /* UIKit.framework */; };
 		630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */; };
-		631F691114594A8700BC7E00 /* UIAlertView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 631F690F14594A8700BC7E00 /* UIAlertView+HDAdditions.h */; };
-		631F691214594A8700BC7E00 /* UIAlertView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 631F691014594A8700BC7E00 /* UIAlertView+HDAdditions.m */; };
 		631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */; };
 		631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */; };
 		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -351,8 +349,6 @@
 		630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlocksKit.xcodeproj; path = Libraries/BlocksKit/BlocksKit.xcodeproj; sourceTree = "<group>"; };
 		630F09EC139BD46300CCA4C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDAdditions.m"; sourceTree = "<group>"; };
-		631F690F14594A8700BC7E00 /* UIAlertView+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+HDAdditions.h"; sourceTree = "<group>"; };
-		631F691014594A8700BC7E00 /* UIAlertView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+HDAdditions.m"; sourceTree = "<group>"; };
 		631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+HDAdditions.h"; sourceTree = "<group>"; };
 		631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+HDAdditions.m"; sourceTree = "<group>"; };
 		6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -705,8 +701,6 @@
 				630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */,
 				63851D3D13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h */,
 				63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */,
-				631F690F14594A8700BC7E00 /* UIAlertView+HDAdditions.h */,
-				631F691014594A8700BC7E00 /* UIAlertView+HDAdditions.m */,
 				631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */,
 				631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */,
 				6363D29B134C57F2000BDCFD /* HDAnimatedImage.h */,
@@ -777,7 +771,6 @@
 				63D3103C13F16595008C8BF8 /* HDPlaceholderTextView.h in Headers */,
 				63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */,
 				6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */,
-				631F691114594A8700BC7E00 /* UIAlertView+HDAdditions.h in Headers */,
 				631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1263,7 +1256,6 @@
 				63D3103D13F16595008C8BF8 /* HDPlaceholderTextView.m in Sources */,
 				63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */,
 				6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */,
-				631F691214594A8700BC7E00 /* UIAlertView+HDAdditions.m in Sources */,
 				631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

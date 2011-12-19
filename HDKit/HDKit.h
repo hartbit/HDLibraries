@@ -13,7 +13,6 @@
 #import "UIImage+HDAdditions.h"
 #import "UIControl+HDAdditions.h"
 #import "UIView+HDAdditions.h"
-#import "UIAlertView+HDAdditions.h"
 #import "UIBezierPath+HDAdditions.h"
 #import "UINavigationController+HDAdditions.h"
 
