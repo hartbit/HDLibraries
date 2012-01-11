@@ -146,8 +146,9 @@
 		return YES;
 	}
 	
+	NSUInteger bytesPerPixel = [imageData length] / (width * height);
 	NSUInteger pixelIndex = (pointY * width) + pointX;
-	NSUInteger alphaIndex = pixelIndex * 4 + 3;
+	NSUInteger alphaIndex = pixelIndex * bytesPerPixel + (bytesPerPixel - 1);
 	
 	char pixelData = 0;
 	[imageData getBytes:&pixelData range:NSMakeRange(alphaIndex, 1)];
