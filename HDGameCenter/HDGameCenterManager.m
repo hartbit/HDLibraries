@@ -248,14 +248,7 @@ static HDGameCenterManager* kSharedInstance = nil;
 
 - (void)save
 {
-	NSString* archivePath = [[self class] archivePath];
-	
-	NSError* error = nil;
-	NSString* archiveDirectory = [archivePath stringByDeletingLastPathComponent];
-	[[NSFileManager new] createDirectoryAtPath:archiveDirectory withIntermediateDirectories:YES attributes:nil error:&error];
-	NIDASSERT(error == nil);
-	
-	[NSKeyedArchiver archiveRootObject:self toFile:archivePath];
+	[NSKeyedArchiver archiveRootObject:self toFile:[[self class] archivePath]];
 }
 
 - (void)showLeaderboards
