@@ -31,6 +31,8 @@
 		6322DDF0136AEFBE00E8E9EF /* UIImage+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+HDAdditions.m */; };
 		632742941423CA07004943A6 /* HDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742931423CA06004943A6 /* HDTypes.m */; };
 		632742981423CA96004943A6 /* HDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742971423CA96004943A6 /* HDMath.m */; };
+		6357580E14CDF650008B06F7 /* HDAdMob.h in Headers */ = {isa = PBXBuildFile; fileRef = 6357580C14CDF650008B06F7 /* HDAdMob.h */; };
+		6357580F14CDF650008B06F7 /* HDAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 6357580D14CDF650008B06F7 /* HDAdMob.m */; };
 		6363D262134C56ED000BDCFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D261134C56ED000BDCFD /* UIKit.framework */; };
 		6363D263134C56ED000BDCFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
 		6363D265134C56ED000BDCFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D264134C56ED000BDCFD /* CoreGraphics.framework */; };
@@ -349,6 +351,8 @@
 		632742931423CA06004943A6 /* HDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDTypes.m; sourceTree = "<group>"; };
 		632742971423CA96004943A6 /* HDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMath.m; sourceTree = "<group>"; };
 		634B6A2D139BD3B9007EB45A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6357580C14CDF650008B06F7 /* HDAdMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAdMob.h; sourceTree = "<group>"; };
+		6357580D14CDF650008B06F7 /* HDAdMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAdMob.m; sourceTree = "<group>"; };
 		6363D256134C56ED000BDCFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6363D260134C56ED000BDCFD /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6363D261134C56ED000BDCFD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -665,6 +669,8 @@
 				63851D3E13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m */,
 				631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */,
 				631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */,
+				6357580C14CDF650008B06F7 /* HDAdMob.h */,
+				6357580D14CDF650008B06F7 /* HDAdMob.m */,
 				6363D29B134C57F2000BDCFD /* HDAnimatedImage.h */,
 				6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */,
 				6363D29D134C57F2000BDCFD /* HDClipView.h */,
@@ -735,6 +741,7 @@
 				63851D3F13FC0F1E00D42CA8 /* UINavigationController+HDAdditions.h in Headers */,
 				6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */,
 				631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */,
+				6357580E14CDF650008B06F7 /* HDAdMob.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,6 +1206,7 @@
 				63851D4013FC0F1E00D42CA8 /* UINavigationController+HDAdditions.m in Sources */,
 				6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */,
 				631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */,
+				6357580F14CDF650008B06F7 /* HDAdMob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
