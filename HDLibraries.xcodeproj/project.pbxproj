@@ -879,7 +879,7 @@
 		6363D24A134C56ED000BDCFD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "hart[dev]";
 			};
 			buildConfigurationList = 6363D24D134C56ED000BDCFD /* Build configuration list for PBXProject "HDLibraries" */;
