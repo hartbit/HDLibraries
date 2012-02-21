@@ -9,6 +9,7 @@
 #import "HDKitFunctions.h"
 
 #import	"UIDevice+HDAdditions.h"
+#import "UIScreen+HDAdditions.h"
 #import "UIApplication+HDAdditions.h"
 #import "UIImage+HDAdditions.h"
 #import "UIControl+HDAdditions.h"

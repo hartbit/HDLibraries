@@ -11,6 +11,8 @@
 		630A1D4813F427C300286CC4 /* HDKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A1D4613F427C300286CC4 /* HDKeyValueStore.m */; };
 		630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */; };
 		630F09F4139BD48200CCA4C5 /* UIView+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */; };
+		631CB9F014F2AAB0006EBBB1 /* UIScreen+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 631CB9EF14F2AAB0006EBBB1 /* UIScreen+HDAdditions.h */; };
+		631CBA1214F2AAD5006EBBB1 /* UIScreen+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CBA1114F2AAD5006EBBB1 /* UIScreen+HDAdditions.m */; };
 		631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */; };
 		631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */; };
 		6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D256134C56ED000BDCFD /* Foundation.framework */; };
@@ -341,6 +343,8 @@
 		630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlocksKit.xcodeproj; path = Libraries/BlocksKit/BlocksKit.xcodeproj; sourceTree = "<group>"; };
 		630F09EC139BD46300CCA4C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		630F09F1139BD48200CCA4C5 /* UIView+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDAdditions.m"; sourceTree = "<group>"; };
+		631CB9EF14F2AAB0006EBBB1 /* UIScreen+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+HDAdditions.h"; sourceTree = "<group>"; };
+		631CBA1114F2AAD5006EBBB1 /* UIScreen+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+HDAdditions.m"; sourceTree = "<group>"; };
 		631FBC36148532730058B924 /* UIBezierPath+HDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+HDAdditions.h"; sourceTree = "<group>"; };
 		631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+HDAdditions.m"; sourceTree = "<group>"; };
 		6322DDA4136AEE6B00E8E9EF /* libHDFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -657,6 +661,8 @@
 				6363D2A5134C57F2000BDCFD /* HDKitFunctions.h */,
 				6363D2AD134C57F2000BDCFD /* UIDevice+HDAdditions.h */,
 				6363D2AE134C57F2000BDCFD /* UIDevice+HDAdditions.m */,
+				631CB9EF14F2AAB0006EBBB1 /* UIScreen+HDAdditions.h */,
+				631CBA1114F2AAD5006EBBB1 /* UIScreen+HDAdditions.m */,
 				63A0C03B13CDD7DB0090E6F1 /* UIApplication+HDAdditions.h */,
 				63A0C03C13CDD7DB0090E6F1 /* UIApplication+HDAdditions.m */,
 				6363D2AF134C57F2000BDCFD /* UIImage+HDAdditions.h */,
@@ -742,6 +748,7 @@
 				6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */,
 				631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */,
 				6357580E14CDF650008B06F7 /* HDAdMob.h in Headers */,
+				631CB9F014F2AAB0006EBBB1 /* UIScreen+HDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1214,7 @@
 				6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */,
 				631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */,
 				6357580F14CDF650008B06F7 /* HDAdMob.m in Sources */,
+				631CBA1214F2AAD5006EBBB1 /* UIScreen+HDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
