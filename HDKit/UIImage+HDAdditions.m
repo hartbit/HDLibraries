@@ -12,14 +12,6 @@
 #import	"UIDevice+HDAdditions.h"
 
 
-@interface UIImage ()
-
-+ (NSString*)insertRetinaPathModifier:(NSString*)path;
-+ (UIImage*)directImageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
-
-@end
-
-
 @implementation UIImage (HDAdditions)
 
 #pragma mark - Loading

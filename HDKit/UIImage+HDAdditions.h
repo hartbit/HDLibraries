@@ -11,6 +11,9 @@
 
 @interface UIImage (HDAdditions)
 
++ (NSString*)insertRetinaPathModifier:(NSString*)path;
++ (UIImage*)directImageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
+
 + (UIImage*)imageWithName:(NSString*)name cached:(BOOL)cached;
 + (UIImage*)imageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
 

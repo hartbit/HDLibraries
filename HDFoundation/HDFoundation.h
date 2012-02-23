@@ -10,6 +10,7 @@
 #import "HDMath.h"
 #import "HDTypes.h"
 #import "HDKeyValueStore.h"
+#import "HDPerlinNoise.h"
 
 #import "NSString+HDAdditions.h"
 #import "NSArray+HDAdditions.h"

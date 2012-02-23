@@ -30,18 +30,7 @@
 
 - (NSString*)platformSuffix
 {
-	NSString* platformSuffix = nil;
-	
-	if ([self respondsToSelector:@selector(userInterfaceIdiom)] && ([self userInterfaceIdiom] == UIUserInterfaceIdiomPad))
-	{
-		platformSuffix = @"~ipad";
-	}
-	else
-	{
-		platformSuffix = @"~iphone";
-	}
-	
-	return platformSuffix;
+	return ([self userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? @"~ipad" : @"~iphone";
 }
 
 - (BOOL)isDeveloperDevice

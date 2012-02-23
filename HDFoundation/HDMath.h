@@ -1,6 +1,6 @@
 //
 //  HDMath.h
-//  Gravicube
+//  HDLibraries
 //
 //  Created by David Hart on 4/5/11.
 //  Copyright 2011 hart[dev]. All rights reserved.
