@@ -82,48 +82,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		630E93B7149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB3A230913FD4B8E00614220;
-			remoteInfo = NimbusAttributedLabel;
-		};
-		630E93B9149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB3A231613FD4B8E00614220;
-			remoteInfo = NimbusAttributedLabelTests;
-		};
-		630E93BB149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66C3A6A1143D61130048542F;
-			remoteInfo = NimbusCss;
-		};
-		630E93BD149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66C3A6AE143D61140048542F;
-			remoteInfo = NimbusCssTests;
-		};
-		630E93BF149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 663B523F1445052700CC26DF;
-			remoteInfo = NimbusPagingScrollView;
-		};
-		630E93C1149D6D8B005B16DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 663B524C1445052800CC26DF;
-			remoteInfo = NimbusPagingScrollViewTests;
-		};
 		630E9408149D6E2B005B16DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 630E93FB149D6E2B005B16DC /* BlocksKit.xcodeproj */;
@@ -334,6 +292,20 @@
 			remoteGlobalIDString = 6322DDA3136AEE6B00E8E9EF;
 			remoteInfo = HDFoundation;
 		};
+		63E89CBF14F646850051B336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 667572F713E7705F0076F555;
+			remoteInfo = JSONKit;
+		};
+		63E89CC114F646850051B336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 632742501423C83A004943A6 /* Nimbus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66A03D6813E6FA9700B514F3;
+			remoteInfo = ASIHTTPRequest;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -502,12 +474,8 @@
 		632742511423C83A004943A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				630E93B8149D6D8B005B16DC /* libNimbusAttributedLabel.a */,
-				630E93BA149D6D8B005B16DC /* NimbusAttributedLabelTests.octest */,
 				6327426C1423C83B004943A6 /* libNimbusCore.a */,
 				6327426E1423C83B004943A6 /* NimbusCoreTests.octest */,
-				630E93BC149D6D8B005B16DC /* libNimbusCss.a */,
-				630E93BE149D6D8B005B16DC /* NimbusCssTests.octest */,
 				632742701423C83B004943A6 /* libNimbusInterapp.a */,
 				632742721423C83B004943A6 /* NimbusInterappTests.octest */,
 				632742741423C83B004943A6 /* libNimbusLauncher.a */,
@@ -516,8 +484,6 @@
 				6327427A1423C83B004943A6 /* NimbusNetworkImageTests.octest */,
 				6327427C1423C83B004943A6 /* libNimbusOverview.a */,
 				6327427E1423C83B004943A6 /* NimbusOverviewTests.octest */,
-				630E93C0149D6D8B005B16DC /* libNimbusPagingScrollView.a */,
-				630E93C2149D6D8B005B16DC /* NimbusPagingScrollViewTests.octest */,
 				632742801423C83B004943A6 /* libNimbusPhotos.a */,
 				632742821423C83B004943A6 /* NimbusPhotosTests.octest */,
 				632742841423C83B004943A6 /* libNimbusProcessors.a */,
@@ -526,6 +492,8 @@
 				6327428A1423C83B004943A6 /* NimbusModelsTests.octest */,
 				6327428C1423C83B004943A6 /* libNimbusWebController.a */,
 				6327428E1423C83B004943A6 /* NimbusWebControllerTests.octest */,
+				63E89CC014F646850051B336 /* libJSONKit.a */,
+				63E89CC214F646850051B336 /* libASIHTTPRequest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -922,48 +890,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		630E93B8149D6D8B005B16DC /* libNimbusAttributedLabel.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNimbusAttributedLabel.a;
-			remoteRef = 630E93B7149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		630E93BA149D6D8B005B16DC /* NimbusAttributedLabelTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbusAttributedLabelTests.octest;
-			remoteRef = 630E93B9149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		630E93BC149D6D8B005B16DC /* libNimbusCss.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNimbusCss.a;
-			remoteRef = 630E93BB149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		630E93BE149D6D8B005B16DC /* NimbusCssTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbusCssTests.octest;
-			remoteRef = 630E93BD149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		630E93C0149D6D8B005B16DC /* libNimbusPagingScrollView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNimbusPagingScrollView.a;
-			remoteRef = 630E93BF149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		630E93C2149D6D8B005B16DC /* NimbusPagingScrollViewTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbusPagingScrollViewTests.octest;
-			remoteRef = 630E93C1149D6D8B005B16DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		630E9409149D6E2B005B16DC /* BlocksKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1132,6 +1058,20 @@
 			remoteRef = 6327428D1423C83B004943A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		63E89CC014F646850051B336 /* libJSONKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libJSONKit.a;
+			remoteRef = 63E89CBF14F646850051B336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63E89CC214F646850051B336 /* libASIHTTPRequest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASIHTTPRequest.a;
+			remoteRef = 63E89CC114F646850051B336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1285,6 +1225,7 @@
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1309,6 +1250,7 @@
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AdHoc;
@@ -1321,6 +1263,7 @@
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AdHoc;
@@ -1333,6 +1276,7 @@
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AdHoc;
@@ -1345,6 +1289,7 @@
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AdHoc;
@@ -1359,6 +1304,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Tests/Support/Info.plist;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1377,6 +1323,7 @@
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1389,6 +1336,7 @@
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1401,6 +1349,7 @@
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1413,6 +1362,7 @@
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1425,6 +1375,7 @@
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1437,6 +1388,7 @@
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1449,6 +1401,7 @@
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1461,6 +1414,7 @@
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1474,6 +1428,7 @@
 				);
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1497,6 +1452,7 @@
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AppStore;
@@ -1509,6 +1465,7 @@
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AppStore;
@@ -1521,6 +1478,7 @@
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AppStore;
@@ -1533,6 +1491,7 @@
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = AppStore;
@@ -1547,6 +1506,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Tests/Support/Info.plist;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1570,6 +1530,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1595,6 +1556,7 @@
 				);
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1620,6 +1582,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Tests/Support/Info.plist;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1640,6 +1603,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests/Support/Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Tests/Support/Info.plist;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1658,6 +1622,7 @@
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
 			};
 			name = Debug;
@@ -1670,6 +1635,7 @@
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
 			};
 			name = Release;
@@ -1682,6 +1648,7 @@
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
 			};
 			name = AppStore;
@@ -1694,6 +1661,7 @@
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
 			};
 			name = AdHoc;
