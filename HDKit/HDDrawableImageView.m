@@ -73,6 +73,7 @@
 - (void)dealloc
 {
 	[self setClipImage:nil];
+	[super dealloc];
 }
 
 #pragma mark - Properties
