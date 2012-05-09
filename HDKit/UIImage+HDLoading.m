@@ -10,14 +10,6 @@
 #import "HDFoundation.h"
 
 
-@interface UIImage ()
-
-+ (NSString*)insertRetinaPathModifier:(NSString*)path;
-+ (UIImage*)directImageWithName:(NSString*)name inBundle:(NSBundle*)bundle;
-
-@end
-
-
 @implementation UIImage (HDLoading)
 
 #pragma - Public Methods
