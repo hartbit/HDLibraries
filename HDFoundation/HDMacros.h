@@ -6,42 +6,15 @@
 //  Copyright 2011 hart[dev]. All rights reserved.
 //
 
-#define SINGLETON_INIT_BEGIN(classname) \
-\
-static classname* kSharedInstance = nil; \
-\
-+ (classname*)sharedInstance \
-{ \
-	@synchronized(self) \
-	{ \
-		if (kSharedInstance == nil) \
-		{ \
-			kSharedInstance = [classname new]; \
-		} \
-		\
-		return kSharedInstance; \
-	} \
-} \
-\
-- (id)init \
-{ \
-	@synchronized(self) \
-	{ \
-		if (kSharedInstance == nil) \
-		{
+#import <dispatch/dispatch.h>
 
-#define SINGLETON_INIT_END \
-			kSharedInstance = self; \
-		} \
-		\
-		return kSharedInstance; \
-	} \
-}
-
-#define SYNTHESIZE_SINGLETON(classname) \
-SINGLETON_INIT_BEGIN(classname) \
-	self = [super init]; \
-SINGLETON_INIT_END
+#define SYNTHESIZE_SINGLETON(block) \
+	static dispatch_once_t __predicate = 0; \
+	__strong static id __singleton = nil; \
+	dispatch_once(&__predicate, ^{ \
+		__singleton = block(); \
+	}); \
+	return __singleton;
 
 #define __NSStringFromMacro(f) @#f
 #define NSStringFromMacro(f) __NSStringFromMacro(f)

@@ -29,7 +29,12 @@
 
 #pragma mark - Lifecycle
 
-SYNTHESIZE_SINGLETON(HDModelController);
++ (HDModelController*)sharedInstance
+{
+	SYNTHESIZE_SINGLETON(^{
+		return [HDModelController new];
+	});
+}
 
 #pragma mark - Properties
 

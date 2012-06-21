@@ -9,7 +9,7 @@
 #import <GameKit/GameKit.h>
 
 
-@interface HDGameCenterManager : NSObject <NSCoding, GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface HDGameCenterManager : NSObject <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
 
 @property (nonatomic, readonly) BOOL isAuthenticated;
 
@@ -21,7 +21,6 @@
 - (void)updateAchievement:(NSString*)identifier percentComplete:(double)percentComplete;
 - (void)completeAllAchievements;
 - (void)resetAllAchievements;
-- (void)save;
 
 - (void)showLeaderboards;
 - (void)showAchievements;

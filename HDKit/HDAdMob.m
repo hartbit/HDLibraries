@@ -29,9 +29,14 @@
 
 @synthesize tracked = _tracked;
 
-SYNTHESIZE_SINGLETON(HDAdMob)
-
 #pragma mark - Class Methods
+
++ (HDAdMob*)sharedInstance
+{
+	SYNTHESIZE_SINGLETON(^{
+		return [HDAdMob new];
+	});
+}
 
 + (NSString*)trackedFilePath
 {
