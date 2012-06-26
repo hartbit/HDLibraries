@@ -21,27 +21,20 @@
 @implementation HDKeyValueStore
 
 @synthesize keyPrefix = _keyPrefix;
+@synthesize delegate = _delegate;
 @synthesize cloudStore = _cloudStore;
 
 #pragma mark - Properties
 
-- (BOOL)isCloudEnabled
+- (NSUbiquitousKeyValueStore*)cloudStore
 {
-	return [self cloudStore] != nil;
-}
-
-- (void)setCloudEnabled:(BOOL)cloudEnabled
-{
-	if (cloudEnabled && ![self isCloudEnabled])
+	if (_cloudStore == nil)
 	{
-		[self setCloudStore:[NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore]];
+		[self setCloudStore:[NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore]];		
 		[self synchronize];
 	}
-	else if (!cloudEnabled && [self isCloudEnabled])
-	{
-		[self synchronize];
-		[self setCloudStore:nil];
-	}
+	
+	return _cloudStore;
 }
 
 #pragma mark - Public Methods
@@ -163,18 +156,33 @@
 - (id)objectForKey:(NSString*)key
 {
 	NSString* fullKey = [self fullKeyForKey:key];
-	id object = [[self cloudStore] objectForKey:fullKey];
+	id localValue = [[NSUserDefaults standardUserDefaults] objectForKey:fullKey];
 	
-	if (object == nil)
+	if (![self shouldUseCloudForKey:key])
 	{
-		object = [[NSUserDefaults standardUserDefaults] objectForKey:fullKey];
-	}
-	else
-	{
-		[[NSUserDefaults standardUserDefaults] setObject:object forKey:fullKey];
+		return localValue;
 	}
 	
-	return object;
+	id cloudValue = [[self cloudStore] objectForKey:fullKey];
+	
+	if ([cloudValue isEqual:localValue])
+	{
+		return localValue;
+	}
+	
+	id mergedValue = [self mergeCloudValue:cloudValue withLocalValue:localValue forKey:key];
+	
+	if (![cloudValue isEqual:mergedValue])
+	{
+		[[self cloudStore] setObject:mergedValue forKey:fullKey];
+	}
+	
+	if (![localValue isEqual:localValue])
+	{
+		[[NSUserDefaults standardUserDefaults] setObject:mergedValue forKey:fullKey];
+	}
+	
+	return mergedValue;
 }
 
 - (void)setBool:(BOOL)value forKey:(NSString*)key
@@ -216,57 +224,66 @@
 {
 	NSString* fullKey = [self fullKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] setObject:object forKey:fullKey];
-	[[self cloudStore] setObject:object forKey:fullKey];
+	
+	if ([self shouldUseCloudForKey:key])
+	{
+		[[self cloudStore] setObject:object forKey:fullKey];
+	}
 }
 
 - (void)removeObjectForKey:(NSString*)key
 {
 	NSString* fullKey = [self fullKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:fullKey];
-	[[self cloudStore] removeObjectForKey:fullKey];
+	
+	if ([self shouldUseCloudForKey:key])
+	{
+		[[self cloudStore] removeObjectForKey:fullKey];
+	}
 }
 
 - (HDKeyValueStoreSychronizationState)synchronize
 {
-	HDKeyValueStoreSychronizationState success = HDKeyValueStoreSychronizationFailed;
+	HDKeyValueStoreSychronizationState state = HDKeyValueStoreSychronizationFailed;
 	
 	if ([[NSUserDefaults standardUserDefaults] synchronize])
 	{
-		success |= HDKeyValueStoreSychronizationDisk;
+		state |= HDKeyValueStoreSychronizationLocal;
 	}
 	
 	if ([[self cloudStore] synchronize])
 	{
-		success |= HDKeyValueStoreSychronizationCloud;
+		state |= HDKeyValueStoreSychronizationCloud;
 	}
 	
-	return success;
+	return state;
 }
 
 - (NSDictionary*)dictionaryRepresentation
 {
-	NSDictionary* localDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	NSDictionary* cloudDictionary = [[self cloudStore] dictionaryRepresentation];
-	NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:localDictionary];
+	NSString* keyPrefix = [self keyPrefix];
+	NSUInteger prefixLength = [keyPrefix length];
+	NSMutableSet* allKeys = [NSMutableSet set];
 	
-	if (cloudDictionary != nil)
-	{
-		[dictionary addEntriesFromDictionary:cloudDictionary];
-	}
+	void (^filterKeys)(id, id, BOOL*) = ^(id key, id obj, BOOL* stop) {
+		if ([key startsWithString:keyPrefix]) {
+			[allKeys addObject:[key substringFromIndex:prefixLength]];
+		}
+	};
 	
-	if ([self keyPrefix] != nil)
+	[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] enumerateKeysAndObjectsUsingBlock:filterKeys];
+	[[[self cloudStore] dictionaryRepresentation] enumerateKeysAndObjectsUsingBlock:filterKeys];
+
+	NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+	
+	for (NSString* key in allKeys)
 	{
-		NSMutableDictionary* filteredDictionary = [NSMutableDictionary dictionary];
-		NSRange prefixRange = NSMakeRange(0, [[self keyPrefix] length]);
+		id value = [self objectForKey:key];
 		
-		[dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-			if ([key startsWithString:[self keyPrefix]]) {
-				NSString* newKey = [key stringByReplacingCharactersInRange:prefixRange withString:@""];
-				[filteredDictionary setObject:object forKey:newKey];
-			}
-		}];
-		
-		dictionary = filteredDictionary;
+		if (value != nil)
+		{
+			[dictionary setObject:value forKey:key];
+		}
 	}
 
 	return dictionary;
@@ -282,6 +299,26 @@
 	{
 		return key;
 	}
+}
+
+- (BOOL)shouldUseCloudForKey:(NSString*)key
+{
+	if ([[self delegate] respondsToSelector:@selector(keyValueStore:shouldUseCloudForKey:)])
+	{
+		return [[self delegate] keyValueStore:self shouldUseCloudForKey:key];
+	}
+	
+	return NO;
+}
+
+- (id)mergeCloudValue:(id)cloudValue withLocalValue:(id)localValue forKey:(NSString*)key
+{
+	if ([[self delegate] respondsToSelector:@selector(keyValueStore:mergeCloudValue:withLocalValue:forKey:)])
+	{
+		return [[self delegate] keyValueStore:self mergeCloudValue:cloudValue withLocalValue:localValue forKey:key];
+	}
+	
+	return (cloudValue != nil) ? cloudValue : localValue;
 }
 
 @end

@@ -12,15 +12,17 @@
 typedef enum
 {
 	HDKeyValueStoreSychronizationFailed = 0,
-	HDKeyValueStoreSychronizationDisk = 1,
+	HDKeyValueStoreSychronizationLocal = 1,
 	HDKeyValueStoreSychronizationCloud = 2
 } HDKeyValueStoreSychronizationState;
 
 
+@protocol HDKeyValueStoreDelegate;
+
 @interface HDKeyValueStore : NSObject
 
 @property (nonatomic, strong) NSString* keyPrefix;
-@property (nonatomic, getter = isCloudEnabled) BOOL cloudEnabled;
+@property (nonatomic, unsafe_unretained) id<HDKeyValueStoreDelegate> delegate;
 
 - (void)registerDefaults:(NSDictionary*)defaults;
 
@@ -46,5 +48,17 @@ typedef enum
 - (HDKeyValueStoreSychronizationState)synchronize;
 - (NSDictionary*)dictionaryRepresentation;
 - (NSString*)fullKeyForKey:(NSString*)key;
+
+- (BOOL)shouldUseCloudForKey:(NSString*)key;
+- (id)mergeCloudValue:(id)cloudValue withLocalValue:(id)localValue forKey:(NSString*)key;
+
+@end
+
+
+@protocol HDKeyValueStoreDelegate <NSObject>
+
+@optional
+- (BOOL)keyValueStore:(HDKeyValueStore*)store shouldUseCloudForKey:(NSString*)key;
+- (id)keyValueStore:(HDKeyValueStore*)store mergeCloudValue:(id)cloudValue withLocalValue:(id)localValue forKey:(NSString*)key;
 
 @end
