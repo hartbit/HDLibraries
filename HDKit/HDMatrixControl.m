@@ -188,6 +188,7 @@
 		case UIControlStateHighlighted: [self setHighlightedBackgroundImage:image]; break;
 		case UIControlStateDisabled: [self setDisabledBackgroundImage:image]; break;
 		case UIControlStateSelected: [self setSelectedBackgroundImage:image]; break;
+		default: break;
 	}
 	
 	[self updateButtonBackgroundImages];

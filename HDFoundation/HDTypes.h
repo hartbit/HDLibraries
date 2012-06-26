@@ -97,12 +97,12 @@ HDPoint HDPointInDirection(HDPoint point, HDDirection direction);
 
 static inline NSString* NSStringFromNSInteger(NSInteger value)
 {
-	return [NSString stringWithFormat:@"%ld", value];
+	return [NSString stringWithFormat:@"%i", value];
 }
 
 static inline NSString* NSStringFromNSUInteger(NSUInteger value)
 {
-	return [NSString stringWithFormat:@"%lu", value];
+	return [NSString stringWithFormat:@"%u", value];
 }
 
 static inline NSString* NSStringFromCGFloat(CGFloat value)
