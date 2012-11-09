@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5030D4661F164FDFAA1C3858 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6407153DF0F9446A9AEF7D44 /* libPods.a */; };
+		51F6F67488D346FDAEBACE4A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6636F21744CFEBE867D85 /* libPods.a */; };
+		5F8B54DEA9A145B59320C054 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6636F21744CFEBE867D85 /* libPods.a */; };
 		630A1D4713F427C300286CC4 /* HDKeyValueStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 630A1D4513F427C300286CC4 /* HDKeyValueStore.h */; };
 		630A1D4813F427C300286CC4 /* HDKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A1D4613F427C300286CC4 /* HDKeyValueStore.m */; };
 		630DD8CA13D43D4D0048E682 /* UIView+HDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD8C913D43D4D0048E682 /* UIView+HDAdditions.h */; };
@@ -76,14 +77,17 @@
 		63A5CE1714CDC2B900618F82 /* HDGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A5CE1514CDC2B900618F82 /* HDGameCenterManager.m */; };
 		63D3103C13F16595008C8BF8 /* HDPlaceholderTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 63D3103A13F16595008C8BF8 /* HDPlaceholderTextView.h */; };
 		63D3103D13F16595008C8BF8 /* HDPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D3103B13F16595008C8BF8 /* HDPlaceholderTextView.m */; };
-		63F518EE164D093E00711045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F518ED164D093E00711045 /* libPods.a */; };
-		63F518F0164D094200711045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F518EF164D094200711045 /* libPods.a */; };
-		63F518F2164D094500711045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F518F1164D094500711045 /* libPods.a */; };
-		63F518F4164D094800711045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F518F3164D094800711045 /* libPods.a */; };
+		63F51944164D194A00711045 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D264134C56ED000BDCFD /* CoreGraphics.framework */; };
+		63F51945164D195100711045 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CE134C5B32000BDCFD /* CoreData.framework */; };
+		63F51946164D195A00711045 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CA134C5B2A000BDCFD /* AVFoundation.framework */; };
+		63F51947164D196200711045 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D264134C56ED000BDCFD /* CoreGraphics.framework */; };
+		63F51948164D196700711045 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D2CC134C5B2E000BDCFD /* QuartzCore.framework */; };
+		63F51949164D196D00711045 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D261134C56ED000BDCFD /* UIKit.framework */; };
 		63F5FF9613EBF5BB004D30FF /* HDMatrixControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 63F5FF9413EBF5BB004D30FF /* HDMatrixControl.h */; };
 		63F5FF9713EBF5BB004D30FF /* HDMatrixControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */; };
-		AE7864BBB4104EA3985E7E56 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB47E5569C7A4763A3E03626 /* libPods.a */; };
-		E9831F22C62A48CD87985F39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF3060F8F7A439991A5E5F1 /* libPods.a */; };
+		7E53DD95A60D4F1DA5C6733D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6636F21744CFEBE867D85 /* libPods.a */; };
+		85F9E0DF5A0F4F75B46CB8CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6636F21744CFEBE867D85 /* libPods.a */; };
+		E191ED35AB7E4FEDBFEEE7AB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6636F21744CFEBE867D85 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		284CBE34053E4515B5FF2D82 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		2BF3060F8F7A439991A5E5F1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		630A1D4513F427C300286CC4 /* HDKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDKeyValueStore.h; sourceTree = "<group>"; };
 		630A1D4613F427C300286CC4 /* HDKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDKeyValueStore.m; sourceTree = "<group>"; };
@@ -209,8 +214,11 @@
 		63F5FF9413EBF5BB004D30FF /* HDMatrixControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMatrixControl.h; sourceTree = "<group>"; };
 		63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMatrixControl.m; sourceTree = "<group>"; };
 		6407153DF0F9446A9AEF7D44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		79F2B77D943A4A37A9DEC726 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E6B33C6CD3849148F6FCCC9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB47E5569C7A4763A3E03626 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACFC2B7266D148D8A953C70C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		E591DD01E90046F58D872918 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDF6636F21744CFEBE867D85 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,10 +226,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F51944164D194A00711045 /* CoreGraphics.framework in Frameworks */,
 				6322DDA5136AEE6B00E8E9EF /* Foundation.framework in Frameworks */,
-				AE7864BBB4104EA3985E7E56 /* libPods.a in Frameworks */,
-				E9831F22C62A48CD87985F39 /* libPods.a in Frameworks */,
-				5030D4661F164FDFAA1C3858 /* libPods.a in Frameworks */,
+				5F8B54DEA9A145B59320C054 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +236,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F518EE164D093E00711045 /* libPods.a in Frameworks */,
+				63F51945164D195100711045 /* CoreData.framework in Frameworks */,
 				6322DDC5136AEF4800E8E9EF /* Foundation.framework in Frameworks */,
+				51F6F67488D346FDAEBACE4A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +246,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F518F0164D094200711045 /* libPods.a in Frameworks */,
+				63F51946164D195A00711045 /* AVFoundation.framework in Frameworks */,
 				6322DDD3136AEF9600E8E9EF /* Foundation.framework in Frameworks */,
+				85F9E0DF5A0F4F75B46CB8CA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,8 +256,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F518F2164D094500711045 /* libPods.a in Frameworks */,
+				63F51949164D196D00711045 /* UIKit.framework in Frameworks */,
+				63F51948164D196700711045 /* QuartzCore.framework in Frameworks */,
+				63F51947164D196200711045 /* CoreGraphics.framework in Frameworks */,
 				6322DDE0136AEFA400E8E9EF /* Foundation.framework in Frameworks */,
+				7E53DD95A60D4F1DA5C6733D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,9 +281,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F518F4164D094800711045 /* libPods.a in Frameworks */,
 				6367F26F14CDC3B700E695A6 /* GameKit.framework in Frameworks */,
 				63A5CDFC14CDC23C00618F82 /* Foundation.framework in Frameworks */,
+				E191ED35AB7E4FEDBFEEE7AB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +301,7 @@
 				6363D269134C56ED000BDCFD /* Tests */,
 				6363D255134C56ED000BDCFD /* Frameworks */,
 				6363D254134C56ED000BDCFD /* Products */,
-				ACFC2B7266D148D8A953C70C /* Pods.xcconfig */,
+				284CBE34053E4515B5FF2D82 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,6 +340,10 @@
 				63F518ED164D093E00711045 /* libPods.a */,
 				2BF3060F8F7A439991A5E5F1 /* libPods.a */,
 				6407153DF0F9446A9AEF7D44 /* libPods.a */,
+				E591DD01E90046F58D872918 /* libPods.a */,
+				8E6B33C6CD3849148F6FCCC9 /* libPods.a */,
+				79F2B77D943A4A37A9DEC726 /* libPods.a */,
+				FDF6636F21744CFEBE867D85 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -454,8 +470,7 @@
 				63A5CE1414CDC2B900618F82 /* HDGameCenterManager.h */,
 				63A5CE1514CDC2B900618F82 /* HDGameCenterManager.m */,
 			);
-			name = HDGameKit;
-			path = HDGameCenter;
+			path = HDGameKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,6 +544,7 @@
 				6322DDA0136AEE6B00E8E9EF /* Sources */,
 				6322DDA1136AEE6B00E8E9EF /* Frameworks */,
 				6322DDA2136AEE6B00E8E9EF /* Headers */,
+				D220C00DFD084A678FEBDE51 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -546,6 +562,7 @@
 				6322DDC0136AEF4800E8E9EF /* Sources */,
 				6322DDC1136AEF4800E8E9EF /* Frameworks */,
 				6322DDC2136AEF4800E8E9EF /* Headers */,
+				254D43DE5A064EF0BF4D0954 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -564,6 +581,7 @@
 				6322DDCE136AEF9600E8E9EF /* Sources */,
 				6322DDCF136AEF9600E8E9EF /* Frameworks */,
 				6322DDD0136AEF9600E8E9EF /* Headers */,
+				74EDC5A76D9F4FE9A456E52A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -582,6 +600,7 @@
 				6322DDDB136AEFA400E8E9EF /* Sources */,
 				6322DDDC136AEFA400E8E9EF /* Frameworks */,
 				6322DDDD136AEFA400E8E9EF /* Headers */,
+				ECAAD32CB9BA41548518F934 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -618,6 +637,7 @@
 				63A5CDEC14CDC23C00618F82 /* Sources */,
 				63A5CDFB14CDC23C00618F82 /* Frameworks */,
 				63A5CDFD14CDC23C00618F82 /* Headers */,
+				D805767DBB7E488AA86555EF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -672,6 +692,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		254D43DE5A064EF0BF4D0954 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 		6363D25E134C56ED000BDCFD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -684,6 +718,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		74EDC5A76D9F4FE9A456E52A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		D220C00DFD084A678FEBDE51 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		D805767DBB7E488AA86555EF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		ECAAD32CB9BA41548518F934 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -792,7 +882,7 @@
 /* Begin XCBuildConfiguration section */
 		6322DDA9136AEE6B00E8E9EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_THUMB_SUPPORT = NO;
@@ -802,7 +892,7 @@
 		};
 		6322DDAA136AEE6B00E8E9EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/HDLibraries.dst;
 				GCC_THUMB_SUPPORT = NO;
@@ -812,9 +902,8 @@
 		};
 		6322DDCA136AEF4800E8E9EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -823,9 +912,8 @@
 		};
 		6322DDCB136AEF4800E8E9EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDCoreData.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -834,9 +922,8 @@
 		};
 		6322DDD8136AEF9600E8E9EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -845,9 +932,8 @@
 		};
 		6322DDD9136AEF9600E8E9EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDAudio.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -856,9 +942,8 @@
 		};
 		6322DDE5136AEFA400E8E9EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -867,9 +952,8 @@
 		};
 		6322DDE6136AEFA400E8E9EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDKit.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -970,9 +1054,8 @@
 		};
 		63A5CE0614CDC23C00618F82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
@@ -981,9 +1064,8 @@
 		};
 		63A5CE0714CDC23C00618F82 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFC2B7266D148D8A953C70C /* Pods.xcconfig */;
+			baseConfigurationReference = 284CBE34053E4515B5FF2D82 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/HDGameKit.dst;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = HDGameKit;
