@@ -22,11 +22,6 @@
 
 @implementation HDModelController
 
-@synthesize modelURL = _modelURL;
-@synthesize managedObjectModel = _manageObjectModel;
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
 #pragma mark - Lifecycle
 
 + (HDModelController*)sharedInstance
@@ -40,7 +35,7 @@
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (_manageObjectModel == nil)
+	if (_managedObjectModel == nil)
 	{
 		if ([self modelURL] != nil)
 		{
@@ -52,10 +47,10 @@
 			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
 		}
 		
-		NIDASSERT(_manageObjectModel != nil);
+		NIDASSERT(_managedObjectModel != nil);
 	}
 	
-	return _manageObjectModel;
+	return _managedObjectModel;
 }
 
 - (NSManagedObjectContext*)managedObjectContext

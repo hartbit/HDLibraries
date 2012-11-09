@@ -25,8 +25,6 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 @implementation HDGameCenterManager
 
-@synthesize serverAchievements = _serverAchievements;
-
 #pragma mark - Class Methods
 
 + (BOOL)isAvailable

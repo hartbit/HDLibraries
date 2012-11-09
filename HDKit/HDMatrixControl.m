@@ -23,37 +23,10 @@
 @property (nonatomic, strong) UIImage* selectedBackgroundImage;
 @property (nonatomic, assign, readonly) CGSize buttonSize;
 
-- (void)initialize;
-- (void)updateButtonCount;
-- (void)updateButtonFrames;
-- (void)updateButtonBackgroundImages;
-- (void)updateDividerCount;
-- (void)updateVerticalDividers;
-- (void)updateHorizontalDividers;
-- (UIButton*)buttonAtColumn:(NSUInteger)column row:(NSUInteger)row;
-- (UIImage*)backgroundImageFromImage:(UIImage*)image forSegmentAtColumn:(NSUInteger)column row:(NSUInteger)row;
-- (void)selectButton:(UIButton*)selectedButton;
-- (void)touchDownAction:(UIButton*)button;
-- (void)touchUpInsideAction:(UIButton*)button;
-- (void)otherTouchesAction:(UIButton*)button;
-
 @end
 
 
 @implementation HDMatrixControl
-
-@synthesize numberOfColumns = _numberOfColumns;
-@synthesize numberOfRows = _numberOfRows;
-@synthesize verticalDividerImage = _verticalDividerImage;
-@synthesize horizontalDividerImage = _horizontalDividerImage;
-@synthesize selectedColumn = _selectedColumn;
-@synthesize selectedRow = _selectedRow;
-@synthesize buttons = _buttons;
-@synthesize dividers = _dividers;
-@synthesize normalBackgroundImage = _normalBackgroundImage;
-@synthesize highlightedBackgroundImage = _highlightedBackgroundImage;
-@synthesize disabledBackgroundImage = _disabledBackgroundImage;
-@synthesize selectedBackgroundImage = _selectedBackgroundImage;
 
 #pragma mark - Lifecycle
 

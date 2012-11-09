@@ -46,7 +46,7 @@
 		
 		for (id value in [developerDictionary allValues])
 		{
-			if ([value isKindOfClass:[NSString class]] && [value isEqualToString:[self uniqueIdentifier]])
+			if ([value isKindOfClass:[NSString class]] && [value isEqualToString:[self performSelector:@selector(uniqueIdentifier)]])
 			{
 				return YES;
 			}

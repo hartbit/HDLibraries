@@ -14,18 +14,10 @@
 
 @interface HDDraggableButton ()
 
-- (void)initialize;
-
 @end
 
 
 @implementation HDDraggableButton
-
-@synthesize delegate = _delegate;
-@synthesize targetViews = _targetViews;
-@synthesize dragEnabled = _dragEnabled;
-@synthesize startOrigin = _startOrigin;
-@synthesize speed = _speed;
 
 #pragma mark - Initialization
 

@@ -18,25 +18,10 @@
 @property (nonatomic, strong) NSMutableArray* images;
 @property (nonatomic, assign) NSUInteger nextIndex;
 
-- (void)initialize;
-- (NSString*)nameFromImageAtIndex:(NSUInteger)index;
-- (void)createImages;
-- (void)changeFrame;
-
 @end
 
 
 @implementation HDAnimatedImage
-
-@synthesize animationName = _animationName;
-@synthesize framesPerSecond = _framesPerSecond;
-@synthesize stopsOnLastFrame = _stopsOnLastFrame;
-@synthesize delegate = _delegate;
-@synthesize staticImage = _staticImage;
-@synthesize timer = _timer;
-@synthesize images = _images;
-@synthesize nextIndex = _nextIndex;
-
 #pragma mark - Initialization
 
 #pragma mark - Initialization

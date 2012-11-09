@@ -16,16 +16,10 @@
 @property (nonatomic, strong) NSData* clipImageData;
 @property (nonatomic, strong) CALayer* maskLayer;
 
-- (void)initialize;
-
 @end
 
 
 @implementation HDClipView
-
-@synthesize clipImage = _clipImage;
-@synthesize clipImageData = _clipImageData;
-@synthesize maskLayer = _maskLayer;
 
 #pragma mark - Initialization
 

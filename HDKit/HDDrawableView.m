@@ -18,22 +18,10 @@
 @property (nonatomic, readonly) CGFloat brushSize;
 @property (nonatomic, readonly) UIColor* brushColor;
 
-- (void)initialize;
-- (void)updateLayersWithNewTouches:(NSSet*)touches;
-- (void)updateLayersWithContinuedTouches:(NSSet*)touches force:(BOOL)force;
-- (CAShapeLayer*)currentLayer;
-- (void)startDrawing;
-- (void)endDrawing;
-
 @end
 
 
 @implementation HDDrawableView
-
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize distanceThreshold = _distanceThreshold;
-@synthesize mouseSwiped = _mouseSwiped;
 
 #pragma mark - Initialization
 

@@ -17,18 +17,10 @@
 @property (nonatomic, strong) AVAudioPlayer* musicPlayer;
 @property (nonatomic, copy) void(^musicBlock)(void);
 
-- (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type;
-- (AVAudioPlayer*)audioPlayerWithPath:(NSString*)path;
-
 @end
 
 
 @implementation HDAudioPlayer
-
-@synthesize sfxPlayers = _sfxPlayers;
-@synthesize sfxBlocks = _sfxBlocks;
-@synthesize musicPlayer = _musicPlayer;
-@synthesize musicBlock = _musicBlock;
 
 #pragma mark -
 #pragma mark Initializing Methods

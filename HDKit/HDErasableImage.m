@@ -24,23 +24,10 @@ void ReleaseImageMaskContext(CGContextRef context);
 @property (nonatomic, assign) BOOL mouseSwiped;
 @property (nonatomic, assign) CGPoint lastPoint;
 
-- (void)setupImageMask;
-- (void)drawFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint;
-- (void)updateCompletion;
-- (UIColor*)imageMaskColor;
-
 @end
 
 
 @implementation HDErasableImage
-
-@synthesize image = _image;
-@synthesize erasing = _erasing;
-@synthesize completion = _completion;
-@synthesize delegate = _delegate;
-@synthesize imageMaskRef = _imageMaskRef;
-@synthesize mouseSwiped = _mouseSwiped;
-@synthesize lastPoint = _lastPoint;
 
 #pragma mark - Initialization
 

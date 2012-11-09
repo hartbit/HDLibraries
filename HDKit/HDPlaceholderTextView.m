@@ -17,15 +17,10 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 @property (nonatomic, retain) UILabel* placeholderLabel;
 
-- (void)initialize;
-- (void)updatePlaceholderLabel;
-
 @end
 
 
 @implementation HDPlaceholderTextView
-
-@synthesize placeholderLabel = _placeholderLabel;
 
 #pragma mark - Lifecycle
 

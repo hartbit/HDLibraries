@@ -128,9 +128,6 @@ void GetElementApplier(void* info, const CGPathElement* element)
 
 @implementation UIPathElement
 
-@synthesize type = _type;
-@synthesize points = _points;
-
 - (void)setWithCGPathElement:(CGPathElement)element
 {
 	_type = element.type;

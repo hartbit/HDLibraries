@@ -1,0 +1,17 @@
+
+PODS: 
+- BlocksKit (1.8.0): 
+  - libffi
+- Nimbus/Core (0.9.3)
+- libffi (3.0.11)
+
+COCOAPODS: 0.16.0.rc3
+
+SPEC CHECKSUMS: 
+  libffi: 937fd1a8b141121741c587642e92201e21538535
+  Nimbus/Core: 6a35688977607cda01be9027699a9e64bd08fb99
+  BlocksKit: 4b6039288115dda2240526e6d1e45bfe28003ef1
+
+DEPENDENCIES: 
+- BlocksKit
+- Nimbus/Core

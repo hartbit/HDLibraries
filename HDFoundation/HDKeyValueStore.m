@@ -20,10 +20,6 @@
 
 @implementation HDKeyValueStore
 
-@synthesize keyPrefix = _keyPrefix;
-@synthesize delegate = _delegate;
-@synthesize cloudStore = _cloudStore;
-
 #pragma mark - Properties
 
 - (NSUbiquitousKeyValueStore*)cloudStore
