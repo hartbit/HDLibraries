@@ -159,13 +159,6 @@
 
 #pragma mark - Public Methods
 
-- (CGRect)centerFrameOfSize:(CGSize)size
-{
-	CGFloat originX = ([self boundsWidth] - size.width) / 2;
-	CGFloat originY = ([self boundsHeight] - size.height) / 2;
-	return CGRectMake(originX, originY, size.width, size.height);
-}
-
 - (void)translate:(CGPoint)offset
 {
 	CGRect frame = [self frame];

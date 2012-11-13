@@ -89,6 +89,13 @@ static inline CGPoint CGRectGetCenterBottom(CGRect rect)
 	return CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
 }
 
+static inline CGRect CGRectCenteredRect(CGRect rect, CGSize size)
+{
+	CGFloat originX = rect.origin.x - (rect.size.width + size.width) / 2;
+	CGFloat originY = rect.origin.y - (rect.size.height + size.height) / 2;
+	return CGRectMake(originX, originY, size.width, size.height);
+}
+
 static inline CGPoint CGPointAdd(CGPoint a, CGPoint b)
 {
 	return CGPointMake(a.x + b.x, a.y + b.y);
