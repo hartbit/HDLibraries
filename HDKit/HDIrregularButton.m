@@ -31,6 +31,7 @@
 	if (_imageInfo == nil)
 	{
 		[self setImageInfo:[HDImageInfo new]];
+		[self updateImageInfo];
 	}
 	
 	return _imageInfo;
@@ -54,7 +55,7 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event;
 {
-	NIDASSERT(CGSizeEqualToSize([[[self imageInfo] image] size], [self bounds].size));
+	NIDASSERT(([[self imageInfo] image] == nil) || CGSizeEqualToSize([[[self imageInfo] image] size], [self bounds].size));
 	return [[self imageInfo] pointInside:point];
 }
 
@@ -68,7 +69,7 @@
 	{
 		image = [self backgroundImageForState:UIControlStateNormal];
 	}
-
+	
 	[[self imageInfo] setImage:image];
 }
 

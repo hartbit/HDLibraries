@@ -88,7 +88,7 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event; 
 {
-	NIDASSERT(CGSizeEqualToSize([[self clipImage] size], [self bounds].size));
+	NIDASSERT(([self clipImage] == nil) || CGSizeEqualToSize([[self clipImage] size], [self bounds].size));
 	return [[self imageInfo] pointInside:point];
 }
 
