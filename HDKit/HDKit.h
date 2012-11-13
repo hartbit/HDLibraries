@@ -18,6 +18,7 @@
 #import "UINavigationController+HDAdditions.h"
 
 #import "HDAnimatedImage.h"
+#import "HDIrregularButton.h"
 #import "HDClipView.h"
 #import "HDDraggableButton.h"
 #import "HDDrawableView.h"
