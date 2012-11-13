@@ -33,6 +33,10 @@
 		6322DDEB136AEFBE00E8E9EF /* HDErasableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2A4134C57F2000BDCFD /* HDErasableImage.m */; };
 		6322DDEF136AEFBE00E8E9EF /* UIDevice+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2AE134C57F2000BDCFD /* UIDevice+HDAdditions.m */; };
 		6322DDF0136AEFBE00E8E9EF /* UIImage+HDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6363D2B0134C57F2000BDCFD /* UIImage+HDAdditions.m */; };
+		6325A559165295D6004BB073 /* HDIrregularButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6325A557165295D5004BB073 /* HDIrregularButton.h */; };
+		6325A55A165295D6004BB073 /* HDIrregularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325A558165295D6004BB073 /* HDIrregularButton.m */; };
+		6325A55E16529D4A004BB073 /* HDImageInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6325A55C16529D4A004BB073 /* HDImageInfo.h */; };
+		6325A55F16529D4A004BB073 /* HDImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325A55D16529D4A004BB073 /* HDImageInfo.m */; };
 		632742941423CA07004943A6 /* HDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742931423CA06004943A6 /* HDTypes.m */; };
 		632742981423CA96004943A6 /* HDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 632742971423CA96004943A6 /* HDMath.m */; };
 		6363D262134C56ED000BDCFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363D261134C56ED000BDCFD /* UIKit.framework */; };
@@ -137,6 +141,10 @@
 		6322DDC4136AEF4800E8E9EF /* libHDCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDCoreData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6322DDD2136AEF9600E8E9EF /* libHDAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6322DDDF136AEFA400E8E9EF /* libHDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6325A557165295D5004BB073 /* HDIrregularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDIrregularButton.h; sourceTree = "<group>"; };
+		6325A558165295D6004BB073 /* HDIrregularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDIrregularButton.m; sourceTree = "<group>"; };
+		6325A55C16529D4A004BB073 /* HDImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDImageInfo.h; sourceTree = "<group>"; };
+		6325A55D16529D4A004BB073 /* HDImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDImageInfo.m; sourceTree = "<group>"; };
 		632742931423CA06004943A6 /* HDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDTypes.m; sourceTree = "<group>"; };
 		632742971423CA96004943A6 /* HDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMath.m; sourceTree = "<group>"; };
 		634B6A2D139BD3B9007EB45A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -447,6 +455,8 @@
 				631FBC37148532740058B924 /* UIBezierPath+HDAdditions.m */,
 				6363D29B134C57F2000BDCFD /* HDAnimatedImage.h */,
 				6363D29C134C57F2000BDCFD /* HDAnimatedImage.m */,
+				6325A557165295D5004BB073 /* HDIrregularButton.h */,
+				6325A558165295D6004BB073 /* HDIrregularButton.m */,
 				6363D29D134C57F2000BDCFD /* HDClipView.h */,
 				6363D29E134C57F2000BDCFD /* HDClipView.m */,
 				6363D29F134C57F2000BDCFD /* HDDraggableButton.h */,
@@ -459,6 +469,8 @@
 				63F5FF9513EBF5BB004D30FF /* HDMatrixControl.m */,
 				63D3103A13F16595008C8BF8 /* HDPlaceholderTextView.h */,
 				63D3103B13F16595008C8BF8 /* HDPlaceholderTextView.m */,
+				6325A55C16529D4A004BB073 /* HDImageInfo.h */,
+				6325A55D16529D4A004BB073 /* HDImageInfo.m */,
 			);
 			path = HDKit;
 			sourceTree = "<group>";
@@ -515,6 +527,8 @@
 				6377713A143C959700594D7E /* UIControl+HDAdditions.h in Headers */,
 				631FBC38148532740058B924 /* UIBezierPath+HDAdditions.h in Headers */,
 				631CB9F014F2AAB0006EBBB1 /* UIScreen+HDAdditions.h in Headers */,
+				6325A559165295D6004BB073 /* HDIrregularButton.h in Headers */,
+				6325A55E16529D4A004BB073 /* HDImageInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +844,8 @@
 				6377713B143C959700594D7E /* UIControl+HDAdditions.m in Sources */,
 				631FBC39148532740058B924 /* UIBezierPath+HDAdditions.m in Sources */,
 				631CBA1214F2AAD5006EBBB1 /* UIScreen+HDAdditions.m in Sources */,
+				6325A55A165295D6004BB073 /* HDIrregularButton.m in Sources */,
+				6325A55F16529D4A004BB073 /* HDImageInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

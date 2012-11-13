@@ -8,12 +8,14 @@
 
 #import "HDClipView.h"
 #import "UIImage+HDAdditions.h"
+#import "NimbusCore.h"
+#import "HDImageInfo.h"
 #import <QuartzCore/QuartzCore.h>
 
 
 @interface HDClipView ()
 
-@property (nonatomic, strong) NSData* clipImageData;
+@property (nonatomic, strong) HDImageInfo* imageInfo;
 @property (nonatomic, strong) CALayer* maskLayer;
 
 @end
@@ -52,60 +54,42 @@
 	[[self layer] setMask:[self maskLayer]];
 }
 
+#pragma mark - Properties
+
+- (HDImageInfo*)imageInfo
+{
+	if (_imageInfo == nil)
+	{
+		[self setImageInfo:[HDImageInfo new]];
+	}
+	
+	return _imageInfo;
+}
+
+- (UIImage*)clipImage
+{
+	return [[self imageInfo] image];
+}
+
+- (void)setClipImage:(UIImage*)clipImage
+{
+	[[self imageInfo] setImage:clipImage];
+	
+	if (clipImage != nil)
+	{
+		CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
+		[[self maskLayer] setFrame:maskFrame];
+		[[self maskLayer] setContents:(id)[clipImage CGImage]];
+		[[self maskLayer] setContentsScale:[clipImage scale]];
+	}
+}
+
 #pragma mark - UIView Methods
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event; 
 {
-	NSUInteger width = (NSUInteger)[self bounds].size.width;
-	NSUInteger height = (NSUInteger)[self bounds].size.height;
-	
-	NSAssert(width == [[self clipImage] size].width, @"Image and view width must be equal");
-	NSAssert(height == [[self clipImage] size].height, @"Image and view height must be equal");
-
-	if ((point.x < 0) || (point.y < 0) || (point.x > (width - 1)) || (point.y > (height - 1)))
-	{
-		return NO;
-	}
-	
-	NSUInteger pointX = (NSUInteger)point.x;
-	NSUInteger pointY = (NSUInteger)point.y;
-	
-	NSData* imageData = [self clipImageData];
-	
-	if (imageData == nil)
-	{
-		return YES;
-	}
-	
-	NSUInteger pixelIndex = (pointY * width) + pointX;
-	NSUInteger alphaIndex = pixelIndex * 4 + 3;
-	
-	char pixelData = 0;
-	[imageData getBytes:&pixelData range:NSMakeRange(alphaIndex, 1)];
-	return pixelData != 0;
+	NIDASSERT(CGSizeEqualToSize([[self clipImage] size], [self bounds].size));
+	return [[self imageInfo] pointInside:point];
 }
- 
-#pragma mark - Private Methods
-
-- (void)setClipImage:(UIImage*)clipImage
-{
-	if (clipImage != _clipImage)
-	{
-		_clipImage = clipImage;
-		
-		if (clipImage)
-		{
-			[self setClipImageData:[clipImage imageData]];
-
-			CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
-			[[self maskLayer] setFrame:maskFrame];
-			[[self maskLayer] setContents:(id)[clipImage CGImage]];
-			[[self maskLayer] setContentsScale:[clipImage scale]];
-		}
-	}
-}
-
-#pragma mark - Memory Management
-
 
 @end
