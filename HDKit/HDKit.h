@@ -17,6 +17,7 @@
 #import "UIBezierPath+HDAdditions.h"
 #import "UINavigationController+HDAdditions.h"
 
+#import "HDImageInfo.h"
 #import "HDAnimatedImage.h"
 #import "HDIrregularButton.h"
 #import "HDClipView.h"
