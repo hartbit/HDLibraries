@@ -7,6 +7,7 @@
 //
 
 #import "HDMacros.h"
+#import "HDFunctions.h"
 #import "HDMath.h"
 #import "HDTypes.h"
 #import "HDKeyValueStore.h"
