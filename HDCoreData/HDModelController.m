@@ -26,7 +26,7 @@
 
 + (HDModelController*)sharedInstance
 {
-	SYNTHESIZE_SINGLETON(^{
+	return (HDModelController*)HDCreateSingleton(^{
 		return [HDModelController new];
 	});
 }
