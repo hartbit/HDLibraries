@@ -10,14 +10,14 @@
 #import "HDFoundationFunctions.h"
 
 
-typedef enum
+NS_ENUM(NSUInteger, TestEnum)
 {
 	TestEnumNone = 0,
 	TestEnumFirst = 1,
 	TestEnumSecond = 2,
 	TestEnumThird = 4,
 	TestEnumFourth = 8
-} TestEnum;
+};
 
 
 @implementation HDFoundationFunctionsTests

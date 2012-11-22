@@ -22,14 +22,15 @@ typedef struct
 	NSUInteger height;
 } HDSize;
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, HDDirection)
+{
     HDDirectionNone   = 0,
     HDDirectionUp     = 1,
     HDDirectionRight  = 2,
     HDDirectionDown   = 3,
     HDDirectionLeft   = 4,
     HDDirectionLast   = 5
-} HDDirection;
+};
 
 
 #pragma mark - HDPoint

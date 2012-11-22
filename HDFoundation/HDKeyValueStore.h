@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-typedef enum
+typedef NS_ENUM(NSUInteger, HDKeyValueStoreSychronizationState)
 {
 	HDKeyValueStoreSychronizationFailed = 0,
 	HDKeyValueStoreSychronizationLocal = 1,
 	HDKeyValueStoreSychronizationCloud = 2
-} HDKeyValueStoreSychronizationState;
+};
 
 
 @protocol HDKeyValueStoreDelegate;
