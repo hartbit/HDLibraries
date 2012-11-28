@@ -12,11 +12,6 @@
 #import "HDKitFunctions.h"
 
 
-@interface HDDraggableButton ()
-
-@end
-
-
 @implementation HDDraggableButton
 
 #pragma mark - Initialization
@@ -51,7 +46,7 @@
 #pragma mark - Public Methods
 
 - (void)returnToStart
-{	
+{
 	[self returnToStartAnimated:YES];
 }
 
@@ -76,7 +71,7 @@
 	}
 }
 
-- (void)didDrag
+- (void)willDrag
 {
 	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)])
 	{
@@ -90,7 +85,7 @@
 	{
 		[self returnToStart];
 	}
-
+	
 	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
 	{
 		[[self delegate] draggableButton:self didDropOnTarget:target];
@@ -107,14 +102,14 @@
 
 #pragma mark - UIResponder Methods
 
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[super touchesBegan:touches withEvent:event];
-
-	[self didDrag];
+	
+	[self willDrag];
 }
 
-- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event 
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[super touchesMoved:touches withEvent:event];
 	
@@ -139,7 +134,7 @@
 		{
 			CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[target superview]];
 			BOOL onTarget = CGRectContainsPoint([target frame], centerInTarget);
-		
+			
 			if (onTarget)
 			{
 				[self didDropOnTarget:target];

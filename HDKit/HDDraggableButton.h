@@ -21,7 +21,7 @@
 
 - (void)returnToStart;
 - (void)returnToStartAnimated:(BOOL)animated;
-- (void)didDrag;
+- (void)willDrag;
 - (void)didDropOnTarget:(UIView*)target;
 - (void)didReturnToStart;
 
