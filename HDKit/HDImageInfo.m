@@ -63,11 +63,14 @@
 	}
 	
 	CGSize size = [[self image] size];
-
+	
 	if ((point.x < 0) || (point.y < 0) || (point.x >= size.width) || (point.y >= size.height))
 	{
 		return NO;
 	}
+	
+	point.x = floorf(point.x);
+	point.y = floorf(point.y);
 	
 	CGImageRef cgImage = [[self image] CGImage];
 	size_t bytesPerRow = CGImageGetBytesPerRow(cgImage);
