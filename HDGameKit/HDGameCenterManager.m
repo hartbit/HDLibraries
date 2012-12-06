@@ -9,7 +9,7 @@
 #import "HDGameCenterManager.h"
 #import "NimbusCore.h"
 #import "UIDevice+HDAdditions.h"
-#import "HDMacros.h"
+#import "HDFoundation.h"
 
 
 NSString* const HDGameCenterUnsentAchievementsKey = @"HDUnsentAchievements";
@@ -36,7 +36,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 + (HDGameCenterManager*)sharedInstance
 {
-	SYNTHESIZE_SINGLETON(^{
+	return HDCreateSingleton(^{
 		return [HDGameCenterManager new];
 	});
 }
