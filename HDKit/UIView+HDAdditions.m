@@ -167,6 +167,16 @@
 	[self setFrame:frame];
 }
 
+- (void)roundFrame
+{
+	CGRect frame = [self frame];
+	frame.origin.x = roundf(frame.origin.x);
+	frame.origin.y = roundf(frame.origin.y);
+	frame.size.width = roundf(frame.size.width);
+	frame.size.height = roundf(frame.size.height);
+	[self setFrame:frame];
+}
+
 - (UIImage*)renderToImage
 {
 	UIGraphicsBeginImageContext([self frameSize]);

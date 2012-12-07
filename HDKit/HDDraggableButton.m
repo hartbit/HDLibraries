@@ -85,6 +85,10 @@
 	{
 		[self returnToStart];
 	}
+	else
+	{
+		[self roundFrame];
+	}
 	
 	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
 	{

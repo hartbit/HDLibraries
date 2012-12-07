@@ -27,6 +27,7 @@
 @property (nonatomic, assign) CGFloat boundsHeight;
 
 - (void)translate:(CGPoint)offset;
+- (void)roundFrame;
 - (UIImage*)renderToImage;
 
 @end
