@@ -15,20 +15,19 @@
 
 @property (nonatomic, strong) UIImage* staticImage;
 @property (nonatomic, strong) NSTimer* timer;
-@property (nonatomic, strong) NSMutableArray* images;
+@property (nonatomic, strong) NSArray* images;
 @property (nonatomic, assign) NSUInteger nextIndex;
 
 @end
 
 
 @implementation HDAnimatedImage
-#pragma mark - Initialization
 
 #pragma mark - Initialization
 
-- (id) initWithCoder:(NSCoder*)coder
+- (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
+	if (self = [super initWithCoder:coder])
 	{
 		[self initialize];
 	}
@@ -60,24 +59,53 @@
 
 - (void)setAnimationName:(NSString*)animationName
 {
-	if ([animationName isEqualToString:_animationName])
+	if (![animationName isEqualToString:_animationName])
 	{
-		return;
+		_animationName = [animationName copy];
+		[self setStaticImage:nil];
+		[self setImage:nil];
+		[self setImages:nil];
+		
+		if (animationName != nil)
+		{
+			NSString* staticImageName = [self nameFromImageAtIndex:0];
+			UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
+			[self setStaticImage:staticImage];
+			[self setImage:staticImage];
+		}
+	}
+}
+
+- (NSTimeInterval)animationDuration
+{
+	return (NSTimeInterval)[[self images] count] / [self framesPerSecond];
+}
+
+- (NSArray*)images
+{
+	if (_images == nil)
+	{
+		NSMutableArray* images = [NSMutableArray array];
+		[self setImages:images];
+		
+		NSUInteger index = 1;
+		
+		while (YES)
+		{
+			NSString* imageName = [self nameFromImageAtIndex:index];
+			UIImage* image = [UIImage imageWithName:imageName cached:NO];
+			
+			if (!image)
+			{
+				break;
+			}
+			
+			[images addObject:image];
+			index++;
+		}
 	}
 	
-		
-	if (animationName == nil)
-	{
-		return;
-	}
-		
-	_animationName = [animationName copy];
-		
-	NSString* staticImageName = [self nameFromImageAtIndex:0];
-	UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
-		
-	[self setStaticImage:staticImage];
-	[self setImage:staticImage];
+	return _images;
 }
 
 - (BOOL)isPlaying
@@ -95,9 +123,7 @@
 	}
 	
 	NIDASSERT([self superview] != nil);
-	NIDASSERT([self animationName] != nil);
 	
-	[self createImages];
 	[self setNextIndex:0];
 	
 	NSTimeInterval timeInterval = 1.0f / [self framesPerSecond];
@@ -138,35 +164,12 @@
 
 - (NSString*)nameFromImageAtIndex:(NSUInteger)index
 {
+	NIDASSERT([self animationName] != nil);
 	return [[self animationName] stringByAppendingFormat:@"%i", index];
 }
 
-- (void)createImages
-{
-	NIDASSERT([self images] == nil);
-	
-	NSMutableArray* images = [NSMutableArray array];
-	NSUInteger index = 1;
-	
-	while (YES)
-	{
-		NSString* imageName = [self nameFromImageAtIndex:index];
-		UIImage* image = [UIImage imageWithName:imageName cached:NO];
-		
-		if (!image)
-		{
-			break;
-		}
-		
-		[images addObject:image];
-		index++;
-	}
-	
-	[self setImages:images];
-}
-
 - (void)changeFrame
-{	
+{
 	if ([self nextIndex] >= [[self images] count])
 	{
 		[self setAnimationRepeatCount:[self animationRepeatCount] - 1];
@@ -197,7 +200,7 @@
 #pragma mark - Memory Management
 
 - (void)dealloc
-{	
+{
 	if ([self isPlaying])
 	{
 		[self stop];
