@@ -20,9 +20,6 @@
 
 @implementation HDImageInfo
 
-@synthesize image = _image;
-@synthesize imageData = _imageData;
-
 #pragma mark - Initialization
 
 - (id)initWithUIImage:(UIImage*)image
@@ -69,14 +66,20 @@
 		return NO;
 	}
 	
+	CGImageRef cgImage = [[self image] CGImage];
+	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(cgImage);
+	
+	if ((alphaInfo == kCGImageAlphaNone) || (alphaInfo == kCGImageAlphaNoneSkipFirst) || (alphaInfo == kCGImageAlphaNoneSkipLast))
+	{
+		return YES;
+	}
+	
 	point.x = floorf(point.x);
 	point.y = floorf(point.y);
 	
-	CGImageRef cgImage = [[self image] CGImage];
 	size_t bytesPerRow = CGImageGetBytesPerRow(cgImage);
 	size_t bytesPerPixel = CGImageGetBitsPerPixel(cgImage) / 8;
 	size_t alphaIndex = (point.y * [[self image] scale] * bytesPerRow) + (point.x * [[self image] scale] * bytesPerPixel);
-	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(cgImage);
 	
 	if ((alphaInfo == kCGImageAlphaLast) || (alphaInfo == kCGImageAlphaPremultipliedLast))
 	{
