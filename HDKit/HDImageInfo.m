@@ -38,14 +38,7 @@
 {
 	if (image != _image)
 	{
-		_image = image;
-		
-		if (image != nil)
-		{
-			CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo([image CGImage]);
-			NIDASSERT((alphaInfo != kCGImageAlphaNone) && (alphaInfo != kCGImageAlphaNoneSkipFirst) && (alphaInfo != kCGImageAlphaNoneSkipLast));
-		}
-		
+		_image = image;		
 		[self setImageData:[image imageData]];
 	}
 }
