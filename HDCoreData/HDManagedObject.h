@@ -13,12 +13,12 @@
 
 @property (nonatomic, assign, readonly) BOOL isImmutable;
 
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate;
-+ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext sortedByKey:(NSString*)key ascending:(BOOL)ascending;
-+ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending;
++ (NSEntityDescription*)entity;
++ (id)insertNewObject;
++ (NSSet*)allObjects;
++ (NSSet*)allObjectsWithPredicate:(NSPredicate*)predicate;
++ (NSArray*)allObjectsSortedByKey:(NSString*)key ascending:(BOOL)ascending;
++ (NSArray*)allObjectsWithPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending;
 
 - (void)delete;
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason;

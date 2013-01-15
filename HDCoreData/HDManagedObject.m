@@ -22,39 +22,39 @@
 
 #pragma mark - Class Methods
 
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (NSEntityDescription*)entity
 {
-	return [NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+	return [NSEntityDescription entityForName:NSStringFromClass([self class])
+					   inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
 }
 
-+ (id)insertNewEntityInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (id)insertNewObject
 {
-	NSManagedObject* object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:managedObjectContext];
+	NSManagedObject* object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
+															inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext]];
 	[[HDModelController sharedInstance] assignObjectToFirstWritableStore:object];
 	return object;
 }
 
-+ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (NSSet*)allObjects
 {
-	return [NSSet setWithArray:[self allObjectsInManagedObjectContext:managedObjectContext withPredicate:nil sortedByKey:nil ascending:NO]];
+	return [NSSet setWithArray:[self allObjectsWithPredicate:nil sortedByKey:nil ascending:NO]];
 }
 
-+ (NSSet*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate
++ (NSSet*)allObjectsWithPredicate:(NSPredicate*)predicate
 {
-	return [NSSet setWithArray:[self allObjectsInManagedObjectContext:managedObjectContext withPredicate:predicate sortedByKey:nil ascending:NO]];
+	return [NSSet setWithArray:[self allObjectsWithPredicate:predicate sortedByKey:nil ascending:NO]];
 }
 
-+ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext sortedByKey:(NSString*)key ascending:(BOOL)ascending
++ (NSArray*)allObjectsSortedByKey:(NSString*)key ascending:(BOOL)ascending
 {
-	return [self allObjectsInManagedObjectContext:managedObjectContext withPredicate:nil sortedByKey:key ascending:ascending];
+	return [self allObjectsWithPredicate:nil sortedByKey:key ascending:ascending];
 }
 
-+ (NSArray*)allObjectsInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext withPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending
++ (NSArray*)allObjectsWithPredicate:(NSPredicate*)predicate sortedByKey:(NSString*)key ascending:(BOOL)ascending
 {
 	NSFetchRequest* request = [NSFetchRequest new];
-	
-	NSEntityDescription* entity = [[self class] entityInManagedObjectContext:managedObjectContext];
-	[request setEntity:entity];
+	[request setEntity:[[self class] entity]];
 	
 	if (predicate != nil)
 	{
