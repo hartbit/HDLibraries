@@ -1,11 +1,11 @@
 
-SPEC CHECKSUMS: 
-  Nimbus/Core: 196175ecaddf4e88925c9e0441aa58e4e40a2b89
+DEPENDENCIES: 
+- Nimbus/Core
 
 PODS: 
 - Nimbus/Core (1.0.0)
 
-DEPENDENCIES: 
-- Nimbus/Core
+SPEC CHECKSUMS: 
+  Nimbus/Core: 196175ecaddf4e88925c9e0441aa58e4e40a2b89
 
 COCOAPODS: 0.16.1

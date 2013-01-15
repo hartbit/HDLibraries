@@ -31,7 +31,7 @@
 + (id)insertNewObject
 {
 	NSManagedObject* object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
-															inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext]];
+															inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
 	[[HDModelController sharedInstance] assignObjectToFirstWritableStore:object];
 	return object;
 }
@@ -69,7 +69,7 @@
 	}
 	
 	NSError* error = nil;
-	NSArray* results = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray* results = [[HDModelController sharedInstance].managedObjectContext executeFetchRequest:request error:&error];
 	NIDASSERT(error == nil);
 	
 	return results;
