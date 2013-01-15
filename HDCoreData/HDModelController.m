@@ -122,7 +122,7 @@
 		}
 	}
 	
-	NIDERROR(@"Could not find a writable persistent store to save object.");
+	NIDERROR(@"Could not find a writable persistent store to assign object.");
 }
 
 - (void)saveContext
