@@ -18,8 +18,7 @@
 {
 	static NSSet* kPlatformSuffixes = nil;
 	
-	if (kPlatformSuffixes == nil)
-	{
+	if (kPlatformSuffixes == nil) {
 		kPlatformSuffixes = [NSSet setWithObjects:@"~iphone", @"~ipad", nil];
 	}
 	
@@ -40,14 +39,11 @@
 #else
 	NSString* developerDictionaryPath = [[NSBundle mainBundle] pathForResource:@"Developers" ofType:@"plist"];
 	
-	if (developerDictionaryPath != nil)
-	{
+	if (developerDictionaryPath != nil) {
 		NSDictionary* developerDictionary = [NSDictionary dictionaryWithContentsOfFile:developerDictionaryPath];
 		
-		for (id value in [developerDictionary allValues])
-		{
-			if ([value isKindOfClass:[NSString class]] && [value isEqualToString:[self performSelector:@selector(uniqueIdentifier)]])
-			{
+		for (id value in [developerDictionary allValues]) {
+			if ([value isKindOfClass:[NSString class]] && [value isEqualToString:[self performSelector:@selector(uniqueIdentifier)]]) {
 				return YES;
 			}
 		}
@@ -61,7 +57,7 @@
 
 - (BOOL)isOSVersionAtLeast:(NSString*)version
 {
-	return [[self systemVersion] compare:version options:NSNumericSearch] != NSOrderedAscending;
+	return [self.systemVersion compare:version options:NSNumericSearch] != NSOrderedAscending;
 }
 
 @end

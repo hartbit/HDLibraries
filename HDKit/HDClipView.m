@@ -27,8 +27,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -37,8 +36,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self initialize];
 	}
 	
@@ -47,11 +45,11 @@
 
 - (void)initialize
 {
-	[self setOpaque:NO];
-	[self setBackgroundColor:[UIColor clearColor]];
+	self.opaque = NO;
+	self.backgroundColor = [UIColor clearColor];
 
-	[self setMaskLayer:[CALayer layer]];
-	[[self layer] setMask:[self maskLayer]];
+	self.maskLayer = [CALayer layer];
+	self.layer.mask = self.maskLayer;
 }
 
 #pragma mark - Properties

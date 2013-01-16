@@ -20,9 +20,8 @@
 {
 	NSUInteger indexTable[[indexes count]];
 	
-	for (NSUInteger index = 0; index < [indexes count]; index++)
-	{
-		indexTable[index] = [[indexes objectAtIndex:index] unsignedIntegerValue];
+	for (NSUInteger index = 0; index < [indexes count]; index++) {
+		indexTable[index] = [indexes[index] unsignedIntegerValue];
 	}
 	
 	return [self initWithIndexes:indexTable length:[indexes count]];
@@ -32,9 +31,8 @@
 {
 	NSMutableArray* indexes = [NSMutableArray arrayWithCapacity:[self length]];
 	
-	for (NSUInteger index = 0; index < [self length]; index++)
-	{
-		[indexes addObject:[NSNumber numberWithUnsignedInteger:[self indexAtPosition:index]]];
+	for (NSUInteger index = 0; index < [self length]; index++) {
+		[indexes addObject:@([self indexAtPosition:index])];
 	}
 
 	return indexes;

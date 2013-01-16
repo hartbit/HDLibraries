@@ -17,7 +17,7 @@
 
 - (BOOL)isImmutable
 {
-	return [[[[[self objectID] persistentStore] options] objectForKey:NSReadOnlyPersistentStoreOption] boolValue];
+	return [self.objectID.persistentStore.options[NSReadOnlyPersistentStoreOption] boolValue];
 }
 
 #pragma mark - Class Methods
@@ -56,15 +56,13 @@
 	NSFetchRequest* request = [NSFetchRequest new];
 	[request setEntity:[[self class] entity]];
 	
-	if (predicate != nil)
-	{
-		[request setPredicate:predicate];
+	if (predicate != nil) {
+		request.predicate = predicate;
 	}
 	
-	if (key != nil)
-	{
+	if (key != nil) {
 		NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
-		NSArray* sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+		NSArray* sortDescriptors = @[sortDescriptor];
 		[request setSortDescriptors:sortDescriptors];
 	}
 	
@@ -79,7 +77,7 @@
 
 - (void)delete
 {
-	[[self managedObjectContext] deleteObject:self];
+	[self.managedObjectContext deleteObject:self];
 }
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
@@ -88,11 +86,10 @@
 	NIDASSERT(reason != nil);
 	
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
-	[userInfo setObject:self forKey:NSValidationObjectErrorKey];
+	userInfo[NSValidationObjectErrorKey] = self;
 	
-	if (reason)
-	{
-		[userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+	if (reason) {
+		userInfo[NSLocalizedFailureReasonErrorKey] = reason;
 	}
 	
 	return [NSError errorWithDomain:domain code:NSManagedObjectValidationError userInfo:userInfo];
@@ -102,25 +99,23 @@
 {
 	NIDASSERT(secondError != nil);
 	
-	if (!originalError || !secondError)
-	{
+	if (!originalError || !secondError) {
 		return secondError;
 	}
 
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	NSMutableArray* errors = [NSMutableArray arrayWithObject:secondError];
 	
-	if ([originalError code] == NSValidationMultipleErrorsError)
-	{
+	if ([originalError code] == NSValidationMultipleErrorsError) {
 		[userInfo addEntriesFromDictionary:[originalError userInfo]];
-		[errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
+		[errors addObjectsFromArray:userInfo[NSDetailedErrorsKey]];
 	}
 	else
 	{
 		[errors addObject:originalError];
 	}
 
-	[userInfo setObject:errors forKey:NSDetailedErrorsKey];
+	userInfo[NSDetailedErrorsKey] = errors;
 
 	return [NSError errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
 }
@@ -129,7 +124,7 @@
 
 - (void)willChangeValueForKey:(NSString*)key
 {
-	NIDASSERT(![self isImmutable]);
+	NIDASSERT(!self.isImmutable);
 	[super willChangeValueForKey:key];
 }
 

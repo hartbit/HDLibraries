@@ -35,16 +35,11 @@
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (_managedObjectModel == nil)
-	{
-		if ([self modelURL] != nil)
-		{
-			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
-			[self setManagedObjectModel:newManagedObjectModel];
-		}
-		else
-		{
-			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
+	if (_managedObjectModel == nil) {
+		if (self.modelURL != nil) {
+			self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
+		} else {
+			self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
 		}
 		
 		NIDASSERT(_managedObjectModel != nil);
@@ -55,11 +50,10 @@
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-	if (_managedObjectContext == nil)
-	{
+	if (_managedObjectContext == nil) {
 		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
-		[self setManagedObjectContext:newManagedObjectContext];
+		self.managedObjectContext = newManagedObjectContext;
 		
 		NIDASSERT(_managedObjectContext != nil);
 	}
@@ -69,10 +63,8 @@
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
-	if (_persistentStoreCoordinator == nil)
-	{
-		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
+	if (_persistentStoreCoordinator == nil) {
+		self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 		
 		NIDASSERT(_persistentStoreCoordinator != nil);
 	}
@@ -87,8 +79,7 @@
 	BOOL readOnly = NO;
 	NSFileManager* fileManager = [NSFileManager new];
 	
-	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]])
-	{
+	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]]) {
 		readOnly = YES;
 	}
 	
@@ -99,25 +90,24 @@
 {
 	NIDASSERT(storeURL != nil);
 	
-	NSDictionary* storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-								  [NSNumber numberWithBool:readOnly], NSReadOnlyPersistentStoreOption,
-								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-								  [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+	NSDictionary* storeOptions = @{
+		NSReadOnlyPersistentStoreOption: @(readOnly),
+		NSMigratePersistentStoresAutomaticallyOption: @YES,
+		NSInferMappingModelAutomaticallyOption: @YES
+	};
 	
 	NSError* error = nil;
-	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
+	[self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
 	NIDASSERT(error == nil);
 }
 
 - (void)assignObjectToFirstWritableStore:(NSManagedObject*)object
 {
-	for (NSPersistentStore* store in [[self persistentStoreCoordinator] persistentStores])
-	{
-		NSNumber* isReadOnlyNumber = [[store options] objectForKey:NSReadOnlyPersistentStoreOption];
+	for (NSPersistentStore* store in [self.persistentStoreCoordinator persistentStores]) {
+		NSNumber* isReadOnlyNumber = store.options[NSReadOnlyPersistentStoreOption];
 		
-		if ((isReadOnlyNumber == nil) || ![isReadOnlyNumber boolValue])
-		{
-			[[self managedObjectContext] assignObject:object toPersistentStore:store];
+		if ((isReadOnlyNumber == nil) || ![isReadOnlyNumber boolValue]) {
+			[self.managedObjectContext assignObject:object toPersistentStore:store];
 			return;
 		}
 	}
@@ -134,14 +124,11 @@
 
 - (BOOL)saveContextWithError:(NSError**)error
 {
-	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
+	NSManagedObjectContext* managedObjectContext = self.managedObjectContext;
 	
-	if (managedObjectContext && [managedObjectContext hasChanges])
-	{
+	if (managedObjectContext && [managedObjectContext hasChanges]) {
 		return [managedObjectContext save:error];
-	}
-	else
-	{
+	} else {
 		return YES;
 	}
 }

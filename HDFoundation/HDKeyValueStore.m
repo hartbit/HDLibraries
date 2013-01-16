@@ -24,9 +24,8 @@
 
 - (NSUbiquitousKeyValueStore*)cloudStore
 {
-	if (_cloudStore == nil)
-	{
-		[self setCloudStore:[NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore]];		
+	if (_cloudStore == nil) {
+		self.cloudStore = [NSClassFromString(@"NSUbiquitousKeyValueStore") defaultStore];
 		[self synchronize];
 	}
 	
@@ -37,12 +36,11 @@
 
 - (void)registerDefaults:(NSDictionary*)defaults
 {
-	if ([self keyPrefix] != nil)
-	{
+	if (self.keyPrefix != nil) {
 		NSMutableDictionary* prefixedDefaults = [NSMutableDictionary dictionary];
 		
 		[defaults enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL* stop) {
-			[prefixedDefaults setObject:object forKey:[self fullKeyForKey:key]];
+			prefixedDefaults[[self fullKeyForKey:key]] = object;
 		}];
 		
 		defaults = prefixedDefaults;
@@ -55,12 +53,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object respondsToSelector:@selector(boolValue)])
-	{
+	if ([object respondsToSelector:@selector(boolValue)]) {
 		return [object boolValue];
-	}
-	else
-	{
+	} else {
 		return NO;
 	}
 }
@@ -69,12 +64,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object respondsToSelector:@selector(floatValue)])
-	{
+	if ([object respondsToSelector:@selector(floatValue)]) {
 		return [object floatValue];
-	}
-	else
-	{
+	} else {
 		return 0;
 	}
 }
@@ -83,12 +75,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object respondsToSelector:@selector(doubleValue)])
-	{
+	if ([object respondsToSelector:@selector(doubleValue)]) {
 		return [object doubleValue];
-	}
-	else
-	{
+	} else {
 		return 0;
 	}
 }
@@ -97,12 +86,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object respondsToSelector:@selector(integerValue)])
-	{
+	if ([object respondsToSelector:@selector(integerValue)]) {
 		return [object integerValue];
-	}
-	else
-	{
+	} else {
 		return 0;
 	}
 }
@@ -111,12 +97,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object respondsToSelector:@selector(unsignedIntegerValue)])
-	{
+	if ([object respondsToSelector:@selector(unsignedIntegerValue)]) {
 		return [object unsignedIntegerValue];
-	}
-	else
-	{
+	} else {
 		return 0;
 	}
 }
@@ -125,12 +108,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object isKindOfClass:[NSString class]])
-	{
+	if ([object isKindOfClass:[NSString class]]) {
 		return object;
-	}
-	else
-	{
+	} else {
 		return nil;
 	}
 }
@@ -139,12 +119,9 @@
 {
 	id object = [self objectForKey:key];
 	
-	if ([object isKindOfClass:[NSDate class]])
-	{
+	if ([object isKindOfClass:[NSDate class]]) {
 		return object;
-	}
-	else
-	{
+	} else {
 		return nil;
 	}
 }
@@ -154,27 +131,23 @@
 	NSString* fullKey = [self fullKeyForKey:key];
 	id localValue = [[NSUserDefaults standardUserDefaults] objectForKey:fullKey];
 	
-	if (![self shouldUseCloudForKey:key])
-	{
+	if (![self shouldUseCloudForKey:key]) {
 		return localValue;
 	}
 	
-	id cloudValue = [[self cloudStore] objectForKey:fullKey];
+	id cloudValue = [self.cloudStore objectForKey:fullKey];
 	
-	if ([cloudValue isEqual:localValue])
-	{
+	if ([cloudValue isEqual:localValue]) {
 		return localValue;
 	}
 	
 	id mergedValue = [self mergeCloudValue:cloudValue withLocalValue:localValue forKey:key];
 	
-	if (![cloudValue isEqual:mergedValue])
-	{
-		[[self cloudStore] setObject:mergedValue forKey:fullKey];
+	if (![cloudValue isEqual:mergedValue]) {
+		[self.cloudStore setObject:mergedValue forKey:fullKey];
 	}
 	
-	if (![localValue isEqual:localValue])
-	{
+	if (![localValue isEqual:localValue]) {
 		[[NSUserDefaults standardUserDefaults] setObject:mergedValue forKey:fullKey];
 	}
 	
@@ -183,27 +156,27 @@
 
 - (void)setBool:(BOOL)value forKey:(NSString*)key
 {
-	[self setObject:[NSNumber numberWithBool:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (void)setFloat:(float)value forKey:(NSString*)key
 {
-	[self setObject:[NSNumber numberWithFloat:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (void)setDouble:(double)value forKey:(NSString*)key
 {
-	[self setObject:[NSNumber numberWithDouble:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (void)setInteger:(NSInteger)value forKey:(NSString*)key
 {
-	[self setObject:[NSNumber numberWithInteger:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (void)setUnsignedInteger:(NSUInteger)value forKey:(NSString*)key
 {
-	[self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (void)setString:(NSString*)value forKey:(NSString*)key
@@ -221,9 +194,8 @@
 	NSString* fullKey = [self fullKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] setObject:object forKey:fullKey];
 	
-	if ([self shouldUseCloudForKey:key])
-	{
-		[[self cloudStore] setObject:object forKey:fullKey];
+	if ([self shouldUseCloudForKey:key]) {
+		[self.cloudStore setObject:object forKey:fullKey];
 	}
 }
 
@@ -232,9 +204,8 @@
 	NSString* fullKey = [self fullKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:fullKey];
 	
-	if ([self shouldUseCloudForKey:key])
-	{
-		[[self cloudStore] removeObjectForKey:fullKey];
+	if ([self shouldUseCloudForKey:key]) {
+		[self.cloudStore removeObjectForKey:fullKey];
 	}
 }
 
@@ -242,13 +213,11 @@
 {
 	HDKeyValueStoreSychronizationState state = HDKeyValueStoreSychronizationFailed;
 	
-	if ([[NSUserDefaults standardUserDefaults] synchronize])
-	{
+	if ([[NSUserDefaults standardUserDefaults] synchronize]) {
 		state |= HDKeyValueStoreSychronizationLocal;
 	}
 	
-	if ([[self cloudStore] synchronize])
-	{
+	if ([self.cloudStore synchronize]) {
 		state |= HDKeyValueStoreSychronizationCloud;
 	}
 	
@@ -257,7 +226,7 @@
 
 - (NSDictionary*)dictionaryRepresentation
 {
-	NSString* keyPrefix = [self keyPrefix];
+	NSString* keyPrefix = self.keyPrefix;
 	NSUInteger prefixLength = [keyPrefix length];
 	NSMutableSet* allKeys = [NSMutableSet set];
 	
@@ -268,17 +237,15 @@
 	};
 	
 	[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] enumerateKeysAndObjectsUsingBlock:filterKeys];
-	[[[self cloudStore] dictionaryRepresentation] enumerateKeysAndObjectsUsingBlock:filterKeys];
+	[[self.cloudStore dictionaryRepresentation] enumerateKeysAndObjectsUsingBlock:filterKeys];
 
 	NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 	
-	for (NSString* key in allKeys)
-	{
+	for (NSString* key in allKeys) {
 		id value = [self objectForKey:key];
 		
-		if (value != nil)
-		{
-			[dictionary setObject:value forKey:key];
+		if (value != nil) {
+			dictionary[key] = value;
 		}
 	}
 
@@ -287,21 +254,17 @@
 
 - (NSString*)fullKeyForKey:(NSString*)key
 {
-	if ([self keyPrefix] != nil)
-	{
-		return [[self keyPrefix] stringByAppendingString:key];
-	}
-	else
-	{
+	if (self.keyPrefix != nil) {
+		return [self.keyPrefix stringByAppendingString:key];
+	} else {
 		return key;
 	}
 }
 
 - (BOOL)shouldUseCloudForKey:(NSString*)key
 {
-	if ([[self delegate] respondsToSelector:@selector(keyValueStore:shouldUseCloudForKey:)])
-	{
-		return [[self delegate] keyValueStore:self shouldUseCloudForKey:key];
+	if ([self.delegate respondsToSelector:@selector(keyValueStore:shouldUseCloudForKey:)]) {
+		return [self.delegate keyValueStore:self shouldUseCloudForKey:key];
 	}
 	
 	return NO;
@@ -309,9 +272,8 @@
 
 - (id)mergeCloudValue:(id)cloudValue withLocalValue:(id)localValue forKey:(NSString*)key
 {
-	if ([[self delegate] respondsToSelector:@selector(keyValueStore:mergeCloudValue:withLocalValue:forKey:)])
-	{
-		return [[self delegate] keyValueStore:self mergeCloudValue:cloudValue withLocalValue:localValue forKey:key];
+	if ([self.delegate respondsToSelector:@selector(keyValueStore:mergeCloudValue:withLocalValue:forKey:)]) {
+		return [self.delegate keyValueStore:self mergeCloudValue:cloudValue withLocalValue:localValue forKey:key];
 	}
 	
 	return (cloudValue != nil) ? cloudValue : localValue;

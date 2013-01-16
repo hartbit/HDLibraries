@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface HDClipView : UIView
 
 @property (nonatomic, strong) UIImage* clipImage;

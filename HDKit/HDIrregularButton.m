@@ -22,8 +22,6 @@
 
 @implementation HDIrregularButton
 
-@synthesize imageInfo = _imageInfo;
-
 #pragma mark - Properties
 
 - (HDImageInfo*)imageInfo

@@ -21,11 +21,9 @@
 
 @implementation HDBlockWrapper
 
-@synthesize block = _block;
-
 - (void)invoke:(id)sender
 {
-	[self block]();
+	self.block();
 }
 
 @end
@@ -47,8 +45,7 @@
 	static const char* UIControlHDBlocks = "UIControlHDBlocks";
 	NSMutableArray* blocks = objc_getAssociatedObject(self, &UIControlHDBlocks);
 	
-	if (blocks == nil)
-	{
+	if (blocks == nil) {
 		blocks = [NSMutableArray array];
 		objc_setAssociatedObject(self, &UIControlHDBlocks, blocks, OBJC_ASSOCIATION_RETAIN);
 	}
@@ -63,7 +60,7 @@
 	NSMutableArray* blocks = [self blocks];
 	
 	HDBlockWrapper* target = [HDBlockWrapper new];
-	[target setBlock:block];
+	target.block = block;
 	[blocks addObject:target];
 	
 	[self addTarget:target action:@selector(invoke:) forControlEvents:controlEvents];

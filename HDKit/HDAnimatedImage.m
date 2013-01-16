@@ -27,8 +27,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if (self = [super initWithCoder:coder])
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -40,8 +39,7 @@
 	NSString* imageName = [animationName stringByAppendingString:@"0"];
 	UIImage* image = [UIImage imageWithName:imageName cached:NO];
 	
-	if ((self = [super initWithImage:image]))
-	{
+	if (self = [super initWithImage:image]) {
 		[self initialize];
 		[self setAnimationName:animationName];
 	}
@@ -51,52 +49,47 @@
 
 - (void)initialize
 {
-	[self setFramesPerSecond:12];
-	[self setAnimationRepeatCount:1];
+	self.framesPerSecond = 12;
+	self.animationRepeatCount = 1;
 }
 
 #pragma mark - Properties
 
 - (void)setAnimationName:(NSString*)animationName
 {
-	if (![animationName isEqualToString:_animationName])
-	{
+	if (![animationName isEqualToString:_animationName]) {
 		_animationName = [animationName copy];
-		[self setStaticImage:nil];
-		[self setImage:nil];
-		[self setImages:nil];
+		self.staticImage = nil;
+		self.image = nil;
+		self.images = nil;
 		
-		if (animationName != nil)
-		{
+		if (animationName != nil) {
 			NSString* staticImageName = [self nameFromImageAtIndex:0];
 			UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
-			[self setStaticImage:staticImage];
-			[self setImage:staticImage];
+			self.staticImage = staticImage;
+			self.image = staticImage;
 		}
 	}
 }
 
 - (NSTimeInterval)animationDuration
 {
-	return (NSTimeInterval)[[self images] count] / [self framesPerSecond];
+	return (NSTimeInterval)[self.images count] / self.framesPerSecond;
 }
 
 - (NSArray*)images
 {
-	if (_images == nil)
-	{
+	if (_images == nil) {
 		NSMutableArray* images = [NSMutableArray array];
-		[self setImages:images];
+		self.images = images;
 		
 		NSUInteger index = 1;
 		
-		while (YES)
-		{
+		while (YES) {
 			NSString* imageName = [self nameFromImageAtIndex:index];
 			UIImage* image = [UIImage imageWithName:imageName cached:NO];
 			
-			if (!image)
-			{
+			if (!image) {
 				break;
 			}
 			
@@ -110,52 +103,47 @@
 
 - (BOOL)isPlaying
 {
-	return [self timer] != nil;
+	return self.timer != nil;
 }
 
 #pragma mark - Public Methods
 
 - (void)play
 {
-	if ([self isPlaying])
-	{
+	if (self.playing) {
 		return;
 	}
 	
-	NIDASSERT([self superview] != nil);
+	NIDASSERT(self.superview != nil);
 	
-	[self setNextIndex:0];
+	self.nextIndex = 0;
 	
-	NSTimeInterval timeInterval = 1.0f / [self framesPerSecond];
-	NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(changeFrame) userInfo:nil repeats:YES];
-	[self setTimer:timer];
+	NSTimeInterval timeInterval = 1.0f / self.framesPerSecond;
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(changeFrame) userInfo:nil repeats:YES];
 }
 
 - (void)stop
 {
-	if (![self isPlaying])
-	{
+	if (!self.playing) {
 		return;
 	}
 	
-	[[self timer] invalidate];
-	[self setTimer:nil];
+	[self.timer invalidate];
+	self.timer = nil;
 	
-	if ([self stopsOnLastFrame])
-	{
-		[self setStaticImage:[[self images] lastObject]];
+	if ([self stopsOnLastFrame]) {
+		self.staticImage = [self.images lastObject];
 	}
 	
-	[self setImage:[self staticImage]];
-	[self setImages:nil];
+	self.image = self.staticImage;
+	self.images = nil;
 }
 
 #pragma mark - UIView Methods
 
 - (void)didMoveToSuperview
 {
-	if ([self superview] == nil)
-	{
+	if (self.superview == nil) {
 		[self stop];
 	}
 }
@@ -164,51 +152,41 @@
 
 - (NSString*)nameFromImageAtIndex:(NSUInteger)index
 {
-	NIDASSERT([self animationName] != nil);
-	return [[self animationName] stringByAppendingFormat:@"%i", index];
+	NIDASSERT(self.animationName != nil);
+	return [self.animationName stringByAppendingFormat:@"%i", index];
 }
 
 - (void)changeFrame
 {
-	if ([self nextIndex] >= [[self images] count])
-	{
-		[self setAnimationRepeatCount:[self animationRepeatCount] - 1];
+	if (self.nextIndex >= [self.images count]) {
+		self.animationRepeatCount--;
 		
-		if ([self animationRepeatCount] == 0)
-		{
+		if (self.animationRepeatCount == 0) {
 			[self stop];
-			[self setAnimationRepeatCount:1];
+			self.animationRepeatCount = 1;
 			
-			if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
-			{
-				[[self delegate] animatedImageDidFinishPlaying:self];
+			if ([self.delegate respondsToSelector:@selector(animatedImageDidFinishPlaying:)]) {
+				[self.delegate animatedImageDidFinishPlaying:self];
 			}
 			
 			return;
-		}
-		else
-		{
-			[self setNextIndex:0];
+		} else {
+			self.nextIndex = 0;
 		}
 	}
 	
-	UIImage* nextImage = [[self images] objectAtIndex:[self nextIndex]];
-	[self setImage:nextImage];
-	[self setNextIndex:[self nextIndex] + 1];
+	UIImage* nextImage = self.images[self.nextIndex];
+	self.image = nextImage;
+	self.nextIndex++;
 }
 
 #pragma mark - Memory Management
 
 - (void)dealloc
 {
-	if ([self isPlaying])
-	{
+	if (self.playing) {
 		[self stop];
 	}
-	
-	[self setDelegate:nil];
-	[self setAnimationName:nil];
-	
 }
 
 @end
