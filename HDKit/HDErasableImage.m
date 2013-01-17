@@ -142,7 +142,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 	CGContextRef context = CreateImageMaskContext([self bounds].size);
 	
 	UIColor* fillColor = [self isErasing] ? [UIColor blackColor] : [UIColor whiteColor];
-	CGContextSetFillColorWithColor(context, fillColor.CGColor);
+	CGContextSetFillColorWithColor(context, [fillColor CGColor]);
 	CGContextFillRect(context, [self bounds]);
 	
 	CGImageRef imageMask = CGBitmapContextCreateImage(context);
@@ -160,7 +160,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 	CGContextDrawImage(context, [self bounds], [self imageMaskRef]);
 	
 	UIColor* strokeColor = [self isErasing] ? [UIColor whiteColor] : [UIColor blackColor];
-	CGContextSetStrokeColorWithColor(context, strokeColor.CGColor);
+	CGContextSetStrokeColorWithColor(context, [strokeColor CGColor]);
 	CGContextSetLineCap(context, kCGLineCapRound);
 	CGContextSetLineWidth(context, 60);
 	CGContextBeginPath(context);

@@ -25,13 +25,13 @@
 + (NSEntityDescription*)entity
 {
 	return [NSEntityDescription entityForName:NSStringFromClass([self class])
-					   inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
+					   inManagedObjectContext:[[HDModelController sharedInstance] managedObjectContext]];
 }
 
 + (id)insertNewObject
 {
 	return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
-										 inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
+										 inManagedObjectContext:[[HDModelController sharedInstance] managedObjectContext]];
 }
 
 + (NSSet*)allObjects
@@ -65,7 +65,8 @@
 	}
 	
 	NSError* error = nil;
-	NSArray* results = [[HDModelController sharedInstance].managedObjectContext executeFetchRequest:request error:&error];
+	NSManagedObjectContext* managedObjectContext = [[HDModelController sharedInstance] managedObjectContext];
+	NSArray* results = [managedObjectContext executeFetchRequest:request error:&error];
 	NIDASSERT(!error);
 	
 	return results;
