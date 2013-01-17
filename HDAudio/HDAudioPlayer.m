@@ -29,8 +29,7 @@
 {
 	static HDAudioPlayer* kSharedInstance = nil;
 	
-	if (kSharedInstance == nil)
-	{
+	if (!kSharedInstance) {
 		kSharedInstance = [HDAudioPlayer new];
 	}
 	
@@ -39,8 +38,7 @@
 
 - (id)init
 {
-	if ((self = [super init]))
-	{
+	if (self = [super init]) {
 		[self setSfxPlayers:[NSMutableArray array]];
 		[self setSfxBlocks:[NSMutableArray array]];
 	}
@@ -58,10 +56,10 @@
 
 - (void)playSfx:(NSString*)sfxName completion:(void(^)(void))block
 {
-	NIDASSERT(sfxName != nil);
+	NIDASSERT(sfxName);
 	
 	AVAudioPlayer* sfxPlayer = [self audioPlayerWithName:sfxName andType:@"caf"];
-	NIDASSERT(sfxPlayer != nil);
+	NIDASSERT(sfxPlayer);
 
 	[[self sfxPlayers] addObject:sfxPlayer];
 	
@@ -73,8 +71,7 @@
 
 - (void)stopAllSfx
 {
-	for (AVAudioPlayer* sfxPlayer in [self sfxPlayers])
-	{
+	for (AVAudioPlayer* sfxPlayer in [self sfxPlayers]) {
 		[sfxPlayer setDelegate:nil];
 		[sfxPlayer stop];
 	}
@@ -96,10 +93,10 @@
 
 - (void)playMusic:(NSString*)musicName completion:(void(^)(void))block
 {
-	NIDASSERT(musicName != nil);
+	NIDASSERT(musicName);
 	
 	AVAudioPlayer* musicPlayer = [self audioPlayerWithName:musicName andType:@"m4a"];
-	NIDASSERT(musicPlayer != nil);
+	NIDASSERT(musicPlayer);
 	
 	[self setMusicPlayer:musicPlayer];
 	[self setMusicBlock:block];
@@ -135,31 +132,24 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
-	if (player == [self musicPlayer])
-	{
+	if (player == [self musicPlayer]) {
 		void(^musicBlock)(void) = [self musicBlock];
 		[self stopMusic];
 		
-		if (musicBlock != NULL)
-		{
+		if (musicBlock != NULL) {
 			musicBlock();
 		}
-	}
-	else if ([[self sfxPlayers] containsObject:player])
-	{
+	} else if ([[self sfxPlayers] containsObject:player]) {
 		NSUInteger playerIndex = [[self sfxPlayers] indexOfObject:player];
 		id nullableBlock = [[self sfxBlocks] objectAtIndex:playerIndex];
 		
-		if (![nullableBlock isMemberOfClass:[NSNull class]])
-		{
+		if (![nullableBlock isMemberOfClass:[NSNull class]]) {
 			((void(^)(void))nullableBlock)();
 		}
 		
 		[[self sfxPlayers] removeObjectAtIndex:playerIndex];
 		[[self sfxBlocks] removeObjectAtIndex:playerIndex];
-	}
-	else
-	{
+	} else {
 		NIDERROR(@"A unkown sound has finished.");
 	}
 }
@@ -170,7 +160,7 @@
 - (AVAudioPlayer*)audioPlayerWithName:(NSString*)name andType:(NSString*)type
 {
 	NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:type];
-	NIDASSERT(path != nil);
+	NIDASSERT(path);
 	
 	return [self audioPlayerWithPath:path];
 }
@@ -181,7 +171,7 @@
 	
 	NSError* error = nil;
 	AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithData:data error:&error];
-	NIDASSERT(error == nil);
+	NIDASSERT(!error);
 	
 	[player setDelegate:self];
 	return player;

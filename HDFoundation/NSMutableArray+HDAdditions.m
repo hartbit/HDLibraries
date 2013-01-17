@@ -14,7 +14,7 @@
 
 - (void)enqueueObject:(id)object
 {
-	NIDASSERT(object != nil);
+	NIDASSERT(object);
 	
 	[self addObject:object];
 }

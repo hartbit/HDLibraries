@@ -35,8 +35,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 {
 	CGRect frame = CGRectMake(0, 0, [image size].width, [image size].height);
 
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self setOpaque:NO];
 		[self setImage:image];
 		[self setErasing:erasing];
@@ -60,8 +59,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 
 - (void)setImage:(UIImage*)image
 {
-	if (image == _image)
-	{
+	if (image == _image) {
 		return;
 	}
 	
@@ -72,8 +70,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 
 - (void)setImageMaskRef:(CGImageRef)imageMaskRef
 {
-	if (imageMaskRef == _imageMaskRef)
-	{
+	if (imageMaskRef == _imageMaskRef) {
 		return;
 	}
 	
@@ -90,8 +87,7 @@ void ReleaseImageMaskContext(CGContextRef context);
 	UITouch* touch = [touches anyObject];	
 	[self setLastPoint:[touch locationInView:self]];
 	
-	if ([[self delegate] respondsToSelector:@selector(erasableImageWillStartErasing:)])
-	{
+	if ([[self delegate] respondsToSelector:@selector(erasableImageWillStartErasing:)]) {
 		[[self delegate] erasableImageWillStartErasing:self];
 	}
 }
@@ -106,21 +102,18 @@ void ReleaseImageMaskContext(CGContextRef context);
 	[self drawFromPoint:[self lastPoint] toPoint:currentPoint];
 	[self setLastPoint:currentPoint];
 	
-	if ([[self delegate] respondsToSelector:@selector(erasableImage:isErasingWithCompletionPercentage:)])
-	{
+	if ([[self delegate] respondsToSelector:@selector(erasableImage:isErasingWithCompletionPercentage:)]) {
 		[[self delegate] erasableImage:self isErasingWithCompletionPercentage:[self completion]];
 	}
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	if (![self mouseSwiped])
-	{
+	if (![self mouseSwiped]) {
 		[self drawFromPoint:[self lastPoint] toPoint:[self lastPoint]];
 	}
 	
-	if ([[self delegate] respondsToSelector:@selector(erasableImageDidEndErasing:)])
-	{
+	if ([[self delegate] respondsToSelector:@selector(erasableImageDidEndErasing:)]) {
 		[[self delegate] erasableImageDidEndErasing:self];
 	}
 }
@@ -199,14 +192,10 @@ void ReleaseImageMaskContext(CGContextRef context);
 	
 	UInt8 alphaToAcheive = [self isErasing] ? 255 : 0;
 	
-	for (size_t row = 0; row < height; row++)
-	{
-		for (size_t column = 0; column < width; column++)
-		{
+	for (size_t row = 0; row < height; row++) {
+		for (size_t column = 0; column < width; column++) {
 			const UInt8* pixelPtr = dataPtr + (row * bytesPerRow) + (column * bitsPerPixel / 8);
-			
-			if (*pixelPtr == alphaToAcheive)
-			{
+			if (*pixelPtr == alphaToAcheive){
 				acheivedPixelCount++;
 			}
 		}
@@ -219,12 +208,9 @@ void ReleaseImageMaskContext(CGContextRef context);
 
 - (UIColor*)imageMaskColor
 {
-	if ([self isErasing])
-	{
+	if ([self isErasing]) {
 		return [UIColor whiteColor];
-	}
-	else
-	{
+	} else {
 		return [UIColor blackColor];
 	}
 }

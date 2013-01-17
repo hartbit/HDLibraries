@@ -35,19 +35,17 @@
 
 - (NSManagedObjectModel*)managedObjectModel
 {
-	if (_managedObjectModel == nil)
-	{
-		if ([self modelURL] != nil)
-		{
-			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
+	if (!_managedObjectModel) {
+		NSURL* modelURL = [self modelURL];
+		
+		if (modelURL) {
+			NSManagedObjectModel* newManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 			[self setManagedObjectModel:newManagedObjectModel];
-		}
-		else
-		{
+		} else {
 			[self setManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
 		}
 		
-		NIDASSERT(_managedObjectModel != nil);
+		NIDASSERT(_managedObjectModel);
 	}
 	
 	return _managedObjectModel;
@@ -55,13 +53,12 @@
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-	if (_managedObjectContext == nil)
-	{
+	if (!_managedObjectContext) {
 		NSManagedObjectContext* newManagedObjectContext = [[NSManagedObjectContext alloc] init];
 		[newManagedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 		[self setManagedObjectContext:newManagedObjectContext];
 		
-		NIDASSERT(_managedObjectContext != nil);
+		NIDASSERT(_managedObjectContext);
 	}
 	
 	return _managedObjectContext;
@@ -69,12 +66,11 @@
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
-	if (_persistentStoreCoordinator == nil)
-	{
+	if (!_persistentStoreCoordinator) {
 		NSPersistentStoreCoordinator* newPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		[self setPersistentStoreCoordinator:newPersistentStoreCoordinator];
 		
-		NIDASSERT(_persistentStoreCoordinator != nil);
+		NIDASSERT(_persistentStoreCoordinator);
 	}
 
 	return _persistentStoreCoordinator;
@@ -87,8 +83,7 @@
 	BOOL readOnly = NO;
 	NSFileManager* fileManager = [NSFileManager new];
 	
-	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]])
-	{
+	if ([fileManager fileExistsAtPath:[storeURL path]] && ![fileManager isWritableFileAtPath:[storeURL path]]) {
 		readOnly = YES;
 	}
 	
@@ -97,7 +92,7 @@
 
 - (void)addStoreWithURL:(NSURL*)storeURL readOnly:(BOOL)readOnly
 {
-	NIDASSERT(storeURL != nil);
+	NIDASSERT(storeURL);
 	
 	NSDictionary* storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
 								  [NSNumber numberWithBool:readOnly], NSReadOnlyPersistentStoreOption,
@@ -106,17 +101,15 @@
 	
 	NSError* error = nil;
 	[[self persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error];
-	NIDASSERT(error == nil);
+	NIDASSERT(!error);
 }
 
 - (void)assignObjectToFirstWritableStore:(NSManagedObject*)object
 {
-	for (NSPersistentStore* store in [[self persistentStoreCoordinator] persistentStores])
-	{
+	for (NSPersistentStore* store in [[self persistentStoreCoordinator] persistentStores]) {
 		NSNumber* isReadOnlyNumber = [[store options] objectForKey:NSReadOnlyPersistentStoreOption];
 		
-		if ((isReadOnlyNumber == nil) || ![isReadOnlyNumber boolValue])
-		{
+		if (!isReadOnlyNumber || ![isReadOnlyNumber boolValue]) {
 			[[self managedObjectContext] assignObject:object toPersistentStore:store];
 			return;
 		}
@@ -129,19 +122,16 @@
 {
 	NSError* error = nil;
 	[self saveContextWithError:&error];
-	NIDASSERT(error == nil);
+	NIDASSERT(!error);
 }
 
 - (BOOL)saveContextWithError:(NSError**)error
 {
 	NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
 	
-	if (managedObjectContext && [managedObjectContext hasChanges])
-	{
+	if (managedObjectContext && [managedObjectContext hasChanges]) {
 		return [managedObjectContext save:error];
-	}
-	else
-	{
+	} else {
 		return YES;
 	}
 }

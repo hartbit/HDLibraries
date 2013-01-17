@@ -27,8 +27,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if (self = [super initWithCoder:coder])
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -40,8 +39,7 @@
 	NSString* imageName = [animationName stringByAppendingString:@"0"];
 	UIImage* image = [UIImage imageWithName:imageName cached:NO];
 	
-	if ((self = [super initWithImage:image]))
-	{
+	if (self = [super initWithImage:image]) {
 		[self initialize];
 		[self setAnimationName:animationName];
 	}
@@ -59,15 +57,13 @@
 
 - (void)setAnimationName:(NSString*)animationName
 {
-	if (![animationName isEqualToString:_animationName])
-	{
+	if (![animationName isEqualToString:_animationName]) {
 		_animationName = [animationName copy];
 		[self setStaticImage:nil];
 		[self setImage:nil];
 		[self setImages:nil];
 		
-		if (animationName != nil)
-		{
+		if (animationName) {
 			NSString* staticImageName = [self nameFromImageAtIndex:0];
 			UIImage* staticImage = [UIImage imageWithName:staticImageName cached:NO];
 			[self setStaticImage:staticImage];
@@ -83,20 +79,17 @@
 
 - (NSArray*)images
 {
-	if (_images == nil)
-	{
+	if (!_images) {
 		NSMutableArray* images = [NSMutableArray array];
 		[self setImages:images];
 		
 		NSUInteger index = 1;
 		
-		while (YES)
-		{
+		while (YES) {
 			NSString* imageName = [self nameFromImageAtIndex:index];
 			UIImage* image = [UIImage imageWithName:imageName cached:NO];
 			
-			if (!image)
-			{
+			if (!image) {
 				break;
 			}
 			
@@ -117,12 +110,11 @@
 
 - (void)play
 {
-	if ([self isPlaying])
-	{
+	if ([self isPlaying]) {
 		return;
 	}
 	
-	NIDASSERT([self superview] != nil);
+	NIDASSERT([self superview]);
 	
 	[self setNextIndex:0];
 	
@@ -133,16 +125,14 @@
 
 - (void)stop
 {
-	if (![self isPlaying])
-	{
+	if (![self isPlaying]) {
 		return;
 	}
 	
 	[[self timer] invalidate];
 	[self setTimer:nil];
 	
-	if ([self stopsOnLastFrame])
-	{
+	if ([self stopsOnLastFrame]) {
 		[self setStaticImage:[[self images] lastObject]];
 	}
 	
@@ -154,8 +144,7 @@
 
 - (void)didMoveToSuperview
 {
-	if ([self superview] == nil)
-	{
+	if (![self superview]) {
 		[self stop];
 	}
 }
@@ -164,30 +153,25 @@
 
 - (NSString*)nameFromImageAtIndex:(NSUInteger)index
 {
-	NIDASSERT([self animationName] != nil);
+	NIDASSERT([self animationName]);
 	return [[self animationName] stringByAppendingFormat:@"%i", index];
 }
 
 - (void)changeFrame
 {
-	if ([self nextIndex] >= [[self images] count])
-	{
+	if ([self nextIndex] >= [[self images] count]) {
 		[self setAnimationRepeatCount:[self animationRepeatCount] - 1];
 		
-		if ([self animationRepeatCount] == 0)
-		{
+		if ([self animationRepeatCount] == 0) {
 			[self stop];
 			[self setAnimationRepeatCount:1];
 			
-			if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)])
-			{
+			if ([[self delegate] respondsToSelector:@selector(animatedImageDidFinishPlaying:)]) {
 				[[self delegate] animatedImageDidFinishPlaying:self];
 			}
 			
 			return;
-		}
-		else
-		{
+		} else {
 			[self setNextIndex:0];
 		}
 	}
@@ -201,8 +185,7 @@
 
 - (void)dealloc
 {
-	if ([self isPlaying])
-	{
+	if ([self isPlaying]) {
 		[self stop];
 	}
 	

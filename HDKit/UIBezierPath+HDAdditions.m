@@ -24,15 +24,11 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	
 	UIPathElement* outElement = (__bridge UIPathElement*)info;
 	
-	if ([outElement points] == nil)
-	{
-		if (sCurrentIndex == sGetElementIndex)
-		{
+	if (![outElement points]) {
+		if (sCurrentIndex == sGetElementIndex) {
 			[outElement setWithCGPathElement:*element];
 			sCurrentIndex = 0;
-		}
-		else
-		{
+		} else {
 			sCurrentIndex++;
 		}
 	}
@@ -63,59 +59,44 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	CGPoint startPoint;
 	CGPoint currentPoint;
 	
-	for (NSUInteger elementIndex = 0; elementIndex < [self elementCount]; elementIndex++)
-	{
+	for (NSUInteger elementIndex = 0; elementIndex < [self elementCount]; elementIndex++) {
 		UIPathElement* element = [self elementAtIndex:elementIndex];
 		CGFloat distance = CGFLOAT_MAX;
 		
-		switch ([element type])
-		{
-			case kCGPathElementAddLineToPoint:
-			{
+		switch ([element type]) {
+			case kCGPathElementAddLineToPoint: {
 				CGPoint endPoint = [[[element points] objectAtIndex:0] CGPointValue];
 				distance = HDDistanceFromLine(currentPoint, endPoint, point, NULL);
-				break;
-			}
-			case kCGPathElementCloseSubpath:
-			{
+				break; }
+			case kCGPathElementCloseSubpath: {
 				distance = HDDistanceFromLine(currentPoint, startPoint, point, NULL);
-				break;
-			}
-			case kCGPathElementAddQuadCurveToPoint:
-			{
+				break; }
+			case kCGPathElementAddQuadCurveToPoint: {
 				CGPoint controlPoint = [[[element points] objectAtIndex:0] CGPointValue];
 				CGPoint endPoint = [[[element points] objectAtIndex:1] CGPointValue];
 				distance = HDDistanceFromQuadCurve(currentPoint, controlPoint, endPoint, point, NULL);
-				break;
-			}
-			case kCGPathElementAddCurveToPoint:
-			{
+				break; }
+			case kCGPathElementAddCurveToPoint: {
 				CGPoint controlPoint1 = [[[element points] objectAtIndex:0] CGPointValue];
 				CGPoint controlPoint2 = [[[element points] objectAtIndex:1] CGPointValue];
 				CGPoint endPoint = [[[element points] objectAtIndex:2] CGPointValue];
 				distance = HDDistanceFromCubicCurve(currentPoint, controlPoint1, controlPoint2, endPoint, point, NULL);
-				break;
-			}
+				break; }
 			default:
 				break;
 		}
 		
-		if (distance < minimumDistance)
-		{
+		if (distance < minimumDistance) {
 			minimumDistance = distance;
 		}
 		
-		if ([element type] == kCGPathElementCloseSubpath)
-		{
+		if ([element type] == kCGPathElementCloseSubpath) {
 			currentPoint = startPoint;
-		}
-		else
-		{
+		} else {
 			currentPoint = [[[element points] lastObject] CGPointValue];
 		}
 		
-		if (elementIndex == 0)
-		{
+		if (elementIndex == 0) {
 			startPoint = currentPoint;
 		}
 	}

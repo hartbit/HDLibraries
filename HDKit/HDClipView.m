@@ -27,8 +27,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -37,8 +36,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self initialize];
 	}
 	
@@ -58,8 +56,7 @@
 
 - (HDImageInfo*)imageInfo
 {
-	if (_imageInfo == nil)
-	{
+	if (!_imageInfo) {
 		[self setImageInfo:[HDImageInfo new]];
 	}
 	
@@ -75,8 +72,7 @@
 {
 	[[self imageInfo] setImage:clipImage];
 	
-	if (clipImage != nil)
-	{
+	if (clipImage) {
 		CGRect maskFrame = CGRectMake(0, 0, [clipImage size].width, [clipImage size].height);
 		[[self maskLayer] setFrame:maskFrame];
 		[[self maskLayer] setContents:(id)[clipImage CGImage]];
@@ -88,7 +84,7 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event; 
 {
-	NIDASSERT(([self clipImage] == nil) || CGSizeEqualToSize([[self clipImage] size], [self bounds].size));
+	NIDASSERT(![self clipImage] || CGSizeEqualToSize([[self clipImage] size], [self bounds].size));
 	return [[self imageInfo] pointInside:point];
 }
 

@@ -28,8 +28,7 @@
 
 - (HDImageInfo*)imageInfo
 {
-	if (_imageInfo == nil)
-	{
+	if (!_imageInfo) {
 		[self setImageInfo:[HDImageInfo new]];
 		[self updateImageInfo];
 	}
@@ -55,7 +54,7 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event;
 {
-	NIDASSERT(([[self imageInfo] image] == nil) || CGSizeEqualToSize([[[self imageInfo] image] size], [self bounds].size));
+	NIDASSERT(![[self imageInfo] image] || CGSizeEqualToSize([[[self imageInfo] image] size], [self bounds].size));
 	return [[self imageInfo] pointInside:point];
 }
 
@@ -65,8 +64,7 @@
 {
 	UIImage* image = [self imageForState:UIControlStateNormal];
 	
-	if (image == nil)
-	{
+	if (!image) {
 		image = [self backgroundImageForState:UIControlStateNormal];
 	}
 	

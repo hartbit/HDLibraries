@@ -32,8 +32,7 @@
 
 - (id)init
 {
-	if ((self = [super init]))
-	{
+	if (self = [super init]) {
 		[self initialize];
 	}
 	
@@ -42,8 +41,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -52,8 +50,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self initialize];
 	}
 
@@ -78,8 +75,7 @@
 
 - (void)setNumberOfColumns:(NSUInteger)numberOfColumns
 {
-	if (numberOfColumns != _numberOfColumns)
-	{
+	if (numberOfColumns != _numberOfColumns) {
 		_numberOfColumns = numberOfColumns;
 		[self updateButtonCount];
 		[self updateDividerCount];
@@ -88,8 +84,7 @@
 
 - (void)setNumberOfRows:(NSUInteger)numberOfRows
 {
-	if (numberOfRows != _numberOfRows)
-	{
+	if (numberOfRows != _numberOfRows) {
 		_numberOfRows = numberOfRows;
 		[self updateButtonCount];
 		[self updateDividerCount];
@@ -98,8 +93,7 @@
 
 - (void)setVerticalDividerImage:(UIImage*)verticalDividerImage
 {
-	if (verticalDividerImage != _verticalDividerImage)
-	{
+	if (verticalDividerImage != _verticalDividerImage) {
 		_verticalDividerImage = verticalDividerImage;
 		[self updateVerticalDividers];
 	}
@@ -107,8 +101,7 @@
 
 - (void)setHorizontalDividerImage:(UIImage*)horizontalDividerImage
 {
-	if (horizontalDividerImage != _horizontalDividerImage)
-	{
+	if (horizontalDividerImage != _horizontalDividerImage) {
 		_horizontalDividerImage = horizontalDividerImage;
 		[self updateHorizontalDividers];
 	}
@@ -173,23 +166,18 @@
 {
 	NSUInteger buttonCount = [self numberOfColumns] * [self numberOfRows];
 	
-	if (buttonCount < [[self buttons] count])
-	{
+	if (buttonCount < [[self buttons] count]) {
 		NSUInteger numberToRemove = [[self buttons] count] - buttonCount;
 		
-		for (NSUInteger index = 0; index < numberToRemove; index++)
-		{
+		for (NSUInteger index = 0; index < numberToRemove; index++) {
 			UIButton* lastButton = [[self buttons] lastObject];
 			[lastButton removeFromSuperview];
 			[[self buttons] removeLastObject];
 		}
-	}
-	else if (buttonCount > [[self buttons] count])
-	{
+	} else if (buttonCount > [[self buttons] count]) {
 		NSUInteger numberToAdd = buttonCount - [[self buttons] count];
 		
-		for (NSUInteger index = 0; index < numberToAdd; index++)
-		{
+		for (NSUInteger index = 0; index < numberToAdd; index++) {
 			UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 			[button setAdjustsImageWhenHighlighted:NO];
 			[button addTarget:self action:@selector(touchDownAction:) forControlEvents:UIControlEventTouchDown];
@@ -203,8 +191,7 @@
 		}
 	}
 	
-	if ([[self buttons] count] > 0)
-	{
+	if ([[self buttons] count] > 0) {
 		[self selectButton:[[self buttons] objectAtIndex:0]];
 	}
 	
@@ -216,10 +203,8 @@
 {
 	CGSize buttonSize = [self buttonSize];
 	
-	for (NSUInteger row = 0; row < [self numberOfRows]; row++)
-	{
-		for (NSUInteger column = 0; column < [self numberOfColumns]; column++)
-		{
+	for (NSUInteger row = 0; row < [self numberOfRows]; row++) {
+		for (NSUInteger column = 0; column < [self numberOfColumns]; column++) {
 			CGFloat buttonX = column * buttonSize.width;
 			CGFloat buttonY = row * buttonSize.height;
 			CGRect buttonFrame = CGRectMake(buttonX, buttonY, buttonSize.width, buttonSize.height);
@@ -232,10 +217,8 @@
 
 - (void)updateButtonBackgroundImages
 {
-	for (NSUInteger row = 0; row < [self numberOfRows]; row++)
-	{
-		for (NSUInteger column = 0; column < [self numberOfColumns]; column++)
-		{
+	for (NSUInteger row = 0; row < [self numberOfRows]; row++) {
+		for (NSUInteger column = 0; column < [self numberOfColumns]; column++) {
 			UIButton* button = [self buttonAtColumn:column row:row];
 			
 			UIImage* normalImage = [self backgroundImageFromImage:[self normalBackgroundImage] forSegmentAtColumn:column row:row];
@@ -257,28 +240,22 @@
 {
 	NSUInteger dividerCount = ([self numberOfColumns] - 1) + ([self numberOfRows] - 1);
 	
-	if (([self numberOfColumns] == 0) || ([self numberOfRows] == 0))
-	{
+	if (([self numberOfColumns] == 0) || ([self numberOfRows] == 0)) {
 		dividerCount = 0;
 	}
 	
-	if (dividerCount < [[self dividers] count])
-	{
+	if (dividerCount < [[self dividers] count]) {
 		NSUInteger numberToRemove = [[self dividers] count] - dividerCount;
 		
-		for (NSUInteger index = 0; index < numberToRemove; index++)
-		{
+		for (NSUInteger index = 0; index < numberToRemove; index++) {
 			UIImageView* lastDivider = [[self dividers] lastObject];
 			[lastDivider removeFromSuperview];
 			[[self dividers] removeLastObject];
 		}
-	}
-	else if (dividerCount > [[self dividers] count])
-	{
+	} else if (dividerCount > [[self dividers] count]) {
 		NSUInteger numberToAdd = dividerCount - [[self dividers] count];
 		
-		for (NSUInteger index = 0; index < numberToAdd; index++)
-		{
+		for (NSUInteger index = 0; index < numberToAdd; index++) {
 			UIImageView* divider = [[UIImageView alloc] initWithFrame:CGRectZero];
 			[[self dividers] addObject:divider];
 			[self addSubview:divider];
@@ -291,8 +268,7 @@
 
 - (void)updateVerticalDividers
 {
-	if ([[self dividers] count] == 0)
-	{
+	if ([[self dividers] count] == 0) {
 		return;
 	}
 	
@@ -300,8 +276,7 @@
 	NSUInteger dividerOriginX = -dividerWidth / 2;
 	CGRect dividerFrame = CGRectMake(dividerOriginX, 0, dividerWidth, [self boundsHeight]);
 	
-	for (NSUInteger column = 0; column < [self numberOfColumns] - 1; column++)
-	{
+	for (NSUInteger column = 0; column < [self numberOfColumns] - 1; column++) {
 		UIImageView* verticalDivider = [[self dividers] objectAtIndex:column];
 		dividerFrame.origin.x += [self buttonSize].width;
 
@@ -313,8 +288,7 @@
 		 
 - (void)updateHorizontalDividers
 {
-	if ([[self dividers] count] == 0)
-	{
+	if ([[self dividers] count] == 0) {
 		return;
 	}
 	
@@ -322,8 +296,7 @@
 	NSUInteger dividerOriginY = -dividerHeight / 2;
 	CGRect dividerFrame = CGRectMake(0, dividerOriginY, [self boundsWidth], dividerHeight);
 	
-	for (NSUInteger row = 0; row < [self numberOfRows] - 1; row++)
-	{
+	for (NSUInteger row = 0; row < [self numberOfRows] - 1; row++) {
 		NSUInteger dividerIndex = [self numberOfColumns] - 1 + row;
 		UIImageView* horizontalDivider = [[self dividers] objectAtIndex:dividerIndex];
 		dividerFrame.origin.y += [self buttonSize].height;
@@ -358,40 +331,23 @@
 	NSUInteger maxRow = [self numberOfRows] - 1;
 	CGRect drawRect = CGRectZero;
 	
-	if ((column == 0) && (row == 0)) // Top Left
-	{
+	if ((column == 0) && (row == 0)) { // Top Left
 		drawRect = CGRectMakeWithEdges(leftWithLeftCap, topWithTopCap, rightWithoutRightCap, bottomWithoutBottomCap);
-	}
-	else if ((column == maxColumn) && (row == 0)) // Top Right
-	{
+	} else if ((column == maxColumn) && (row == 0)) { // Top Right
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithTopCap, rightWithRightCap, bottomWithoutBottomCap);
-	}
-	else if ((column == 0) && (row == maxRow)) // Bottom Left
-	{
+	} else if ((column == 0) && (row == maxRow)) { // Bottom Left
 		drawRect = CGRectMakeWithEdges(leftWithLeftCap, topWithoutTopCap, rightWithoutRightCap, bottomWithBottomCap);
-	}
-	else if ((column == maxColumn) && (row == maxRow)) // Bottom Right
-	{
+	} else if ((column == maxColumn) && (row == maxRow)) { // Bottom Right
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithoutTopCap, rightWithRightCap, bottomWithBottomCap);
-	}
-	else if (row == 0) // Middle Top
-	{
+	} else if (row == 0) { // Middle Top
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithTopCap, rightWithoutRightCap, bottomWithoutBottomCap);
-	}
-	else if (row == maxRow) // Middle Bottom
-	{
+	} else if (row == maxRow) { // Middle Bottom
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithoutTopCap, rightWithoutRightCap, bottomWithBottomCap);
-	}
-	else if (column == 0) // Middle Left
-	{
+	} else if (column == 0) { // Middle Left
 		drawRect = CGRectMakeWithEdges(leftWithLeftCap, topWithoutTopCap, rightWithoutRightCap, bottomWithoutBottomCap);
-	}
-	else if (column == maxColumn) // Middle Right
-	{
+	} else if (column == maxColumn) { // Middle Right
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithoutTopCap, rightWithRightCap, bottomWithoutBottomCap);
-	}
-	else // Middle
-	{
+	} else { // Middle
 		drawRect = CGRectMakeWithEdges(leftWithoutLeftCap, topWithoutTopCap, rightWithoutRightCap, bottomWithoutBottomCap);
 	}
 	
@@ -404,21 +360,16 @@
 
 - (void)selectButton:(UIButton*)selectedButton
 {
-	for (NSUInteger row = 0; row < [self numberOfRows]; row++)
-	{
-		for (NSUInteger column = 0; column < [self numberOfColumns]; column++)
-		{
+	for (NSUInteger row = 0; row < [self numberOfRows]; row++) {
+		for (NSUInteger column = 0; column < [self numberOfColumns]; column++) {
 			UIButton* button = [self buttonAtColumn:column row:row];
 			[button setHighlighted:NO];
 		
-			if (button == selectedButton)
-			{
+			if (button == selectedButton) {
 				[self setSelectedColumn:column];
 				[self setSelectedRow:row];
 				[button setSelected:YES];
-			}
-			else
-			{
+			} else {
 				[button setSelected:NO];
 			}
 		}

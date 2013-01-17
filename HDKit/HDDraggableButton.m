@@ -18,8 +18,7 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -28,8 +27,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self initialize];
 	}
 	
@@ -52,8 +50,7 @@
 
 - (void)returnToStartAnimated:(BOOL)animated
 {
-	if (animated)
-	{
+	if (animated) {
 		NSTimeInterval duration = CGPointDistance([self frameOrigin], [self startOrigin]) / [self speed];
 		
 		[UIView beginAnimations:nil context:NULL];
@@ -65,41 +62,34 @@
 	
 	[self setFrameOrigin:[self startOrigin]];
 	
-	if (animated)
-	{
+	if (animated) {
 		[UIView commitAnimations];
 	}
 }
 
 - (void)willDrag
 {
-	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)])
-	{
+	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)]) {
 		[[self delegate] draggableButtonWillDrag:self];
 	}
 }
 
 - (void)didDropOnTarget:(UIView*)target
 {
-	if (target == nil)
-	{
+	if (!target) {
 		[self returnToStart];
-	}
-	else
-	{
+	} else {
 		[self roundFrame];
 	}
 	
-	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)])
-	{
+	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)]) {
 		[[self delegate] draggableButton:self didDropOnTarget:target];
 	}
 }
 
 - (void)didReturnToStart
 {
-	if ([[self delegate] respondsToSelector:@selector(draggableButtonDidReturnToStart:)])
-	{
+	if ([[self delegate] respondsToSelector:@selector(draggableButtonDidReturnToStart:)]) {
 		[[self delegate] draggableButtonDidReturnToStart:self];
 	}
 }
@@ -117,8 +107,7 @@
 {
 	[super touchesMoved:touches withEvent:event];
 	
-	if ([self dragEnabled])
-	{
+	if ([self dragEnabled]) {
 		UITouch* touch = [touches anyObject];
 		CGPoint currentLocation = [touch locationInView:[self superview]];
 		CGPoint previousLocation = [touch previousLocationInView:[self superview]];
@@ -132,15 +121,12 @@
 {
 	[super touchesEnded:touches withEvent:event];
 	
-	if ([self dragEnabled])
-	{
-		for (UIView* target in [self targetViews])
-		{
+	if ([self dragEnabled]) {
+		for (UIView* target in [self targetViews]) {
 			CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[target superview]];
 			BOOL onTarget = CGRectContainsPoint([target frame], centerInTarget);
 			
-			if (onTarget)
-			{
+			if (onTarget) {
 				[self didDropOnTarget:target];
 				return;
 			}

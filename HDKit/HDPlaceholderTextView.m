@@ -26,8 +26,7 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)init
 {
-	if ((self = [super init]))
-	{
+	if (self = [super init]) {
 		[self initialize];
 	}
 	
@@ -36,8 +35,7 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if ((self = [super initWithFrame:frame]))
-	{
+	if (self = [super initWithFrame:frame]) {
 		[self initialize];
 	}
 	
@@ -46,8 +44,7 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if ((self = [super initWithCoder:coder]))
-	{
+	if (self = [super initWithCoder:coder]) {
 		[self initialize];
 	}
 	
@@ -84,8 +81,7 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (UILabel*)placeholderLabel
 {	
-	if (_placeholderLabel == nil)
-	{
+	if (!_placeholderLabel) {
 		CGRect frame = CGRectMake(kPlaceholderLabelMargin, kPlaceholderLabelMargin, 0, 0);
 		UILabel* placeholderLabel = [[UILabel alloc] initWithFrame:frame];
 		[placeholderLabel setLineBreakMode:UILineBreakModeWordWrap];

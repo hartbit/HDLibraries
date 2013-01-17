@@ -47,8 +47,7 @@
 	static const char* UIControlHDBlocks = "UIControlHDBlocks";
 	NSMutableArray* blocks = objc_getAssociatedObject(self, &UIControlHDBlocks);
 	
-	if (blocks == nil)
-	{
+	if (!blocks) {
 		blocks = [NSMutableArray array];
 		objc_setAssociatedObject(self, &UIControlHDBlocks, blocks, OBJC_ASSOCIATION_RETAIN);
 	}

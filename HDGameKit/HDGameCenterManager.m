@@ -50,7 +50,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (id)init
 {
-	if ((self = [super init])) {
+	if (self = [super init]) {
 		[self addObservers];
 	}
 	
@@ -78,7 +78,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	[[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter authenticateWithCompletionHandler - %@", [error localizedDescription]);
 		}
 	}];
@@ -92,7 +92,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	
 	GKScore* score = [[GKScore alloc] initWithCategory:category];
 	[score reportScoreWithCompletionHandler:^(NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter reportScoreWithCompletionHandler - %@", [error localizedDescription]);
 			return;
 		}
@@ -122,12 +122,12 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	[achievement reportAchievementWithCompletionHandler:^(NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter reportAchievementWithCompletionHandler - %@", [error localizedDescription]);
 			return;
 		}
 		
-		if (serverAchievement != nil) {
+		if (serverAchievement) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[serverAchievement setPercentComplete:percentComplete];
 			});
@@ -142,7 +142,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	[GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray* descriptions, NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter loadAchievementDescriptionsWithCompletionHandler - %@", [error localizedDescription]);
 			return;
 		}
@@ -163,7 +163,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	[GKAchievement resetAchievementsWithCompletionHandler:^(NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter resetAchievementsWithCompletionHandler - %@", [error localizedDescription]);
 		}
 	}];
@@ -226,7 +226,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	[GKAchievement loadAchievementsWithCompletionHandler:^(NSArray* achievements, NSError* error) {
-		if (error != nil) {
+		if (error) {
 			NIDINFO(@"GameCenter loadAchievementsWithCompletionHandler - %@", [error localizedDescription]);
 			return;
 		}

@@ -56,13 +56,11 @@
 	NSFetchRequest* request = [NSFetchRequest new];
 	[request setEntity:[[self class] entity]];
 	
-	if (predicate != nil)
-	{
+	if (predicate) {
 		[request setPredicate:predicate];
 	}
 	
-	if (key != nil)
-	{
+	if (key) {
 		NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
 		NSArray* sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 		[request setSortDescriptors:sortDescriptors];
@@ -70,7 +68,7 @@
 	
 	NSError* error = nil;
 	NSArray* results = [[HDModelController sharedInstance].managedObjectContext executeFetchRequest:request error:&error];
-	NIDASSERT(error == nil);
+	NIDASSERT(!error);
 	
 	return results;
 }
@@ -84,14 +82,13 @@
 
 - (NSError*)validationErrorWithDomain:(NSString*)domain reason:(NSString*)reason
 {
-	NIDASSERT(domain != nil);
-	NIDASSERT(reason != nil);
+	NIDASSERT(domain);
+	NIDASSERT(reason);
 	
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	[userInfo setObject:self forKey:NSValidationObjectErrorKey];
 	
-	if (reason)
-	{
+	if (reason) {
 		[userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
 	}
 	
@@ -100,23 +97,19 @@
 
 - (NSError*)errorFromOriginalError:(NSError*)originalError error:(NSError*)secondError
 {
-	NIDASSERT(secondError != nil);
+	NIDASSERT(secondError);
 	
-	if (!originalError || !secondError)
-	{
+	if (!originalError || !secondError) {
 		return secondError;
 	}
 
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	NSMutableArray* errors = [NSMutableArray arrayWithObject:secondError];
 	
-	if ([originalError code] == NSValidationMultipleErrorsError)
-	{
+	if ([originalError code] == NSValidationMultipleErrorsError) {
 		[userInfo addEntriesFromDictionary:[originalError userInfo]];
 		[errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
-	}
-	else
-	{
+	} else {
 		[errors addObject:originalError];
 	}
 
