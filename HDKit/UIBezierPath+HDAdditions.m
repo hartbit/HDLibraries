@@ -24,11 +24,15 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	
 	UIPathElement* outElement = (__bridge UIPathElement*)info;
 	
-	if (outElement.points == nil) {
-		if (sCurrentIndex == sGetElementIndex) {
+	if ([outElement points] == nil)
+	{
+		if (sCurrentIndex == sGetElementIndex)
+		{
 			[outElement setWithCGPathElement:*element];
 			sCurrentIndex = 0;
-		} else {
+		}
+		else
+		{
 			sCurrentIndex++;
 		}
 	}
@@ -40,7 +44,7 @@ void GetElementApplier(void* info, const CGPathElement* element)
 - (NSUInteger)elementCount
 {
 	NSUInteger count = 0;
-	CGPathApply(self.CGPath, &count, GetCountApplier);
+	CGPathApply([self CGPath], &count, GetCountApplier);
 	return count;
 }
 
@@ -49,7 +53,7 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	sGetElementIndex = index;
 	
 	UIPathElement* element = [UIPathElement new];
-	CGPathApply(self.CGPath, (__bridge void*)element, GetElementApplier);
+	CGPathApply([self CGPath], (__bridge void*)element, GetElementApplier);
 	return element;
 }
 
@@ -59,30 +63,36 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	CGPoint startPoint;
 	CGPoint currentPoint;
 	
-	for (NSUInteger elementIndex = 0; elementIndex < [self elementCount]; elementIndex++) {
+	for (NSUInteger elementIndex = 0; elementIndex < [self elementCount]; elementIndex++)
+	{
 		UIPathElement* element = [self elementAtIndex:elementIndex];
 		CGFloat distance = CGFLOAT_MAX;
 		
-		switch (element.type) {
-			case kCGPathElementAddLineToPoint: {
-				CGPoint endPoint = [element.points[0] CGPointValue];
+		switch ([element type])
+		{
+			case kCGPathElementAddLineToPoint:
+			{
+				CGPoint endPoint = [[[element points] objectAtIndex:0] CGPointValue];
 				distance = HDDistanceFromLine(currentPoint, endPoint, point, NULL);
 				break;
 			}
-			case kCGPathElementCloseSubpath: {
+			case kCGPathElementCloseSubpath:
+			{
 				distance = HDDistanceFromLine(currentPoint, startPoint, point, NULL);
 				break;
 			}
-			case kCGPathElementAddQuadCurveToPoint: {
-				CGPoint controlPoint = [element.points[0] CGPointValue];
-				CGPoint endPoint = [element.points[1] CGPointValue];
+			case kCGPathElementAddQuadCurveToPoint:
+			{
+				CGPoint controlPoint = [[[element points] objectAtIndex:0] CGPointValue];
+				CGPoint endPoint = [[[element points] objectAtIndex:1] CGPointValue];
 				distance = HDDistanceFromQuadCurve(currentPoint, controlPoint, endPoint, point, NULL);
 				break;
 			}
-			case kCGPathElementAddCurveToPoint: {
-				CGPoint controlPoint1 = [element.points[0] CGPointValue];
-				CGPoint controlPoint2 = [element.points[1] CGPointValue];
-				CGPoint endPoint = [element.points[2] CGPointValue];
+			case kCGPathElementAddCurveToPoint:
+			{
+				CGPoint controlPoint1 = [[[element points] objectAtIndex:0] CGPointValue];
+				CGPoint controlPoint2 = [[[element points] objectAtIndex:1] CGPointValue];
+				CGPoint endPoint = [[[element points] objectAtIndex:2] CGPointValue];
 				distance = HDDistanceFromCubicCurve(currentPoint, controlPoint1, controlPoint2, endPoint, point, NULL);
 				break;
 			}
@@ -90,17 +100,22 @@ void GetElementApplier(void* info, const CGPathElement* element)
 				break;
 		}
 		
-		if (distance < minimumDistance) {
+		if (distance < minimumDistance)
+		{
 			minimumDistance = distance;
 		}
 		
-		if (element.type == kCGPathElementCloseSubpath) {
+		if ([element type] == kCGPathElementCloseSubpath)
+		{
 			currentPoint = startPoint;
-		} else {
-			currentPoint = [[element.points lastObject] CGPointValue];
+		}
+		else
+		{
+			currentPoint = [[[element points] lastObject] CGPointValue];
 		}
 		
-		if (elementIndex == 0) {
+		if (elementIndex == 0)
+		{
 			startPoint = currentPoint;
 		}
 	}
@@ -118,7 +133,8 @@ void GetElementApplier(void* info, const CGPathElement* element)
 	_type = element.type;
 		
 	NSUInteger numberOfPoints = 0;
-	switch (element.type) {
+	switch (element.type)
+	{
 		case kCGPathElementMoveToPoint:
 		case kCGPathElementAddLineToPoint:
 			numberOfPoints = 1;
@@ -135,7 +151,8 @@ void GetElementApplier(void* info, const CGPathElement* element)
 		
 	_points = [NSMutableArray array];
 		
-	for (NSUInteger indexOfPoint = 0; indexOfPoint < numberOfPoints; indexOfPoint++) {
+	for (NSUInteger indexOfPoint = 0; indexOfPoint < numberOfPoints; indexOfPoint++)
+	{
 		CGPoint point = element.points[indexOfPoint];
 		[(NSMutableArray*)_points addObject:[NSValue valueWithCGPoint:point]];
 	}

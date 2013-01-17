@@ -17,8 +17,10 @@ NSUInteger HDPower(NSUInteger base, NSUInteger exp)
 {
 	NSUInteger result = 1;
 	
-	while (exp != 0) {
-		if ((exp & 1) != 0) {
+	while (exp != 0)
+	{
+		if ((exp & 1) != 0)
+		{
 			result *= base;
 		}
 		
@@ -88,24 +90,33 @@ CGFloat HDDistanceFromLine(CGPoint lineStart, CGPoint lineEnd, CGPoint point, CG
 	
 	CGFloat distance = fabs(s)*sqrt(r_denomenator);
 	
-	if ((r >= 0) && (r <= 1)) {
-		if (closestPoint != NULL) {
+	if ((r >= 0) && (r <= 1))
+	{
+		if (closestPoint != NULL)
+		{
 			*closestPoint = CGPointMake(px, py);
 		}
-	} else {
+	}
+	else
+	{
 		CGFloat dist1 = (point.x-lineStart.x)*(point.x-lineStart.x) + (point.y-lineStart.y)*(point.y-lineStart.y);
 		CGFloat dist2 = (point.x-lineEnd.x)*(point.x-lineEnd.x) + (point.y-lineEnd.y)*(point.y-lineEnd.y);
 		
-		if (dist1 < dist2) {
+		if (dist1 < dist2)
+		{
 			distance = sqrtf(dist1);
 			
-			if (closestPoint != NULL) {
+			if (closestPoint != NULL)
+			{
 				*closestPoint = lineStart;
 			}
-		} else {
+		}
+		else
+		{
 			distance = sqrtf(dist2);
 			
-			if (closestPoint != NULL) {
+			if (closestPoint != NULL)
+			{
 				*closestPoint = lineEnd;
 			}
 		}
@@ -118,16 +129,19 @@ CGFloat HDDistanceFromQuadCurve(CGPoint curveStart, CGPoint controlPoint, CGPoin
 {
 	CGFloat minimumDistance2 = CGFLOAT_MAX;
 	
-	for (NSUInteger sampleIndex = 0; sampleIndex <= HDCurveSampleCount; sampleIndex++) {
+	for (NSUInteger sampleIndex = 0; sampleIndex <= HDCurveSampleCount; sampleIndex++)
+	{
 		CGFloat t = (CGFloat)sampleIndex / HDCurveSampleCount;
 		CGFloat sampleX = HDQuadCurve(curveStart.x, controlPoint.x, curveEnd.x, t);
 		CGFloat sampleY = HDQuadCurve(curveStart.y, controlPoint.y, curveEnd.y, t);
 		CGFloat distance2 = (point.x-sampleX)*(point.x-sampleX) + (point.y-sampleY)*(point.y-sampleY);
 		
-		if (distance2 < minimumDistance2) {
+		if (distance2 < minimumDistance2)
+		{
 			minimumDistance2 = distance2;
 			
-			if (closestPoint != NULL) {
+			if (closestPoint != NULL)
+			{
 				*closestPoint = CGPointMake(sampleX, sampleY);
 			}
 		}
@@ -140,16 +154,19 @@ CGFloat HDDistanceFromCubicCurve(CGPoint curveStart, CGPoint controlPoint1, CGPo
 {
 	CGFloat minimumDistance2 = CGFLOAT_MAX;
 	
-	for (NSUInteger sampleIndex = 0; sampleIndex <= HDCurveSampleCount; sampleIndex++) {
+	for (NSUInteger sampleIndex = 0; sampleIndex <= HDCurveSampleCount; sampleIndex++)
+	{
 		CGFloat t = (CGFloat)sampleIndex / HDCurveSampleCount;
 		CGFloat sampleX = HDCubicCurve(curveStart.x, controlPoint1.x, controlPoint2.x, curveEnd.x, t);
 		CGFloat sampleY = HDCubicCurve(curveStart.y, controlPoint1.y, controlPoint2.y, curveEnd.y, t);
 		CGFloat distance2 = (point.x-sampleX)*(point.x-sampleX) + (point.y-sampleY)*(point.y-sampleY);
 		
-		if (distance2 < minimumDistance2) {
+		if (distance2 < minimumDistance2)
+		{
 			minimumDistance2 = distance2;
 			
-			if (closestPoint != NULL) {
+			if (closestPoint != NULL)
+			{
 				*closestPoint = CGPointMake(sampleX, sampleY);
 			}
 		}

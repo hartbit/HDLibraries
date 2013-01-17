@@ -43,14 +43,14 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 + (UIViewController*)rootViewController
 {
-	return [UIApplication sharedApplication].keyWindow.rootViewController;
+	return [[[UIApplication sharedApplication] keyWindow] rootViewController];
 }
 
 #pragma mark - Initialization
 
 - (id)init
 {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		[self addObservers];
 	}
 	
@@ -66,14 +66,14 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (BOOL)isAuthenticated
 {
-	return [[self class] isAvailable] && [GKLocalPlayer localPlayer].isAuthenticated;
+	return [[self class] isAvailable] && [[GKLocalPlayer localPlayer] isAuthenticated];
 }
 
 #pragma mark - Public Methods
 
 - (void)authenticate
 {
-	if (![[self class] isAvailable] || [GKLocalPlayer localPlayer].isAuthenticated) {
+	if (![[self class] isAvailable] || [[GKLocalPlayer localPlayer] isAuthenticated]) {
 		return;
 	}
 	
@@ -86,7 +86,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (void)updateScore:(int64_t)value onLeaderboard:(NSString*)category
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
@@ -101,24 +101,24 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (void)updateAchievement:(NSString*)identifier percentComplete:(double)percentComplete
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
 	NIDASSERT((percentComplete >= 0.0) && (percentComplete <= 100.0));
 	percentComplete = MIN(MAX(percentComplete, 0), 100);
 
-	GKAchievement* serverAchievement = self.serverAchievements[identifier];
+	GKAchievement* serverAchievement = [[self serverAchievements] objectForKey:identifier];
 	
-	if ((NSUInteger)serverAchievement.percentComplete >= (NSUInteger)percentComplete) {
+	if ((NSUInteger)[serverAchievement percentComplete] >= (NSUInteger)percentComplete) {
 		return;
 	}
 	
 	GKAchievement* achievement = [[GKAchievement alloc] initWithIdentifier:identifier];
-	achievement.percentComplete = percentComplete;
+	[achievement setPercentComplete:percentComplete];
 	
 	if ([achievement respondsToSelector:@selector(setShowsCompletionBanner:)]) {
-		achievement.showsCompletionBanner = YES;
+		[achievement setShowsCompletionBanner:YES];
 	}
 	
 	[achievement reportAchievementWithCompletionHandler:^(NSError* error) {
@@ -129,7 +129,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 		
 		if (serverAchievement != nil) {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				serverAchievement.percentComplete = percentComplete;
+				[serverAchievement setPercentComplete:percentComplete];
 			});
 		}
 	}];
@@ -137,7 +137,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (void)completeAllAchievements
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
@@ -149,7 +149,8 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[descriptions enumerateObjectsUsingBlock:^(GKAchievementDescription* achievementDescription, NSUInteger idx, BOOL* stop) {
-				[self updateAchievement:achievementDescription.identifier percentComplete:100];
+				NSString* identifier = [achievementDescription identifier];
+				[self updateAchievement:identifier percentComplete:100];
 			}];
 		});
 	}];
@@ -157,7 +158,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (void)resetAllAchievements
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
@@ -170,23 +171,23 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 
 - (void)showLeaderboards
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
 	GKLeaderboardViewController* leaderboardViewController = [GKLeaderboardViewController new];
-	leaderboardViewController.leaderboardDelegate = self;
+	[leaderboardViewController setLeaderboardDelegate:self];
 	[self presentViewController:leaderboardViewController];
 }
 
 - (void)showAchievements
 {
-	if (!self.isAuthenticated) {
+	if (![self isAuthenticated]) {
 		return;
 	}
 	
 	GKAchievementViewController* achievementViewController = [GKAchievementViewController new];
-	achievementViewController.achievementDelegate = self;
+	[achievementViewController setAchievementDelegate:self];
 	[self presentViewController:achievementViewController];
 }
 
@@ -217,25 +218,27 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 }
 
 - (void)updateServerAchievements:(NSNotification*)notification
-{	
-	if (!self.isAuthenticated) {
+{
+	[self setServerAchievements:nil];
+	
+	if (![[GKLocalPlayer localPlayer] isAuthenticated]) {
 		return;
 	}
 	
 	[GKAchievement loadAchievementsWithCompletionHandler:^(NSArray* achievements, NSError* error) {
-		NSMutableDictionary* serverAchievements = nil;
-		
 		if (error != nil) {
 			NIDINFO(@"GameCenter loadAchievementsWithCompletionHandler - %@", [error localizedDescription]);
-		} else {
-			serverAchievements = [NSMutableDictionary dictionary];
-			[achievements enumerateObjectsUsingBlock:^(GKAchievement* achievement, NSUInteger index, BOOL* stop) {
-				serverAchievements[achievement.identifier] = achievement;
-			}];
+			return;
 		}
 		
+		NSMutableDictionary* serverAchievements = [NSMutableDictionary dictionary];
+		
+		[achievements enumerateObjectsUsingBlock:^(GKAchievement* achievement, NSUInteger index, BOOL* stop) {
+			[serverAchievements setObject:achievement forKey:[achievement identifier]];
+		}];
+		
 		dispatch_async(dispatch_get_main_queue(), ^{	
-			self.serverAchievements = serverAchievements;
+			[self setServerAchievements:serverAchievements];
 		});
 	}];
 }

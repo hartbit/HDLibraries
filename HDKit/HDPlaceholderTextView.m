@@ -26,7 +26,8 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)init
 {
-	if (self = [super init]) {
+	if ((self = [super init]))
+	{
 		[self initialize];
 	}
 	
@@ -35,7 +36,8 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if (self = [super initWithFrame:frame]) {
+	if ((self = [super initWithFrame:frame]))
+	{
 		[self initialize];
 	}
 	
@@ -44,7 +46,8 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if (self = [super initWithCoder:coder]) {
+	if ((self = [super initWithCoder:coder]))
+	{
 		[self initialize];
 	}
 	
@@ -65,33 +68,34 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (NSString*)placeholder
 {
-	return self.placeholderLabel.text;
+	return [[self placeholderLabel] text];
 }
 
 - (void)setPlaceholder:(NSString*)placeholder
 {	
-	self.placeholderLabel.text = placeholder;
+	[[self placeholderLabel] setText:placeholder];
 	
-	CGFloat contrainedWidth = self.boundsWidth - 2 * kPlaceholderLabelMargin;
-	CGFloat contrainedHeight = self.boundsHeight - 2 * kPlaceholderLabelMargin;
+	CGFloat contrainedWidth = [self boundsWidth] - 2 * kPlaceholderLabelMargin;
+	CGFloat contrainedHeight = [self boundsHeight] - 2 * kPlaceholderLabelMargin;
 	CGSize contrainedSize = CGSizeMake(contrainedWidth, contrainedHeight);
-	CGSize placeholderSize = [placeholder sizeWithFont:self.font constrainedToSize:contrainedSize];
-	self.placeholderLabel.frameSize = placeholderSize;
+	CGSize placeholderSize = [placeholder sizeWithFont:[self font] constrainedToSize:contrainedSize];
+	[[self placeholderLabel] setFrameSize:placeholderSize];
 }
 
 - (UILabel*)placeholderLabel
 {	
-	if (_placeholderLabel == nil) {
+	if (_placeholderLabel == nil)
+	{
 		CGRect frame = CGRectMake(kPlaceholderLabelMargin, kPlaceholderLabelMargin, 0, 0);
 		UILabel* placeholderLabel = [[UILabel alloc] initWithFrame:frame];
-		placeholderLabel.lineBreakMode = UILineBreakModeWordWrap;
-		placeholderLabel.numberOfLines = 0;
-		placeholderLabel.font = self.font;
-		placeholderLabel.backgroundColor = [UIColor clearColor];
-		placeholderLabel.textColor = [UIColor lightGrayColor];
+		[placeholderLabel setLineBreakMode:UILineBreakModeWordWrap];
+		[placeholderLabel setNumberOfLines:0];
+		[placeholderLabel setFont:[self font]];
+		[placeholderLabel setBackgroundColor:[UIColor clearColor]];
+		[placeholderLabel setTextColor:[UIColor lightGrayColor]];
 
 		[self addSubview:placeholderLabel];
-		self.placeholderLabel = placeholderLabel;
+		[self setPlaceholderLabel:placeholderLabel];
 		
 		[self updatePlaceholderLabel];
 	}
@@ -103,7 +107,8 @@ CGFloat const kPlaceholderLabelMargin = 8;
 
 - (void)updatePlaceholderLabel
 {
-	self.placeholderLabel.hidden = [self.text length] != 0;
+	BOOL isTextViewEmpty = [[self text] length] == 0;
+	[[self placeholderLabel] setHidden:!isTextViewEmpty];
 }
 
 @end

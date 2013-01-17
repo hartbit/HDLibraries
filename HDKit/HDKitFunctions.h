@@ -9,9 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
+static inline UIColor* UIColorMake(NSUInteger r, NSUInteger g, NSUInteger b)
+{
+	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
+}
+
+static inline UIColor* UIColorAlphaMake(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a)
+{
+	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/255.0];
+}
+
 static inline NSString* NSStringFromDeviceOrientation(UIDeviceOrientation orientation)
 {
-	switch (orientation) {
+	switch (orientation)
+	{
 		case UIDeviceOrientationUnknown: return @"UIDeviceOrientationUnknown";
 		case UIDeviceOrientationPortrait: return @"UIDeviceOrientationPortrait";
 		case UIDeviceOrientationPortraitUpsideDown: return @"UIDeviceOrientationPortraitUpsideDown";
@@ -24,7 +35,8 @@ static inline NSString* NSStringFromDeviceOrientation(UIDeviceOrientation orient
 
 static inline NSString* NSStringFromInterfaceOrientation(UIInterfaceOrientation orientation)
 {
-	switch (orientation) {
+	switch (orientation)
+	{
 		case UIInterfaceOrientationPortrait: return @"UIInterfaceOrientationPortrait";
 		case UIInterfaceOrientationPortraitUpsideDown: return @"UIInterfaceOrientationPortraitUpsideDown";
 		case UIInterfaceOrientationLandscapeLeft: return @"UIInterfaceOrientationLandscapeLeft";

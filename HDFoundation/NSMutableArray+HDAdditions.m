@@ -23,7 +23,7 @@
 {
 	NIDASSERT([self count] > 0);
 	
-	id object = self[0];
+	id object = [self objectAtIndex:0];
 	[self removeObjectAtIndex:0];
 	return object;
 }

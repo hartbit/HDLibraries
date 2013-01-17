@@ -27,7 +27,8 @@
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-	if (self = [super initWithCoder:coder]) {
+	if ((self = [super initWithCoder:coder]))
+	{
 		[self initialize];
 	}
 	
@@ -36,7 +37,8 @@
 			   
 - (id)initWithFrame:(CGRect)frame
 {
-	if (self = [super initWithFrame:frame]) {
+	if ((self = [super initWithFrame:frame]))
+	{
 		[self initialize];
 	}
 
@@ -45,26 +47,32 @@
 
 - (void)initialize
 {
-	self.clipsToBounds = YES;
-	self.distanceThreshold = 10;
+	[self setClipsToBounds:YES];
+	[self setDistanceThreshold:10];
 }
 
 #pragma mark - Properties
 
 - (CGFloat)brushSize
 {
-	if ([self.dataSource respondsToSelector:@selector(sizeOfBrushForDrawableView:)]) {
-		return [self.dataSource sizeOfBrushForDrawableView:self];
-	} else {
+	if ([[self dataSource] respondsToSelector:@selector(sizeOfBrushForDrawableView:)])
+	{
+		return [[self dataSource] sizeOfBrushForDrawableView:self];
+	}
+	else
+	{
 		return 20;
 	}
 }
 
 - (UIColor*)brushColor
 {
-	if ([self.dataSource respondsToSelector:@selector(colorOfBrushForDrawableView:)]) {
-		return [self.dataSource colorOfBrushForDrawableView:self];
-	} else {
+	if ([[self dataSource] respondsToSelector:@selector(colorOfBrushForDrawableView:)])
+	{
+		return [[self dataSource] colorOfBrushForDrawableView:self];
+	}
+	else
+	{
 		return [UIColor blackColor];
 	}
 }
@@ -73,7 +81,8 @@
 
 - (void)clear
 {
-	for (CALayer* sublayer in [self.layer sublayers]) {
+	for (CALayer* sublayer in [[self layer] sublayers])
+	{
 		[sublayer removeFromSuperlayer];
 	}
 	
@@ -84,20 +93,21 @@
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {	
-	self.mouseSwiped = NO;
+	[self setMouseSwiped:NO];
 	[self updateLayersWithNewTouches:touches];
 	[self startDrawing];
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	self.mouseSwiped = YES;
+	[self setMouseSwiped:YES];
 	[self updateLayersWithContinuedTouches:touches force:NO];
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
-	if (!self.mouseSwiped) {
+	if (![self mouseSwiped])
+	{
 		[self updateLayersWithContinuedTouches:touches force:YES];
 	}
 	
@@ -114,45 +124,49 @@
 - (void)updateLayersWithNewTouches:(NSSet*)touches
 {
 	CGPoint point = [[touches anyObject] locationInView:self];
+	CAShapeLayer* currentLayer = [self currentLayer];
 	
-	CGMutablePathRef path = CGPathCreateMutableCopy(self.currentLayer.path);
+	CGMutablePathRef path = CGPathCreateMutableCopy([currentLayer path]);
 	CGPathMoveToPoint(path, NULL, point.x, point.y);
-	self.currentLayer.path = path;
+	[currentLayer setPath:path];
 	CGPathRelease(path);
 }
 
 - (void)updateLayersWithContinuedTouches:(NSSet*)touches force:(BOOL)force
 {
 	CGPoint point = [[touches anyObject] locationInView:self];
-	CGFloat deltaDistance = CGPointDistance(CGPathGetCurrentPoint(self.currentLayer.path), point);
+	CAShapeLayer* currentLayer = [self currentLayer];
+	CGFloat deltaDistance = CGPointDistance(CGPathGetCurrentPoint([currentLayer path]), point);
 	
-	if (force || (deltaDistance > self.distanceThreshold)) {
-		CGMutablePathRef path = CGPathCreateMutableCopy(self.currentLayer.path);
+	if (force || (deltaDistance > [self distanceThreshold]))
+	{
+		CGMutablePathRef path = CGPathCreateMutableCopy([currentLayer path]);
 		CGPathAddLineToPoint(path, NULL, point.x, point.y);
-		self.currentLayer.path = path;
+		[currentLayer setPath:path];
 		CGPathRelease(path);
 	}
 }
 
 - (CAShapeLayer*)currentLayer
 {
-	CGFloat brushSize = self.brushSize;
-	UIColor* brushColor = self.brushColor;
-	CAShapeLayer* lastLayer = [self.layer.sublayers lastObject];
+	CGFloat brushSize = [self brushSize];
+	UIColor* brushColor = [self brushColor];
+	CAShapeLayer* lastLayer = [[[self layer] sublayers] lastObject];
 	
-	if ((lastLayer == nil) || (lastLayer.lineWidth != brushSize) || !CGColorEqualToColor(lastLayer.strokeColor, brushColor.CGColor)) {
+	if ((lastLayer == nil) || ([lastLayer lineWidth] != brushSize) || !CGColorEqualToColor([lastLayer strokeColor], [brushColor CGColor]))
+	{
 		lastLayer = [[CAShapeLayer alloc] init];
-		lastLayer.lineCap = kCALineCapRound;
-		lastLayer.lineJoin = kCALineJoinRound;
-		lastLayer.lineWidth = brushSize;
-		lastLayer.strokeColor = brushColor.CGColor;
-		lastLayer.fillColor = [UIColor clearColor].CGColor;
+		[lastLayer setLineCap:kCALineCapRound];
+		[lastLayer setLineJoin:kCALineJoinRound];
+		[lastLayer setLineWidth:brushSize];
+		[lastLayer setStrokeColor:[brushColor CGColor]];
+		[lastLayer setFillColor:[[UIColor clearColor] CGColor]];
 		
 		CGMutablePathRef path = CGPathCreateMutable();
-		lastLayer.path = path;
+		[lastLayer setPath:path];
 		CGPathRelease(path);
 		
-		[self.layer addSublayer:lastLayer];
+		[[self layer] addSublayer:lastLayer];
 	}
 	
 	return lastLayer;
@@ -160,15 +174,17 @@
 
 - (void)startDrawing
 {
-	if ([self.delegate respondsToSelector:@selector(drawableViewWillStartDrawing:)]) {
-		[self.delegate drawableViewWillStartDrawing:self];
+	if ([[self delegate] respondsToSelector:@selector(drawableViewWillStartDrawing:)])
+	{
+		[[self delegate] drawableViewWillStartDrawing:self];
 	}
 }
 
 - (void)endDrawing
 {
-	if ([self.delegate respondsToSelector:@selector(drawableViewDidEndDrawing:)]) {
-		[self.delegate drawableViewDidEndDrawing:self];
+	if ([[self delegate] respondsToSelector:@selector(drawableViewDidEndDrawing:)])
+	{
+		[[self delegate] drawableViewDidEndDrawing:self];
 	}
 }
 

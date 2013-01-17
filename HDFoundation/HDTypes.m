@@ -16,11 +16,16 @@ HDDirection HDDirectionNext(HDDirection direction, BOOL clockwise)
 	
     HDDirection returnDirection = HDDirectionNone;
 	
-    if ((direction == HDDirectionUp) && !clockwise) {
+    if ((direction == HDDirectionUp) && !clockwise)
+    {
         returnDirection = HDDirectionLeft;
-    } else if ((direction == HDDirectionLeft) && clockwise) {
+    }
+    else if ((direction == HDDirectionLeft) && clockwise)
+    {
         returnDirection = HDDirectionUp;
-    } else {
+    }
+    else
+    {
         returnDirection = direction + (clockwise ? 1 : -1);
     }
 
@@ -35,16 +40,25 @@ HDDirection HDDirectionOpposite(HDDirection direction)
 
 HDDirection HDDirectionBetweenPoints(HDPoint fromPoint, HDPoint toPoint)
 {
-	if (fromPoint.x == toPoint.x) {
-		if (toPoint.y == fromPoint.y + 1) {
+	if (fromPoint.x == toPoint.x)
+	{
+		if (toPoint.y == fromPoint.y + 1)
+		{
 			return HDDirectionDown;
-		} else if (toPoint.y == fromPoint.y - 1) {
+		}
+		else if (toPoint.y == fromPoint.y - 1)
+		{
 			return HDDirectionUp;
 		}
-	} else if (fromPoint.y == toPoint.y) {
-		if (toPoint.x == fromPoint.x + 1) {
+	}
+	else if (fromPoint.y == toPoint.y)
+	{
+		if (toPoint.x == fromPoint.x + 1)
+		{
 			return HDDirectionRight;
-		} else if (toPoint.x == fromPoint.x - 1) {
+		}
+		else if (toPoint.x == fromPoint.x - 1)
+		{
 			return HDDirectionLeft;
 		}
 	}
@@ -56,7 +70,8 @@ HDPoint HDPointInDirection(HDPoint point, HDDirection direction)
 {
 	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
 	
-	switch (direction) {
+	switch (direction)
+	{
 		case HDDirectionUp: point.y--; break;
 		case HDDirectionRight: point.x++; break;
 		case HDDirectionDown: point.y++; break;
@@ -71,7 +86,8 @@ NSString* NSStringFromHDDirection(HDDirection direction)
 {
 	NIDASSERT((direction > HDDirectionNone) && (direction < HDDirectionLast));
 	
-	switch (direction) {
+	switch (direction)
+	{
 		case HDDirectionNone: return @"None";
 		case HDDirectionUp: return @"Up";
 		case HDDirectionRight: return @"Right";

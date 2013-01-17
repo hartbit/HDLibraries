@@ -16,12 +16,15 @@
 	NSUInteger count = 0;
 	BOOL stop = NO;
 	
-	for (id obj in self) {
-		if (predicate(obj, &stop)) {
+	for (id obj in self)
+	{
+		if (predicate(obj, &stop))
+		{
 			count++;
 		}
 		
-		if (stop) {
+		if (stop)
+		{
 			break;
 		}
 	}

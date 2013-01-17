@@ -14,8 +14,8 @@
 - (NSString*)version
 {
 	NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
-	NSString* shortVersion = infoDictionary[@"CFBundleShortVersionString"];
-	NSString* version = infoDictionary[@"CFBundleVersion"];
+	NSString* shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+	NSString* version = [infoDictionary objectForKey:@"CFBundleVersion"];
 	return [NSString stringWithFormat:@"%@ (%@)", shortVersion, version];
 }
 
