@@ -30,10 +30,8 @@
 
 + (id)insertNewObject
 {
-	NSManagedObject* object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
-															inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
-	[[HDModelController sharedInstance] assignObjectToFirstWritableStore:object];
-	return object;
+	return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
+										 inManagedObjectContext:[HDModelController sharedInstance].managedObjectContext];
 }
 
 + (NSSet*)allObjects
