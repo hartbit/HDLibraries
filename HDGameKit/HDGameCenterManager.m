@@ -91,6 +91,7 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}
 	
 	GKScore* score = [[GKScore alloc] initWithCategory:category];
+	[score setValue:value];
 	[score reportScoreWithCompletionHandler:^(NSError* error) {
 		if (error) {
 			NIDINFO(@"GameCenter reportScoreWithCompletionHandler - %@", [error localizedDescription]);
