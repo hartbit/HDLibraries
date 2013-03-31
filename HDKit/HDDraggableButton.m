@@ -12,6 +12,13 @@
 #import "HDKitFunctions.h"
 
 
+@interface HDDraggableButton ()
+
+@property (nonatomic) BOOL isDragging;
+
+@end
+
+
 @implementation HDDraggableButton
 
 #pragma mark - Initialization
@@ -102,6 +109,7 @@
 	
 	if ([self dragEnabled]) {
 		[self willDrag];
+		self.isDragging = YES;
 	}
 }
 
@@ -117,11 +125,15 @@
 		CGPoint deltaOrigin = CGPointSubstract(currentLocation, previousLocation);
 		[self setFrameOrigin:CGPointAdd([self frameOrigin], deltaOrigin)];
 	}
+	
+	self.isDragging = [self dragEnabled];
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[super touchesEnded:touches withEvent:event];
+	
+	self.isDragging = NO;
 	
 	if ([self dragEnabled]) {
 		for (UIView* target in [self targetViews]) {
