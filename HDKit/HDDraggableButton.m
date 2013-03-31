@@ -100,7 +100,9 @@
 {
 	[super touchesBegan:touches withEvent:event];
 	
-	[self willDrag];
+	if ([self dragEnabled]) {
+		[self willDrag];
+	}
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
