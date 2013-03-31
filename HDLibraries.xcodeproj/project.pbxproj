@@ -673,7 +673,7 @@
 		6363D24A134C56ED000BDCFD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "hart[dev]";
 			};
 			buildConfigurationList = 6363D24D134C56ED000BDCFD /* Build configuration list for PBXProject "HDLibraries" */;
@@ -984,7 +984,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1011,7 +1010,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_THUMB_SUPPORT = NO;

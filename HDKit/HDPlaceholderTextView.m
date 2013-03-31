@@ -84,7 +84,7 @@ CGFloat const kPlaceholderLabelMargin = 8;
 	if (!_placeholderLabel) {
 		CGRect frame = CGRectMake(kPlaceholderLabelMargin, kPlaceholderLabelMargin, 0, 0);
 		UILabel* placeholderLabel = [[UILabel alloc] initWithFrame:frame];
-		[placeholderLabel setLineBreakMode:UILineBreakModeWordWrap];
+		[placeholderLabel setLineBreakMode:NSLineBreakByWordWrapping];
 		[placeholderLabel setNumberOfLines:0];
 		[placeholderLabel setFont:[self font]];
 		[placeholderLabel setBackgroundColor:[UIColor clearColor]];
