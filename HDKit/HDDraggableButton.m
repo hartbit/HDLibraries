@@ -64,7 +64,9 @@
 					 animations:^{
 						 self.frame = self.savedFrame;
 					 } completion:^(BOOL finished) {
-						 completion();
+						 if (completion != NULL) {
+							 completion();
+						 }
 					 }];
 }
 
