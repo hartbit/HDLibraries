@@ -14,7 +14,8 @@
 
 @interface HDDraggableButton ()
 
-@property (nonatomic) BOOL isDragging;
+@property (nonatomic, getter = isDragging) BOOL dragging;
+@property (nonatomic) CGRect savedFrame;
 
 @end
 
@@ -43,61 +44,48 @@
 
 - (void)initialize
 {
-	[self setDragEnabled:YES];
-	[self setStartOrigin:[self frameOrigin]];
-	[self setSpeed:1000.0f];
+	self.dragEnabled = YES;
+	[self saveFrame];
 }
 
 #pragma mark - Public Methods
 
-- (void)returnToStart
+- (void)saveFrame
 {
-	[self returnToStartAnimated:YES];
+	self.savedFrame = self.frame;
 }
 
-- (void)returnToStartAnimated:(BOOL)animated
+- (void)restoreSavedFrameAnimated:(BOOL)animated completion:(void (^)(void))completion
 {
-	if (animated) {
-		NSTimeInterval duration = CGPointDistance([self frameOrigin], [self startOrigin]) / [self speed];
-		
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-		[UIView setAnimationDuration:duration];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(didReturnToStart)];
-	}
-	
-	[self setFrameOrigin:[self startOrigin]];
-	
-	if (animated) {
-		[UIView commitAnimations];
-	}
+	NSTimeInterval duration = animated ? 0.25 : 0;
+	[UIView animateWithDuration:duration
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 self.frame = self.savedFrame;
+					 } completion:^(BOOL finished) {
+						 completion();
+					 }];
 }
 
 - (void)willDrag
 {
-	if ([self dragEnabled] && [[self delegate] respondsToSelector:@selector(draggableButtonWillDrag:)]) {
-		[[self delegate] draggableButtonWillDrag:self];
+	if ([self.delegate respondsToSelector:@selector(draggableButtonWillDrag:)]) {
+		[self.delegate draggableButtonWillDrag:self];
 	}
 }
 
-- (void)didDropOnTarget:(UIView*)target
+- (void)didDrop
 {
-	if (!target) {
-		[self returnToStart];
-	} else {
-		[self roundFrame];
-	}
-	
-	if ([[self delegate] respondsToSelector:@selector(draggableButton:didDropOnTarget:)]) {
-		[[self delegate] draggableButton:self didDropOnTarget:target];
+	if ([self.delegate respondsToSelector:@selector(draggableButtonDidDrop:)]) {
+		[self.delegate draggableButtonDidDrop:self];
 	}
 }
 
-- (void)didReturnToStart
+- (void)didCancelDrag
 {
-	if ([[self delegate] respondsToSelector:@selector(draggableButtonDidReturnToStart:)]) {
-		[[self delegate] draggableButtonDidReturnToStart:self];
+	if ([self.delegate respondsToSelector:@selector(draggableButtonDidCancelDrag:)]) {
+		[self.delegate draggableButtonDidCancelDrag:self];
 	}
 }
 
@@ -107,9 +95,9 @@
 {
 	[super touchesBegan:touches withEvent:event];
 	
-	if ([self dragEnabled]) {
+	if (self.dragEnabled) {
 		[self willDrag];
-		self.isDragging = YES;
+		self.dragging = YES;
 	}
 }
 
@@ -117,36 +105,25 @@
 {
 	[super touchesMoved:touches withEvent:event];
 	
-	if ([self dragEnabled]) {
+	if (self.dragEnabled) {
 		UITouch* touch = [touches anyObject];
 		CGPoint currentLocation = [touch locationInView:[self superview]];
 		CGPoint previousLocation = [touch previousLocationInView:[self superview]];
-		
 		CGPoint deltaOrigin = CGPointSubstract(currentLocation, previousLocation);
-		[self setFrameOrigin:CGPointAdd([self frameOrigin], deltaOrigin)];
+		self.frameOrigin = CGPointAdd(self.frameOrigin, deltaOrigin);
 	}
 	
-	self.isDragging = [self dragEnabled];
+	self.dragging = self.dragEnabled;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[super touchesEnded:touches withEvent:event];
 	
-	self.isDragging = NO;
+	self.dragging = NO;
 	
-	if ([self dragEnabled]) {
-		for (UIView* target in [self targetViews]) {
-			CGPoint centerInTarget = [[self superview] convertPoint:[self center] toView:[target superview]];
-			BOOL onTarget = CGRectContainsPoint([target frame], centerInTarget);
-			
-			if (onTarget) {
-				[self didDropOnTarget:target];
-				return;
-			}
-		}
-		
-		[self didDropOnTarget:nil];
+	if (self.dragEnabled) {
+		[self didDrop];
 	}
 }
 

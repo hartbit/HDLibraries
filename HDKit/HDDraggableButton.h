@@ -14,17 +14,15 @@
 @interface HDDraggableButton : UIButton
 
 @property (nonatomic, unsafe_unretained) IBOutlet id<HDDraggableButtonDelegate> delegate;
-@property (nonatomic, strong) IBOutletCollection(UIView) NSArray* targetViews;
-@property (nonatomic, assign) CGFloat speed;
-@property (nonatomic, assign) BOOL dragEnabled;
-@property (nonatomic, assign) CGPoint startOrigin;
+@property (nonatomic, getter = isDragEnabled) BOOL dragEnabled;
 @property (nonatomic, readonly) BOOL isDragging;
 
-- (void)returnToStart;
-- (void)returnToStartAnimated:(BOOL)animated;
+- (void)saveFrame;
+- (void)restoreSavedFrameAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
 - (void)willDrag;
-- (void)didDropOnTarget:(UIView*)target;
-- (void)didReturnToStart;
+- (void)didDrop;
+- (void)didCancelDrag;
 
 @end
 
@@ -33,7 +31,7 @@
 
 @optional
 - (void)draggableButtonWillDrag:(HDDraggableButton*)button;
-- (void)draggableButton:(HDDraggableButton*)button didDropOnTarget:(UIView*)onTarget;
-- (void)draggableButtonDidReturnToStart:(HDDraggableButton*)button;
+- (void)draggableButtonDidDrop:(HDDraggableButton*)button;
+- (void)draggableButtonDidCancelDrag:(HDDraggableButton*)button;
 
 @end
