@@ -57,17 +57,23 @@
 
 - (void)restoreSavedFrameAnimated:(BOOL)animated completion:(void (^)(void))completion
 {
+	void (^animationCompletion)(BOOL finished) = NULL;
+	
+	if (completion != NULL)	{
+		animationCompletion = ^(BOOL finished) {
+			if (completion != NULL) {
+				completion();
+			}
+		};
+	}
+	
 	NSTimeInterval duration = animated ? 0.25 : 0;
 	[UIView animateWithDuration:duration
 						  delay:0
 						options:UIViewAnimationOptionCurveEaseOut
 					 animations:^{
 						 self.frame = self.savedFrame;
-					 } completion:^(BOOL finished) {
-						 if (completion != NULL) {
-							 completion();
-						 }
-					 }];
+					 } completion:animationCompletion];
 }
 
 - (void)willDrag
