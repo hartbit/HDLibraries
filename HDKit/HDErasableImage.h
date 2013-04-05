@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, assign, readonly, getter=isErasing) BOOL erasing;
 @property (nonatomic, assign, readonly) CGFloat completion;
-@property (nonatomic, unsafe_unretained) id<HDErasableImageDelegate> delegate;
+@property (nonatomic, weak) id<HDErasableImageDelegate> delegate;
 
 - (id)initWithImage:(UIImage*)image erasing:(BOOL)erasing;
 

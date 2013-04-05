@@ -13,9 +13,9 @@
 
 @interface HDDraggableButton : UIButton
 
-@property (nonatomic, unsafe_unretained) IBOutlet id<HDDraggableButtonDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<HDDraggableButtonDelegate> delegate;
 @property (nonatomic, getter = isDragEnabled) BOOL dragEnabled;
-@property (nonatomic, readonly) BOOL isDragging;
+@property (nonatomic, getter = isDragging, readonly) BOOL dragging;
 
 - (void)saveFrame;
 - (void)restoreSavedFrameAnimated:(BOOL)animated completion:(void (^)(void))completion;

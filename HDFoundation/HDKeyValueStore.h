@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, HDKeyValueStoreSychronizationState)
 @interface HDKeyValueStore : NSObject
 
 @property (nonatomic, strong) NSString* keyPrefix;
-@property (nonatomic, unsafe_unretained) id<HDKeyValueStoreDelegate> delegate;
+@property (nonatomic, weak) id<HDKeyValueStoreDelegate> delegate;
 
 - (void)registerDefaults:(NSDictionary*)defaults;
 
