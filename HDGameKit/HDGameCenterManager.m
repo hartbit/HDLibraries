@@ -170,26 +170,16 @@ NSString* const HDGameCenterUnsentScoresKey = @"HDUnsentScores";
 	}];
 }
 
-- (void)showLeaderboards
+- (void)showGameCenterWithState:(GKGameCenterViewControllerState)state
 {
 	if (![self isAuthenticated]) {
 		return;
 	}
 	
-	GKLeaderboardViewController* leaderboardViewController = [GKLeaderboardViewController new];
-	[leaderboardViewController setLeaderboardDelegate:self];
-	[self presentViewController:leaderboardViewController];
-}
-
-- (void)showAchievements
-{
-	if (![self isAuthenticated]) {
-		return;
-	}
-	
-	GKAchievementViewController* achievementViewController = [GKAchievementViewController new];
-	[achievementViewController setAchievementDelegate:self];
-	[self presentViewController:achievementViewController];
+	GKGameCenterViewController* gameCenterViewController = [GKGameCenterViewController new];
+	gameCenterViewController.viewState = state;
+	gameCenterViewController.gameCenterDelegate = self;
+	[self presentViewController:gameCenterViewController];
 }
 
 #pragma mark - GKLeaderboardViewControllerDelegate Methods

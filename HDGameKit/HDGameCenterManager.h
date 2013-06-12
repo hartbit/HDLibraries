@@ -9,7 +9,7 @@
 #import <GameKit/GameKit.h>
 
 
-@interface HDGameCenterManager : NSObject <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface HDGameCenterManager : NSObject <GKGameCenterControllerDelegate>
 
 @property (nonatomic, readonly) BOOL isAuthenticated;
 
@@ -22,7 +22,6 @@
 - (void)completeAllAchievements;
 - (void)resetAllAchievements;
 
-- (void)showLeaderboards;
-- (void)showAchievements;
+- (void)showGameCenterWithState:(GKGameCenterViewControllerState)state;
 
 @end
